@@ -12,6 +12,7 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:promise/recommended',
     'plugin:unicorn/recommended',
+    'plugin:cypress/recommended',
     'airbnb',
   ],
   parserOptions: {
@@ -24,6 +25,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'cypress',
   ],
   root: true,
   rules: {
