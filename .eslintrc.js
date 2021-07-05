@@ -9,10 +9,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
-    'plugin:jest/recommended',
     'plugin:promise/recommended',
     'plugin:unicorn/recommended',
-    'plugin:cypress/recommended',
     'airbnb',
   ],
   parserOptions: {
@@ -56,6 +54,35 @@ module.exports = {
       rules: {
         'no-void': 'off',
         '@typescript-eslint/type-annotation-spacing': 'error',
+      },
+    },
+    {
+      files: 'src/**/*.spec.+(ts|tsx)',
+      extends: [
+        'plugin:jest/recommended',
+      ],
+    },
+    {
+      files: 'cypress/**/*',
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
+      files: 'cypress/**/*.+(ts|tsx)',
+      extends: [
+        'plugin:cypress/recommended',
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      plugins: [
+        '@typescript-eslint',
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './cypress/tsconfig.json',
       },
     },
     {
