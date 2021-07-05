@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Hero from '../../components/Hero';
 
 const MainPage = (): JSX.Element => (
   <>
-    <h1>Printables</h1>
-    <p>Printable materials for Education</p>
+    <Hero title="Printables" subtitle="Printable materials for Education" />
     <ul>
       <li><Link to="/calendar">Calendar</Link></li>
     </ul>

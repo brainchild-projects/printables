@@ -1,14 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CalendarPage from './calendar/CalendarPage';
-import MainPage from './main/MainPage';
+import CalendarPage from '../pages/calendar/CalendarPage';
+import MainPage from '../pages/main/MainPage';
+import BaseStyle from './BaseStyle';
 
 function App(): JSX.Element {
   return (
-    <Router>
-      <Route exact path="/" component={MainPage} />
-      <Route exact path="/calendar" component={CalendarPage} />
-    </Router>
+    <>
+      <BaseStyle />
+      <Router>
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/calendar" component={CalendarPage} />
+      </Router>
+    </>
   );
 }
 
