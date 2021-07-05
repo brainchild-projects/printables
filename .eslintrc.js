@@ -58,8 +58,10 @@ module.exports = {
     },
     {
       files: 'src/**/*.spec.+(ts|tsx)',
+      plugins: ['testing-library'],
       extends: [
         'plugin:jest/recommended',
+        'plugin:testing-library/react',
       ],
     },
     {
