@@ -77,7 +77,7 @@ jobs:
 
       - name: Commit Release
         if: steps.shouldRelease.outputs.value == 'yes'
-        run: git push --folow-tags origin
+        run: git push --follow-tags origin
 
       - name: Create Release
         if: steps.shouldRelease.outputs.value == 'yes'
