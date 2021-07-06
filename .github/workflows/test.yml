@@ -83,7 +83,7 @@ jobs:
         if: steps.shouldRelease.outputs.value == 'yes'
         run: |
           npm run build
-          tar -C ./build -czvf ./release.tar.gz .
+          tar -C ./build -czvf ./release-${{ steps.nextVersion.outputs.value }}.tar.gz .
 
       - name: Do Release Changes
         if: steps.shouldRelease.outputs.value == 'yes'
@@ -103,14 +103,19 @@ jobs:
         id: createRelease
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release.tar.gz"
+          artifacts: release-${{ steps.nextVersion.outputs.value }}.tar.gz
           tag: v${{ steps.nextVersion.outputs.value }}
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Repository Dispatch
-      #   uses: peter-evans/repository-dispatch@v1
-      #   with:
-      #     repository: brainchild-projects/brainchild-projects.github.io-src
-      #     token: ${{ secrets.REPO_ACCESS_TOKEN }}
-      #     event-type: sites-printables-update
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          repository: brainchild-projects/brainchild-projects.github.io-src
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          event-type: sites-printables-update
+          client-payload: |
+            {
+              "tag": "v${{ steps.nextVersion.outputs.value }}",
+              "url": "https://github.com/asartalo/diligence/releases/download/v${{ steps.nextVersion.outputs.value }}/release-${{ steps.nextVersion.outputs.value }}.tar.gz",
+            }
