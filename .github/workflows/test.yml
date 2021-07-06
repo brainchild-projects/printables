@@ -51,9 +51,8 @@ jobs:
 
       - name: Get Next Version
         id: nextVersion
-        # version=`npx standard-version --dry-run | sed -e '1!d' -e 's/.*to //g'`
         run: |
-          version=`npm run release -- --dry-run | sed -e '1!d' -e 's/.*to //g'`
+          version=`npm run release -- --dry-run | grep -oP '\[.+\]' | grep -oP '[^\[\]]+'`
           echo "::set-output name=value::${version}"
 
       - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
@@ -94,23 +93,6 @@ jobs:
           tag: v${{ steps.nextVersion.outputs.value }}
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Previous
-      #   if: steps.shouldRelease.outputs.value == 'yesx'
-      #   id: createRelease
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: v${{ steps.nextVersion.outputs.value }}
-      #     release_name: Release ${{ steps.nextVersion.outputs.value }}
-      #     # body: |
-      #     #   Changes in this Release
-
-      #     #   ${{ steps.changelog.outputs.summary }}
-
-      #     draft: false
-      #     prerelease: true
 
       # - name: Repository Dispatch
       #   uses: peter-evans/repository-dispatch@v1
