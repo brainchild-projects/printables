@@ -22,32 +22,6 @@ jobs:
       - name: Install Dependencies
         uses: bahmutov/npm-install@HEAD
 
-      - name: Get Current Version
-        id: currentVersion
-        run: |
-          version=`node -p "require('./package.json').version"`
-          echo "::set-output name=value::${version}"
-
-      - name: Get Next Version Again
-        id: nextVersion0
-        run: npm run release-version
-
-      - name: Get Next Version
-        id: nextVersion
-        run: echo "::set-output name=value::$(npm run --silent release-version)"
-
-      - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
-      - run: |
-          [[ "${{ steps.nextVersion.outputs.value }}" != "" ]]
-
-      - name: Should We Release?
-        id: shouldRelease
-        run: |
-          should=`[[ "${{ steps.nextVersion.outputs.value }}" == "${{ steps.currentVersion.outputs.value }}" ]] && echo "no" || echo "yes"`
-          echo "::set-output name=value::${should}"
-
-
-
       - name: Unit Tests
         run: npm run test:ci
 
@@ -86,7 +60,7 @@ jobs:
       - name: Should We Release?
         id: shouldRelease
         run: |
-          should=`[ "${{ steps.nextVersion.outputs.value }}" == "${{ steps.currentVersion.outputs.value }}" ] && echo "no" || echo "yesp"`
+          should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" == "${{ steps.currentVersion.outputs.value }}" ]] && echo "no" || echo "yesp"`
           echo "::set-output name=value::${should}"
 
       - if: steps.shouldRelease.outputs.value == 'yes'
