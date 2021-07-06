@@ -39,7 +39,7 @@
     "test:ci": "react-scripts test --watchAll=false",
     "cypress": "cypress open",
     "release": "standard-version --prerelease",
-    "release-version": "standard-version --prerelease -- --dry-run | grep -oP '\\[.+\\]' | grep -oP '[^\\[\\]]+'",
+    "release-version": "standard-version --prerelease --dry-run | grep -oP '\\[.+\\]' | grep -oP '[^\\[\\]]+'",
     "eject": "react-scripts eject"
   },
   "browserslist": {

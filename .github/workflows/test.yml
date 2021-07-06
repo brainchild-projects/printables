@@ -52,7 +52,7 @@ jobs:
       - name: Get Next Version
         id: nextVersion
         run: |
-          version=`npm run release -- --dry-run | grep -oP '\[.+\]' | grep -oP '[^\[\]]+'`
+          version=`npm run --silent release-version`
           echo "::set-output name=value::${version}"
 
       - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
