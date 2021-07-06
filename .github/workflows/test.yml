@@ -83,6 +83,7 @@ jobs:
         run: git push origin
 
       - name: Create Release
+        if: steps.shouldRelease.outputs.value == 'yes'
         id: createRelease
         uses: ncipollo/release-action@v1
         with:
