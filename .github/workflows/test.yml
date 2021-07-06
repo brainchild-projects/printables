@@ -60,11 +60,8 @@ jobs:
       - name: Should We Release?
         id: shouldRelease
         run: |
-          should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" == "${{ steps.currentVersion.outputs.value }}" ]] && echo "no" || echo "yesp"`
+          should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" != "${{ steps.currentVersion.outputs.value }}" ]] && echo "yes" || echo "no"`
           echo "::set-output name=value::${should}"
-
-      - if: steps.shouldRelease.outputs.value == 'yes'
-        run: echo "Yes build"
 
       - name: Build
         if: steps.shouldRelease.outputs.value == 'yes'
