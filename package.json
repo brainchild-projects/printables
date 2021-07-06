@@ -1,6 +1,6 @@
 {
   "name": "printables",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "private": true,
   "homepage": "/sites/printables",
   "dependencies": {
@@ -39,6 +39,7 @@
     "test:ci": "react-scripts test --watchAll=false",
     "cypress": "cypress open",
     "release": "standard-version --prerelease",
+    "release-version": "standard-version --prerelease -- --dry-run | grep -oP '\\[.+\\]' | grep -oP '[^\\[\\]]+'",
     "eject": "react-scripts eject"
   },
   "browserslist": {
