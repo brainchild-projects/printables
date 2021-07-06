@@ -1,13 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 import Hero from '../../components/Hero';
 
 const MainPage = (): JSX.Element => (
   <>
     <Hero title="Printables" subtitle="Printable materials for Education" />
-    <ul>
-      <li><Link to="/calendar">Calendar</Link></li>
-    </ul>
+    <List>
+      <ListItem>
+        <ListItemText>
+          <Link to="/calendar">Calendar</Link>
+        </ListItemText>
+      </ListItem>
+    </List>
   </>
 );
 
