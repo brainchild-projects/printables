@@ -51,9 +51,7 @@ jobs:
 
       - name: Get Next Version
         id: nextVersion
-        run: |
-          version=`npm run --silent release-version`
-          echo "::set-output name=value::${version}"
+        run: echo "::set-output name=value::$(npm run --silent release-version)"
 
       - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
 
