@@ -31,7 +31,7 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     # needs: test
-    if: ${{ needs.test.outputs.branch == 'main' }}
+    # if: ${{ needs.test.outputs.branch == 'main' }}
 
     steps:
       - uses: actions/checkout@v2
