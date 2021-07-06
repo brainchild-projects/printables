@@ -9,6 +9,8 @@ jobs:
       branch: ${{ steps.branchinfo.outputs.branch }}
 
     steps:
+      - uses: nelonoel/branch-name@v1.0.1
+
       - name: Store the branch name
         id: branchinfo
         run: echo "::set-output name=branch::${BRANCH_NAME}"
