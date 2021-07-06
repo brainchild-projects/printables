@@ -58,6 +58,9 @@ jobs:
           should=`[ "${{ steps.nextVersion.outputs.value }}" == "${{ steps.currentVersion.outputs.value }}" ] && echo "yes" || echo "no"`
           echo "::set-output name=value::${should}"
 
+      - if: steps.shouldRelease.outputs.value == 'yes'
+        run: echo "Yes build"
+
       # - name: Commit Release
       #   if: steps.shouldRelease.outputs.value == 'yes'
       #   run: |
