@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
     "cypress": "cypress open",
-    "release": "standard-version",
+    "release": "standard-version --prerelease",
     "eject": "react-scripts eject"
   },
   "browserslist": {

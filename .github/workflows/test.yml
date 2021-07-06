@@ -31,7 +31,7 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     # needs: test
-    # if: ${{ needs.test.outputs.branch == 'main' }}
+    if: ${{ needs.test.outputs.branch == 'main' }}
 
     steps:
       - uses: actions/checkout@v2
@@ -61,32 +61,35 @@ jobs:
       - if: steps.shouldRelease.outputs.value == 'yes'
         run: echo "Yes build"
 
-      # - name: Commit Release
-      #   if: steps.shouldRelease.outputs.value == 'yes'
-      #   run: |
-      #     git diff
-      #     git config user.name github-actions
-      #     git config user.email github-actions@github.com
-      #     git add .
-      #     git commit -m "chore(release): release for ${{ steps.nextVersion.outputs.value }}"
-      #     git push
+      - name: Do Release Changes
+        if: steps.shouldRelease.outputs.value == 'yes'
+        # NOTE: Currently runs `standard-version --prerelease`.
+        #       Update the release script in package.json to change
+        run: npm run release
 
-      # - name: Create Release
-      #   if: steps.shouldRelease.outputs.value == 'yes'
-      #   id: createRelease
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ steps.nextVersion.outputs.value }}
-      #     release_name: Release ${{ steps.nextVersion.outputs.value }}
-      #     body: |
-      #       Changes in this Release
+      - name: Commit Release
+        if: steps.shouldRelease.outputs.value == 'yes'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git push --folow-tags origin
 
-      #       ${{ steps.changelog.outputs.summary }}
+      - name: Create Release
+        if: steps.shouldRelease.outputs.value == 'yes'
+        id: createRelease
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.nextVersion.outputs.value }}
+          release_name: Release ${{ steps.nextVersion.outputs.value }}
+          # body: |
+          #   Changes in this Release
 
-      #     draft: false
-      #     prerelease: false
+          #   ${{ steps.changelog.outputs.summary }}
+
+          draft: false
+          prerelease: true
 
       # - name: Repository Dispatch
       #   uses: peter-evans/repository-dispatch@v1
