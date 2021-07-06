@@ -2,30 +2,30 @@ name: Test and Build
 on: [push]
 
 jobs:
-  # test:
-  #   name: Test
-  #   runs-on: ubuntu-20.04
-  #   outputs:
-  #     branch: ${{ steps.branchinfo.outputs.branch }}
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    outputs:
+      branch: ${{ steps.branchinfo.outputs.branch }}
 
-  #   steps:
-  #     - name: Store the branch name
-  #       id: branchinfo
-  #       run: echo "::set-output name=branch::${BRANCH_NAME}"
+    steps:
+      - name: Store the branch name
+        id: branchinfo
+        run: echo "::set-output name=branch::${BRANCH_NAME}"
 
-  #     - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-  #     - name: Install Dependencies
-  #       run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-  #     - name: Unit Tests
-  #       run: npm run test:ci
+      - name: Unit Tests
+        run: npm run test:ci
 
-  #     - name: E2E Tests
-  #       uses: cypress-io/github-action@v2
-  #       with:
-  #         start: npm start
-  #         wait-on: 'http://localhost:3000'
+      - name: E2E Tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
 
   build:
     name: Build
