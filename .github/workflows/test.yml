@@ -87,7 +87,7 @@ jobs:
         id: createRelease
         uses: ncipollo/release-action@v1
         with:
-          artifact: "release.tar.gz"
+          artifacts: "release.tar.gz"
           tag: v${{ steps.nextVersion.outputs.value }}
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
