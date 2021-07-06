@@ -51,8 +51,9 @@ jobs:
 
       - name: Get Next Version
         id: nextVersion
+        # version=`npx standard-version --dry-run | sed -e '1!d' -e 's/.*to //g'`
         run: |
-          version=`npx standard-version --dry-run | sed -e '1!d' -e 's/.*to //g'`
+          version=`npm run release -- --dry-run | sed -e '1!d' -e 's/.*to //g'`
           echo "::set-output name=value::${version}"
 
       - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
@@ -66,6 +67,12 @@ jobs:
       - if: steps.shouldRelease.outputs.value == 'yes'
         run: echo "Yes build"
 
+      - name: Build
+        if: steps.shouldRelease.outputs.value == 'yes'
+        run: |
+          npm run build
+          tar -C ./build -czvf ./release.tar.gz
+
       - name: Do Release Changes
         if: steps.shouldRelease.outputs.value == 'yes'
         # NOTE: Currently runs `standard-version --prerelease`.
@@ -77,24 +84,33 @@ jobs:
 
       - name: Commit Release
         if: steps.shouldRelease.outputs.value == 'yes'
-        run: git push --follow-tags origin
+        run: git push origin
 
       - name: Create Release
-        if: steps.shouldRelease.outputs.value == 'yes'
         id: createRelease
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: v${{ steps.nextVersion.outputs.value }}
-          release_name: Release ${{ steps.nextVersion.outputs.value }}
-          # body: |
-          #   Changes in this Release
+          artifact: "release.tar.gz"
+          tag: v${{ steps.nextVersion.outputs.value }}
+          name: Release v${{ steps.nextVersion.outputs.value }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-          #   ${{ steps.changelog.outputs.summary }}
+      # - name: Previous
+      #   if: steps.shouldRelease.outputs.value == 'yesx'
+      #   id: createRelease
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: v${{ steps.nextVersion.outputs.value }}
+      #     release_name: Release ${{ steps.nextVersion.outputs.value }}
+      #     # body: |
+      #     #   Changes in this Release
 
-          draft: false
-          prerelease: true
+      #     #   ${{ steps.changelog.outputs.summary }}
+
+      #     draft: false
+      #     prerelease: true
 
       # - name: Repository Dispatch
       #   uses: peter-evans/repository-dispatch@v1
