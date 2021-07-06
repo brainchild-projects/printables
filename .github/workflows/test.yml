@@ -70,14 +70,14 @@ jobs:
         if: steps.shouldRelease.outputs.value == 'yes'
         # NOTE: Currently runs `standard-version --prerelease`.
         #       Update the release script in package.json to change
-        run: npm run release
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          npm run release
 
       - name: Commit Release
         if: steps.shouldRelease.outputs.value == 'yes'
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git push --folow-tags origin
+        run: git push --folow-tags origin
 
       - name: Create Release
         if: steps.shouldRelease.outputs.value == 'yes'
