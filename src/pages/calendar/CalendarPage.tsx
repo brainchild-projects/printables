@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 
 const CalendarPage = (): JSX.Element => (
   <>
     <h1>Calendar</h1>
-    <button type="button">Generate Calendar</button>
+    <Button type="button">Generate Calendar</Button>
   </>
 );
 
