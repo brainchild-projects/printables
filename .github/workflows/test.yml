@@ -117,5 +117,5 @@ jobs:
           client-payload: |
             {
               "tag": "v${{ steps.nextVersion.outputs.value }}",
-              "url": "https://github.com/asartalo/diligence/releases/download/v${{ steps.nextVersion.outputs.value }}/release-${{ steps.nextVersion.outputs.value }}.tar.gz"
+              "url": "https://github.com/brainchild-projects/printables/releases/download/v${{ steps.nextVersion.outputs.value }}/release-${{ steps.nextVersion.outputs.value }}.tar.gz"
             }
