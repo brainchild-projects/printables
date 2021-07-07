@@ -65,7 +65,7 @@ module.exports = {
       ],
     },
     {
-      files: 'cypress/**/*',
+      files: ['cypress/**/*', 'scripts/**/*'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },
@@ -85,6 +85,24 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: './cypress/tsconfig.json',
+      },
+    },
+    {
+      files: 'scripts/**/*.ts',
+      extends: [
+        'airbnb-typescript',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      plugins: [
+        '@typescript-eslint',
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './scripts/tsconfig.json',
+      },
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
       },
     },
     {

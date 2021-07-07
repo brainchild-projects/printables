@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "es2020",
+    ],
+    "strict": true
+  },
+  "include": [
+    "**/*.ts"
+, "next-release-version.js"  ],
+}

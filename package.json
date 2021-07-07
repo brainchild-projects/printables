@@ -1,6 +1,6 @@
 {
   "name": "printables",
-  "version": "0.0.1-0",
+  "version": "0.0.0",
   "private": true,
   "homepage": "/sites/printables",
   "dependencies": {
@@ -38,8 +38,8 @@
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
     "cypress": "cypress open",
-    "release": "standard-version --prerelease",
-    "release-version": "standard-version --prerelease --dry-run | grep -oP '\\[.+\\]' | grep -oP '[^\\[\\]]+'",
+    "release": "standard-version",
+    "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -75,6 +75,7 @@
     "@testing-library/cypress": "^7.0.6",
     "@testing-library/react": "^12.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "@types/standard-version": "^7.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "cypress": "^7.6.0",
@@ -93,6 +94,7 @@
     "eslint-plugin-testing-library": "^3.10.2",
     "eslint-plugin-unicorn": "^34.0.1",
     "husky": "^7.0.0",
-    "standard-version": "^9.3.0"
+    "standard-version": "^9.3.0",
+    "ts-node": "^10.0.0"
   }
 }

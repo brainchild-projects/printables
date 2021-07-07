@@ -71,7 +71,7 @@ jobs:
         id: nextVersion
         run: echo "::set-output name=value::$(npm run --silent release-version)"
 
-      - run: echo "${{ steps.nextVersion.outputs.value }} ${{ steps.currentVersion.outputs.value }}"
+      - run: echo "${{ steps.currentVersion.outputs.value }} vs ${{ steps.nextVersion.outputs.value }}"
 
       - name: Should We Release?
         id: shouldRelease
