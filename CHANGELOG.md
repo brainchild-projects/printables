@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/brainchild-projects/printables/compare/v0.0.4...v0.0.5) (2021-07-07)
+
+
+### Bug Fixes
+
+* container for printables link ([67fc70c](https://github.com/brainchild-projects/printables/commit/67fc70cb3024ae88bfcefa29c3910cd2e74370e5))
+
 ### [0.0.4](https://github.com/brainchild-projects/printables/compare/v0.0.3...v0.0.4) (2021-07-07)
 
 
