@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/brainchild-projects/printables/compare/v0.0.3...v0.0.4) (2021-07-07)
+
+
+### Features
+
+* calendar link description ([39360d3](https://github.com/brainchild-projects/printables/commit/39360d36637a4c6ca3791efb7931be27fe219551))
+
 ### [0.0.3](https://github.com/brainchild-projects/printables/compare/v0.0.2...v0.0.3) (2021-07-07)
 
 
