@@ -8,7 +8,7 @@ const MainPage = (): JSX.Element => (
     <Hero title="Printables" subtitle="Printable materials for Education" />
     <List>
       <ListItem>
-        <ListItemText>
+        <ListItemText secondary="Generate a printable calendar for the month">
           <Link to="/calendar">Calendar</Link>
         </ListItemText>
       </ListItem>
