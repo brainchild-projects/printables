@@ -25,3 +25,18 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import '@testing-library/cypress/add-commands';
+
+const paths = {
+  home: '/',
+  calendar: '/calendar',
+};
+
+const pathNames = Object.keys(paths);
+
+for (const name of pathNames) {
+  const capitalName = name.charAt(0).toUpperCase() + name.slice(1);
+  const path = paths[name];
+  Cypress.Commands.add(`visit${capitalName}`, () => {
+    cy.visit(path);
+  });
+}

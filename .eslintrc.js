@@ -33,6 +33,7 @@ module.exports = {
     'unicorn/prevent-abbreviations': ['error', {
       checkFilenames: false,
     }],
+    'no-restricted-syntax': 'off',
   },
   overrides: [
     {
@@ -69,11 +70,13 @@ module.exports = {
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },
+      extends: [
+        'plugin:cypress/recommended',
+      ],
     },
     {
       files: 'cypress/**/*.+(ts|tsx)',
       extends: [
-        'plugin:cypress/recommended',
         'airbnb-typescript',
         'airbnb/hooks',
         'plugin:@typescript-eslint/recommended',
@@ -85,6 +88,12 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: './cypress/tsconfig.json',
+      },
+      rules: {
+        'no-void': 'off',
+        'no-restricted-syntax': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        'promise/always-return': 'off',
       },
     },
     {
@@ -112,4 +121,5 @@ module.exports = {
       },
     },
   ],
+
 };
