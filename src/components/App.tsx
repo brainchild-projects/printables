@@ -14,7 +14,8 @@ const basePath = NODE_ENV === 'production'
 
 const styles = makeStyles((theme) => ({
   main: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0, 3),
+    paddingTop: '76px',
   },
 }));
 

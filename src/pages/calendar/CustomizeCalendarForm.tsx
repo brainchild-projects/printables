@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { FormEvent, ChangeEvent, useState } from 'react';
 import {
-  Button, Select, FormControl, InputLabel, MenuItem, makeStyles,
+  Button, Select, FormControl, InputLabel, makeStyles,
 } from '@material-ui/core';
+import CalendarData from './CalendarData';
 
 const calendarFormStyles = makeStyles((theme) => ({
   wrapper: {
@@ -21,24 +22,83 @@ const calendarFormStyles = makeStyles((theme) => ({
   },
 }));
 
-function CustomizeCalendarForm(): JSX.Element {
+export interface CustomizeCalendarFormProps {
+  now: Date,
+  onPrint: (data: CalendarData) => void,
+  onChange: (data: CalendarData) => void,
+}
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+function yearOptions(year: number): JSX.Element[] {
+  const start = year - 20;
+  const end = year + 20;
+  const options = [];
+  for (let index = start; index <= end; index += 1) {
+    options.push(<option key={index}>{index}</option>);
+  }
+  return options;
+}
+
+function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
+  const { now, onPrint, onChange } = props;
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const [data, setData] = useState({
+    year: currentYear,
+    month: currentMonth,
+  });
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onPrint({
+      year: currentYear,
+      month: currentMonth,
+    });
+  };
+
+  const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
+    const updated = {
+      ...data,
+      [field]: Number.parseInt(event.target.value as string, 10),
+    };
+    setData(updated);
+    onChange(updated);
+  };
+
   const classes = calendarFormStyles();
+
   return (
     <div className={classes.wrapper}>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={onSubmit}>
         <FormControl
           variant="filled"
           fullWidth
           className={classes.formControl}
         >
-          <InputLabel id="select-year">Year</InputLabel>
+          <InputLabel htmlFor="select-year">Year</InputLabel>
           <Select
+            native
             name="year"
             id="select-year"
+            value={data.year}
             fullWidth
+            onChange={changeHandler('year')}
           >
-            <MenuItem>2021</MenuItem>
-            <MenuItem>2022</MenuItem>
+            { yearOptions(currentYear) }
           </Select>
         </FormControl>
         <FormControl
@@ -46,13 +106,20 @@ function CustomizeCalendarForm(): JSX.Element {
           fullWidth
           className={classes.formControl}
         >
-          <InputLabel id="select-month">Month</InputLabel>
+          <InputLabel htmlFor="select-month">Month</InputLabel>
           <Select
+            native
             name="month"
             id="select-month"
+            value={data.month}
             fullWidth
+            onChange={changeHandler('month')}
           >
-            <MenuItem>January</MenuItem>
+            {
+              months.map((month, index) => (
+                <option value={index} key={month}>{month}</option>
+              ))
+            }
           </Select>
         </FormControl>
         <Button

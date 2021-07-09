@@ -15,7 +15,7 @@ const PrintablesAppBar = (): JSX.Element => {
   const classes = styles();
   return (
     <div className={classes.wrap}>
-      <AppBar>
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />

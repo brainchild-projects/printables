@@ -1,0 +1,142 @@
+/* eslint-disable react/no-array-index-key */
+import { Box, makeStyles } from '@material-ui/core';
+import React, { useEffect } from 'react';
+
+import CalendarData from './CalendarData';
+import { DateNumber, getWeekDates } from './previewUtils';
+
+const dateFormat = new Intl.DateTimeFormat(
+  'en-US',
+  {
+    year: 'numeric',
+    month: 'long',
+  },
+);
+
+interface PreviewCalendarProps {
+  calendarData: CalendarData,
+}
+
+const previewStyles = makeStyles((theme) => ({
+  title: {
+    fontSize: '36px',
+    fontWeight: 'normal',
+    fontFamily: '"Source Sans Pro"',
+  },
+  wrap: {
+    textAlign: 'center',
+  },
+  calendar: {
+    width: '100%',
+    border: '1px solid #666',
+    borderCollapse: 'collapse',
+    tableLayout: 'fixed',
+  },
+  headers: {
+    '& th': {
+      textTransform: 'uppercase',
+      fontWeight: 'normal',
+      letterSpacing: '0.07em',
+      padding: theme.spacing(1, 0),
+      border: '1px solid #666',
+      borderCollapse: 'collapse',
+      width: `${1.0 / 7}%`,
+      height: '0px',
+      fontSize: '12px',
+      fontFamily: '"Source Sans Pro"',
+    },
+  },
+  body: {
+    '& td': {
+      padding: theme.spacing(1),
+      minHeight: '40px',
+      textAlign: 'left',
+      border: '1px solid #666',
+      borderCollapse: 'collapse',
+      verticalAlign: 'top',
+      width: `${1.0 / 7}%`,
+      fontSize: '12px',
+      fontFamily: '"Source Sans Pro"',
+    },
+    '& .not-current-month': {
+      color: '#666',
+    },
+  },
+}));
+
+function dateCells(week: DateNumber[], weekIndex: number): JSX.Element[] {
+  return (
+    week.map(({ value, current }) => (
+      <td
+        key={`week-${weekIndex}-${value}`}
+        className={current ? 'current-month' : 'not-current-month'}
+      >
+        {value}
+      </td>
+    ))
+  );
+}
+
+function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
+  const { calendarData } = props;
+  const { year, month } = calendarData;
+  const referenceDate = new Date(year, month, 1);
+  const weeks = getWeekDates(referenceDate);
+  const classes = previewStyles();
+
+  const calculateCellHeight = (): void => {
+    const body = document.querySelector('.calendar-body[aria-label="Dates"]') as HTMLElement;
+    const vHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    let y = 0;
+    let node = body;
+    while (node) {
+      y += node.offsetTop;
+      if (node.offsetParent === null) {
+        break;
+      } else {
+        node = node.offsetParent as HTMLElement;
+      }
+    }
+    const bodyHeight = vHeight - y - 64;
+    const cellHeight = bodyHeight / weeks.length;
+    body.querySelectorAll('td').forEach((cell) => {
+      // eslint-disable-next-line no-param-reassign
+      cell.style.height = `${Math.round(cellHeight)}px`;
+    });
+  };
+
+  useEffect(() => {
+    calculateCellHeight();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [weeks.length]);
+
+  return (
+    <Box className={classes.wrap}>
+      <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
+      <table className={classes.calendar}>
+        <thead className={classes.headers}>
+          <tr>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+          </tr>
+        </thead>
+        <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
+          {
+            weeks.map((week, index) => (
+              <tr key={`week-${index}`}>
+                { dateCells(week, index) }
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </Box>
+  );
+}
+
+export default PreviewCalendar;

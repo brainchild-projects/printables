@@ -2,9 +2,8 @@ it('can create a calendar', () => {
   cy.clock(Date.parse('July 8, 2021'));
   cy.visitCalendar();
 
-  cy.findByRole('listbox', { name: /month/i }).select('August');
-  cy.findByRole('listbox', { name: /year/i }).select('2022');
-  cy.findByRole('button', { name: /generate/i }).click();
+  cy.findByLabelText(/month/i).select('August');
+  cy.findByLabelText(/year/i).select('2022');
 
   const days = [
     /^sun/i,
