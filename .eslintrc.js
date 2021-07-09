@@ -10,7 +10,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
-    'plugin:unicorn/recommended',
     'airbnb',
   ],
   parserOptions: {
@@ -29,10 +28,6 @@ module.exports = {
   rules: {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
-    'unicorn/filename-case': 'off',
-    'unicorn/prevent-abbreviations': ['error', {
-      checkFilenames: false,
-    }],
     'no-restricted-syntax': 'off',
   },
   overrides: [
@@ -116,9 +111,6 @@ module.exports = {
     },
     {
       files: './*.js',
-      rules: {
-        'unicorn/prefer-module': 'off',
-      },
     },
   ],
 
