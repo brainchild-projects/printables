@@ -23,14 +23,14 @@ function App(): JSX.Element {
   const classes = styles();
   return (
     <>
-      <BaseStyle />
-      <PrintablesAppBar />
-      <main className={classes.main}>
-        <Router basename={basePath}>
+      <Router basename={basePath}>
+        <BaseStyle />
+        <PrintablesAppBar />
+        <main className={classes.main}>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/calendar" component={CalendarPage} />
-        </Router>
-      </main>
+        </main>
+      </Router>
     </>
   );
 }
