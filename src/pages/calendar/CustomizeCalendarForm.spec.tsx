@@ -60,6 +60,11 @@ describe('CustomizeCalendarForm', () => {
       it('sends calendar data to onChange callback', () => {
         expect(onChange).toHaveBeenCalledWith({ year: 2020, month: 1 });
       });
+
+      it('sends calendar data to callback', () => {
+        userEvent.click(screen.getByRole('button', { name: /print/i }));
+        expect(onPrint).toHaveBeenCalledWith({ year: 2020, month: 1 });
+      });
     });
   });
 });

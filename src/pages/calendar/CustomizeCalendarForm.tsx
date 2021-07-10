@@ -64,10 +64,7 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onPrint({
-      year: currentYear,
-      month: currentMonth,
-    });
+    onPrint(data);
   };
 
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
@@ -126,6 +123,7 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
           type="submit"
           variant="contained"
           color="primary"
+          size="large"
           className={classes.submit}
         >
           Print Calendar
