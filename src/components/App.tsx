@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import CalendarPage from '../pages/calendar/CalendarPage';
 import MainPage from '../pages/main/MainPage';
 import BaseStyle from './BaseStyle';
@@ -19,19 +19,27 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
+const theme = createMuiTheme({
+  palette: {
+    background: {
+      default: '#f3f3f3',
+    },
+  },
+});
+
 function App(): JSX.Element {
   const classes = styles();
   return (
-    <>
-      <Router basename={basePath}>
+    <Router basename={basePath}>
+      <MuiThemeProvider theme={theme}>
         <BaseStyle />
         <PrintablesAppBar />
-        <main className={classes.main}>
+        <main className={`${classes.main} print-ignore`}>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/calendar" component={CalendarPage} />
         </main>
-      </Router>
-    </>
+      </MuiThemeProvider>
+    </Router>
   );
 }
 

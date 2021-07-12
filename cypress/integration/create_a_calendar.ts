@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 it('can create a calendar', () => {
   cy.clock(Date.parse('July 8, 2021'));
   cy.visitCalendar();
@@ -40,8 +41,10 @@ it('can create a calendar', () => {
 
   void cy.window().then((win) => {
     const printStub = cy.stub(win, 'print');
-    cy.findByRole('button', { name: /print/i }).click();
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    expect(printStub).to.be.called;
+
+    void cy.findByRole('button', { name: /print/i }).click().then(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(printStub).to.be.called;
+    });
   });
 });

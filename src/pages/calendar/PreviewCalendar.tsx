@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { Box, makeStyles } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import CalendarData from './CalendarData';
 import { DateNumber, getWeekDates } from './previewUtils';
@@ -25,14 +25,23 @@ const previewStyles = makeStyles((theme) => ({
   },
   wrap: {
     textAlign: 'center',
+    display: 'flex',
+    flexFlow: 'column',
+  },
+  contentWrap: {
+    flexGrow: 1,
   },
   calendar: {
     width: '100%',
     border: '1px solid #666',
     borderCollapse: 'collapse',
     tableLayout: 'fixed',
+    height: '100%',
   },
   headers: {
+    '& > tr': {
+      height: '36px',
+    },
     '& th': {
       textTransform: 'uppercase',
       fontWeight: 'normal',
@@ -84,57 +93,33 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
   const weeks = getWeekDates(referenceDate);
   const classes = previewStyles();
 
-  const calculateCellHeight = (): void => {
-    const body = document.querySelector('.calendar-body[aria-label="Dates"]') as HTMLElement;
-    const vHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    let y = 0;
-    let node = body;
-    while (node) {
-      y += node.offsetTop;
-      if (node.offsetParent === null) {
-        break;
-      } else {
-        node = node.offsetParent as HTMLElement;
-      }
-    }
-    const bodyHeight = vHeight - y - 64;
-    const cellHeight = bodyHeight / weeks.length;
-    body.querySelectorAll('td').forEach((cell) => {
-      // eslint-disable-next-line no-param-reassign
-      cell.style.height = `${Math.round(cellHeight)}px`;
-    });
-  };
-
-  useEffect(() => {
-    calculateCellHeight();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [weeks.length]);
-
   return (
     <Box className={classes.wrap}>
       <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
-      <table className={classes.calendar}>
-        <thead className={classes.headers}>
-          <tr>
-            <th>Sunday</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-          </tr>
-        </thead>
-        <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
-          {
-            weeks.map((week, index) => (
-              <tr key={`week-${index}`}>
-                { dateCells(week, index) }
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div className={classes.contentWrap}>
+        <table className={classes.calendar}>
+          <thead className={classes.headers}>
+            <tr>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+            </tr>
+          </thead>
+          <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
+            {
+              weeks.map((week, index) => (
+                <tr key={`week-${index}`}>
+                  { dateCells(week, index) }
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     </Box>
   );
 }

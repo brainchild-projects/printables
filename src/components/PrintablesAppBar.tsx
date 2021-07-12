@@ -23,7 +23,7 @@ const styles = makeStyles(() => ({
 const PrintablesAppBar = (): JSX.Element => {
   const classes = styles();
   return (
-    <div className={classes.wrap}>
+    <div className={`${classes.wrap} no-print`}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">

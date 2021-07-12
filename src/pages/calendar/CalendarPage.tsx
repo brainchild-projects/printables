@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+} from 'react';
 import {
   Typography, Grid, makeStyles,
 } from '@material-ui/core';
 import CustomizeCalendarForm from './CustomizeCalendarForm';
 import CalendarData from './CalendarData';
 import PreviewCalendar from './PreviewCalendar';
+import PaperPreview from './PaperPreview';
 
 const pageStyles = makeStyles((theme) => ({
   container: {
@@ -17,6 +20,16 @@ const pageStyles = makeStyles((theme) => ({
     },
   },
   column: {
+  },
+  main: {
+    overflow: 'auto',
+
+    '@media print': {
+      width: '100% !important',
+      maxWidth: 'none',
+      flexBasis: 'auto',
+      overflow: 'visible',
+    },
   },
   sideColumn: {
     paddingTop: theme.spacing(2),
@@ -31,6 +44,7 @@ const CalendarPage = (): JSX.Element => {
   }) as CalendarData);
   const onPrint = (data: CalendarData): void => {
     setCalendarData({ ...data });
+    window.print();
   };
   const onChange = (data: CalendarData): void => {
     setCalendarData({ ...data });
@@ -39,8 +53,8 @@ const CalendarPage = (): JSX.Element => {
   const classes = pageStyles();
 
   return (
-    <Grid container spacing={3} className={classes.container}>
-      <Grid item sm={3} className={classes.column}>
+    <Grid container spacing={3} className={`${classes.container} print-ignore`}>
+      <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
         <section aria-label="Customize Calendar" className={classes.sideColumn}>
           <Typography variant="h5" component="h1">Calendar</Typography>
           <CustomizeCalendarForm
@@ -50,9 +64,11 @@ const CalendarPage = (): JSX.Element => {
           />
         </section>
       </Grid>
-      <Grid item sm={9} className={classes.column}>
+      <Grid item xs={9} sm={10} className={`${classes.main} print-ignore`}>
         <section aria-label="Preview">
-          <PreviewCalendar calendarData={calendarData} />
+          <PaperPreview>
+            <PreviewCalendar calendarData={calendarData} />
+          </PaperPreview>
         </section>
       </Grid>
     </Grid>
