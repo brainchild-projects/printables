@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/brainchild-projects/printables/compare/v0.0.5...v0.0.6) (2021-07-14)
+
+
+### Features
+
+* link to homepage ([73e1102](https://github.com/brainchild-projects/printables/commit/73e1102c5ac2b16e90f1f6b2946890fd06a70e00))
+* preview printable calendar ([0d2f190](https://github.com/brainchild-projects/printables/commit/0d2f190c062cee66ce3641f4ee318d2557226936))
+* printing a calendar ([669e85f](https://github.com/brainchild-projects/printables/commit/669e85f9b591cc703363a31e3f1eea75ea98d979))
+
+
+### Bug Fixes
+
+*  bug in customize calendar onsubmit ([a72c823](https://github.com/brainchild-projects/printables/commit/a72c823a50b59112c9b0871b8c25fc018fd3fb37))
+
 ### [0.0.5](https://github.com/brainchild-projects/printables/compare/v0.0.4...v0.0.5) (2021-07-07)
 
 
