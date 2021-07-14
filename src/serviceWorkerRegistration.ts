@@ -17,7 +17,6 @@ const isLocalhost = Boolean(
     // [::1] is the IPv6 localhost address.
     || window.location.hostname === '[::1]'
     // 127.0.0.0/8 are considered localhost for IPv4.
-    // eslint-disable-next-line unicorn/better-regex
     || /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/.test(window.location.hostname),
 );
 
