@@ -108,14 +108,14 @@ jobs:
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          repository: brainchild-projects/brainchild-projects.github.io-src
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          event-type: sites-printables-update
-          client-payload: |
-            {
-              "tag": "v${{ steps.nextVersion.outputs.value }}",
-              "url": "https://github.com/brainchild-projects/printables/releases/download/v${{ steps.nextVersion.outputs.value }}/release-${{ steps.nextVersion.outputs.value }}.tar.gz"
-            }
+      # - name: Repository Dispatch
+      #   uses: peter-evans/repository-dispatch@v1
+      #   with:
+      #     repository: brainchild-projects/brainchild-projects.github.io-src
+      #     token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      #     event-type: sites-printables-update
+      #     client-payload: |
+      #       {
+      #         "tag": "v${{ steps.nextVersion.outputs.value }}",
+      #         "url": "https://github.com/brainchild-projects/printables/releases/download/v${{ steps.nextVersion.outputs.value }}/release-${{ steps.nextVersion.outputs.value }}.tar.gz"
+      #       }
