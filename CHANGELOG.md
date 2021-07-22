@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/brainchild-projects/printables/compare/v0.0.6...v0.0.7) (2021-07-22)
+
+
+### Bug Fixes
+
+* moving types to main deps ([ad829b4](https://github.com/brainchild-projects/printables/commit/ad829b4c362095e03daa755e7470e89d466ea985))
+* remove home declaration ([ee781ec](https://github.com/brainchild-projects/printables/commit/ee781ec5be8bc6de894b282ba62b5fe4c9f9382e))
+
 ### [0.0.6](https://github.com/brainchild-projects/printables/compare/v0.0.5...v0.0.6) (2021-07-14)
 
 
