@@ -108,6 +108,21 @@ jobs:
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Login to Heroku Container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+
+      - name: Build and push
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a appname web
+
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a appname web
+
       # - name: Repository Dispatch
       #   uses: peter-evans/repository-dispatch@v1
       #   with:
