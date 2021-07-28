@@ -29,6 +29,7 @@ import '@testing-library/cypress/add-commands';
 const paths = {
   home: '/',
   calendar: '/calendar',
+  additionFillTheBlanks: '/addition-fill-the-blanks',
 };
 
 const pathNames = Object.keys(paths);
@@ -40,3 +41,8 @@ for (const name of pathNames) {
     cy.visit(path);
   });
 }
+
+Cypress.Commands.add(
+  'withinPreview',
+  (callback) => cy.findByRole('region', { name: /preview/i }).within(callback),
+);

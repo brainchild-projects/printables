@@ -12,9 +12,9 @@ const CalendarPage = (): JSX.Element => {
     year: now.getFullYear(),
     month: now.getMonth(),
   }) as CalendarData);
-  const onPrint = (data: CalendarData): void => {
+  const onPrint = (data: CalendarData): boolean => {
     setCalendarData({ ...data });
-    window.print();
+    return true;
   };
   const onChange = (data: CalendarData): void => {
     setCalendarData({ ...data });
@@ -25,7 +25,7 @@ const CalendarPage = (): JSX.Element => {
       title="Calendar"
       customizeForm={(
         <CustomizeCalendarForm
-          onPrint={onPrint}
+          onBeforePrint={onPrint}
           onChange={onChange}
           now={now}
         />

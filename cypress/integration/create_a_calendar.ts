@@ -25,7 +25,8 @@ it('can create a calendar', () => {
     5,
     6,
   ];
-  cy.findByRole('region', { name: /preview/i }).within(() => {
+
+  cy.withinPreview(() => {
     cy.contains('August 2022');
     cy.findAllByRole('columnheader')
       .should('have.length', 7)
