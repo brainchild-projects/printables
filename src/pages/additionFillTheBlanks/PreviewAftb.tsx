@@ -1,4 +1,5 @@
 import React from 'react';
+import PaperPage from '../../components/PaperPage';
 import AftbData from './AftbData';
 
 interface PreviewAftbProps {
@@ -6,7 +7,13 @@ interface PreviewAftbProps {
 }
 
 const PreviewAftb = ({ aftbData }: PreviewAftbProps): JSX.Element => (
-  <h1>Hello</h1>
+  <PaperPage>
+    <h1>
+      Hello
+      {' '}
+      {Math.random()}
+    </h1>
+  </PaperPage>
 );
 
 export default PreviewAftb;

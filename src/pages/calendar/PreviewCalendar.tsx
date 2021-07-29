@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
+import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
 import { DateNumber, getWeekDates } from './previewUtils';
@@ -94,33 +95,35 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
   const classes = previewStyles();
 
   return (
-    <Box className={classes.wrap}>
-      <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
-      <div className={classes.contentWrap}>
-        <table className={classes.calendar}>
-          <thead className={classes.headers}>
-            <tr>
-              <th>Sunday</th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-            </tr>
-          </thead>
-          <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
-            {
-              weeks.map((week, index) => (
-                <tr key={`week-${index}`}>
-                  { dateCells(week, index) }
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </Box>
+    <PaperPage>
+      <Box className={classes.wrap}>
+        <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
+        <div className={classes.contentWrap}>
+          <table className={classes.calendar}>
+            <thead className={classes.headers}>
+              <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+              </tr>
+            </thead>
+            <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
+              {
+                weeks.map((week, index) => (
+                  <tr key={`week-${index}`}>
+                    { dateCells(week, index) }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </Box>
+    </PaperPage>
   );
 }
 
