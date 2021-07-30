@@ -29,6 +29,7 @@ module.exports = {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
     'no-restricted-syntax': 'off',
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
   overrides: [
     {
