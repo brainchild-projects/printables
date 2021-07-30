@@ -2,8 +2,9 @@ import React, {
   ReactNode, FormEvent, ChangeEvent,
 } from 'react';
 import {
-  Button, makeStyles, Select, Typography,
+  Button, Collapse, makeStyles, Select, Typography,
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import FieldSet from './FieldSet';
 import { usePaperOptions } from '../PaperOptionsProvider';
 
@@ -30,9 +31,12 @@ interface CustomizeFormProps {
   onBeforePrint: () => boolean;
   name: string;
   children: ReactNode;
+  error?: string | null,
 }
 
-const CustomizeForm = ({ onBeforePrint, name, children }: CustomizeFormProps): JSX.Element => {
+const CustomizeForm = ({
+  onBeforePrint, name, children, error = null,
+}: CustomizeFormProps): JSX.Element => {
   const classes = calendarFormStyles();
   const { options, setOptions } = usePaperOptions();
 
@@ -46,6 +50,10 @@ const CustomizeForm = ({ onBeforePrint, name, children }: CustomizeFormProps): J
   return (
     <div className={classes.wrapper}>
       <form className={classes.form} onSubmit={onSubmit}>
+        <Collapse in={!!error}>
+          <Alert severity="error">{ error }</Alert>
+        </Collapse>
+
         <section aria-label="Main Customization">
           {children}
         </section>
@@ -87,6 +95,7 @@ const CustomizeForm = ({ onBeforePrint, name, children }: CustomizeFormProps): J
           color="primary"
           size="large"
           className={classes.submit}
+          disabled={error !== null}
         >
           Print
           {' '}
@@ -95,6 +104,10 @@ const CustomizeForm = ({ onBeforePrint, name, children }: CustomizeFormProps): J
       </form>
     </div>
   );
+};
+
+CustomizeForm.defaultProps = {
+  error: null,
 };
 
 export default CustomizeForm;

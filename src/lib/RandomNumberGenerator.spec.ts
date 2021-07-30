@@ -1,13 +1,13 @@
-import NumberGenerator, { MathRandom } from './NumberGenerator';
+import RandomNumberGenerator, { MathRandom } from './RandomNumberGenerator';
 
 describe('integer()', () => {
   let randomFn: MathRandom;
   let randomFnResult: number;
-  let generator: NumberGenerator;
+  let generator: RandomNumberGenerator;
 
   beforeEach(() => {
     randomFn = jest.fn(() => randomFnResult);
-    generator = new NumberGenerator(randomFn);
+    generator = new RandomNumberGenerator(randomFn);
   });
 
   describe('errors', () => {

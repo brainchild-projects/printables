@@ -26,14 +26,13 @@ const defaultPaperPreviewOptions: PaperOptions = {
   scale: 1,
 };
 
-const PaperOptionsContext = createContext<PaperOptionsData | undefined>(undefined);
+const PaperOptionsContext = createContext<PaperOptionsData>({
+  options: defaultPaperPreviewOptions,
+  setOptions: () => {},
+});
 
 export function usePaperOptions(): PaperOptionsData {
-  const data = useContext<PaperOptionsData | undefined>(PaperOptionsContext);
-  if (data === undefined) {
-    throw Error('what');
-  }
-  return data;
+  return useContext<PaperOptionsData>(PaperOptionsContext);
 }
 function PaperOptionsProvider({
   children, margin = '10mm', orientation = 'landscape', scale = 1,

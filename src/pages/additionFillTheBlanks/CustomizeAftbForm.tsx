@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, isValidElement } from 'react';
 import { TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData from './AftbData';
@@ -23,20 +23,37 @@ const CustomizeAftbForm = ({
     problems: 10,
   });
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const validate = ({ rangeFrom, rangeTo }: AftbData): string | null => {
+    if (rangeFrom > rangeTo) {
+      return 'Number range "From" must be less than "To"';
+    }
+
+    return null;
+  };
+
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
     const value = Number.parseInt(event.target.value as string, 10);
     const updated = {
       ...data,
       [field]: value,
     };
+    const error = validate(updated);
+    if (error !== errorMessage) {
+      setErrorMessage(error);
+    }
+    if (!error) {
+      onChange(updated);
+    }
     setData(updated);
-    onChange(updated);
   };
 
   return (
     <CustomizeForm
       onBeforePrint={() => onBeforePrint(data)}
       name="Worksheet"
+      error={errorMessage}
     >
       <FieldSet>
         <TextField
