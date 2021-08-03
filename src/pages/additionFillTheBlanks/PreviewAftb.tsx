@@ -79,25 +79,30 @@ const PreviewAftb = ({
 }: PreviewAftbProps): JSX.Element => {
   const classes = pageStyles();
   return (
-    <PaperPage>
-      <div className={classes.wrap}>
-        <Typography
-          variant="h5"
-          component="h1"
-          className={classes.heading}
-        >
-          Addition: Fill in the Blanks
-        </Typography>
-        <ul className={classes.list}>
-          {
-            generateAdditionSentences(aftbData, numberGenerator)
-              .map(({ key, addendA, addendB }) => (
-                <AdditionSentence key={key} addendA={addendA} addendB={addendB} />
-              ))
-          }
-        </ul>
-      </div>
-    </PaperPage>
+    <>
+      <PaperPage>
+        <div className={classes.wrap}>
+          <Typography
+            variant="h5"
+            component="h1"
+            className={classes.heading}
+          >
+            Addition: Fill in the Blanks
+          </Typography>
+          <ul className={classes.list}>
+            {
+              generateAdditionSentences(aftbData, numberGenerator)
+                .map(({ key, addendA, addendB }) => (
+                  <AdditionSentence key={key} addendA={addendA} addendB={addendB} />
+                ))
+            }
+          </ul>
+        </div>
+      </PaperPage>
+      <PaperPage>
+        <h1>This is the Second Page</h1>
+      </PaperPage>
+    </>
   );
 };
 

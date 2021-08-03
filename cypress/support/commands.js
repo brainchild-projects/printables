@@ -46,3 +46,33 @@ Cypress.Commands.add(
   'withinPreview',
   (callback) => cy.findByRole('region', { name: /preview/i }).within(callback),
 );
+
+Cypress.Commands.add(
+  'mmToPixel',
+  (mmLength) => cy.get('body').then(($el) => {
+    $el.append(`
+      <div
+        style="width: ${mmLength}mm; height: 2px; position: absolute; margin: 0; padding: 0; border: none;vis"
+        id="sizeEstimationToPixel"
+      ></div>
+    `);
+    const $estimateEl = $el.find('#sizeEstimationToPixel');
+    const length = Math.round($estimateEl.width());
+    $estimateEl.remove();
+    return length;
+  }),
+);
+
+Cypress.Commands.add(
+  'shouldHaveMmLength',
+  {
+    prevSubject: true,
+  },
+  (subject, actualLength) => cy.mmToPixel(actualLength)
+    .then(
+      (pixelLength) => {
+        console.log({ subject, actualLength, pixelLength });
+        return cy.wrap(Math.round(subject)).should('eql', pixelLength);
+      },
+    ),
+);

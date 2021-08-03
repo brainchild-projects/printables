@@ -7,6 +7,7 @@ import {
 import Alert from '@material-ui/lab/Alert';
 import FieldSet from './FieldSet';
 import { usePaperOptions } from '../PaperOptionsProvider';
+import paperSizes, { getPaperSizeFromName, Orientation } from '../../lib/paperSizes';
 
 const calendarFormStyles = makeStyles((theme) => ({
   wrapper: {
@@ -47,6 +48,25 @@ const CustomizeForm = ({
     }
   };
 
+  const onChangePaperSize = (event: ChangeEvent<{ value: unknown }>) => {
+    const sizeName = event.target.value as string;
+    setOptions({
+      ...options,
+      paperSize: getPaperSizeFromName(sizeName),
+    });
+  };
+
+  const onChangeOrientation = (event: ChangeEvent<{ value: unknown }>) => {
+    const orientation = event.target.value as string;
+    if (orientation !== 'portrait' && orientation !== 'landscape') {
+      throw Error(`Unknown orientation ${orientation}`);
+    }
+    setOptions({
+      ...options,
+      orientation: event.target.value as Orientation,
+    });
+  };
+
   return (
     <div className={classes.wrapper}>
       <form className={classes.form} onSubmit={onSubmit}>
@@ -65,6 +85,25 @@ const CustomizeForm = ({
             Print Options
           </Typography>
           <FieldSet
+            label="Paper Size"
+            id="select-paper-size"
+          >
+            <Select
+              native
+              name="paperSize"
+              id="select-paper-size"
+              fullWidth
+              value={options.paperSize.name}
+              onChange={onChangePaperSize}
+            >
+              {
+                Array.from(paperSizes.values()).map((size) => (
+                  <option key={size.name} value={size.name}>{size.name}</option>
+                ))
+              }
+            </Select>
+          </FieldSet>
+          <FieldSet
             label="Orientation"
             id="select-paper-orientation"
           >
@@ -74,17 +113,10 @@ const CustomizeForm = ({
               id="select-paper-orientation"
               value={options.orientation}
               fullWidth
-              onChange={
-                (event: ChangeEvent<{ value: unknown }>) => {
-                  setOptions({
-                    ...options,
-                    orientation: event.target.value as string,
-                  });
-                }
-              }
+              onChange={onChangeOrientation}
             >
-              <option value="landscape">Landscape</option>
               <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
             </Select>
 
           </FieldSet>
