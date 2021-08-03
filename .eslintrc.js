@@ -62,6 +62,14 @@ module.exports = {
       ],
     },
     {
+      files: 'src/stories/**/*.+(ts|tsx)',
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        'import/no-anonymous-default-export': 'off',
+      },
+    },
+    {
       files: ['cypress/**/*', 'scripts/**/*'],
       rules: {
         'import/no-extraneous-dependencies': 'off',

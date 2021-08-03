@@ -21,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "typescript": "^4.3.5",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -43,7 +44,9 @@
     "cypress": "cypress open",
     "release": "standard-version",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -75,6 +78,12 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.6",
+    "@storybook/addon-links": "^6.3.6",
+    "@storybook/node-logger": "^6.3.6",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.6",
     "@testing-library/cypress": "^7.0.6",
     "@testing-library/react": "^12.0.0",
     "cypress": "^7.6.0",
