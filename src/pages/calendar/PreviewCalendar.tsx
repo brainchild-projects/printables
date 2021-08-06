@@ -22,7 +22,7 @@ const previewStyles = makeStyles((theme) => ({
   title: {
     fontSize: '36px',
     fontWeight: 'normal',
-    fontFamily: '"Source Sans Pro"',
+    fontFamily: '"Source Sans Pro", inherit',
   },
   wrap: {
     textAlign: 'center',
@@ -53,7 +53,7 @@ const previewStyles = makeStyles((theme) => ({
       width: `${1.0 / 7}%`,
       height: '0px',
       fontSize: '12px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: '"Source Sans Pro", inherit',
     },
   },
   body: {
@@ -66,10 +66,10 @@ const previewStyles = makeStyles((theme) => ({
       verticalAlign: 'top',
       width: `${1.0 / 7}%`,
       fontSize: '12px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: '"Source Sans Pro", inherit',
     },
     '& .not-current-month': {
-      color: '#666',
+      color: '#999',
     },
   },
 }));
@@ -95,7 +95,7 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
   const classes = previewStyles();
 
   return (
-    <PaperPage>
+    <PaperPage noFlexWrap>
       <Box className={classes.wrap}>
         <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
         <div className={classes.contentWrap}>

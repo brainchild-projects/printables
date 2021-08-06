@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, ChangeEvent, isValidElement } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData from './AftbData';
@@ -8,6 +8,7 @@ import FieldSet from '../../components/forms/FieldSet';
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
   onChange: (data: AftbData) => void,
+  initialData: AftbData,
 }
 
 function numberOrEmpty(value: unknown): number | string {
@@ -16,12 +17,9 @@ function numberOrEmpty(value: unknown): number | string {
 
 const CustomizeAftbForm = ({
   onBeforePrint, onChange,
+  initialData,
 }: CustomizeAftbFormProps): JSX.Element => {
-  const [data, setData] = useState<AftbData>({
-    rangeFrom: 0,
-    rangeTo: 9,
-    problems: 10,
-  });
+  const [data, setData] = useState<AftbData>(initialData);
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

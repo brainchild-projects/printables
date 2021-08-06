@@ -17,6 +17,7 @@ describe('CustomizeAftbForm', () => {
       <CustomizeAftbForm
         onBeforePrint={onBeforePrint}
         onChange={onChange}
+        initialData={{ rangeFrom: 0, rangeTo: 9, problems: 10 }}
       />,
     );
   });

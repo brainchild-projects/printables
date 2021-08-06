@@ -41,7 +41,7 @@ function PrintableUI({ children, title, customizeForm }: PrintableUIProps): JSX.
     <PaperOptionsProvider>
       <Grid container spacing={3} className={`${classes.container} print-ignore`}>
         <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
-          <section aria-label="Customize Calendar" className={classes.sideColumn}>
+          <section aria-label="Customize Form" className={classes.sideColumn}>
             <Typography variant="h5" component="h1">{title}</Typography>
             {customizeForm}
           </section>

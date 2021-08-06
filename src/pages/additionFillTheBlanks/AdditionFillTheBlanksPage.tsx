@@ -8,7 +8,7 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
   const [aftbData, setAftbData] = useState<AftbData>(({
     rangeFrom: 0,
     rangeTo: 9,
-    problems: 25,
+    problems: 20,
   }));
   const onPrint = (data: AftbData): boolean => {
     setAftbData({ ...aftbData, ...data });
@@ -25,6 +25,7 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
         <CustomizeAftbForm
           onBeforePrint={onPrint}
           onChange={onChange}
+          initialData={aftbData}
         />
       )}
     >

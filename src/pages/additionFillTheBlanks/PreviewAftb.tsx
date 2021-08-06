@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import PaperPage from '../../components/PaperPage';
+import MultiPaperPage from '../../components/MultiPaperPage';
 import NumberGenerator from '../../lib/NumberGenerator';
 import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
 import AftbData from './AftbData';
@@ -32,14 +32,14 @@ function AdditionSentence({
   addendA, addendB,
 }: AdditionSentenceProps): JSX.Element {
   return (
-    <li>
+    <li className="addition-sentence-item">
       {addendA}
       {' '}
       +
       {' '}
       {addendB}
       {' '}
-      = __
+      = ___
       {' '}
     </li>
   );
@@ -52,9 +52,6 @@ interface PreviewAftbProps {
 const defaultGenerator = new RandomNumberGenerator(Math.random);
 
 const pageStyles = makeStyles(() => ({
-  wrap: {
-    width: '100%',
-  },
   heading: {
     textAlign: 'center',
   },
@@ -78,31 +75,30 @@ const PreviewAftb = ({
   numberGenerator = defaultGenerator,
 }: PreviewAftbProps): JSX.Element => {
   const classes = pageStyles();
+  const data = generateAdditionSentences(aftbData, numberGenerator);
+
   return (
-    <>
-      <PaperPage>
-        <div className={classes.wrap}>
-          <Typography
-            variant="h5"
-            component="h1"
-            className={classes.heading}
-          >
-            Addition: Fill in the Blanks
-          </Typography>
-          <ul className={classes.list}>
-            {
-              generateAdditionSentences(aftbData, numberGenerator)
-                .map(({ key, addendA, addendB }) => (
-                  <AdditionSentence key={key} addendA={addendA} addendB={addendB} />
-                ))
-            }
-          </ul>
-        </div>
-      </PaperPage>
-      <PaperPage>
-        <h1>This is the Second Page</h1>
-      </PaperPage>
-    </>
+    <MultiPaperPage
+      header={(
+        <Typography
+          variant="h5"
+          component="h1"
+          className={classes.heading}
+        >
+          Addition: Fill in the Blanks
+        </Typography>
+      )}
+      footer={<p>This is the foot.</p>}
+      contentWrapper="ul"
+      contentWrapperClassName={classes.list}
+      data={data}
+      itemSelector=".addition-sentence-item"
+      builder={
+        ({ key, addendA, addendB }) => (
+          <AdditionSentence key={key} addendA={addendA} addendB={addendB} />
+        )
+      }
+    />
   );
 };
 

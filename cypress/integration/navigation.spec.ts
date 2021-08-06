@@ -14,5 +14,7 @@ it('can visit all subpages', () => {
     cy.findByRole('link', { name: /addition.+fill.+blank/i }).click();
   });
 
-  cy.findByRole('heading', { name: /addition.+fill.+blank/i });
+  cy.findByRole('region', { name: /customize form/i }).within(() => {
+    cy.findByRole('heading', { name: /addition.+fill.+blank/i });
+  });
 });

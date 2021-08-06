@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { usePaperOptions } from './PaperOptionsProvider';
 
 const paperPreviewStyles = makeStyles(() => ({
   preview: {
@@ -16,14 +15,13 @@ function PaperPreview({ children }: PaperPreviewProps): JSX.Element {
   const classes = paperPreviewStyles();
   const wrapperRef = useRef<null | HTMLDivElement>(null);
 
-  const { options } = usePaperOptions();
   useEffect(() => {
     const wrapper = wrapperRef.current;
     let observer: MutationObserver;
     if (wrapper !== null) {
       const config = { subtree: true, childList: true };
       let timeoutId: NodeJS.Timeout;
-      const callback = () => {
+      const labelPages = () => {
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           const elements = wrapper.querySelectorAll('.printable-paper');
@@ -31,15 +29,14 @@ function PaperPreview({ children }: PaperPreviewProps): JSX.Element {
             const oldLabel = element.getAttribute('aria-label') || '';
             const label = `Paper Page ${key + 1}`;
             if (oldLabel !== label) {
-              console.log(`Labeling ${label}`, element);
               element.setAttribute('aria-label', label);
             }
           });
         }, 100);
       };
-      observer = new MutationObserver(callback);
+      observer = new MutationObserver(labelPages);
+      labelPages();
       observer.observe(wrapper, config);
-      callback();
     }
 
     return () => {

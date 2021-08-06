@@ -28,13 +28,20 @@ const paperPageStyles = makeStyles(() => ({
       marginTop: 0,
     },
   },
+
+  innerWrap: {
+    width: '100%',
+    overflow: 'hidden',
+  },
 }));
 
 interface PaperPreviewProps {
   children: ReactNode;
+  noFlexWrap?: boolean;
+  pageId?: string;
 }
 
-function PaperPage({ children }: PaperPreviewProps): JSX.Element {
+function PaperPage({ children, noFlexWrap, pageId }: PaperPreviewProps): JSX.Element {
   const { options } = usePaperOptions();
   const {
     margin, orientation, scale, paperSize,
@@ -56,15 +63,29 @@ function PaperPage({ children }: PaperPreviewProps): JSX.Element {
       className={`printable-paper ${classes.paper}`}
       style={paperStyle}
       component="section"
+      data-page-id={pageId}
     >
       <div
         className={`${classes.content} printable-paper-content`}
         style={{ padding: margin, ...dimensionStyles }}
       >
-        {children}
+        {
+          noFlexWrap
+            ? children
+            : (
+              <div className={`${classes.innerWrap} printable-paper-inner-wrap`}>
+                {children}
+              </div>
+            )
+        }
       </div>
     </Paper>
   );
 }
+
+PaperPage.defaultProps = {
+  noFlexWrap: false,
+  pageId: undefined,
+};
 
 export default PaperPage;
