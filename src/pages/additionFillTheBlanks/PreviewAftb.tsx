@@ -88,7 +88,6 @@ const PreviewAftb = ({
           Addition: Fill in the Blanks
         </Typography>
       )}
-      footer={<p>This is the foot.</p>}
       contentWrapper="ul"
       contentWrapperClassName={classes.list}
       data={data}
