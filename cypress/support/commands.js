@@ -63,16 +63,23 @@ Cypress.Commands.add(
   }),
 );
 
+const lengths = new Map();
 Cypress.Commands.add(
   'shouldHaveMmLength',
   {
     prevSubject: true,
   },
-  (subject, actualLength) => cy.mmToPixel(actualLength)
-    .then(
-      (pixelLength) => {
-        console.log({ subject, actualLength, pixelLength });
-        return cy.wrap(Math.round(subject)).should('eql', pixelLength);
-      },
-    ),
+  (subject, mmLength) => {
+    if (lengths.has(mmLength)) {
+      const pixelLength = lengths.get(mmLength);
+      return cy.wrap(Math.round(subject)).should('eql', pixelLength);
+    }
+    return cy.mmToPixel(mmLength)
+      .then(
+        (pixelLength) => {
+          lengths.set(mmLength, pixelLength);
+          return cy.wrap(Math.round(subject)).should('eql', pixelLength);
+        },
+      );
+  },
 );

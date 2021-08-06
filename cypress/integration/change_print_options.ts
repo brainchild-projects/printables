@@ -12,11 +12,16 @@ it('can set print options', () => {
     .shouldHaveMmLength(210);
 
   cy.findByLabelText(/orientation/i).select('landscape');
-  cy.findByRole('region', { name: /paper.+page 1/i })
+  cy.findByRole('region', { name: /paper.+page 2/i })
     .invoke('width')
     .shouldHaveMmLength(297);
 
   cy.findByRole('region', { name: /paper.+page 1/i })
     .invoke('height')
     .shouldHaveMmLength(210);
+
+  cy.findByLabelText(/paper size/i).select('US Letter');
+  cy.findByRole('region', { name: /paper.+page 1/i })
+    .invoke('height')
+    .shouldHaveMmLength(216);
 });
