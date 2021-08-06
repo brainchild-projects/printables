@@ -23,6 +23,7 @@ const CalendarPage = (): JSX.Element => {
   return (
     <PrintableUI
       title="Calendar"
+      defaultOrientation="landscape"
       customizeForm={(
         <CustomizeCalendarForm
           onBeforePrint={onPrint}

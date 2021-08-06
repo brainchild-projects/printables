@@ -71,7 +71,7 @@ function PaperOptionsProvider({
 
 PaperOptionsProvider.defaultProps = {
   margin: '10mm',
-  orientation: 'landscape',
+  orientation: 'portrait',
   scale: 1,
 };
 
