@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomizeCalendarForm from './CustomizeCalendarForm';
+import stubPrint from '../../testing/stubPrint';
 
 function randomInt(minIn: number, maxIn: number): number {
   const min = Math.floor(minIn);
@@ -15,22 +16,24 @@ interface CalendarData {
 }
 
 describe('CustomizeCalendarForm', () => {
+  stubPrint();
+
   describe('defaults', () => {
     let year: number;
     let month: number;
-    let onPrint: (data: CalendarData) => void;
+    let onPrint: (data: CalendarData) => boolean;
     let onChange: (data: CalendarData) => void;
 
     beforeEach(() => {
       year = randomInt(2000, 2030);
       month = randomInt(0, 11);
       const now = new Date(year, month);
-      onPrint = jest.fn();
+      onPrint = jest.fn(() => true);
       onChange = jest.fn();
       return render(
         <CustomizeCalendarForm
           now={now}
-          onPrint={onPrint}
+          onBeforePrint={onPrint}
           onChange={onChange}
         />,
       );

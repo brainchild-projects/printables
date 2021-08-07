@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
+import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
 import { DateNumber, getWeekDates } from './previewUtils';
@@ -21,7 +22,7 @@ const previewStyles = makeStyles((theme) => ({
   title: {
     fontSize: '36px',
     fontWeight: 'normal',
-    fontFamily: '"Source Sans Pro"',
+    fontFamily: '"Source Sans Pro", inherit',
   },
   wrap: {
     textAlign: 'center',
@@ -52,7 +53,7 @@ const previewStyles = makeStyles((theme) => ({
       width: `${1.0 / 7}%`,
       height: '0px',
       fontSize: '12px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: '"Source Sans Pro", inherit',
     },
   },
   body: {
@@ -65,10 +66,10 @@ const previewStyles = makeStyles((theme) => ({
       verticalAlign: 'top',
       width: `${1.0 / 7}%`,
       fontSize: '12px',
-      fontFamily: '"Source Sans Pro"',
+      fontFamily: '"Source Sans Pro", inherit',
     },
     '& .not-current-month': {
-      color: '#666',
+      color: '#999',
     },
   },
 }));
@@ -94,33 +95,35 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
   const classes = previewStyles();
 
   return (
-    <Box className={classes.wrap}>
-      <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
-      <div className={classes.contentWrap}>
-        <table className={classes.calendar}>
-          <thead className={classes.headers}>
-            <tr>
-              <th>Sunday</th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-              <th>Saturday</th>
-            </tr>
-          </thead>
-          <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
-            {
-              weeks.map((week, index) => (
-                <tr key={`week-${index}`}>
-                  { dateCells(week, index) }
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </Box>
+    <PaperPage noFlexWrap>
+      <Box className={classes.wrap}>
+        <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
+        <div className={classes.contentWrap}>
+          <table className={classes.calendar}>
+            <thead className={classes.headers}>
+              <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+              </tr>
+            </thead>
+            <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
+              {
+                weeks.map((week, index) => (
+                  <tr key={`week-${index}`}>
+                    { dateCells(week, index) }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </Box>
+    </PaperPage>
   );
 }
 

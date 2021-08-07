@@ -29,6 +29,7 @@ module.exports = {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
     'no-restricted-syntax': 'off',
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
   overrides: [
     {
@@ -59,6 +60,14 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:testing-library/react',
       ],
+    },
+    {
+      files: 'src/stories/**/*.+(ts|tsx)',
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        'import/no-anonymous-default-export': 'off',
+      },
     },
     {
       files: ['cypress/**/*', 'scripts/**/*'],
