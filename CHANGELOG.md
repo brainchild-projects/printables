@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/brainchild-projects/printables/compare/v0.0.12...v0.0.13) (2021-08-07)
+
+
+### Features
+
+* addition can be multiple pages ([9550afe](https://github.com/brainchild-projects/printables/commit/9550afe6675bfbefadbb73638a9ee0501d69902f))
+* addition fill in the blanks working ([d47fc14](https://github.com/brainchild-projects/printables/commit/d47fc144af90f115baf9e3e8f070c95639df496a))
+* can set paper sizes ([f98c2ce](https://github.com/brainchild-projects/printables/commit/f98c2ce46b91af62531979e90c5c45f32a740962))
+* change paper orientation ([5634971](https://github.com/brainchild-projects/printables/commit/5634971df17768a62b2c89fd197e801bc70e852d))
+* configuring additional ftb ([d29e3f1](https://github.com/brainchild-projects/printables/commit/d29e3f12dd3b6359c8037cebc1d2a38b701f83d0))
+* fill the blanks page prep ([ce44368](https://github.com/brainchild-projects/printables/commit/ce44368b7432f501837705b9d821ebf8f6ca9dff))
+* number generator ([0722862](https://github.com/brainchild-projects/printables/commit/0722862de45b3653842526a07fa1468dfd132cb7))
+* set default orientation per printable ([5c948e4](https://github.com/brainchild-projects/printables/commit/5c948e46a9f8d7a2b09beadf09afbed3455fbbb2))
+
+
+### Bug Fixes
+
+* remove useless footer ([3114ddf](https://github.com/brainchild-projects/printables/commit/3114ddff36677e9de34b31a0bebc1404c07b6fbe))
+
 ### [0.0.12](https://github.com/brainchild-projects/printables/compare/v0.0.11...v0.0.12) (2021-07-22)
 
 ### [0.0.11](https://github.com/brainchild-projects/printables/compare/v0.0.10...v0.0.11) (2021-07-22)
