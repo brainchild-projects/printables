@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-node-protocol */
 /* eslint-disable no-console */
 import { stdin, stdout } from 'process';
 import { createInterface } from 'readline';

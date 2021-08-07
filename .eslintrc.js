@@ -25,11 +25,13 @@ module.exports = {
     'cypress',
   ],
   root: true,
+  ignorePatterns: ['/build/**/*'],
   rules: {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
     'no-restricted-syntax': 'off',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    complexity: ['error', { max: 10 }],
   },
   overrides: [
     {

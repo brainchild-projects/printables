@@ -14,7 +14,7 @@ interface PageProps {
 
 const Page = ({
   user, onLogin, onLogout, onCreateAccount,
-}: PageProps) => (
+}: PageProps): JSX.Element => (
   <article>
     <Header user={user} onLogin={onLogin} onLogout={onLogout} onCreateAccount={onCreateAccount} />
 

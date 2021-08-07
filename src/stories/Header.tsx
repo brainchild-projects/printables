@@ -13,7 +13,7 @@ interface HeaderProps {
 
 const Header = ({
   user, onLogin, onLogout, onCreateAccount,
-}: HeaderProps) => (
+}: HeaderProps): JSX.Element => (
   <header>
     <div className="wrapper">
       <div>
