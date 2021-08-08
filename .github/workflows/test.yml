@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: nelonoel/branch-name@v1.0.1
 
-      - name: Update npm until we use next LTs
-        run: npm install -g npm@latest
+      - name: Update npm until we use next LTS
+        run: sudo npm install -g npm@latest
 
       - name: Store the branch name
         id: branchinfo
@@ -73,8 +73,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Update npm until we use next LTs
-        run: npm install -g npm@latest
+      - name: Update npm until we use next LTS
+        run: sudo npm install -g npm@latest
 
       - name: Cache node modules
         uses: actions/cache@v2
