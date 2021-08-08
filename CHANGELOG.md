@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.18](https://github.com/brainchild-projects/printables/compare/v0.0.17...v0.0.18) (2021-08-08)
+
+
+### Bug Fixes
+
+* removing storybook to fix build ([ce67b3d](https://github.com/brainchild-projects/printables/commit/ce67b3de2bccb6e61614bbe261e71a2a775d7d18))
+* use yarn instead of npm ([5226a76](https://github.com/brainchild-projects/printables/commit/5226a7603899a8c1f482412c6dfaa7e789f72d40))
+
 ### [0.0.17](https://github.com/brainchild-projects/printables/compare/v0.0.16...v0.0.17) (2021-08-08)
 
 ### [0.0.16](https://github.com/brainchild-projects/printables/compare/v0.0.15...v0.0.16) (2021-08-08)
