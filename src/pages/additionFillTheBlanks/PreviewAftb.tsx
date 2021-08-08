@@ -3,47 +3,9 @@ import React from 'react';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import NumberGenerator from '../../lib/NumberGenerator';
 import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
+import AdditionSentence, { generateAdditionSentences } from './AdditionSentence';
 import AftbData from './AftbData';
 
-interface AdditionSentenceProps {
-  addendA: number;
-  addendB: number;
-}
-interface AdditionSentenceData extends AdditionSentenceProps {
-  key: string;
-}
-
-function generateAdditionSentences(
-  { rangeFrom, rangeTo, problems }: AftbData,
-  generator: NumberGenerator,
-): AdditionSentenceData[] {
-  const generated: AdditionSentenceData[] = [];
-  for (let index = 0; index < problems; index++) {
-    generated.push({
-      key: `problem-${index + 1}`,
-      addendA: generator.integer(rangeTo, rangeFrom),
-      addendB: generator.integer(rangeTo, rangeFrom),
-    });
-  }
-  return generated;
-}
-
-function AdditionSentence({
-  addendA, addendB,
-}: AdditionSentenceProps): JSX.Element {
-  return (
-    <li className="addition-sentence-item">
-      {addendA}
-      {' '}
-      +
-      {' '}
-      {addendB}
-      {' '}
-      = ___
-      {' '}
-    </li>
-  );
-}
 interface PreviewAftbProps {
   aftbData: AftbData;
   numberGenerator?: NumberGenerator;
@@ -56,15 +18,27 @@ const pageStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   list: {
-    listStyle: 'none',
     margin: '10mm 0 0 0',
     padding: 0,
-    fontSize: '24px',
+    fontSize: '20px',
     columnCount: 2,
     columnWidth: 'auto',
+    counterReset: 'problem 0',
 
     '& > li': {
-      padding: '10mm',
+      padding: '8mm 8mm 8mm 6mm',
+      marginLeft: '10mm',
+      counterIncrement: 'problem',
+    },
+
+    '& > li::marker': {
+      content: 'counter(problem) "."',
+      fontSize: '16px',
+    },
+
+    '& .blank': {
+      position: 'relative',
+      top: '2mm',
     },
   },
 
@@ -78,26 +52,55 @@ const PreviewAftb = ({
   const data = generateAdditionSentences(aftbData, numberGenerator);
 
   return (
-    <MultiPaperPage
-      header={(
-        <Typography
-          variant="h5"
-          component="h1"
-          className={classes.heading}
-        >
-          Addition: Fill in the Blanks
-        </Typography>
-      )}
-      contentWrapper="ul"
-      contentWrapperClassName={classes.list}
-      data={data}
-      itemSelector=".addition-sentence-item"
-      builder={
-        ({ key, addendA, addendB }) => (
-          <AdditionSentence key={key} addendA={addendA} addendB={addendB} />
-        )
-      }
-    />
+    <>
+      <MultiPaperPage
+        header={(
+          <Typography
+            variant="h5"
+            component="h1"
+            className={classes.heading}
+          >
+            Addition: Fill in the Blanks
+          </Typography>
+        )}
+        contentWrapper="ol"
+        contentWrapperClassName={`${classes.list} problems`}
+        data={data}
+        itemSelector=".addition-sentence-item"
+        builder={
+          (addition, index) => (
+            <AdditionSentence
+              key={`problem-${index}`}
+              addition={addition}
+            />
+          )
+        }
+      />
+      <MultiPaperPage
+        header={(
+          <Typography
+            variant="h6"
+            component="h2"
+            className={classes.heading}
+          >
+            Answer Key
+          </Typography>
+        )}
+        contentWrapper="ol"
+        contentWrapperClassName={`${classes.list} answers`}
+        data={data}
+        itemSelector=".addition-sentence-item"
+        builder={
+          (addition, index) => (
+            <AdditionSentence
+              showAnswer
+              key={`answer-${index}`}
+              addition={addition}
+            />
+          )
+        }
+      />
+    </>
   );
 };
 

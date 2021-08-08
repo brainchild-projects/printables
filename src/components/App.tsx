@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createMuiTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
+import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import MainPage from '../pages/main/MainPage';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
@@ -20,7 +20,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     background: {
       default: '#f3f3f3',

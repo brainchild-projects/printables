@@ -1,20 +1,26 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import PreviewAftb from './PreviewAftb';
 import AftbData from './AftbData';
-import NumberGenerator from '../../lib/NumberGenerator';
-import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
+import { IntegerGenerator } from '../../lib/NumberGenerator';
 
 describe('PreviewAftb', () => {
-  let generator: NumberGenerator;
+  let generator: IntegerGenerator;
   beforeEach(() => {
     const aftbData: AftbData = {
-      rangeFrom: 2,
-      rangeTo: 3,
+      rangeFrom: 1,
+      rangeTo: 20,
       problems: 20,
     };
 
-    generator = new RandomNumberGenerator(Math.random);
+    let start = 0;
+    generator = {
+      integer: jest.fn((): number => {
+        const generated = start;
+        start += 1;
+        return generated;
+      }),
+    };
 
     return render(
       <PreviewAftb
@@ -24,8 +30,17 @@ describe('PreviewAftb', () => {
     );
   });
 
+  it('should call number generator', () => {
+    expect(generator.integer).toHaveBeenCalledWith(20, 1);
+  });
+
   it('should display some addition sentences', () => {
-    const found = screen.queryAllByText(/[^\d]?2 \+ 3 =/);
-    expect(found.length).toBeGreaterThan(0);
+    const found = document.querySelector('.problems');
+    expect(found).toHaveTextContent(/[^\d]?2 \+ 3 = _/);
+  });
+
+  it('should have generated answer keys', () => {
+    const found = document.querySelector('.answers');
+    expect(found).toHaveTextContent(/[^\d]?2\s+\+\s+3\s+=\s+5/);
   });
 });
