@@ -11,6 +11,10 @@ const paperPageStyles = makeStyles(() => ({
     pageBreakBefore: 'always',
     breakBefore: 'always',
 
+    '&:first-child': {
+      pageBreakBefore: 'avoid',
+    },
+
     '@media print': {
       borderRadius: 0,
       boxShadow: 'none',
