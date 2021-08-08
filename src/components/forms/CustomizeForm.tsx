@@ -77,6 +77,7 @@ const CustomizeForm = ({
               orientation: options.orientation,
             },
           }).then(() => element.classList.remove('print-ready'))
+            // eslint-disable-next-line no-console
             .catch((e) => console.error(e));
         }
       } else {
