@@ -26,6 +26,11 @@ jobs:
           path: cypress/cache
           key: cypress-binary-${{ hashFiles('package-lock.json') }}
 
+      - name: Reconfigure git to use HTTP authentication
+        run: >
+          git config --global url."https://github.com/".insteadOf
+          ssh://git@github.com/
+
       - name: Install Dependencies
         uses: bahmutov/npm-install@HEAD
 
@@ -59,8 +64,16 @@ jobs:
           path: cypress/cache
           key: cypress-binary-${{ hashFiles('package-lock.json') }}
 
+      - name: Reconfigure git to use HTTP authentication
+        run: >
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+
       - name: Install Dependencies
         uses: bahmutov/npm-install@HEAD
+
+      - name: Revert git HTTP authentication
+        run: >
+          git config --global url."ssh://git@github.com/".insteadOf https://github.com/
 
       - name: Get Current Version
         id: currentVersion
