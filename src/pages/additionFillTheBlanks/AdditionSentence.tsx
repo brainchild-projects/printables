@@ -1,46 +1,50 @@
 import React from 'react';
-import NumberGenerator from '../../lib/NumberGenerator';
+import { IntegerGenerator } from '../../lib/NumberGenerator';
+import Addition from './Addition';
 import AftbData from './AftbData';
-
-interface AdditionSentenceProps {
-  addendA: number;
-  addendB: number;
-}
-
-interface AdditionSentenceData extends AdditionSentenceProps {
-  key: string;
-}
 
 export function generateAdditionSentences(
   { rangeFrom, rangeTo, problems }: AftbData,
-  generator: NumberGenerator,
-): AdditionSentenceData[] {
-  const generated: AdditionSentenceData[] = [];
+  generator: IntegerGenerator,
+): Addition[] {
+  const generated: Addition[] = [];
   for (let index = 0; index < problems; index++) {
-    generated.push({
-      key: `problem-${index + 1}`,
-      addendA: generator.integer(rangeTo, rangeFrom),
-      addendB: generator.integer(rangeTo, rangeFrom),
-    });
+    generated.push(new Addition(
+      generator.integer(rangeTo, rangeFrom),
+      generator.integer(rangeTo, rangeFrom),
+    ));
   }
   return generated;
 }
+interface AdditionSentenceProps {
+  addition: Addition;
+  showAnswer?: boolean;
+}
 
 function AdditionSentence({
-  addendA, addendB,
+  addition, showAnswer = false,
 }: AdditionSentenceProps): JSX.Element {
   return (
     <li className="addition-sentence-item">
-      {addendA}
+      {addition.addendA}
       {' '}
       +
       {' '}
-      {addendB}
+      {addition.addendB}
       {' '}
-      = ___
+      =
       {' '}
+      {
+        showAnswer
+          ? addition.sum()
+          : <span className="blank">___</span>
+      }
     </li>
   );
 }
+
+AdditionSentence.defaultProps = {
+  showAnswer: false,
+};
 
 export default AdditionSentence;
