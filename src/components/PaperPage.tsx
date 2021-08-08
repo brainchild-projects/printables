@@ -20,6 +20,12 @@ const paperPageStyles = makeStyles(() => ({
       boxShadow: 'none',
       margin: 0,
     },
+
+    '.print-ready &': {
+      borderRadius: 0,
+      boxShadow: 'none',
+      margin: 0,
+    },
   },
 
   content: {

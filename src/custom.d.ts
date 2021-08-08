@@ -34,11 +34,14 @@ interface HTML2PDFOptions {
   html2canvas?: HTML2CanvasOptions;
   jsPDF?: JsPDFOptions;
   pagebreak?: {
-    mode: PageBreakMode | PageBreakMode[];
+    mode?: PageBreakMode | PageBreakMode[];
+    before?: string | string[];
+    after?: string | string[];
+    avoid?: string | string[];
   };
   enableLinks?: boolean;
 }
-type Html2PDF = (element: AnyElement, options?: HTML2PDFOptions) => void;
+type Html2PDF = (element: AnyElement, options?: HTML2PDFOptions) => Promise<unknown>;
 declare module 'html2pdf.js' {
   const html2pdf: Html2PDF;
   export default html2pdf;

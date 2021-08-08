@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, {
   ReactNode, FormEvent, ChangeEvent,
 } from 'react';
 import html2pdf from 'html2pdf.js';
 import {
-  Button, ButtonGroup, Collapse, makeStyles, Select, Typography,
+  Button, Collapse, makeStyles, Select, Typography,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import FieldSet from './FieldSet';
@@ -63,9 +64,11 @@ const CustomizeForm = ({
       if (submitType === 'pdf') {
         const element = document.querySelector('#paper-preview');
         if (element !== null) {
+          element.classList.add('print-ready');
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           html2pdf(element, {
             filename: `${name} ${timeStamp()}`,
+            pagebreak: { mode: 'css' },
             html2canvas: {
               scale: 3,
             },
@@ -73,7 +76,8 @@ const CustomizeForm = ({
               format: options.paperSize.code,
               orientation: options.orientation,
             },
-          });
+          }).then(() => element.classList.remove('print-ready'))
+            .catch((e) => console.error(e));
         }
       } else {
         window.print();
@@ -187,6 +191,7 @@ const CustomizeForm = ({
         >
           Generate PDF
         </Button>
+        <p>Warning: Generate PDF is experimental.</p>
       </form>
     </div>
   );
