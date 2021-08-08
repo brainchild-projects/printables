@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://github.com/brainchild-projects/printables/compare/v0.0.18...v0.0.19) (2021-08-08)
+
+
+### Features
+
+* **addition:** 20 items can fit one page ([62a0c38](https://github.com/brainchild-projects/printables/commit/62a0c38897db1f5f8043902660858047096efbd9))
+* answer keys ([07d21e5](https://github.com/brainchild-projects/printables/commit/07d21e5c647d8fb3de2f61a87f6e037b9ee0ba64))
+
+
+### Bug Fixes
+
+* replace deprecated createMuiTheme ([31f188a](https://github.com/brainchild-projects/printables/commit/31f188a014406c400ac80b9c013edcf8574c033c))
+
 ### [0.0.18](https://github.com/brainchild-projects/printables/compare/v0.0.17...v0.0.18) (2021-08-08)
 
 
