@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/brainchild-projects/printables/compare/v0.0.15...v0.0.16) (2021-08-08)
+
+
+### Features
+
+* generate pdf using html2pdf ([b21ad8d](https://github.com/brainchild-projects/printables/commit/b21ad8d838793d58b30dc20f279660d2cafe7487))
+
+
+### Bug Fixes
+
+* content changes when printing ([aa4997e](https://github.com/brainchild-projects/printables/commit/aa4997e99f82616beddfbbcc782e19cc716517e5))
+* multiple blank pages in generated pdf ([1941b72](https://github.com/brainchild-projects/printables/commit/1941b72d97e9799436250e0961a640f3a10abc99))
+
 ### [0.0.15](https://github.com/brainchild-projects/printables/compare/v0.0.14...v0.0.15) (2021-08-07)
 
 ### [0.0.14](https://github.com/brainchild-projects/printables/compare/v0.0.13...v0.0.14) (2021-08-07)
