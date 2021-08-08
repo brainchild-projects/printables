@@ -10,10 +10,7 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
     rangeTo: 9,
     problems: 20,
   }));
-  const onPrint = (data: AftbData): boolean => {
-    setAftbData({ ...aftbData, ...data });
-    return true;
-  };
+  const onPrint = () => true;
   const onChange = (data: AftbData): void => {
     setAftbData({ ...aftbData, ...data });
   };

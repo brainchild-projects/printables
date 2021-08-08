@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, {
   ReactNode, FormEvent, ChangeEvent,
 } from 'react';
+import html2pdf from 'html2pdf.js';
 import {
   Button, Collapse, makeStyles, Select, Typography,
 } from '@material-ui/core';
@@ -35,6 +37,19 @@ interface CustomizeFormProps {
   error?: string | null,
 }
 
+interface EventWithSubmitter extends Event {
+  submitter: HTMLButtonElement | undefined;
+}
+
+function zeroPad(n: number): string {
+  return n > 9 ? n.toString() : `0${n}`;
+}
+
+function timeStamp(): string {
+  const now = new Date();
+  return `${now.getFullYear()}-${zeroPad(now.getMonth())}-${zeroPad(now.getDate())}`;
+}
+
 const CustomizeForm = ({
   onBeforePrint, name, children, error = null,
 }: CustomizeFormProps): JSX.Element => {
@@ -44,7 +59,29 @@ const CustomizeForm = ({
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (onBeforePrint()) {
-      window.print();
+      const nativeEvent = event.nativeEvent as EventWithSubmitter;
+      const submitType: string = nativeEvent.submitter === undefined ? 'print' : nativeEvent.submitter.value;
+      if (submitType === 'pdf') {
+        const element = document.querySelector('#paper-preview');
+        if (element !== null) {
+          element.classList.add('print-ready');
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          html2pdf(element, {
+            filename: `${name} ${timeStamp()}`,
+            pagebreak: { mode: 'css' },
+            html2canvas: {
+              scale: 3,
+            },
+            jsPDF: {
+              format: options.paperSize.code,
+              orientation: options.orientation,
+            },
+          }).then(() => element.classList.remove('print-ready'))
+            .catch((e) => console.error(e));
+        }
+      } else {
+        window.print();
+      }
     }
   };
 
@@ -128,11 +165,33 @@ const CustomizeForm = ({
           size="large"
           className={classes.submit}
           disabled={error !== null}
+          value="print"
+          name="print"
         >
           Print
           {' '}
           { name }
         </Button>
+        <p>
+          Note: Make sure to match the paper size and orientation
+          on the browser&rsquo;s printer settings.
+        </p>
+
+        <p> -- or --</p>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.submit}
+          disabled={error !== null}
+          value="pdf"
+          name="pdf"
+        >
+          Generate PDF
+        </Button>
+        <p>Warning: Generate PDF is experimental.</p>
       </form>
     </div>
   );
