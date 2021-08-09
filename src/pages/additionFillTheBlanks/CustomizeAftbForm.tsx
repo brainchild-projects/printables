@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, ChangeEvent } from 'react';
-import { TextField } from '@material-ui/core';
+import { Select, TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
-import AftbData from './AftbData';
+import AftbData, { BlankPositionStrategy } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
 
 export interface CustomizeAftbFormProps {
@@ -14,6 +14,12 @@ export interface CustomizeAftbFormProps {
 function numberOrEmpty(value: unknown): number | string {
   return Number.isNaN(value) ? '' : value as number;
 }
+
+const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
+  ['sum', 'Sum'],
+  ['addends', 'Addends'],
+  ['random', 'Random'],
+]);
 
 const CustomizeAftbForm = ({
   onBeforePrint, onChange,
@@ -31,12 +37,7 @@ const CustomizeAftbForm = ({
     return null;
   };
 
-  const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
-    const value = Number.parseInt(event.target.value as string, 10);
-    const updated = {
-      ...data,
-      [field]: value,
-    };
+  const updateData = (updated: AftbData): void => {
     const error = validate(updated);
     if (error !== errorMessage) {
       setErrorMessage(error);
@@ -45,6 +46,24 @@ const CustomizeAftbForm = ({
       onChange(updated);
     }
     setData(updated);
+  };
+
+  const changeBlankStrategy = (event: ChangeEvent<{ value: unknown }>) => {
+    const strategy = event.target.value as BlankPositionStrategy;
+
+    updateData({
+      ...data,
+      blankStrategy: strategy,
+    });
+  };
+
+  const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
+    const value = Number.parseInt(event.target.value as string, 10);
+    const updated = {
+      ...data,
+      [field]: value,
+    };
+    updateData(updated);
   };
 
   return (
@@ -97,6 +116,26 @@ const CustomizeAftbForm = ({
           value={numberOrEmpty(data.rangeTo)}
           onChange={changeHandler('rangeTo')}
         />
+      </FieldSet>
+      <FieldSet
+        label="Blank"
+        id="select-blank-position-strategy"
+      >
+        <Select
+          native
+          name="blankStrategy"
+          id="select-blank-position-strategy"
+          fullWidth
+          variant="filled"
+          value={data.blankStrategy}
+          onChange={changeBlankStrategy}
+        >
+          {
+            Array.from(blankTypesStrategies.entries()).map(([value, label]) => (
+              <option key={value} value={value}>{label}</option>
+            ))
+          }
+        </Select>
       </FieldSet>
     </CustomizeForm>
   );

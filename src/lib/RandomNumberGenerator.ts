@@ -17,4 +17,6 @@ class RandomNumberGenerator implements NumberGenerator {
   }
 }
 
+export const defaultGenerator = new RandomNumberGenerator(Math.random);
+
 export default RandomNumberGenerator;

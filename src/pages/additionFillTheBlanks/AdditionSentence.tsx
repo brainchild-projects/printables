@@ -16,35 +16,57 @@ export function generateAdditionSentences(
   }
   return generated;
 }
-interface AdditionSentenceProps {
+
+export type BlankPosition = 'addendA' | 'addendB' | 'sum';
+export const blankTypes: BlankPosition[] = ['addendA', 'addendB', 'sum'];
+export const blankTypesAddends: BlankPosition[] = ['addendA', 'addendB'];
+export interface AdditionSentenceProps {
   addition: Addition;
   showAnswer?: boolean;
+  blank?: BlankPosition;
+}
+
+const blankElement = (<span className="blank">___</span>);
+interface BlankOrNumberProps {
+  expected: BlankPosition;
+  value: number;
+}
+
+function blankOrNumberGenerator(blank: BlankPosition, showAnswer: boolean) {
+  return ({ value, expected }: BlankOrNumberProps): JSX.Element => (
+    showAnswer || blank !== expected
+      ? <span>{value}</span>
+      : blankElement
+  );
 }
 
 function AdditionSentence({
-  addition, showAnswer = false,
+  addition, blank = 'sum', showAnswer = false,
 }: AdditionSentenceProps): JSX.Element {
+  const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   return (
     <li className="addition-sentence-item">
-      {addition.addendA}
-      {' '}
-      +
-      {' '}
-      {addition.addendB}
-      {' '}
-      =
-      {' '}
-      {
-        showAnswer
-          ? addition.sum()
-          : <span className="blank">___</span>
-      }
+      <BlankOrNumber
+        value={addition.addendA}
+        expected="addendA"
+      />
+      {' + '}
+      <BlankOrNumber
+        value={addition.addendB}
+        expected="addendB"
+      />
+      {' = '}
+      <BlankOrNumber
+        value={addition.sum()}
+        expected="sum"
+      />
     </li>
   );
 }
 
 AdditionSentence.defaultProps = {
   showAnswer: false,
+  blank: 'sum',
 };
 
 export default AdditionSentence;

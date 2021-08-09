@@ -1,19 +1,20 @@
 import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
-import MultiPaperPage from '../../components/MultiPaperPage';
+import MultiPaperPage, { Builder, Props } from '../../components/MultiPaperPage';
 import NumberGenerator from '../../lib/NumberGenerator';
-import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
-import AdditionSentence, { generateAdditionSentences } from './AdditionSentence';
-import AftbData from './AftbData';
+import AdditionSentence, {
+  BlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
+} from './AdditionSentence';
+import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
+import Addition from './Addition';
+import { defaultGenerator } from '../../lib/RandomNumberGenerator';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
   numberGenerator?: NumberGenerator;
 }
-
-const defaultGenerator = new RandomNumberGenerator(Math.random);
 
 const pageStyles = makeStyles(() => ({
   heading: {
@@ -43,8 +44,25 @@ const pageStyles = makeStyles(() => ({
       top: '2mm',
     },
   },
-
 }));
+
+function blankTypeFromStrategy(
+  blankStrategy: BlankPositionStrategy, numberGenerator: NumberGenerator,
+): BlankPosition {
+  switch (blankStrategy) {
+    case 'addends':
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+      return blankTypesAddends[
+        numberGenerator.integer(blankTypesAddends.length - 1)
+      ] as BlankPosition;
+
+    case 'random':
+      return blankTypes[numberGenerator.integer(blankTypes.length - 1)];
+
+    default:
+      return 'sum';
+  }
+}
 
 const PreviewAftb = ({
   aftbData,
@@ -53,6 +71,18 @@ const PreviewAftb = ({
   const classes = pageStyles();
   const data = generateAdditionSentences(aftbData, numberGenerator);
 
+  const problemBuilder: Builder<Addition> = (addition, index) => {
+    const { blankStrategy } = aftbData;
+    const blankType = blankTypeFromStrategy(blankStrategy, numberGenerator);
+    return (
+      <AdditionSentence
+        key={`problem-${index}`}
+        addition={addition}
+        blank={blankType}
+      />
+    );
+  };
+
   return (
     <>
       <MultiPaperPage
@@ -60,22 +90,15 @@ const PreviewAftb = ({
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper="ol"
         wrapperProps={{ className: `${classes.list} problems` }}
-        wrapperPropsInstanceCallback={
+        wrapperPropsCallback={
           (props, { memberIndex }) => ({
             ...props,
             style: { counterReset: `problem ${memberIndex}` },
-          })
+          } as Props)
         }
         data={data}
         itemSelector=".addition-sentence-item"
-        builder={
-          (addition, index) => (
-            <AdditionSentence
-              key={`problem-${index}`}
-              addition={addition}
-            />
-          )
-        }
+        builder={problemBuilder}
       />
       <MultiPaperPage
         header={(
