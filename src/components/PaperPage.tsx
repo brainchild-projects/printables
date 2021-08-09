@@ -10,9 +10,11 @@ const paperPageStyles = makeStyles(() => ({
     overflow: 'hidden',
     pageBreakBefore: 'always',
     breakBefore: 'always',
+    transition: '0.3s opacity',
+    opacity: 1,
 
-    '&:first-child': {
-      pageBreakBefore: 'avoid',
+    '&.not-ready': {
+      opacity: 0,
     },
 
     '@media print': {
@@ -25,6 +27,10 @@ const paperPageStyles = makeStyles(() => ({
       borderRadius: 0,
       boxShadow: 'none',
       margin: 0,
+    },
+
+    '.print-ready &:first-child': {
+      pageBreakBefore: 'avoid',
     },
   },
 
@@ -49,9 +55,12 @@ interface PaperPreviewProps {
   children: ReactNode;
   noFlexWrap?: boolean;
   pageId?: string;
+  ready?: boolean;
 }
 
-function PaperPage({ children, noFlexWrap, pageId }: PaperPreviewProps): JSX.Element {
+function PaperPage({
+  children, noFlexWrap, pageId, ready = true,
+}: PaperPreviewProps): JSX.Element {
   const { options } = usePaperOptions();
   const {
     margin, orientation, scale, paperSize,
@@ -67,10 +76,11 @@ function PaperPage({ children, noFlexWrap, pageId }: PaperPreviewProps): JSX.Ele
   }
 
   const dimensionStyles = paperSize.dimensionsStr(orientation);
+  const pageClassNames = `printable-paper ${!ready ? 'not-ready' : ''} ${classes.paper}`;
 
   return (
     <Paper
-      className={`printable-paper ${classes.paper}`}
+      className={pageClassNames}
       style={paperStyle}
       component="section"
       data-page-id={pageId}
@@ -96,6 +106,7 @@ function PaperPage({ children, noFlexWrap, pageId }: PaperPreviewProps): JSX.Ele
 PaperPage.defaultProps = {
   noFlexWrap: false,
   pageId: undefined,
+  ready: true,
 };
 
 export default PaperPage;

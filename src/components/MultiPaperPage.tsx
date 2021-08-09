@@ -1,31 +1,30 @@
-import { makeStyles } from '@material-ui/core';
 import React, {
   ReactNode, ElementType, createElement, useState, useEffect, useRef,
 } from 'react';
 import { usePaperOptions } from './PaperOptionsProvider';
 import PaperPage from './PaperPage';
 
-const styles = makeStyles(() => ({
-  wrapper: {
-  },
-  curtain: {
-    transition: '0.3s opacity',
-  },
-  curtainDown: {
-    opacity: 0,
-  },
-  curtainUp: {
-    opacity: 1,
-  },
-}));
+type PropsCallbackOptions = {
+  instanceIndex: number,
+  memberIndex: number,
+};
 
+type Props = Record<string, unknown>;
+export type PropsCallback = (props: Props, options: PropsCallbackOptions) => Props;
 interface WrapperBuilder<T> {
-  contentWrapper?: ElementType | null;
-  contentWrapperClassName?: string;
+  wrapper?: ElementType | null;
+  wrapperProps?: Record<string, unknown>;
+  wrapperPropsInstanceCallback?: PropsCallback;
   data: T[];
   builder: (item: T, index: number, array: T[] | undefined) => JSX.Element;
 }
+interface WrapperBuilderArgs<T> extends WrapperBuilder<T> {
+  wrapperPropsInstanceCallback: PropsCallback;
+  instanceIndex: number;
+  memberIndex: number;
+}
 
+const passThrough = (props: Props) => props;
 interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
   header?: ReactNode | null;
   footer?: ReactNode | null;
@@ -33,14 +32,22 @@ interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
 }
 
 function wrappedContent<T>({
-  contentWrapper, contentWrapperClassName, data, builder,
-}: WrapperBuilder<T>): ReactNode {
-  return contentWrapper === null
+  wrapper, wrapperProps, wrapperPropsInstanceCallback, data, builder,
+  instanceIndex, memberIndex,
+}: WrapperBuilderArgs<T>): ReactNode {
+  return wrapper === null
     ? data.map(builder)
     : createElement(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      contentWrapper!,
-      { className: contentWrapperClassName, children: data.map(builder) },
+      wrapper!,
+      {
+        ...wrapperPropsInstanceCallback(
+          wrapperProps || {},
+          { instanceIndex, memberIndex },
+        ),
+        children: data.map(builder),
+
+      },
     );
 }
 
@@ -80,16 +87,15 @@ function isContentOverflowing(element: HTMLDivElement | null): boolean {
 
 function MultiPaperPage<T>({
   header = null, footer = null,
-  contentWrapper, contentWrapperClassName, data, builder,
+  wrapper, wrapperProps = {}, data, builder,
+  wrapperPropsInstanceCallback = passThrough,
   itemSelector,
 }: MultiPaperPageProps<T>): JSX.Element {
-  const { curtainUp, curtainDown, curtain } = styles();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { options } = usePaperOptions();
   const [isReady, setIsReady] = useState(false);
   const [dataPages, setDataPages] = useState([data]);
   const [attemptsToFix, setAttemptsTofix] = useState(0);
-  const curtainClasses = `${curtain} ${isReady ? curtainUp : curtainDown}`;
 
   useEffect(() => {
     setDataPages([data]);
@@ -104,8 +110,8 @@ function MultiPaperPage<T>({
     }
     // Check if last page overflows
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const wrapper = wrapperRef.current!;
-    const pages: NodeListOf<HTMLDivElement> = wrapper.querySelectorAll('.printable-paper-content');
+    const wrapperEl = wrapperRef.current!;
+    const pages: NodeListOf<HTMLDivElement> = wrapperEl.querySelectorAll('.printable-paper-content');
     let previousPagedItemsCount = 0;
     let contentOverflowed = false;
     for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
@@ -137,27 +143,37 @@ function MultiPaperPage<T>({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataPages, options]);
 
+  let count = 0;
+
   return (
-    <div className={curtainClasses} ref={wrapperRef}>
+    <div ref={wrapperRef}>
       {
-        dataPages.map((dataPage, index) => (
-          <PaperPage
-            pageId={`${index + 1}`}
-            // eslint-disable-next-line react/no-array-index-key
-            key={`page-${index}`}
-          >
-            { index === 0 ? header : null }
-            {
-              wrappedContent({
-                contentWrapper,
-                contentWrapperClassName,
-                data: dataPage,
-                builder,
-              })
-            }
-            { index === dataPages.length - 1 ? footer : null }
-          </PaperPage>
-        ))
+        dataPages.map((dataPage, index) => {
+          const rendered = (
+            <PaperPage
+              pageId={`${index + 1}`}
+                // eslint-disable-next-line react/no-array-index-key
+              key={`page-${index}`}
+              ready={isReady}
+            >
+              { index === 0 ? header : null }
+              {
+                  wrappedContent({
+                    wrapper,
+                    wrapperProps,
+                    wrapperPropsInstanceCallback: wrapperPropsInstanceCallback || passThrough,
+                    data: dataPage,
+                    builder,
+                    instanceIndex: index,
+                    memberIndex: count,
+                  })
+                }
+              { index === dataPages.length - 1 ? footer : null }
+            </PaperPage>
+          );
+          count += dataPage.length;
+          return rendered;
+        })
       }
 
     </div>
@@ -167,8 +183,9 @@ function MultiPaperPage<T>({
 MultiPaperPage.defaultProps = {
   header: null,
   footer: null,
-  contentWrapper: null,
-  contentWrapperClassName: null,
+  wrapper: null,
+  wrapperProps: {},
+  wrapperPropsInstanceCallback: passThrough,
 };
 
 export default MultiPaperPage;

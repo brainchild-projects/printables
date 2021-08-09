@@ -17,7 +17,7 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
 
   return (
     <PrintableUI
-      title="Addition: Fill the Blanks"
+      title="Addition: Fill in the Blanks"
       customizeForm={(
         <CustomizeAftbForm
           onBeforePrint={onPrint}

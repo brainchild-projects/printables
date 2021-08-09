@@ -1,10 +1,12 @@
-import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { makeStyles, Typography } from '@material-ui/core';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import NumberGenerator from '../../lib/NumberGenerator';
 import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
 import AdditionSentence, { generateAdditionSentences } from './AdditionSentence';
 import AftbData from './AftbData';
+import WorksheetHeader from '../../components/WorksheetHeader';
+import WorksheetFooter from '../../components/WorksheetFooter';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
@@ -18,7 +20,7 @@ const pageStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   list: {
-    margin: '10mm 0 0 0',
+    margin: '5mm 0 0 0',
     padding: 0,
     fontSize: '20px',
     columnCount: 2,
@@ -26,7 +28,7 @@ const pageStyles = makeStyles(() => ({
     counterReset: 'problem 0',
 
     '& > li': {
-      padding: '8mm 8mm 8mm 6mm',
+      padding: '6mm 0 6mm 6mm',
       marginLeft: '10mm',
       counterIncrement: 'problem',
     },
@@ -54,17 +56,16 @@ const PreviewAftb = ({
   return (
     <>
       <MultiPaperPage
-        header={(
-          <Typography
-            variant="h5"
-            component="h1"
-            className={classes.heading}
-          >
-            Addition: Fill in the Blanks
-          </Typography>
-        )}
-        contentWrapper="ol"
-        contentWrapperClassName={`${classes.list} problems`}
+        header={(<WorksheetHeader />)}
+        footer={(<WorksheetFooter itemCount={data.length} />)}
+        wrapper="ol"
+        wrapperProps={{ className: `${classes.list} problems` }}
+        wrapperPropsInstanceCallback={
+          (props, { memberIndex }) => ({
+            ...props,
+            style: { counterReset: `problem ${memberIndex}` },
+          })
+        }
         data={data}
         itemSelector=".addition-sentence-item"
         builder={
@@ -86,8 +87,8 @@ const PreviewAftb = ({
             Answer Key
           </Typography>
         )}
-        contentWrapper="ol"
-        contentWrapperClassName={`${classes.list} answers`}
+        wrapper="ol"
+        wrapperProps={{ className: `${classes.list} answers` }}
         data={data}
         itemSelector=".addition-sentence-item"
         builder={
