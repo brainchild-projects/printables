@@ -58,8 +58,14 @@ const PreviewAftb = ({
       <MultiPaperPage
         header={(<WorksheetHeader />)}
         footer={(<WorksheetFooter itemCount={data.length} />)}
-        contentWrapper="ol"
-        contentWrapperClassName={`${classes.list} problems`}
+        wrapper="ol"
+        wrapperProps={{ className: `${classes.list} problems` }}
+        wrapperPropsInstanceCallback={
+          (props, { memberIndex }) => ({
+            ...props,
+            style: { counterReset: `problem ${memberIndex}` },
+          })
+        }
         data={data}
         itemSelector=".addition-sentence-item"
         builder={
@@ -81,8 +87,8 @@ const PreviewAftb = ({
             Answer Key
           </Typography>
         )}
-        contentWrapper="ol"
-        contentWrapperClassName={`${classes.list} answers`}
+        wrapper="ol"
+        wrapperProps={{ className: `${classes.list} answers` }}
         data={data}
         itemSelector=".addition-sentence-item"
         builder={
