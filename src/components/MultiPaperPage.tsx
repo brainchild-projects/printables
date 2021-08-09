@@ -1,23 +1,8 @@
-import { makeStyles } from '@material-ui/core';
 import React, {
   ReactNode, ElementType, createElement, useState, useEffect, useRef,
 } from 'react';
 import { usePaperOptions } from './PaperOptionsProvider';
 import PaperPage from './PaperPage';
-
-const styles = makeStyles(() => ({
-  wrapper: {
-  },
-  curtain: {
-    transition: '0.3s opacity',
-  },
-  curtainDown: {
-    opacity: 0,
-  },
-  curtainUp: {
-    opacity: 1,
-  },
-}));
 
 interface WrapperBuilder<T> {
   contentWrapper?: ElementType | null;
@@ -83,13 +68,11 @@ function MultiPaperPage<T>({
   contentWrapper, contentWrapperClassName, data, builder,
   itemSelector,
 }: MultiPaperPageProps<T>): JSX.Element {
-  const { curtainUp, curtainDown, curtain } = styles();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { options } = usePaperOptions();
   const [isReady, setIsReady] = useState(false);
   const [dataPages, setDataPages] = useState([data]);
   const [attemptsToFix, setAttemptsTofix] = useState(0);
-  const curtainClasses = `${curtain} ${isReady ? curtainUp : curtainDown}`;
 
   useEffect(() => {
     setDataPages([data]);
@@ -138,13 +121,14 @@ function MultiPaperPage<T>({
   }, [dataPages, options]);
 
   return (
-    <div className={curtainClasses} ref={wrapperRef}>
+    <div ref={wrapperRef}>
       {
         dataPages.map((dataPage, index) => (
           <PaperPage
             pageId={`${index + 1}`}
             // eslint-disable-next-line react/no-array-index-key
             key={`page-${index}`}
+            ready={isReady}
           >
             { index === 0 ? header : null }
             {
