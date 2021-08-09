@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/brainchild-projects/printables/compare/v0.0.19...v0.0.20) (2021-08-09)
+
+
+### Features
+
+* worksheet footer ([ac0fb34](https://github.com/brainchild-projects/printables/commit/ac0fb34393d0cbe710e7e46bad274d2a00b1b82a))
+* worksheet header ([1ecf24b](https://github.com/brainchild-projects/printables/commit/1ecf24b0b4ad1b330c1ac9709663b5d9844a395e))
+
+
+### Bug Fixes
+
+* addition worksheet numbering ([27bf4cb](https://github.com/brainchild-projects/printables/commit/27bf4cb5d5cc66b43bb9399f0b0709d526f0e7fc))
+
 ### [0.0.19](https://github.com/brainchild-projects/printables/compare/v0.0.18...v0.0.19) (2021-08-08)
 
 
