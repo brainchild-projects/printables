@@ -5,6 +5,8 @@ import NumberGenerator from '../../lib/NumberGenerator';
 import RandomNumberGenerator from '../../lib/RandomNumberGenerator';
 import AdditionSentence, { generateAdditionSentences } from './AdditionSentence';
 import AftbData from './AftbData';
+import WorksheetHeader from '../../components/WorksheetHeader';
+import WorksheetFooter from '../../components/WorksheetFooter';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
@@ -14,32 +16,6 @@ interface PreviewAftbProps {
 const defaultGenerator = new RandomNumberGenerator(Math.random);
 
 const pageStyles = makeStyles(() => ({
-  header: {
-    display: 'flex',
-  },
-  headerName: {
-    flexGrow: 4,
-    display: 'flex',
-    paddingRight: '2em',
-  },
-  label: {
-    flexGrow: 0,
-    fontWeight: 'normal',
-    paddingRight: '0.3em',
-  },
-  headerDate: {
-    flexGrow: 2,
-    display: 'flex',
-  },
-  headerBlank: {
-    flexGrow: 1,
-    borderBottom: '1px solid black',
-  },
-  instructions: {
-    marginBottom: 0,
-    marginTop: '10mm',
-    fontSize: '16px',
-  },
   heading: {
     textAlign: 'center',
   },
@@ -80,23 +56,8 @@ const PreviewAftb = ({
   return (
     <>
       <MultiPaperPage
-        header={(
-          <>
-            <section className={classes.header}>
-              <div className={classes.headerName}>
-                <strong className={classes.label}>Name:</strong>
-                <span className={classes.headerBlank} />
-              </div>
-              <div className={classes.headerDate}>
-                <strong className={classes.label}>Date:</strong>
-                <span className={classes.headerBlank} />
-              </div>
-            </section>
-            <p className={classes.instructions}>
-              Complete the addition facts by filling in the blanks.
-            </p>
-          </>
-        )}
+        header={(<WorksheetHeader />)}
+        footer={(<WorksheetFooter itemCount={data.length} />)}
         contentWrapper="ol"
         contentWrapperClassName={`${classes.list} problems`}
         data={data}
