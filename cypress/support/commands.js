@@ -84,6 +84,10 @@ Cypress.Commands.add(
   },
 );
 
+Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-cy=${selector}]`, ...args));
+
+Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-cy*=${selector}]`, ...args));
+
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',
 }, ($el) => {
@@ -103,3 +107,10 @@ Cypress.Commands.add('reactComponent', {
   });
   return domFiber.return;
 });
+
+Cypress.Commands.add('setNumberRange', (id, min, max) => cy.getBySel(id)
+  .scrollIntoView()
+  .click({ force: true }) // we click so we force focus on the element
+  .reactComponent()
+  .its('memoizedProps')
+  .invoke('onChange', null, [min, max]));
