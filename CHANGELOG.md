@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.21](https://github.com/brainchild-projects/printables/compare/v0.0.20...v0.0.21) (2021-08-10)
+
+
+### Features
+
+* blanks addends ([2c6b864](https://github.com/brainchild-projects/printables/commit/2c6b864eed235c68b13278dc1047ae142310386b)), closes [#17](https://github.com/brainchild-projects/printables/issues/17)
+
+
+### Bug Fixes
+
+* extra pages in after page containers ([41d659f](https://github.com/brainchild-projects/printables/commit/41d659f81e4d060ef864a1525630a5251466290f)), closes [#18](https://github.com/brainchild-projects/printables/issues/18)
+
 ### [0.0.20](https://github.com/brainchild-projects/printables/compare/v0.0.19...v0.0.20) (2021-08-09)
 
 
