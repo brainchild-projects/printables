@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, ChangeEvent } from 'react';
-import { Select, TextField } from '@material-ui/core';
+import {
+  Select, TextField, Typography,
+} from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
@@ -59,11 +62,10 @@ const CustomizeAftbForm = ({
 
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
     const value = Number.parseInt(event.target.value as string, 10);
-    const updated = {
+    updateData({
       ...data,
       [field]: value,
-    };
-    updateData(updated);
+    });
   };
 
   return (
@@ -88,33 +90,24 @@ const CustomizeAftbForm = ({
         />
       </FieldSet>
       <FieldSet>
-        <TextField
-          type="number"
-          name="rangeFrom"
-          id="input-range-from"
-          label="From"
-          InputLabelProps={{
-            shrink: true,
+        <Typography
+          id="single-range-slider"
+          style={{ margin: '20px 0 50px' }}
+        >
+          Number Range
+        </Typography>
+        <NumberRangeSlider
+          from={data.rangeFrom}
+          to={data.rangeTo}
+          aria-labelledby="single-range-slider"
+          data-cy="single-range-slider"
+          onChange={(event, { from, to }) => {
+            updateData({
+              ...data,
+              rangeFrom: from,
+              rangeTo: to,
+            });
           }}
-          fullWidth
-          variant="filled"
-          value={numberOrEmpty(data.rangeFrom)}
-          onChange={changeHandler('rangeFrom')}
-        />
-      </FieldSet>
-      <FieldSet>
-        <TextField
-          type="number"
-          name="rangeTo"
-          id="input-range-to"
-          label="To"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          fullWidth
-          variant="filled"
-          value={numberOrEmpty(data.rangeTo)}
-          onChange={changeHandler('rangeTo')}
         />
       </FieldSet>
       <FieldSet

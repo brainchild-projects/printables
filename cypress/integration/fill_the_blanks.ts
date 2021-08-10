@@ -1,9 +1,11 @@
 it('can create fill in the blanks addition worksheets', () => {
   cy.visitAdditionFillTheBlanks();
 
+  cy.get('[data-cy="single-range-slider"]')
+    .reactComponent()
+    .its('memoizedProps')
+    .invoke('onChange', null, [2, 3]);
   cy.findByLabelText(/number of problems/i).clear().type('25');
-  cy.findByLabelText(/from/i).clear().type('2');
-  cy.findByLabelText('To').clear().type('3');
   cy.withinPreview(() => {
     cy.contains('2 + 3 = ');
   });
