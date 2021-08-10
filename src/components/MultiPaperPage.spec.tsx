@@ -13,7 +13,7 @@ describe('MultiPaperPage', () => {
       <MultiPaperPage<string>
         wrapper="div"
         wrapperProps={{ className: 'foo' }}
-        wrapperPropsInstanceCallback={propsCallback}
+        wrapperPropsCallback={propsCallback}
         data={['a', 'b', 'c', 'd']}
         itemSelector="p"
         builder={

@@ -9,17 +9,19 @@ type PropsCallbackOptions = {
   memberIndex: number,
 };
 
-type Props = Record<string, unknown>;
+export type Builder<T> = (item: T, index: number, array: T[] | undefined) => JSX.Element;
+
+export type Props = Record<string, unknown>;
 export type PropsCallback = (props: Props, options: PropsCallbackOptions) => Props;
 interface WrapperBuilder<T> {
   wrapper?: ElementType | null;
-  wrapperProps?: Record<string, unknown>;
-  wrapperPropsInstanceCallback?: PropsCallback;
+  wrapperProps?: Props;
+  wrapperPropsCallback?: PropsCallback;
   data: T[];
-  builder: (item: T, index: number, array: T[] | undefined) => JSX.Element;
+  builder: Builder<T>;
 }
 interface WrapperBuilderArgs<T> extends WrapperBuilder<T> {
-  wrapperPropsInstanceCallback: PropsCallback;
+  wrapperPropsCallback: PropsCallback;
   instanceIndex: number;
   memberIndex: number;
 }
@@ -32,7 +34,7 @@ interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
 }
 
 function wrappedContent<T>({
-  wrapper, wrapperProps, wrapperPropsInstanceCallback, data, builder,
+  wrapper, wrapperProps, wrapperPropsCallback, data, builder,
   instanceIndex, memberIndex,
 }: WrapperBuilderArgs<T>): ReactNode {
   return wrapper === null
@@ -41,7 +43,7 @@ function wrappedContent<T>({
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       wrapper!,
       {
-        ...wrapperPropsInstanceCallback(
+        ...wrapperPropsCallback(
           wrapperProps || {},
           { instanceIndex, memberIndex },
         ),
@@ -88,7 +90,7 @@ function isContentOverflowing(element: HTMLDivElement | null): boolean {
 function MultiPaperPage<T>({
   header = null, footer = null,
   wrapper, wrapperProps = {}, data, builder,
-  wrapperPropsInstanceCallback = passThrough,
+  wrapperPropsCallback = passThrough,
   itemSelector,
 }: MultiPaperPageProps<T>): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -161,7 +163,7 @@ function MultiPaperPage<T>({
                   wrappedContent({
                     wrapper,
                     wrapperProps,
-                    wrapperPropsInstanceCallback: wrapperPropsInstanceCallback || passThrough,
+                    wrapperPropsCallback: wrapperPropsCallback || passThrough,
                     data: dataPage,
                     builder,
                     instanceIndex: index,
@@ -185,7 +187,7 @@ MultiPaperPage.defaultProps = {
   footer: null,
   wrapper: null,
   wrapperProps: {},
-  wrapperPropsInstanceCallback: passThrough,
+  wrapperPropsCallback: passThrough,
 };
 
 export default MultiPaperPage;

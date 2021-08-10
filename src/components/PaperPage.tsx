@@ -8,8 +8,7 @@ const paperPageStyles = makeStyles(() => ({
     margin: '0 auto 20px',
     position: 'relative',
     overflow: 'hidden',
-    pageBreakBefore: 'always',
-    breakBefore: 'always',
+    breakAfter: 'always',
     transition: '0.3s opacity',
     opacity: 1,
 
@@ -30,7 +29,7 @@ const paperPageStyles = makeStyles(() => ({
     },
 
     '.print-ready &:first-child': {
-      pageBreakBefore: 'avoid',
+      breakAfter: 'always',
     },
   },
 
