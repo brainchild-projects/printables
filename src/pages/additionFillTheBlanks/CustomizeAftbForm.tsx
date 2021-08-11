@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, ChangeEvent } from 'react';
-import {
-  Select, TextField, Typography,
-} from '@material-ui/core';
+import { Select, TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
@@ -41,6 +39,8 @@ const CustomizeAftbForm = ({
   };
 
   const updateData = (updated: AftbData): void => {
+    // eslint-disable-next-line no-debugger
+    debugger;
     const error = validate(updated);
     if (error !== errorMessage) {
       setErrorMessage(error);
@@ -84,23 +84,18 @@ const CustomizeAftbForm = ({
             shrink: true,
           }}
           fullWidth
-          variant="filled"
+          variant="outlined"
           value={numberOrEmpty(data.problems)}
           onChange={changeHandler('problems')}
         />
       </FieldSet>
       <FieldSet>
-        <Typography
-          id="single-range-slider"
-          style={{ margin: '20px 0 50px' }}
-        >
-          Number Range
-        </Typography>
         <NumberRangeSlider
+          label="Number Range"
           from={data.rangeFrom}
           to={data.rangeTo}
-          aria-labelledby="single-range-slider"
-          data-cy="single-range-slider"
+          id="single-range-slider"
+          data-test="single-range-slider"
           onChange={(event, { from, to }) => {
             updateData({
               ...data,

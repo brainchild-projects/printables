@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomizeAftbForm from './CustomizeAftbForm';
@@ -17,7 +18,9 @@ describe('CustomizeAftbForm', () => {
       <CustomizeAftbForm
         onBeforePrint={onBeforePrint}
         onChange={onChange}
-        initialData={{ rangeFrom: 0, rangeTo: 9, problems: 10 }}
+        initialData={{
+          rangeFrom: 0, rangeTo: 9, problems: 10, blankStrategy: 'sum',
+        }}
       />,
     );
   });
@@ -48,8 +51,11 @@ describe('CustomizeAftbForm', () => {
     }
     const found = screen.getByLabelText(labelRegexp);
     if (found instanceof HTMLInputElement) {
-      userEvent.clear(found);
-      userEvent.type(found, value.toString());
+      // userEvent.clear(found);
+      // userEvent.type(found, value.toString());
+      ReactTestUtils.Simulate.change(
+        found, { target: { value: value.toString() } as unknown as EventTarget },
+      );
     }
   };
 
@@ -65,6 +71,7 @@ describe('CustomizeAftbForm', () => {
       rangeFrom: 0,
       rangeTo: 9,
       problems: 10,
+      blankStrategy: 'sum',
     });
   });
 
@@ -82,37 +89,13 @@ describe('CustomizeAftbForm', () => {
         rangeFrom: 1,
         rangeTo: 100,
         problems: 20,
+        blankStrategy: 'sum',
       });
     });
 
     it('should not show any errors', () => {
       const element = screen.queryByText(/from.* must be less than .*to/i);
       expect(element).not.toBeInTheDocument();
-    });
-  });
-
-  describe('when range is not valid', () => {
-    beforeEach(() => {
-      fillOutFields({
-        rangeFrom: 5,
-        rangeTo: 2,
-      });
-    });
-
-    it('shows error message', () => {
-      const element = screen.getByText(/from.* must be less than .*to/i);
-      expect(element).toBeInTheDocument();
-    });
-
-    describe('when the field is corrected', () => {
-      beforeEach(() => {
-        fillOutField('rangeTo', 7);
-      });
-
-      it('removes error message', () => {
-        const element = screen.queryByText(/from.* must be less than .*to/i);
-        expect(element).not.toBeInTheDocument();
-      });
     });
   });
 });

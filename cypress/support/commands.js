@@ -84,9 +84,9 @@ Cypress.Commands.add(
   },
 );
 
-Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-cy=${selector}]`, ...args));
+Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-test=${selector}]`, ...args));
 
-Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-cy*=${selector}]`, ...args));
+Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=${selector}]`, ...args));
 
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',

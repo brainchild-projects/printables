@@ -1,0 +1,21 @@
+.hidden-spinners {
+  -moz-appearance: textfield;
+}
+
+.hidden-spinners::-webkit-outer-spin-button,
+.hidden-spinners::-webkit-inner-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden-spinners:hover,
+.hidden-spinners:focus {
+  -moz-appearance: auto;
+}
+
+.hidden-spinners-active::-webkit-outer-spin-button,
+.hidden-spinners-active::-webkit-inner-spin-button {
+  -webkit-appearance: inner-spin-button !important;
+  margin: initial;
+}
