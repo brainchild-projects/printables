@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.22](https://github.com/brainchild-projects/printables/compare/v0.0.21...v0.0.22) (2021-08-12)
+
+
+### Features
+
+* better number generator ([eda6758](https://github.com/brainchild-projects/printables/commit/eda675812b51d36e0d8be4cba9c1effae6cbbe86))
+* custom addends problem generation ([b2ea921](https://github.com/brainchild-projects/printables/commit/b2ea92100a54f2aa3213d5a0542a2e5a37bcd277))
+* more unique problem generation ([8009068](https://github.com/brainchild-projects/printables/commit/800906853aeb04dca4265b29f221fa0affab3c98))
+* use range slider for number range ([c779786](https://github.com/brainchild-projects/printables/commit/c77978693f3780586616cdf82dc6cd5fd3903afe))
+
+
+### Bug Fixes
+
+* codacy code quality issues ([e6c74c5](https://github.com/brainchild-projects/printables/commit/e6c74c594c2bc69e8394015736a9521f847a5975))
+* testing errors for number slider ([88583e1](https://github.com/brainchild-projects/printables/commit/88583e1b36498c07c9c021e598bb8b49acecf749))
+
 ### [0.0.21](https://github.com/brainchild-projects/printables/compare/v0.0.20...v0.0.21) (2021-08-10)
 
 
