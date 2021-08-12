@@ -1,26 +1,10 @@
 import React from 'react';
-import ModRandomNumberGenerator from '../../lib/ModRandomNumberGenerator';
+import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import roundRobinRange from '../../lib/roundRobinRange';
 import Addition from './Addition';
 import AftbData from './AftbData';
 
-function shuffle<T>(array: T[]): T[] {
-  let currentIndex = array.length;
-  let randomIndex: number;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    // eslint-disable-next-line no-param-reassign
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
+type Range = { from: number, to: number };
 
 export function generateAdditionSentences(
   {
@@ -28,25 +12,22 @@ export function generateAdditionSentences(
   }: AftbData,
 ): Addition[] {
   const generated: Addition[] = [];
+  let rangeA: Range;
+  let rangeB: Range;
   if (problemGeneration === 'custom addends') {
-    const generatorA = new ModRandomNumberGenerator();
-    const generatorB = new ModRandomNumberGenerator();
-    for (let index = 0; index < problems; index++) {
-      const addendA = generatorA.integer(customAddendsA.to, customAddendsA.from);
-      const addendB = generatorB.integer(customAddendsB.to, customAddendsB.from);
-      generated.push(Addition.create.apply(
-        null,
-        shuffle([addendA, addendB]) as [addendA: number, addendB: number],
-      ));
-    }
+    rangeA = customAddendsA;
+    rangeB = customAddendsB;
   } else {
-    const generatorA = new ModRandomNumberGenerator();
-    const generatorB = new ModRandomNumberGenerator();
-    for (let index = 0; index < problems; index++) {
-      generated.push(new Addition(
-        generatorA.integer(rangeTo, rangeFrom),
-        generatorB.integer(rangeTo, rangeFrom),
-      ));
+    rangeA = { from: rangeFrom, to: rangeTo };
+    rangeB = rangeA;
+  }
+
+  const possiblePairs = roundRobinRange(rangeA, rangeB);
+  while (generated.length < problems) {
+    const pairBag = possiblePairs.slice(0);
+    for (let i = 0; i < pairBag.length && generated.length < problems; i++) {
+      const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
+      generated.push(Addition.create(...pair));
     }
   }
   return generated;

@@ -47,8 +47,6 @@ const CustomizeAftbForm = ({
   };
 
   const updateData = (updated: AftbData): void => {
-    // eslint-disable-next-line no-debugger
-    debugger;
     const error = validate(updated);
     if (error !== errorMessage) {
       setErrorMessage(error);
