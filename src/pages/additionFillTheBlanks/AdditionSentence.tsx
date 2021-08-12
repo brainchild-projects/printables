@@ -41,8 +41,6 @@ export interface AdditionSentenceProps {
   showAnswer?: boolean;
   blank?: BlankPosition;
 }
-
-const blankElement = (<span className="blank">___</span>);
 interface BlankOrNumberProps {
   expected: BlankPosition;
   value: number;
@@ -50,9 +48,17 @@ interface BlankOrNumberProps {
 
 function blankOrNumberGenerator(blank: BlankPosition, showAnswer: boolean) {
   return ({ value, expected }: BlankOrNumberProps): JSX.Element => (
-    showAnswer || blank !== expected
-      ? <span>{value}</span>
-      : blankElement
+    blank === expected
+      ? (
+        <span className="problem-blank">
+          {
+            showAnswer
+              ? value
+              : (<span className="underline">__</span>)
+          }
+        </span>
+      )
+      : (<>{ value }</>)
   );
 }
 
