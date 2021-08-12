@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import {
-  Slider, Typography, makeStyles, Grid, Input, FormControl, InputLabel, TextField,
+  Slider, Typography, makeStyles, Grid, FormControl, TextField,
 } from '@material-ui/core';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
 import './NumberRangeSlider.css';
@@ -19,13 +19,12 @@ const valueDescale = (x: number): number => {
   return x;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    paddingBottom: theme.spacing(2),
   },
   label: {
-    margin: '20px 0 20px',
+    margin: '10px 0 16px',
   },
   inputGrid: {
     justifyContent: 'space-between',
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     // width: 42,
   },
   slider: {
-    marginTop: 20,
+    marginTop: 0,
     width: 'calc(100% - 4px)',
     marginLeft: 2,
   },
@@ -160,6 +159,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
                 max: 100,
                 type: 'number',
                 className: `${classes.input} hidden-spinners`,
+                'data-testid': `${id}-from`,
               }}
             />
           </FormControl>
@@ -182,6 +182,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
                 max: 100,
                 type: 'number',
                 className: `${classes.input} hidden-spinners`,
+                'data-testid': `${id}-to`,
               }}
             />
           </FormControl>

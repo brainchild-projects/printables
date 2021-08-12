@@ -3,18 +3,23 @@ import { render } from '@testing-library/react';
 import PreviewAftb from './PreviewAftb';
 import AftbData from './AftbData';
 import { IntegerGenerator } from '../../lib/NumberGenerator';
+import { defaultGenerator } from '../../lib/RandomNumberGenerator';
 
 describe('PreviewAftb', () => {
   let generator: IntegerGenerator;
+  const defaultAftbData: AftbData = {
+    rangeFrom: 1,
+    rangeTo: 20,
+    problems: 20,
+    blankStrategy: 'sum',
+    problemGeneration: 'single range',
+    customAddendsA: { from: 0, to: 9 },
+    customAddendsB: { from: 0, to: 9 },
+  };
 
   describe('default behavior', () => {
     beforeEach(() => {
-      const aftbData: AftbData = {
-        rangeFrom: 1,
-        rangeTo: 20,
-        problems: 20,
-        blankStrategy: 'sum',
-      };
+      const aftbData: AftbData = { ...defaultAftbData };
 
       let start = 0;
       generator = {
@@ -54,9 +59,7 @@ describe('PreviewAftb', () => {
   describe('when the strategy is set to "addends"', () => {
     beforeEach(() => {
       const aftbData: AftbData = {
-        rangeFrom: 1,
-        rangeTo: 20,
-        problems: 20,
+        ...defaultAftbData,
         blankStrategy: 'addends',
       };
 
@@ -95,9 +98,7 @@ describe('PreviewAftb', () => {
   describe('when the strategy is set to "random"', () => {
     beforeEach(() => {
       const aftbData: AftbData = {
-        rangeFrom: 1,
-        rangeTo: 20,
-        problems: 20,
+        ...defaultAftbData,
         blankStrategy: 'random',
       };
 
@@ -126,6 +127,31 @@ describe('PreviewAftb', () => {
       expect(found).toHaveTextContent(/_\s+\+\s+\d+\s+=\s+\d+/);
       expect(found).toHaveTextContent(/\d+\s+\+\s+_+\s+=\s+\d+/);
       expect(found).toHaveTextContent(/\d+\s+\+\s+\d+\s+=\s+_+/);
+    });
+  });
+
+  describe('when the problem generation is set to "custom addends', () => {
+    beforeEach(() => {
+      const aftbData: AftbData = {
+        ...defaultAftbData,
+        problemGeneration: 'custom addends',
+        customAddendsA: { from: 2, to: 4 },
+        customAddendsB: { from: 5, to: 6 },
+      };
+
+      return render(
+        <PreviewAftb
+          aftbData={aftbData}
+          numberGenerator={defaultGenerator}
+        />,
+      );
+    });
+
+    it('should display have items that use the range', () => {
+      const found = document.querySelectorAll('.problems > li');
+      found.forEach((element) => {
+        expect(element).toHaveTextContent(/[234] \+ [56] = _|[56] \+ [234] = _/);
+      });
     });
   });
 });

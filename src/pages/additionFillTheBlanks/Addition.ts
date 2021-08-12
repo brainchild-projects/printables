@@ -3,6 +3,10 @@ class Addition {
 
   addendB: number;
 
+  static create(addendA: number, addendB: number): Addition {
+    return new Addition(addendA, addendB);
+  }
+
   constructor(addendA: number, addendB: number) {
     this.addendA = addendA;
     this.addendB = addendB;
