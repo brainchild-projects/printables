@@ -83,3 +83,34 @@ Cypress.Commands.add(
       );
   },
 );
+
+Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-test=${selector}]`, ...args));
+
+Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=${selector}]`, ...args));
+
+Cypress.Commands.add('reactComponent', {
+  prevSubject: 'element',
+}, ($el) => {
+  if ($el.length !== 1) {
+    throw new Error(`cy.component() requires element of length 1 but got ${$el.length}`);
+  }
+  // Query for key starting with __reactInternalInstance$ for React v16.x
+  const key = Object.keys($el.get(0)).find((aKey) => aKey.startsWith('__reactFiber$'));
+  const domFiber = $el.prop(key);
+  Cypress.log({
+    name: 'component',
+    consoleProps() {
+      return {
+        component: domFiber,
+      };
+    },
+  });
+  return domFiber.return;
+});
+
+Cypress.Commands.add('setNumberRange', (id, min, max) => cy.getBySel(id)
+  .scrollIntoView()
+  .click({ force: true }) // we click so we force focus on the element
+  .reactComponent()
+  .its('memoizedProps')
+  .invoke('onChange', null, [min, max]));

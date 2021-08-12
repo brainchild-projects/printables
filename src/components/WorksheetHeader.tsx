@@ -4,6 +4,7 @@ import React from 'react';
 const headerStyles = makeStyles(() => ({
   header: {
     display: 'flex',
+    marginTop: 20,
   },
   headerName: {
     flexGrow: 4,
@@ -26,7 +27,7 @@ const headerStyles = makeStyles(() => ({
   instructions: {
     marginBottom: 0,
     marginTop: '10mm',
-    fontSize: '16px',
+    fontSize: 16,
   },
 }));
 

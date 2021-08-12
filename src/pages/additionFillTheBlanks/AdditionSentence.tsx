@@ -1,18 +1,34 @@
 import React from 'react';
-import { IntegerGenerator } from '../../lib/NumberGenerator';
+import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import roundRobinRange from '../../lib/roundRobinRange';
 import Addition from './Addition';
 import AftbData from './AftbData';
 
+type Range = { from: number, to: number };
+
 export function generateAdditionSentences(
-  { rangeFrom, rangeTo, problems }: AftbData,
-  generator: IntegerGenerator,
+  {
+    rangeFrom, rangeTo, problems, customAddendsA, customAddendsB, problemGeneration,
+  }: AftbData,
 ): Addition[] {
   const generated: Addition[] = [];
-  for (let index = 0; index < problems; index++) {
-    generated.push(new Addition(
-      generator.integer(rangeTo, rangeFrom),
-      generator.integer(rangeTo, rangeFrom),
-    ));
+  let rangeA: Range;
+  let rangeB: Range;
+  if (problemGeneration === 'custom addends') {
+    rangeA = customAddendsA;
+    rangeB = customAddendsB;
+  } else {
+    rangeA = { from: rangeFrom, to: rangeTo };
+    rangeB = rangeA;
+  }
+
+  const possiblePairs = roundRobinRange(rangeA, rangeB);
+  while (generated.length < problems) {
+    const pairBag = possiblePairs.slice(0);
+    for (let i = 0; i < pairBag.length && generated.length < problems; i++) {
+      const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
+      generated.push(Addition.create(...pair));
+    }
   }
   return generated;
 }

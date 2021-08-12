@@ -108,7 +108,6 @@ function MultiPaperPage<T>({
     if (attemptsToFix > 100) {
       setIsReady(true);
       throw Error('Attempted to fix paging too many times');
-      return;
     }
     // Check if last page overflows
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

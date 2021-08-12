@@ -10,6 +10,9 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
     rangeTo: 9,
     problems: 20,
     blankStrategy: 'sum',
+    problemGeneration: 'single range',
+    customAddendsA: { from: 0, to: 9 },
+    customAddendsB: { from: 0, to: 9 },
   }));
   const onPrint = () => true;
   const onChange = (data: AftbData): void => {

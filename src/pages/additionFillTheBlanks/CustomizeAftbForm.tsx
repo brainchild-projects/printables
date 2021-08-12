@@ -2,8 +2,9 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Select, TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
-import AftbData, { BlankPositionStrategy } from './AftbData';
+import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
@@ -20,6 +21,14 @@ const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
   ['addends', 'Addends'],
   ['random', 'Random'],
 ]);
+
+type ChangeSelectCallback<T> = (value: T, event: ChangeEvent<{ value: unknown }>) => void;
+function changeSelect<T>(callback: ChangeSelectCallback<T>) {
+  return (event: ChangeEvent<{ value: unknown }>) => {
+    const value = event.target.value as T;
+    callback(value, event);
+  };
+}
 
 const CustomizeAftbForm = ({
   onBeforePrint, onChange,
@@ -48,22 +57,26 @@ const CustomizeAftbForm = ({
     setData(updated);
   };
 
-  const changeBlankStrategy = (event: ChangeEvent<{ value: unknown }>) => {
-    const strategy = event.target.value as BlankPositionStrategy;
-
+  const changeBlankStrategy = changeSelect<BlankPositionStrategy>((strategy) => {
     updateData({
       ...data,
       blankStrategy: strategy,
     });
-  };
+  });
+
+  const changeProblemGeneration = changeSelect<ProblemGeneration>((problemGeneration) => {
+    updateData({
+      ...data,
+      problemGeneration,
+    });
+  });
 
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
     const value = Number.parseInt(event.target.value as string, 10);
-    const updated = {
+    updateData({
       ...data,
       [field]: value,
-    };
-    updateData(updated);
+    });
   };
 
   return (
@@ -78,45 +91,94 @@ const CustomizeAftbForm = ({
           name="problems"
           id="input-problems"
           label="Number of Problems"
-          InputLabelProps={{
-            shrink: true,
-          }}
+          InputLabelProps={{ shrink: true }}
           fullWidth
-          variant="filled"
+          variant="outlined"
           value={numberOrEmpty(data.problems)}
           onChange={changeHandler('problems')}
         />
       </FieldSet>
-      <FieldSet>
-        <TextField
-          type="number"
-          name="rangeFrom"
-          id="input-range-from"
-          label="From"
-          InputLabelProps={{
-            shrink: true,
-          }}
+      <FieldSet
+        label="Problem Generation"
+        id="select-problem-generation"
+      >
+        <Select
+          native
+          name="problemGeneration"
+          id="select-problem-generation"
           fullWidth
           variant="filled"
-          value={numberOrEmpty(data.rangeFrom)}
-          onChange={changeHandler('rangeFrom')}
-        />
+          value={data.problemGeneration}
+          onChange={changeProblemGeneration}
+        >
+          {
+            Array.from(problemGenerations.entries()).map(([value, label]) => (
+              <option key={value} value={value}>{label}</option>
+            ))
+          }
+        </Select>
       </FieldSet>
-      <FieldSet>
-        <TextField
-          type="number"
-          name="rangeTo"
-          id="input-range-to"
-          label="To"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          fullWidth
-          variant="filled"
-          value={numberOrEmpty(data.rangeTo)}
-          onChange={changeHandler('rangeTo')}
-        />
-      </FieldSet>
+      {
+        data.problemGeneration === 'single range'
+          ? (
+            <FieldSet>
+              <NumberRangeSlider
+                label="Number Range"
+                from={data.rangeFrom}
+                to={data.rangeTo}
+                id="single-range-slider"
+                data-test="single-range-slider"
+                onChange={(event, { from, to }) => {
+                  updateData({
+                    ...data,
+                    rangeFrom: from,
+                    rangeTo: to,
+                  });
+                }}
+              />
+            </FieldSet>
+          )
+          : null
+      }
+      {
+        data.problemGeneration === 'custom addends'
+          ? (
+            <>
+              <FieldSet>
+                <NumberRangeSlider
+                  label="Addend A"
+                  from={data.customAddendsA.from}
+                  to={data.customAddendsA.to}
+                  id="custom-addends-a-slider"
+                  data-test="custom-addends-a-slider"
+                  onChange={(event, { from, to }) => {
+                    updateData({
+                      ...data,
+                      customAddendsA: { from, to },
+                    });
+                  }}
+                />
+              </FieldSet>
+              <FieldSet>
+                <NumberRangeSlider
+                  label="Addend B"
+                  from={data.customAddendsB.from}
+                  to={data.customAddendsB.to}
+                  id="custom-addends-b-slider"
+                  data-test="custom-addends-b-slider"
+                  onChange={(event, { from, to }) => {
+                    updateData({
+                      ...data,
+                      customAddendsB: { from, to },
+                    });
+                  }}
+                />
+              </FieldSet>
+            </>
+          )
+          : null
+      }
+
       <FieldSet
         label="Blank"
         id="select-blank-position-strategy"
