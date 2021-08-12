@@ -2,11 +2,8 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import PreviewAftb from './PreviewAftb';
 import AftbData from './AftbData';
-import { IntegerGenerator } from '../../lib/NumberGenerator';
-import { defaultGenerator } from '../../lib/RandomNumberGenerator';
 
 describe('PreviewAftb', () => {
-  let generator: IntegerGenerator;
   const defaultAftbData: AftbData = {
     rangeFrom: 1,
     rangeTo: 20,
@@ -20,39 +17,21 @@ describe('PreviewAftb', () => {
   describe('default behavior', () => {
     beforeEach(() => {
       const aftbData: AftbData = { ...defaultAftbData };
-
-      let start = 0;
-      generator = {
-        integer: jest.fn((max): number => {
-          if (start > max) {
-            start = 0;
-          }
-          const generated = start;
-          start += 1;
-          return generated;
-        }),
-      };
-
       return render(
         <PreviewAftb
           aftbData={aftbData}
-          numberGenerator={generator}
         />,
       );
     });
 
-    it('should call number generator', () => {
-      expect(generator.integer).toHaveBeenCalledWith(20, 1);
-    });
-
     it('should display some addition sentences', () => {
       const found = document.querySelector('.problems');
-      expect(found).toHaveTextContent(/[^\d]?2 \+ 3 = _/);
+      expect(found).toHaveTextContent(/\d \+ \d = _/);
     });
 
     it('should have generated answer keys', () => {
       const found = document.querySelector('.answers');
-      expect(found).toHaveTextContent(/[^\d]?2\s+\+\s+3\s+=\s+5/);
+      expect(found).toHaveTextContent(/\d \+ \d = \d+/);
     });
   });
 
@@ -63,22 +42,9 @@ describe('PreviewAftb', () => {
         blankStrategy: 'addends',
       };
 
-      let start = 0;
-      generator = {
-        integer: jest.fn((max: number): number => {
-          if (start > max) {
-            start = 0;
-          }
-          const generated = start;
-          start += 1;
-          return generated;
-        }),
-      };
-
       return render(
         <PreviewAftb
           aftbData={aftbData}
-          numberGenerator={generator}
         />,
       );
     });
@@ -102,22 +68,9 @@ describe('PreviewAftb', () => {
         blankStrategy: 'random',
       };
 
-      let start = 0;
-      generator = {
-        integer: jest.fn((max: number): number => {
-          if (start > max) {
-            start = 0;
-          }
-          const generated = start;
-          start += 1;
-          return generated;
-        }),
-      };
-
       return render(
         <PreviewAftb
           aftbData={aftbData}
-          numberGenerator={generator}
         />,
       );
     });
@@ -142,7 +95,6 @@ describe('PreviewAftb', () => {
       return render(
         <PreviewAftb
           aftbData={aftbData}
-          numberGenerator={defaultGenerator}
         />,
       );
     });

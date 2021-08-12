@@ -1,4 +1,5 @@
 import NumberGenerator from './NumberGenerator';
+import { maxMustNotBeLessThanMin } from './numberGeneratorErrors';
 
 export type MathRandom = () => number;
 
@@ -10,13 +11,11 @@ class RandomNumberGenerator implements NumberGenerator {
   }
 
   integer(max: number, min = 0): number {
-    if (max < min) {
-      throw Error('max should not be less than min');
-    }
+    maxMustNotBeLessThanMin(max, min);
     return Math.floor(this.rand() * (max - min + 1) + min);
   }
 }
 
-export const defaultGenerator = new RandomNumberGenerator(Math.random);
+export const randomGenerator = new RandomNumberGenerator(Math.random);
 
 export default RandomNumberGenerator;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 import MultiPaperPage, { Builder, Props } from '../../components/MultiPaperPage';
-import NumberGenerator from '../../lib/NumberGenerator';
 import AdditionSentence, {
   BlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
@@ -9,11 +8,10 @@ import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
 import Addition from './Addition';
-import { defaultGenerator } from '../../lib/RandomNumberGenerator';
+import { randomGenerator } from '../../lib/RandomNumberGenerator';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
-  numberGenerator?: NumberGenerator;
 }
 
 const pageStyles = makeStyles(() => ({
@@ -46,18 +44,16 @@ const pageStyles = makeStyles(() => ({
   },
 }));
 
-function blankTypeFromStrategy(
-  blankStrategy: BlankPositionStrategy, numberGenerator: NumberGenerator,
-): BlankPosition {
+function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): BlankPosition {
   switch (blankStrategy) {
     case 'addends':
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       return blankTypesAddends[
-        numberGenerator.integer(blankTypesAddends.length - 1)
+        randomGenerator.integer(blankTypesAddends.length - 1)
       ] as BlankPosition;
 
     case 'random':
-      return blankTypes[numberGenerator.integer(blankTypes.length - 1)];
+      return blankTypes[randomGenerator.integer(blankTypes.length - 1)];
 
     default:
       return 'sum';
@@ -66,14 +62,13 @@ function blankTypeFromStrategy(
 
 const PreviewAftb = ({
   aftbData,
-  numberGenerator = defaultGenerator,
 }: PreviewAftbProps): JSX.Element => {
   const classes = pageStyles();
-  const data = generateAdditionSentences(aftbData, numberGenerator);
+  const data = generateAdditionSentences(aftbData);
 
   const problemBuilder: Builder<Addition> = (addition, index) => {
     const { blankStrategy } = aftbData;
-    const blankType = blankTypeFromStrategy(blankStrategy, numberGenerator);
+    const blankType = blankTypeFromStrategy(blankStrategy);
     return (
       <AdditionSentence
         key={`problem-${index}`}
@@ -126,10 +121,6 @@ const PreviewAftb = ({
       />
     </>
   );
-};
-
-PreviewAftb.defaultProps = {
-  numberGenerator: defaultGenerator,
 };
 
 export default PreviewAftb;

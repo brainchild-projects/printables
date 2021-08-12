@@ -1,5 +1,5 @@
 import React from 'react';
-import { IntegerGenerator } from '../../lib/NumberGenerator';
+import ModRandomNumberGenerator from '../../lib/ModRandomNumberGenerator';
 import Addition from './Addition';
 import AftbData from './AftbData';
 
@@ -26,23 +26,26 @@ export function generateAdditionSentences(
   {
     rangeFrom, rangeTo, problems, customAddendsA, customAddendsB, problemGeneration,
   }: AftbData,
-  generator: IntegerGenerator,
 ): Addition[] {
   const generated: Addition[] = [];
   if (problemGeneration === 'custom addends') {
+    const generatorA = new ModRandomNumberGenerator();
+    const generatorB = new ModRandomNumberGenerator();
     for (let index = 0; index < problems; index++) {
-      const addendA = generator.integer(customAddendsA.to, customAddendsA.from);
-      const addendB = generator.integer(customAddendsB.to, customAddendsB.from);
+      const addendA = generatorA.integer(customAddendsA.to, customAddendsA.from);
+      const addendB = generatorB.integer(customAddendsB.to, customAddendsB.from);
       generated.push(Addition.create.apply(
         null,
         shuffle([addendA, addendB]) as [addendA: number, addendB: number],
       ));
     }
   } else {
+    const generatorA = new ModRandomNumberGenerator();
+    const generatorB = new ModRandomNumberGenerator();
     for (let index = 0; index < problems; index++) {
       generated.push(new Addition(
-        generator.integer(rangeTo, rangeFrom),
-        generator.integer(rangeTo, rangeFrom),
+        generatorA.integer(rangeTo, rangeFrom),
+        generatorB.integer(rangeTo, rangeFrom),
       ));
     }
   }
