@@ -30,6 +30,9 @@ const pageStyles = makeStyles(() => ({
       padding: '6mm 0 6mm 6mm',
       marginLeft: '10mm',
       counterIncrement: 'problem',
+      '-webkit-column-break-inside': 'avoid',
+      pabeBreakInside: 'avoid',
+      breakInside: 'avoid',
     },
 
     '& > li::marker': {
@@ -37,9 +40,17 @@ const pageStyles = makeStyles(() => ({
       fontSize: '16px',
     },
 
-    '& .blank': {
-      position: 'relative',
-      top: '2mm',
+    '& .problem-blank': {
+      borderBottom: '2px solid',
+      paddingLeft: '1mm',
+      paddingRight: '1mm',
+      display: 'inline-block',
+      minWidth: 32,
+      textAlign: 'center',
+    },
+
+    '& .underline': {
+      color: 'transparent',
     },
   },
 }));
@@ -60,23 +71,34 @@ function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): BlankPosit
   }
 }
 
+interface AdditionAndMeta {
+  addition: Addition;
+  blank: BlankPosition;
+}
+
 const PreviewAftb = ({
   aftbData,
 }: PreviewAftbProps): JSX.Element => {
   const classes = pageStyles();
-  const data = generateAdditionSentences(aftbData);
-
-  const problemBuilder: Builder<Addition> = (addition, index) => {
+  const data = generateAdditionSentences(aftbData).map((addition): AdditionAndMeta => {
     const { blankStrategy } = aftbData;
-    const blankType = blankTypeFromStrategy(blankStrategy);
-    return (
-      <AdditionSentence
-        key={`problem-${index}`}
-        addition={addition}
-        blank={blankType}
-      />
-    );
-  };
+    const blank = blankTypeFromStrategy(blankStrategy);
+    return {
+      addition,
+      blank,
+    };
+  });
+
+  const problemBuilder: Builder<AdditionAndMeta> = (
+    { addition, blank }: AdditionAndMeta,
+    index: number,
+  ) => (
+    <AdditionSentence
+      key={`problem-${index}`}
+      addition={addition}
+      blank={blank}
+    />
+  );
 
   return (
     <>
@@ -110,11 +132,12 @@ const PreviewAftb = ({
         data={data}
         itemSelector=".addition-sentence-item"
         builder={
-          (addition, index) => (
+          ({ addition, blank }, index) => (
             <AdditionSentence
               showAnswer
               key={`answer-${index}`}
               addition={addition}
+              blank={blank}
             />
           )
         }
