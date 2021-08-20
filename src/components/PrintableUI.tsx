@@ -36,14 +36,15 @@ interface PrintableUIProps {
   customizeForm: ReactNode;
   title: string;
   defaultOrientation?: 'portrait' | 'landscape' | undefined;
+  optionsKey: string;
 }
 
 function PrintableUI({
-  children, title, customizeForm, defaultOrientation,
+  children, title, customizeForm, defaultOrientation, optionsKey: key,
 }: PrintableUIProps): JSX.Element {
   const classes = pageStyles();
   return (
-    <PaperOptionsProvider orientation={defaultOrientation}>
+    <PaperOptionsProvider orientation={defaultOrientation} optionsKey={key}>
       <Grid container spacing={3} className={`${classes.container} print-ignore`}>
         <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
           <section aria-label="Customize Form" className={classes.sideColumn}>

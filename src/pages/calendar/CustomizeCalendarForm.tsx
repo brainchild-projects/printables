@@ -7,6 +7,7 @@ import FieldSet from '../../components/forms/FieldSet';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 
 export interface CustomizeCalendarFormProps {
+  initialData: CalendarData,
   now: Date,
   onBeforePrint: (data: CalendarData) => boolean,
   onChange: (data: CalendarData) => void,
@@ -38,13 +39,11 @@ function yearOptions(year: number): JSX.Element[] {
 }
 
 function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
-  const { now, onBeforePrint: onPrint, onChange } = props;
+  const {
+    now, initialData, onBeforePrint: onPrint, onChange,
+  } = props;
   const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth();
-  const [data, setData] = useState({
-    year: currentYear,
-    month: currentMonth,
-  });
+  const [data, setData] = useState<CalendarData>(initialData);
 
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
     const updated = {

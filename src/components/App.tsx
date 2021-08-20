@@ -13,7 +13,7 @@ const basePath = NODE_ENV === 'production'
   ? PUBLIC_URL
   : undefined;
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   main: {
     backgroundSize: 'cover',
     padding: '76px 0 0',
