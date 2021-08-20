@@ -7,6 +7,8 @@ const pageStyles = makeStyles((theme) => ({
   container: {
     marginTop: '-64px',
     alignItems: 'stretch',
+    padding: theme.spacing(0, 2),
+    maxWidth: '100vw',
 
     '& > .MuiGrid-item': {
       paddingTop: 0,

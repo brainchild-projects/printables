@@ -15,15 +15,16 @@ const basePath = NODE_ENV === 'production'
 
 const styles = makeStyles((theme) => ({
   main: {
-    margin: theme.spacing(0, 3),
-    paddingTop: '76px',
+    backgroundSize: 'cover',
+    padding: '76px 0 0',
   },
 }));
 
 const theme = createTheme({
   palette: {
     background: {
-      default: '#f3f3f3',
+      default: '#efedee',
+      paper: '#ffffff',
     },
   },
 });
