@@ -32,6 +32,7 @@ describe('CustomizeCalendarForm', () => {
       onChange = jest.fn();
       return render(
         <CustomizeCalendarForm
+          initialData={{ year, month }}
           now={now}
           onBeforePrint={onPrint}
           onChange={onChange}

@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
 const styles = makeStyles(() => ({
+  appBar: {
+    backgroundColor: '#333333',
+  },
   wrap: {
     minHeight: 64,
   },
@@ -24,7 +27,7 @@ const PrintablesAppBar = (): JSX.Element => {
   const classes = styles();
   return (
     <div className={`${classes.wrap} no-print`}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />

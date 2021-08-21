@@ -4,9 +4,13 @@ import { Container, Typography } from '@material-ui/core';
 
 const heroStyles = makeStyles((theme) => ({
   heroContent: {
-    backgroundColor: theme.palette.grey[200],
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(19, 0, 11),
+    margin: '-76px 0',
     textAlign: 'center',
+  },
+
+  title: {
+    textShadow: '0 0 10px white',
   },
 }));
 
@@ -23,7 +27,13 @@ const Hero = (properties: HeroProperties): JSX.Element => {
 
     <div className={classes.heroContent}>
       <Container maxWidth="sm" component="section" aria-label="Hero">
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
           {title}
         </Typography>
         {subtitle && (
