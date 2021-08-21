@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.24](https://github.com/brainchild-projects/printables/compare/v0.0.23...v0.0.24) (2021-08-21)
+
+
+### Features
+
+* able to save settings ([c1e5a29](https://github.com/brainchild-projects/printables/commit/c1e5a297eaa7f7a21ca4bb785b94c8b74596d452))
+* better look ([9d05e4d](https://github.com/brainchild-projects/printables/commit/9d05e4d34bed43e7dbabec47ec99a016bdcb8ed5))
+
+
+### Bug Fixes
+
+* missed LocalStore in last commit ([c1887bc](https://github.com/brainchild-projects/printables/commit/c1887bcbda32c6ddbd3fdee45e568ba79ccb8c22))
+
 ### [0.0.23](https://github.com/brainchild-projects/printables/compare/v0.0.22...v0.0.23) (2021-08-14)
 
 
