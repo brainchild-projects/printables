@@ -47,6 +47,7 @@
     "cypress": "cypress open",
     "release": "standard-version",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
+    "update-copyright-year": "ts-node scripts/update-copyright-year.ts",
     "eject": "react-scripts eject"
   },
   "browserslist": {

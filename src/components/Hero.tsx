@@ -5,7 +5,7 @@ import { Container, Typography } from '@material-ui/core';
 const heroStyles = makeStyles((theme) => ({
   heroContent: {
     padding: theme.spacing(19, 0, 11),
-    margin: '-76px 0',
+    margin: '-76px 0 0',
     textAlign: 'center',
   },
 
