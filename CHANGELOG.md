@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/brainchild-projects/printables/compare/v0.0.25...v0.0.26) (2021-08-27)
+
+
+### Features
+
+* added footer ([6915c54](https://github.com/brainchild-projects/printables/commit/6915c54e041d29a2364645acb330e05044e26e8b))
+* logo and favicon ([3541107](https://github.com/brainchild-projects/printables/commit/3541107b2161914163666d6cecf48368112142ba))
+
+
+### Bug Fixes
+
+* credit photo on homepage ([2689ef9](https://github.com/brainchild-projects/printables/commit/2689ef9af54c72c234865bd86090e720dba6bd96))
+* website title and description ([c5e38e9](https://github.com/brainchild-projects/printables/commit/c5e38e9963a0f27781c5e03405de821ae0ed37d6))
+
 ### [0.0.25](https://github.com/brainchild-projects/printables/compare/v0.0.24...v0.0.25) (2021-08-24)
 
 
