@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
+import Footer from '../pages/main/Footer';
 
 const pageStyles = makeStyles((theme) => ({
   container: {
@@ -58,6 +59,7 @@ function PrintableUI({
           </section>
         </Grid>
       </Grid>
+      <Footer />
     </PaperOptionsProvider>
   );
 }
