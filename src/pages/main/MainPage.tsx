@@ -33,7 +33,7 @@ const MainPage = (): JSX.Element => {
   const classes = paperStyles();
   return (
     <div className={classes.wrapper}>
-      <Hero title="Printables" subtitle="Printable materials for Education" />
+      <Hero title="Printables" subtitle="Printable Materials for Education" />
       <Container>
         <Paper className={classes.mainContent}>
           <Typography variant="h4" component="h2">Common</Typography>
