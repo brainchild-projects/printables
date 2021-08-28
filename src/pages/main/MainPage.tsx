@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   List, ListItem, ListItemText, Container,
-  Link as MuiLink,
   Typography,
   Paper,
   makeStyles,
