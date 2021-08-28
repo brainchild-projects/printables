@@ -1,48 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
-import MainPage from '../pages/main/MainPage';
-import BaseStyle from './BaseStyle';
-import PrintablesAppBar from './PrintablesAppBar';
-import CalendarPage from '../pages/calendar/CalendarPage';
-import AdditionFillTheBlanksPage from '../pages/additionFillTheBlanks/AdditionFillTheBlanksPage';
+import React, { lazy, Suspense } from 'react';
 
-const { NODE_ENV, PUBLIC_URL } = process.env;
+const AppWrapper = lazy(() => import('./AppWrapper'));
 
-const basePath = NODE_ENV === 'production'
-  ? PUBLIC_URL
-  : undefined;
-
-const styles = makeStyles(() => ({
-  main: {
-    backgroundSize: 'cover',
-    padding: '76px 0 0',
-  },
-}));
-
-const theme = createTheme({
-  palette: {
-    background: {
-      default: '#efedee',
-      paper: '#ffffff',
-    },
-  },
-});
+function Loading(): JSX.Element {
+  return (
+    <div>
+      <img
+        src="/logoV1Animated.svg"
+        alt="Printables logo"
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 240,
+        }}
+      />
+    </div>
+  );
+}
 
 function App(): JSX.Element {
-  const classes = styles();
   return (
-    <Router basename={basePath}>
-      <MuiThemeProvider theme={theme}>
-        <BaseStyle />
-        <PrintablesAppBar />
-        <main className={`${classes.main} print-ignore`}>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/calendar" component={CalendarPage} />
-          <Route exact path="/addition-fill-the-blanks" component={AdditionFillTheBlanksPage} />
-        </main>
-      </MuiThemeProvider>
-    </Router>
+    <Suspense fallback={<Loading />}>
+      <AppWrapper />
+    </Suspense>
   );
 }
 

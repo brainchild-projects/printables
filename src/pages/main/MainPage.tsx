@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   List, ListItem, ListItemText, Container,
+  Link as MuiLink,
   Typography,
   Paper,
   makeStyles,
 } from '@material-ui/core';
 import Hero from '../../components/Hero';
 import Footer from './Footer';
+import LinkRouter from '../../elements/LinkRouter';
 
 const paperStyles = makeStyles((theme) => ({
   wrapper: {
@@ -40,7 +42,7 @@ const MainPage = (): JSX.Element => {
           <List className={classes.list}>
             <ListItem>
               <ListItemText secondary="Generate a printable calendar for the month">
-                <Link to="/calendar">Calendar</Link>
+                <LinkRouter to="/calendar">Calendar</LinkRouter>
               </ListItemText>
             </ListItem>
           </List>
@@ -48,7 +50,7 @@ const MainPage = (): JSX.Element => {
           <List className={classes.list} aria-label="Worksheets">
             <ListItem>
               <ListItemText>
-                <Link to="/addition-fill-the-blanks">Addition: Fill the Blanks</Link>
+                <LinkRouter to="/addition-fill-the-blanks">Addition: Fill the Blanks</LinkRouter>
               </ListItemText>
             </ListItem>
           </List>

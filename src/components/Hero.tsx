@@ -10,7 +10,7 @@ const heroStyles = makeStyles((theme) => ({
   },
 
   logo: {
-
+    width: 120,
   },
 
   title: {
@@ -31,7 +31,7 @@ const Hero = (properties: HeroProperties): JSX.Element => {
 
     <div className={classes.heroContent}>
       <Container maxWidth="sm" component="section" aria-label="Hero">
-        <img src="/logoV1-192.png" alt="Printables logo" className={classes.logo} />
+        <img src="/logoV1.svg" alt="Printables logo" className={classes.logo} />
         <Typography
           component="h1"
           variant="h2"
