@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.28](https://github.com/brainchild-projects/printables/compare/v0.0.27...v0.0.28) (2021-08-28)
+
+
+### Features
+
+* better home page link style ([a488e76](https://github.com/brainchild-projects/printables/commit/a488e760d6f682a8fc1354b284ced6e9c13bfc5b))
+* code splitting for faster loading ([d07492a](https://github.com/brainchild-projects/printables/commit/d07492a024d07956881af3d4e79061f793e5150c))
+
+
+### Bug Fixes
+
+* eslint warnings and fail on warning in test workflow ([41adad7](https://github.com/brainchild-projects/printables/commit/41adad7748567981927876389fc6ce8b72e556ae))
+* rewrote tests for app ([568ae5e](https://github.com/brainchild-projects/printables/commit/568ae5e767ca3585e7ec808e511370d6dd15b335))
+
 ### [0.0.27](https://github.com/brainchild-projects/printables/compare/v0.0.26...v0.0.27) (2021-08-27)
 
 
