@@ -54,13 +54,22 @@ jobs:
         run: npx eslint --max-warnings=0 .
 
       - name: Unit Tests
-        run: npm run test:ci
+        run: npm run test:coverage
 
       - name: E2E Tests
         uses: cypress-io/github-action@v2
         with:
           start: npm run start:coverage
           wait-on: "http://localhost:3000"
+
+      - name: Merge Coverage Reports
+        run: npm run merge-coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/merged/lcov.info"
 
   build:
     name: Build
