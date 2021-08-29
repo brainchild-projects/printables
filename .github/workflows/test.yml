@@ -63,7 +63,10 @@ jobs:
           wait-on: "http://localhost:3000"
 
       - name: Merge Coverage Reports
-        run: npm run merge-coverage
+        run: |
+          npm run merge-coverage
+          npm ls -l ./coverage
+          npm ls -l ./merged
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
