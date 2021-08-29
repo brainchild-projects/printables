@@ -59,7 +59,7 @@ jobs:
       - name: E2E Tests
         uses: cypress-io/github-action@v2
         with:
-          start: npm start
+          start: npm run start:coverage
           wait-on: "http://localhost:3000"
 
   build:
