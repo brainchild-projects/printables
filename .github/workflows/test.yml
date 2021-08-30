@@ -64,9 +64,9 @@ jobs:
 
       - name: Merge Coverage Reports
         run: |
+          ls -l ./coverage
+          ls -l ./merged
           npm run merge-coverage
-          npm ls -l ./coverage
-          npm ls -l ./merged
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
