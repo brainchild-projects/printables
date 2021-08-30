@@ -68,25 +68,25 @@ jobs:
           npm run merge-coverage
           ls -l ./coverage/merged
 
-      - name: Coveralls Unit
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage/unit/lcov.info"
-          parallel: true
+      # - name: Coveralls Unit
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     path-to-lcov: "./coverage/unit/lcov.info"
+      #     parallel: true
 
       - name: Coveralls Integration
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: "./coverage/integration/lcov.info"
-          parallel: true
+          # parallel: true
 
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+      # - name: Coveralls Finished
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     parallel-finished: true
 
   build:
     name: Build
