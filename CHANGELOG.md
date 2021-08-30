@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.30](https://github.com/brainchild-projects/printables/compare/v0.0.29...v0.0.30) (2021-08-30)
+
+
+### Features
+
+* let browsers cache image ([ef4b923](https://github.com/brainchild-projects/printables/commit/ef4b9238c4a23584b2365ac9d0cb7d03bb3adc2f))
+
 ### [0.0.29](https://github.com/brainchild-projects/printables/compare/v0.0.28...v0.0.29) (2021-08-30)
 
 ### [0.0.28](https://github.com/brainchild-projects/printables/compare/v0.0.27...v0.0.28) (2021-08-28)
