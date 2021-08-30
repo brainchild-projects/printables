@@ -70,17 +70,18 @@ jobs:
           ls -ld coverage/integration/lcov.info
           # cat coverage/merged/lcov.info
 
-      # - name: Codacy Coverage
-      #   run: ""
-      #   env:
-      #     CODACY_USERNAME
-
-      - name: Coveralls
-        run: cat coverage/integration/lcov.info | npx coveralls
+      - name: Codacy Coverage
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/integration/lcov.info
         env:
-          COVERALLS_SERVICE_NAME: "Github CI"
-          COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
+          CODACY_USERNAME: brainchild-projects
+          CODACY_PROJECT_NAME: printables
+          CODACY_ORGANIZATION_PROVIDER: gh
 
+      # - name: Coveralls
+      #   run: cat coverage/integration/lcov.info | npx coveralls
+      #   env:
+      #     COVERALLS_SERVICE_NAME: "Github CI"
+      #     COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
       # - name: Coveralls Unit
       #   uses: coverallsapp/github-action@master
       #   with:
