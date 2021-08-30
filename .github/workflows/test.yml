@@ -67,6 +67,8 @@ jobs:
           ls -l ./coverage
           npm run merge-coverage
           ls -l ./coverage/merged
+          ls -ld coverage/integration/lcov.info
+          cat coverage/integration/lcov.info
 
       # - name: Coveralls Unit
       #   uses: coverallsapp/github-action@master
@@ -79,7 +81,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage/integration/lcov.info"
+          path-to-lcov: "coverage/integration/lcov.info"
           # parallel: true
 
       # - name: Coveralls Finished
