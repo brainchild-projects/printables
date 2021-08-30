@@ -68,14 +68,7 @@ jobs:
           npm run merge-coverage
           ls -l ./coverage/merged
           ls -ld coverage/integration/lcov.info
-          foo=${{ secrets.CODACY_PROJECT_TOKEN }}
-          echo ${foo: -3}
-          # cat coverage/merged/lcov.info
-
-      # - name: Codacy Coverage
-      #   run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/integration/lcov.info
-      #   env:
-      #     CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          ls -ld coverage/unit/lcov.info
 
       - name: Codacy Coverage
         uses: codacy/codacy-coverage-reporter-action@v1
@@ -83,29 +76,25 @@ jobs:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage/integration/lcov.info,coverage/unit/lcov.info
 
-      # - name: Coveralls
-      #   run: cat coverage/integration/lcov.info | npx coveralls
-      #   env:
-      #     COVERALLS_SERVICE_NAME: "Github CI"
-      #     COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
-      #     COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      # - name: Coveralls Unit
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     path-to-lcov: "./coverage/unit/lcov.info"
-      #     parallel: true
-      # - name: Coveralls Integration
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     path-to-lcov: "coverage/integration/lcov.info"
-      #     # parallel: true
-      # - name: Coveralls Finished
-      #   uses: coverallsapp/github-action@master
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     parallel-finished: true
+      - name: Coveralls Unit
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/unit/lcov.info"
+          parallel: true
+
+      - name: Coveralls Integration
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "coverage/integration/lcov.info"
+          parallel: true
+
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
 
   build:
     name: Build
