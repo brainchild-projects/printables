@@ -11,7 +11,7 @@ import LinkRouter from '../../elements/LinkRouter';
 
 const paperStyles = makeStyles((theme) => ({
   wrapper: {
-    backgroundImage: 'url(https://dl.dropboxusercontent.com/s/znjm86wbjxql2dh/printables-bg2.jpg)',
+    backgroundImage: 'url(/printables-bg2.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
