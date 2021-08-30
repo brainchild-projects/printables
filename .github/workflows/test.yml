@@ -68,6 +68,8 @@ jobs:
           npm run merge-coverage
           ls -l ./coverage/merged
           ls -ld coverage/integration/lcov.info
+          foo=${{ secrets.CODACY_API_TOKEN }}
+          echo ${foo: -3}
           # cat coverage/merged/lcov.info
 
       - name: Codacy Coverage
@@ -83,6 +85,7 @@ jobs:
       #   env:
       #     COVERALLS_SERVICE_NAME: "Github CI"
       #     COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
+      #     COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       # - name: Coveralls Unit
       #   uses: coverallsapp/github-action@master
       #   with:
