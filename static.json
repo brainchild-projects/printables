@@ -8,6 +8,9 @@
   "headers": {
     "/**": {
       "Strict-Transport-Security": "max-age=7776000"
+    },
+    "/printables-bg2.jpg": {
+      "Cache-Control": "public, max-age=31536000"
     }
   }
 }
