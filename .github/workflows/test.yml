@@ -68,11 +68,15 @@ jobs:
           npm run merge-coverage
           ls -l ./coverage/merged
           ls -ld coverage/integration/lcov.info
-          cat coverage/integration/lcov.info
-          cat coverage/merged/lcov.info
+          # cat coverage/merged/lcov.info
+
+      # - name: Codacy Coverage
+      #   run: ""
+      #   env:
+      #     CODACY_USERNAME
 
       - name: Coveralls
-        run: cat coverage/merged/lcov.info | npx coveralls
+        run: cat coverage/integration/lcov.info | npx coveralls
         env:
           COVERALLS_SERVICE_NAME: "Github CI"
           COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
