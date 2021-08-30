@@ -69,6 +69,13 @@ jobs:
           ls -l ./coverage/merged
           ls -ld coverage/integration/lcov.info
           cat coverage/integration/lcov.info
+          cat coverage/merged/lcov.info
+
+      - name: Coveralls
+        run: cat coverage/merged/lcov.info | npx coveralls
+        env:
+          COVERALLS_SERVICE_NAME: "Github CI"
+          COVERALLS_GIT_BRANCH: ${{ steps.branchinfo.outputs.branch }}
 
       # - name: Coveralls Unit
       #   uses: coverallsapp/github-action@master
@@ -76,14 +83,12 @@ jobs:
       #     github-token: ${{ secrets.GITHUB_TOKEN }}
       #     path-to-lcov: "./coverage/unit/lcov.info"
       #     parallel: true
-
-      - name: Coveralls Integration
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "coverage/integration/lcov.info"
-          # parallel: true
-
+      # - name: Coveralls Integration
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     path-to-lcov: "coverage/integration/lcov.info"
+      #     # parallel: true
       # - name: Coveralls Finished
       #   uses: coverallsapp/github-action@master
       #   with:
