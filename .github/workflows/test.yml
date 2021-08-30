@@ -68,17 +68,14 @@ jobs:
           npm run merge-coverage
           ls -l ./coverage/merged
           ls -ld coverage/integration/lcov.info
-          foo=${{ secrets.CODACY_API_TOKEN }}
+          foo=${{ secrets.CODACY_PROJECT_TOKEN }}
           echo ${foo: -3}
           # cat coverage/merged/lcov.info
 
       - name: Codacy Coverage
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/integration/lcov.info
         env:
-          CODACY_USERNAME: brainchild-projects
-          CODACY_PROJECT_NAME: printables
-          CODACY_ORGANIZATION_PROVIDER: gh
-          CODACY_API_TOKEN: ${{ secrets.CODACY_API_TOKEN }}
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
       # - name: Coveralls
       #   run: cat coverage/integration/lcov.info | npx coveralls
