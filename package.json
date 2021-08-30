@@ -33,8 +33,8 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.10.2",
-    "husky": "^7.0.0",
     "html2pdf.js": "^0.9.3",
+    "husky": "^7.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
@@ -57,11 +57,23 @@
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4"
   },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.10",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@testing-library/cypress": "^7.0.6",
+    "coveralls": "^3.1.1",
+    "cypress": "^7.6.0",
+    "cypress-hmr-restarter": "^2.0.2",
+    "istanbul-merge": "^1.1.1"
+  },
   "scripts": {
     "start": "react-scripts start",
+    "start:coverage": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --watchAll=false",
+    "test:coverage": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage/unit",
+    "merge-coverage": "npx istanbul-merge --out coverage/merged/coverage-final.json coverage/unit/coverage-final.json coverage/integration/coverage-final.json",
+    "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
     "cypress": "cypress open",
     "release": "standard-version",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
@@ -99,9 +111,23 @@
     "npm": "7.x",
     "node": "14.x"
   },
-  "devDependencies": {
-    "@testing-library/cypress": "^7.0.6",
-    "cypress": "^7.6.0",
-    "cypress-hmr-restarter": "^2.0.2"
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!src/**/*.spec.{js,jsx,ts,tsx}"
+    ]
+  },
+  "nyc": {
+    "report-dir": "coverage/integration",
+    "all": true,
+    "include": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "exclude": [
+      "**/*.spec.{js,jsx,ts,tsx}",
+      "**/*.stories.{js,jsx,ts,tsx}",
+      "src/reportWebVitals.ts"
+    ]
   }
 }
