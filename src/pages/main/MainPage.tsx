@@ -29,6 +29,22 @@ const paperStyles = makeStyles((theme) => ({
   },
 }));
 
+interface NavigationLink {
+  path: string;
+  text: string;
+}
+
+const worksheetlinks: NavigationLink[] = [
+  {
+    path: '/addition-fill-the-blanks',
+    text: 'Addition: Fill the Blanks',
+  },
+  {
+    path: '/worksheet-patterns',
+    text: 'Patterns',
+  },
+];
+
 const MainPage = (): JSX.Element => {
   const classes = paperStyles();
   return (
@@ -46,11 +62,15 @@ const MainPage = (): JSX.Element => {
           </List>
           <Typography variant="h4" component="h2">Worksheets</Typography>
           <List className={classes.list} aria-label="Worksheets">
-            <ListItem>
-              <ListItemText>
-                <LinkRouter to="/addition-fill-the-blanks">Addition: Fill the Blanks</LinkRouter>
-              </ListItemText>
-            </ListItem>
+            {
+              worksheetlinks.map(({ path, text }) => (
+                <ListItem key={path}>
+                  <ListItemText>
+                    <LinkRouter to={path}>{text}</LinkRouter>
+                  </ListItemText>
+                </ListItem>
+              ))
+            }
           </List>
         </Paper>
         <Footer />

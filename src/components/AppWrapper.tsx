@@ -7,6 +7,7 @@ import PrintablesAppBar from './PrintablesAppBar';
 const MainPage = lazy(() => import('../pages/main/MainPage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
 const AdditionFillTheBlanksPage = lazy(() => import('../pages/additionFillTheBlanks/AdditionFillTheBlanksPage'));
+const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 
 const { NODE_ENV, PUBLIC_URL } = process.env;
 
@@ -41,6 +42,7 @@ function AppWrapper(): JSX.Element {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/calendar" component={CalendarPage} />
           <Route exact path="/addition-fill-the-blanks" component={AdditionFillTheBlanksPage} />
+          <Route exact path="/worksheet-patterns" component={PatternsPage} />
         </main>
       </MuiThemeProvider>
     </Router>

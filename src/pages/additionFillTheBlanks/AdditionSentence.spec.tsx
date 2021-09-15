@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import AdditionSentence, { BlankPosition } from './AdditionSentence';
+import AdditionSentence, { AdditionBlankPosition } from './AdditionSentence';
 import Addition from './Addition';
 
 describe('AdditionSentence', () => {
@@ -30,7 +30,7 @@ describe('AdditionSentence', () => {
   });
 
   describe('blanks', () => {
-    const blanks: Record<BlankPosition, RegExp> = {
+    const blanks: Record<AdditionBlankPosition, RegExp> = {
       addendA: /_+ \+ 6 = 11/,
       addendB: /5 \+ _+ = 11/,
       sum: /5 \+ 6 = _+/,
@@ -40,7 +40,7 @@ describe('AdditionSentence', () => {
       describe(`when blank=${blank}`, () => {
         beforeEach(() => render(
           <AdditionSentence
-            blank={blank as BlankPosition}
+            blank={blank as AdditionBlankPosition}
             addition={new Addition(5, 6)}
           />,
         ));
@@ -54,7 +54,7 @@ describe('AdditionSentence', () => {
         beforeEach(() => render(
           <AdditionSentence
             showAnswer
-            blank={blank as BlankPosition}
+            blank={blank as AdditionBlankPosition}
             addition={new Addition(5, 6)}
           />,
         ));

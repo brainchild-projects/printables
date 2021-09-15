@@ -5,15 +5,12 @@ import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
+import numberOrEmpty from '../../lib/numberOrEmpty';
 
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
   onChange: (data: AftbData) => void,
   initialData: AftbData,
-}
-
-function numberOrEmpty(value: unknown): number | string {
-  return Number.isNaN(value) ? '' : value as number;
 }
 
 const blankTypesStrategies = new Map<BlankPositionStrategy, string>([

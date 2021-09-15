@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 const headerStyles = makeStyles(() => ({
   header: {
@@ -31,7 +31,11 @@ const headerStyles = makeStyles(() => ({
   },
 }));
 
-const WorksheetHeader = (): JSX.Element => {
+interface WorksheetHeaderProps {
+  children: ReactNode;
+}
+
+const WorksheetHeader = ({ children }: WorksheetHeaderProps): JSX.Element => {
   const classes = headerStyles();
   return (
     <>
@@ -45,9 +49,9 @@ const WorksheetHeader = (): JSX.Element => {
           <span className={classes.headerBlank} />
         </div>
       </section>
-      <p className={classes.instructions}>
-        Complete the addition facts by filling in the blanks.
-      </p>
+      <div className={classes.instructions}>
+        { children }
+      </div>
     </>
   );
 };
