@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 import MultiPaperPage, { Builder, Props } from '../../components/MultiPaperPage';
 import AdditionSentence, {
-  BlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
+  AdditionBlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
@@ -55,13 +55,13 @@ const pageStyles = makeStyles(() => ({
   },
 }));
 
-function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): BlankPosition {
+function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): AdditionBlankPosition {
   switch (blankStrategy) {
     case 'addends':
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       return blankTypesAddends[
         randomGenerator.integer(blankTypesAddends.length - 1)
-      ] as BlankPosition;
+      ] as AdditionBlankPosition;
 
     case 'random':
       return blankTypes[randomGenerator.integer(blankTypes.length - 1)];
@@ -73,7 +73,7 @@ function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): BlankPosit
 
 interface AdditionAndMeta {
   addition: Addition;
-  blank: BlankPosition;
+  blank: AdditionBlankPosition;
 }
 
 const PreviewAftb = ({
@@ -103,7 +103,11 @@ const PreviewAftb = ({
   return (
     <>
       <MultiPaperPage
-        header={(<WorksheetHeader />)}
+        header={(
+          <WorksheetHeader>
+            <p>Complete the addition facts by filling in the blanks.</p>
+          </WorksheetHeader>
+        )}
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper="ol"
         wrapperProps={{ className: `${classes.list} problems` }}

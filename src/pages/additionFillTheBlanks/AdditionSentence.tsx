@@ -33,20 +33,28 @@ export function generateAdditionSentences(
   return generated;
 }
 
-export type BlankPosition = 'addendA' | 'addendB' | 'sum';
-export const blankTypes: BlankPosition[] = ['addendA', 'addendB', 'sum'];
-export const blankTypesAddends: BlankPosition[] = ['addendA', 'addendB'];
+export type AdditionBlankPosition = 'addendA' | 'addendB' | 'sum';
+export const blankTypes: AdditionBlankPosition[] = ['addendA', 'addendB', 'sum'];
+export const blankTypesAddends: AdditionBlankPosition[] = ['addendA', 'addendB'];
 export interface AdditionSentenceProps {
   addition: Addition;
   showAnswer?: boolean;
-  blank?: BlankPosition;
+  blank?: AdditionBlankPosition;
 }
 interface BlankOrNumberProps {
-  expected: BlankPosition;
+  expected: AdditionBlankPosition;
   value: number;
 }
 
-function blankOrNumberGenerator(blank: BlankPosition, showAnswer: boolean) {
+const underlines = (length: number): string => {
+  let str = '_';
+  for (let i = 0; i < length; i++) {
+    str += '_';
+  }
+  return str;
+};
+
+function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
   return ({ value, expected }: BlankOrNumberProps): JSX.Element => (
     blank === expected
       ? (
@@ -54,7 +62,11 @@ function blankOrNumberGenerator(blank: BlankPosition, showAnswer: boolean) {
           {
             showAnswer
               ? value
-              : (<span className="underline">__</span>)
+              : (
+                <span className="underline">
+                  { underlines(value.toString().length) }
+                </span>
+              )
           }
         </span>
       )

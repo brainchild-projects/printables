@@ -30,6 +30,7 @@ const paths = {
   home: '/',
   calendar: '/calendar',
   additionFillTheBlanks: '/addition-fill-the-blanks',
+  worksheetPatterns: '/worksheet-patterns',
 };
 
 const pathNames = Object.keys(paths);
