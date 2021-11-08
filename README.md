@@ -6,3 +6,28 @@
 [https://brainchildprints.herokuapp.com/](https://brainchildprints.herokuapp.com/)
 
 Printable resources mainly for education.
+
+
+## Development
+
+To start the development server, run:
+
+```sh
+npm start
+```
+
+### Tests
+
+To run unint tests, run:
+
+```sh
+npm test
+```
+
+To run end-to-end tests, run:
+
+```sh
+npm run cypress
+```
+
+...and then run your tests from there.
