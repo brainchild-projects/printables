@@ -105,7 +105,7 @@ const PreviewPatterns = ({ patternsData }: PreviewPatternsProps): JSX.Element =>
       <MultiPaperPage
         header={(
           <WorksheetHeader>
-            <p>Complete the pattern by drawing the correct shape on the blank.</p>
+            <p>What comes next? Complete the pattern by drawing the correct shape on the blank.</p>
           </WorksheetHeader>
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}

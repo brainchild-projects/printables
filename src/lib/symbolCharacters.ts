@@ -14,12 +14,23 @@ const shapes: string[] = [
 
 export const outlinedShapes: string[] = [
   '□', '▢', '▭', '▯',
-  '▱', '△', '▷',
+  '▱',
+  '△', '▷',
   '▽',
   '◁', '◇',
   '○',
   '◸', '◹', '◺', '◿',
   '⬭', '⬯', '⬠', '⬡',
+  '☆', '♡',
+];
+
+export const basicOutlinedShapes: string[] = [
+  '□', '▭',
+  '▱',
+  '△',
+  '◇',
+  '○',
+  '⬯', '⬠', '⬡',
   '☆', '♡',
 ];
 
