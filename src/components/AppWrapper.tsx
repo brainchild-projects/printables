@@ -38,7 +38,7 @@ function AppWrapper(): JSX.Element {
       <MuiThemeProvider theme={theme}>
         <BaseStyle />
         <PrintablesAppBar />
-        <main className={`${classes.main} print-ignore`}>
+        <main className={`${classes.main} print-ignore print-auto-max-width AppWrapper`}>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/calendar" component={CalendarPage} />
           <Route exact path="/addition-fill-the-blanks" component={AdditionFillTheBlanksPage} />
