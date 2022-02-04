@@ -3,6 +3,7 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
 import Footer from '../pages/main/Footer';
+import InstanceOptionsProvider from './InstanceSettingsProvider';
 
 const pageStyles = makeStyles((theme) => ({
   container: {
@@ -45,22 +46,24 @@ function PrintableUI({
 }: PrintableUIProps): JSX.Element {
   const classes = pageStyles();
   return (
-    <PaperOptionsProvider orientation={defaultOrientation} optionsKey={key}>
-      <Grid container spacing={3} className={`${classes.container} print-ignore print-auto-max-width`}>
-        <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
-          <section aria-label="Customize Form" className={classes.sideColumn}>
-            <Typography variant="h5" component="h1">{title}</Typography>
-            {customizeForm}
-          </section>
+    <InstanceOptionsProvider>
+      <PaperOptionsProvider orientation={defaultOrientation} optionsKey={key}>
+        <Grid container spacing={3} className={`${classes.container} print-ignore print-auto-max-width`}>
+          <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
+            <section aria-label="Customize Form" className={classes.sideColumn}>
+              <Typography variant="h5" component="h1">{title}</Typography>
+              {customizeForm}
+            </section>
+          </Grid>
+          <Grid item xs={9} sm={10} className={`${classes.main} print-ignore`}>
+            <section aria-label="Preview">
+              <PaperPreview>{children}</PaperPreview>
+            </section>
+          </Grid>
         </Grid>
-        <Grid item xs={9} sm={10} className={`${classes.main} print-ignore`}>
-          <section aria-label="Preview">
-            <PaperPreview>{children}</PaperPreview>
-          </section>
-        </Grid>
-      </Grid>
-      <Footer />
-    </PaperOptionsProvider>
+        <Footer />
+      </PaperOptionsProvider>
+    </InstanceOptionsProvider>
   );
 }
 

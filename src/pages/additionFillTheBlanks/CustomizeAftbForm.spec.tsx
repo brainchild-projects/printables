@@ -80,8 +80,8 @@ describe('CustomizeAftbForm', () => {
     });
   };
 
-  it('sends calendar data to onBeforePrint callback', () => {
-    userEvent.click(screen.getByRole('button', { name: /print/i }));
+  it('sends data to onBeforePrint callback', () => {
+    userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
     expect(onBeforePrint).toHaveBeenCalledWith({
       ...initialData,
       rangeFrom: 0,

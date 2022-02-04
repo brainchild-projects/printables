@@ -51,7 +51,7 @@ describe('CustomizeCalendarForm', () => {
     });
 
     it('sends calendar data to callback', () => {
-      userEvent.click(screen.getByRole('button', { name: /print/i }));
+      userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
       expect(onPrint).toHaveBeenCalledWith({ year, month });
     });
 
@@ -66,7 +66,7 @@ describe('CustomizeCalendarForm', () => {
       });
 
       it('sends calendar data to callback', () => {
-        userEvent.click(screen.getByRole('button', { name: /print/i }));
+        userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
         expect(onPrint).toHaveBeenCalledWith({ year: 2020, month: 1 });
       });
     });

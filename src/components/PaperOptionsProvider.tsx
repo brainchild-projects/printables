@@ -4,7 +4,7 @@ import React, {
 import LocalStore from '../lib/LocalStore';
 import { PaperSize, Orientation, US_LETTER } from '../lib/paperSizes';
 
-interface PaperOptions {
+export interface PaperOptions {
   margin: string;
   orientation: Orientation;
   scale: number;
@@ -20,7 +20,7 @@ interface PaperPreviewProps {
 
 type UpdatePaperOptions = (options: PaperOptions) => void;
 
-interface PaperOptionsData {
+export interface PaperOptionsData {
   options: PaperOptions;
   setOptions: UpdatePaperOptions;
 }
