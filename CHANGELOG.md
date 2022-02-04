@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.32](https://github.com/brainchild-projects/printables/compare/v0.0.31...v0.0.32) (2022-02-04)
+
+
+### Features
+
+* help text for first time printing ([e333c82](https://github.com/brainchild-projects/printables/commit/e333c82dbad7596a38e32b5f338da43809a824e9))
+
+
+### Bug Fixes
+
+* print size mismatch in firefox ([18a7ae3](https://github.com/brainchild-projects/printables/commit/18a7ae30eff17fd00ad659a46223982cdaac4b18))
+
 ### [0.0.31](https://github.com/brainchild-projects/printables/compare/v0.0.30...v0.0.31) (2021-11-08)
 
 
