@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.33](https://github.com/brainchild-projects/printables/compare/v0.0.32...v0.0.33) (2022-02-05)
+
+
+### Bug Fixes
+
+* print colors exactly especially text ([0690a26](https://github.com/brainchild-projects/printables/commit/0690a269ddbdc6a17f7dd47258818430edd21593)), closes [#41](https://github.com/brainchild-projects/printables/issues/41)
+
 ### [0.0.32](https://github.com/brainchild-projects/printables/compare/v0.0.31...v0.0.32) (2022-02-04)
 
 
