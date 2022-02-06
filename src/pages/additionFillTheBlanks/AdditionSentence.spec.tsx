@@ -1,10 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import AdditionSentence, { AdditionBlankPosition } from './AdditionSentence';
 import Addition from './Addition';
 
 describe('AdditionSentence', () => {
-  const element = () => document.querySelector('.addition-sentence-item');
+  const element = () => screen.getByRole('listitem', { name: 'Addition Problem' });
 
   describe('default behavior', () => {
     beforeEach(() => {

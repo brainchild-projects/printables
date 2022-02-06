@@ -76,9 +76,9 @@ interface AdditionAndMeta {
   blank: AdditionBlankPosition;
 }
 
-const PreviewAftb = ({
+function PreviewAftb({
   aftbData,
-}: PreviewAftbProps): JSX.Element => {
+}: PreviewAftbProps): JSX.Element {
   const classes = pageStyles();
   const data = generateAdditionSentences(aftbData).map((addition): AdditionAndMeta => {
     const { blankStrategy } = aftbData;
@@ -110,7 +110,8 @@ const PreviewAftb = ({
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper="ol"
-        wrapperProps={{ className: `${classes.list} problems` }}
+        wrapperProps={{ className: `${classes.list} problems`, 'aria-label': 'Problems' }}
+        data-test-id="problems"
         wrapperPropsCallback={
           (props, { memberIndex }) => ({
             ...props,
@@ -119,9 +120,9 @@ const PreviewAftb = ({
         }
         data={data}
         itemSelector=".addition-sentence-item"
-        builder={problemBuilder}
+        renderItems={problemBuilder}
       />
-      <MultiPaperPage
+      <MultiPaperPage<AdditionAndMeta>
         header={(
           <Typography
             variant="h6"
@@ -135,7 +136,7 @@ const PreviewAftb = ({
         wrapperProps={{ className: `${classes.list} answers` }}
         data={data}
         itemSelector=".addition-sentence-item"
-        builder={
+        renderItems={
           ({ addition, blank }, index) => (
             <AdditionSentence
               showAnswer
@@ -148,6 +149,6 @@ const PreviewAftb = ({
       />
     </>
   );
-};
+}
 
 export default PreviewAftb;

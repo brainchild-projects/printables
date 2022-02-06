@@ -27,10 +27,10 @@ function changeSelect<T>(callback: ChangeSelectCallback<T>) {
   };
 }
 
-const CustomizeAftbForm = ({
+function CustomizeAftbForm({
   onBeforePrint, onChange,
   initialData,
-}: CustomizeAftbFormProps): JSX.Element => {
+}: CustomizeAftbFormProps): JSX.Element {
   const [data, setData] = useState<AftbData>(initialData);
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -198,6 +198,6 @@ const CustomizeAftbForm = ({
       </FieldSet>
     </CustomizeForm>
   );
-};
+}
 
 export default CustomizeAftbForm;

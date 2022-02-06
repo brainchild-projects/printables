@@ -55,8 +55,8 @@ const underlines = (length: number): string => {
 };
 
 function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
-  return ({ value, expected }: BlankOrNumberProps): JSX.Element => (
-    blank === expected
+  return function bOrNg({ value, expected }: BlankOrNumberProps): JSX.Element {
+    return blank === expected
       ? (
         <span className="problem-blank">
           {
@@ -70,16 +70,18 @@ function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolea
           }
         </span>
       )
-      : (<>{ value }</>)
-  );
+      // eslint-disable-next-line react/jsx-no-useless-fragment
+      : (<>{value}</>);
+  };
 }
 
 function AdditionSentence({
   addition, blank = 'sum', showAnswer = false,
 }: AdditionSentenceProps): JSX.Element {
   const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
+  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
-    <li className="addition-sentence-item">
+    <li className="addition-sentence-item" aria-label={label}>
       <BlankOrNumber
         value={addition.addendA}
         expected="addendA"

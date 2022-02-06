@@ -11,9 +11,9 @@ export interface CustomizePatternsFormProps {
   initialData: PatternsData,
 }
 
-const CustomizePatternsForm = ({
+function CustomizePatternsForm({
   initialData, onChange,
-}: CustomizePatternsFormProps): JSX.Element => {
+}: CustomizePatternsFormProps): JSX.Element {
   const [data, setData] = useState<PatternsData>(initialData);
 
   const updateData = (updated: PatternsData): void => {
@@ -44,6 +44,6 @@ const CustomizePatternsForm = ({
       </FieldSet>
     </CustomizeForm>
   );
-};
+}
 
 export default CustomizePatternsForm;

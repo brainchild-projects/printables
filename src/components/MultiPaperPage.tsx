@@ -18,7 +18,7 @@ interface WrapperBuilder<T> {
   wrapperProps?: Props;
   wrapperPropsCallback?: PropsCallback;
   data: T[];
-  builder: Builder<T>;
+  renderItems: Builder<T>;
 }
 interface WrapperBuilderArgs<T> extends WrapperBuilder<T> {
   wrapperPropsCallback: PropsCallback;
@@ -34,12 +34,11 @@ interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
 }
 
 function wrappedContent<T>({
-  wrapper, wrapperProps, wrapperPropsCallback, data, builder,
+  wrapper, wrapperProps, wrapperPropsCallback, data, renderItems: builder,
   instanceIndex, memberIndex,
 }: WrapperBuilderArgs<T>): ReactNode {
-  return wrapper === null
-    ? data.map(builder)
-    : createElement(
+  if (wrapper !== null) {
+    return createElement(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       wrapper!,
       {
@@ -47,10 +46,11 @@ function wrappedContent<T>({
           wrapperProps || {},
           { instanceIndex, memberIndex },
         ),
-        children: data.map(builder),
-
       },
+      data.map(builder),
     );
+  }
+  return data.map(builder);
 }
 
 function clientRectangle(element: HTMLElement): DOMRect {
@@ -89,7 +89,7 @@ function isContentOverflowing(element: HTMLDivElement | null): boolean {
 
 function MultiPaperPage<T>({
   header = null, footer = null,
-  wrapper, wrapperProps = {}, data, builder,
+  wrapper, wrapperProps = {}, data, renderItems: builder,
   wrapperPropsCallback = passThrough,
   itemSelector,
 }: MultiPaperPageProps<T>): JSX.Element {
@@ -159,12 +159,12 @@ function MultiPaperPage<T>({
             >
               { index === 0 ? header : null }
               {
-                  wrappedContent({
+                  wrappedContent<T>({
                     wrapper,
                     wrapperProps,
                     wrapperPropsCallback: wrapperPropsCallback || passThrough,
                     data: dataPage,
-                    builder,
+                    renderItems: builder,
                     instanceIndex: index,
                     memberIndex: count,
                   })

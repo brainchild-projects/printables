@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'react-app',
-    'react-app/jest',
+    // 'react-app/jest',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
@@ -62,6 +62,9 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:testing-library/react',
       ],
+      rules: {
+        'testing-library/no-render-in-setup': ['error', { allowTestingFrameworkSetupHook: 'beforeEach' }],
+      },
     },
     {
       files: 'src/stories/**/*.+(ts|tsx)',

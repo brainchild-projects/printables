@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-debug */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -57,7 +56,7 @@ describe('CustomizeForm', () => {
       beforeEach(() => userEvent.click(screen.getByLabelText('Printing Tips')));
 
       it('shows printing help text dialog', () => {
-        expect(screen.queryByText(/Make sure to match/i)).toBeInTheDocument();
+        expect(screen.getByText(/Make sure to match/i)).toBeInTheDocument();
       });
     });
   });

@@ -9,7 +9,7 @@ const defaultPatternsData: PatternsData = {
   count: 10,
 };
 
-const PatternsPage = (): JSX.Element => {
+function PatternsPage(): JSX.Element | null {
   const [data, setData] = useState<PatternsData | null>(defaultPatternsData);
   const dataStore = LocalStore.create<PatternsData>('patterns');
   const onChange = (updatedData: PatternsData): void => {
@@ -25,7 +25,7 @@ const PatternsPage = (): JSX.Element => {
   }, []);
 
   if (data === null) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -43,6 +43,6 @@ const PatternsPage = (): JSX.Element => {
       <PreviewPatterns patternsData={data} />
     </PrintableUI>
   );
-};
+}
 
 export default PatternsPage;

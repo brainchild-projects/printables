@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface FontLoadProps {
   href: string;
 }
 
-const FontLoad = ({ href }: FontLoadProps): JSX.Element => {
+function FontLoad({ href }: FontLoadProps): JSX.Element | null {
   useEffect(() => {
     const currentLink = document.querySelector(`head link[href="${href}"]`);
     if (!currentLink) {
@@ -23,7 +23,7 @@ const FontLoad = ({ href }: FontLoadProps): JSX.Element => {
     };
   }, [href]);
 
-  return (<></>);
-};
+  return null;
+}
 
 export default FontLoad;

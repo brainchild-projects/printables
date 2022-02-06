@@ -90,7 +90,7 @@ function generatePatternProblems({ count }: PatternsData): PatternProblem[] {
   return problems;
 }
 
-const PreviewPatterns = ({ patternsData }: PreviewPatternsProps): JSX.Element => {
+function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
   const data = generatePatternProblems(patternsData);
   const itemBuilder: Builder<PatternProblem> = (
     { elements }: PatternProblem,
@@ -113,10 +113,10 @@ const PreviewPatterns = ({ patternsData }: PreviewPatternsProps): JSX.Element =>
         wrapperProps={{ className: 'problems' }}
         data={data}
         itemSelector=".pattern-problem-item"
-        builder={itemBuilder}
+        renderItems={itemBuilder}
       />
     </>
   );
-};
+}
 
 export default PreviewPatterns;

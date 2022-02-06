@@ -35,7 +35,7 @@ interface WorksheetHeaderProps {
   children: ReactNode;
 }
 
-const WorksheetHeader = ({ children }: WorksheetHeaderProps): JSX.Element => {
+function WorksheetHeader({ children }: WorksheetHeaderProps): JSX.Element {
   const classes = headerStyles();
   return (
     <>
@@ -54,6 +54,6 @@ const WorksheetHeader = ({ children }: WorksheetHeaderProps): JSX.Element => {
       </div>
     </>
   );
-};
+}
 
 export default WorksheetHeader;
