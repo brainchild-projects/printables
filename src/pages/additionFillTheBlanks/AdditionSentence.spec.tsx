@@ -4,7 +4,7 @@ import AdditionSentence, { AdditionBlankPosition } from './AdditionSentence';
 import Addition from './Addition';
 
 describe('AdditionSentence', () => {
-  const element = () => screen.getByRole('listitem', { name: 'Addition Problem' });
+  const element = () => screen.getByRole('listitem');
 
   describe('default behavior', () => {
     beforeEach(() => {
