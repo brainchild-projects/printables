@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
@@ -39,10 +39,12 @@ function AppWrapper(): JSX.Element {
         <BaseStyle />
         <PrintablesAppBar />
         <main className={`${classes.main} print-ignore print-auto-max-width AppWrapper`}>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/calendar" component={CalendarPage} />
-          <Route exact path="/addition-fill-the-blanks" component={AdditionFillTheBlanksPage} />
-          <Route exact path="/worksheet-patterns" component={PatternsPage} />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="/addition-fill-the-blanks" element={<AdditionFillTheBlanksPage />} />
+            <Route path="/worksheet-patterns" element={<PatternsPage />} />
+          </Routes>
         </main>
       </MuiThemeProvider>
     </Router>
