@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.34](https://github.com/brainchild-projects/printables/compare/v0.0.33...v0.0.34) (2022-02-08)
+
+
+### Features
+
+* cache jpg images using workbox ([d7645c5](https://github.com/brainchild-projects/printables/commit/d7645c55981483dff02348c90d5b646d981d929e))
+
 ### [0.0.33](https://github.com/brainchild-projects/printables/compare/v0.0.32...v0.0.33) (2022-02-05)
 
 
