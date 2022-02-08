@@ -74,9 +74,9 @@ function generatePDF(name: string, options: PaperOptions): void {
   }
 }
 
-const CustomizeForm = ({
+function CustomizeForm({
   onBeforePrint, name, children, error = null,
-}: CustomizeFormProps): JSX.Element => {
+}: CustomizeFormProps): JSX.Element {
   const classes = calendarFormStyles();
   const { options, setOptions } = usePaperOptions();
   const instanceSettings = useInstanceOptions();
@@ -249,7 +249,7 @@ const CustomizeForm = ({
       </form>
     </div>
   );
-};
+}
 
 CustomizeForm.defaultProps = {
   error: null,

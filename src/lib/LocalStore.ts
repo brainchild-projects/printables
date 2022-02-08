@@ -7,6 +7,8 @@ interface Storage {
   getItem: GetItem;
 }
 
+const localStoreCache: Map<string, LocalStore<unknown>> = new Map<string, LocalStore<unknown>>([]);
+
 class LocalStore<T> {
   store: Storage;
 
@@ -22,6 +24,15 @@ class LocalStore<T> {
 
   static create<T>(key: string, build?: Builder<T>): LocalStore<T> {
     return new LocalStore<T>(key, global.localStorage, build);
+  }
+
+  static createCached<T>(key: string, build?: Builder<T>): LocalStore<T> {
+    if (localStoreCache.has(key)) {
+      return localStoreCache.get(key) as LocalStore<T>;
+    }
+    const localStore = LocalStore.create<T>(key, build);
+    localStoreCache.set(key, localStore);
+    return localStore;
   }
 
   set(value: T): void {

@@ -15,7 +15,7 @@ const defaultAftbData = {
   customAddendsB: { from: 0, to: 9 },
 } as AftbData;
 
-const AdditionFillTheBlanksPage = (): JSX.Element => {
+function AdditionFillTheBlanksPage(): JSX.Element | null {
   const [aftbData, setAftbData] = useState<AftbData | null>(null);
   const onPrint = () => true;
   const aftbDataStore = LocalStore.create<AftbData>('aftbData');
@@ -32,7 +32,7 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
   }, []);
 
   if (aftbData === null) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -50,6 +50,6 @@ const AdditionFillTheBlanksPage = (): JSX.Element => {
       <PreviewAftb aftbData={aftbData} />
     </PrintableUI>
   );
-};
+}
 
 export default AdditionFillTheBlanksPage;

@@ -8,7 +8,7 @@ import PreviewCalendar from './PreviewCalendar';
 import PrintableUI from '../../components/PrintableUI';
 import LocalStore from '../../lib/LocalStore';
 
-const CalendarPage = (): JSX.Element => {
+function CalendarPage(): JSX.Element | null {
   const now = new Date();
   const calendarDataStore = LocalStore.create<CalendarData>('calendar');
   const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
@@ -31,7 +31,7 @@ const CalendarPage = (): JSX.Element => {
   }, []);
 
   if (calendarData === null) {
-    return <></>;
+    return null;
   }
 
   return (
@@ -51,6 +51,6 @@ const CalendarPage = (): JSX.Element => {
       <PreviewCalendar calendarData={calendarData} />
     </PrintableUI>
   );
-};
+}
 
 export default CalendarPage;

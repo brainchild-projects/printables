@@ -14,7 +14,7 @@ describe('App', () => {
     await waitFor(
       () => {
         const header = within(screen.getByRole('banner'));
-        expect(header.queryByRole('heading', { name: /printables/i })).toBeInTheDocument();
+        expect(header.getByRole('heading', { name: /printables/i })).toBeInTheDocument();
       },
     );
   });

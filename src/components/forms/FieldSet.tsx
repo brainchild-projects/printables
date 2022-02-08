@@ -13,7 +13,7 @@ interface FieldSetProps {
   id?: string;
 }
 
-const FieldSet = ({ children, label, id }: FieldSetProps): JSX.Element => {
+function FieldSet({ children, label, id }: FieldSetProps): JSX.Element {
   const classes = styles();
   const labelElement = label
     ? (<InputLabel htmlFor={id}>{ label }</InputLabel>)
@@ -29,7 +29,7 @@ const FieldSet = ({ children, label, id }: FieldSetProps): JSX.Element => {
       { children }
     </FormControl>
   );
-};
+}
 
 FieldSet.defaultProps = {
   label: null,

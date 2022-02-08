@@ -10,7 +10,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const Footer = (): JSX.Element => {
+function Footer(): JSX.Element {
   const classes = styles();
   return (
     <footer className={`${classes.footer} no-print`}>
@@ -32,6 +32,6 @@ const Footer = (): JSX.Element => {
       </Typography>
     </footer>
   );
-};
+}
 
 export default Footer;

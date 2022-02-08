@@ -1,5 +1,5 @@
 import React, {
-  createContext, ReactNode, useContext, useEffect, useState,
+  createContext, ReactNode, useContext, useEffect, useMemo, useState,
 } from 'react';
 import LocalStore from '../lib/LocalStore';
 import { PaperSize, Orientation, US_LETTER } from '../lib/paperSizes';
@@ -55,7 +55,7 @@ function PaperOptionsProvider({
   children, margin = '10mm', orientation = 'portrait', scale = 1,
   optionsKey,
 }: PaperPreviewProps): JSX.Element {
-  const optionsStore = LocalStore.create<PaperOptions>(
+  const optionsStore = LocalStore.createCached<PaperOptions>(
     `paperOptions:${optionsKey}`,
     (rawData: unknown) => {
       const savedData = rawData as Record<string, unknown>;
@@ -80,15 +80,6 @@ function PaperOptionsProvider({
 
   const [paperOptions, setPaperOptions] = useState(defaultOptions);
 
-  const setOptions = (options: PaperOptions) => {
-    const updated = {
-      ...paperOptions,
-      ...options,
-    };
-    optionsStore.set(updated);
-    setPaperOptions(updated);
-  };
-
   useEffect(() => {
     const savedData = optionsStore.get();
     if (savedData) {
@@ -97,11 +88,24 @@ function PaperOptionsProvider({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setPaperOptions, optionsKey]);
 
+  const paperOptionsValue = useMemo(() => {
+    const setOptions = (options: PaperOptions) => {
+      const updated = {
+        ...paperOptions,
+        ...options,
+      };
+      optionsStore.set(updated);
+      setPaperOptions(updated);
+    };
+    return {
+      options: paperOptions,
+      setOptions,
+    };
+  }, [paperOptions, optionsStore]);
+
   return (
     <PaperOptionsContext.Provider
-      value={{
-        options: paperOptions, setOptions,
-      }}
+      value={paperOptionsValue}
     >
       { children }
     </PaperOptionsContext.Provider>

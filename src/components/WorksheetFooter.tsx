@@ -35,35 +35,33 @@ interface WorksheetFooterProps {
   itemCount: number;
 }
 
-const WorksheetFooter = ({ itemCount }: WorksheetFooterProps): JSX.Element => {
+function WorksheetFooter({ itemCount }: WorksheetFooterProps): JSX.Element {
   const { options } = usePaperOptions();
   const classes = footerStyles();
   return (
-    <>
-      <section
-        className={classes.footer}
-        style={{
-          bottom: options.margin,
-          right: options.margin,
-        }}
-      >
-        <div className={classes.footerName}>
-          <strong className={classes.label}>Score:</strong>
-          <span className={classes.footerBlank} />
-          <span>
-            out of
-            {' '}
-            { itemCount }
-          </span>
-        </div>
-        <div className={classes.footerDate}>
-          <strong className={classes.label}>Time:</strong>
-          <span className={classes.footerBlank} />
-          <span>minutes</span>
-        </div>
-      </section>
-    </>
+    <section
+      className={classes.footer}
+      style={{
+        bottom: options.margin,
+        right: options.margin,
+      }}
+    >
+      <div className={classes.footerName}>
+        <strong className={classes.label}>Score:</strong>
+        <span className={classes.footerBlank} />
+        <span>
+          out of
+          {' '}
+          { itemCount }
+        </span>
+      </div>
+      <div className={classes.footerDate}>
+        <strong className={classes.label}>Time:</strong>
+        <span className={classes.footerBlank} />
+        <span>minutes</span>
+      </div>
+    </section>
   );
-};
+}
 
 export default WorksheetFooter;

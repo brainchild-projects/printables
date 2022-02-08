@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-node-access */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
@@ -16,7 +17,7 @@ describe('MultiPaperPage', () => {
         wrapperPropsCallback={propsCallback}
         data={['a', 'b', 'c', 'd']}
         itemSelector="p"
-        builder={
+        renderItems={
           (letter, index) => (
             <p key={letter}>
               {letter}
@@ -40,9 +41,7 @@ describe('MultiPaperPage', () => {
   });
 
   it('calls wrapper props instance callback', () => {
-    expect(propsCallback).toHaveBeenCalledWith(
-      { className: 'foo' }, { instanceIndex: 0, memberIndex: 0 },
-    );
+    expect(propsCallback).toHaveBeenCalledWith({ className: 'foo' }, { instanceIndex: 0, memberIndex: 0 });
     const wrapper = screen.getByText('b 1').parentNode!;
     expect(wrapper).toHaveAttribute('data-info', '0 0');
   });

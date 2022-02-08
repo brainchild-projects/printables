@@ -24,7 +24,7 @@ interface HeroProperties {
   children?: JSX.Element,
 }
 
-const Hero = (properties: HeroProperties): JSX.Element => {
+function Hero(properties: HeroProperties): JSX.Element {
   const { title, subtitle, children } = properties;
   const classes = heroStyles();
   return (
@@ -50,6 +50,6 @@ const Hero = (properties: HeroProperties): JSX.Element => {
       </Container>
     </div>
   );
-};
+}
 
 export default Hero;

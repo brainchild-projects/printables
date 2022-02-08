@@ -23,7 +23,7 @@ const styles = makeStyles(() => ({
   },
 }));
 
-const PrintablesAppBar = (): JSX.Element => {
+function PrintablesAppBar(): JSX.Element {
   const classes = styles();
   return (
     <div className={`${classes.wrap} no-print`}>
@@ -41,6 +41,6 @@ const PrintablesAppBar = (): JSX.Element => {
       </AppBar>
     </div>
   );
-};
+}
 
 export default PrintablesAppBar;

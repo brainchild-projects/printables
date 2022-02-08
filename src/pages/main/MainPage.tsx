@@ -45,7 +45,7 @@ const worksheetlinks: NavigationLink[] = [
   },
 ];
 
-const MainPage = (): JSX.Element => {
+function MainPage(): JSX.Element {
   const classes = paperStyles();
   return (
     <div className={classes.wrapper}>
@@ -77,6 +77,6 @@ const MainPage = (): JSX.Element => {
       </Container>
     </div>
   );
-};
+}
 
 export default MainPage;

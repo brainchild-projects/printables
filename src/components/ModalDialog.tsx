@@ -67,28 +67,30 @@ interface ModalDialogProps {
   onClose: () => void;
 }
 
-const ModalDialog = ({
+function ModalDialog({
   title, children, open, onClose, closeButtonText = 'Done',
-}: ModalDialogProps): JSX.Element => (
-  <Dialog
-    onClose={onClose}
-    aria-labelledby="customized-dialog-title"
-    open={open}
-    className="no-print"
-  >
-    <DialogTitle id="customized-dialog-title" onClose={onClose}>
-      { title }
-    </DialogTitle>
-    <DialogContent dividers>
-      { children }
-    </DialogContent>
-    <DialogActions>
-      <Button autoFocus onClick={onClose} color="primary">
-        { closeButtonText }
-      </Button>
-    </DialogActions>
-  </Dialog>
-);
+}: ModalDialogProps): JSX.Element {
+  return (
+    <Dialog
+      onClose={onClose}
+      aria-labelledby="customized-dialog-title"
+      open={open}
+      className="no-print"
+    >
+      <DialogTitle id="customized-dialog-title" onClose={onClose}>
+        { title }
+      </DialogTitle>
+      <DialogContent dividers>
+        { children }
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={onClose} color="primary">
+          { closeButtonText }
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
 
 ModalDialog.defaultProps = {
   closeButtonText: 'Done',

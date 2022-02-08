@@ -1,5 +1,5 @@
 import React, {
-  createContext, ReactNode, useContext, useEffect, useState,
+  createContext, ReactNode, useContext, useEffect, useMemo, useState,
 } from 'react';
 import LocalStore from '../lib/LocalStore';
 
@@ -36,32 +36,24 @@ interface InstanceProps {
   hasAlreadyPrinted?: boolean;
 }
 
+const optionsStore = LocalStore.create<InstanceOptions>(
+  'instanceOptions',
+  (rawData: unknown) => {
+    const savedData = rawData as Record<string, unknown>;
+    return savedData as unknown as InstanceOptions;
+  },
+);
+
 function InstanceOptionsProvider({
   children,
   hasAlreadyPrinted = false,
 }: InstanceProps): JSX.Element {
-  const optionsStore = LocalStore.create<InstanceOptions>(
-    'instanceOptions',
-    (rawData: unknown) => {
-      const savedData = rawData as Record<string, unknown>;
-      return savedData as unknown as InstanceOptions;
-    },
-  );
   const defaultOptions = {
     ...defaultInstanceOptions,
     hasAlreadyPrinted,
   } as InstanceOptions;
 
   const [instanceOptions, setInstanceOptions] = useState(defaultOptions);
-
-  const setOptions = (options: InstanceOptions) => {
-    const updated = {
-      ...instanceOptions,
-      ...options,
-    };
-    optionsStore.set(updated);
-    setInstanceOptions(updated);
-  };
 
   useEffect(() => {
     const savedData = optionsStore.get();
@@ -71,11 +63,23 @@ function InstanceOptionsProvider({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setInstanceOptions]);
 
+  const instanceOptionsValue = useMemo(() => {
+    const setOptions = (options: InstanceOptions) => {
+      const updated = {
+        ...instanceOptions,
+        ...options,
+      };
+      optionsStore.set(updated);
+      setInstanceOptions(updated);
+    };
+    return {
+      options: instanceOptions, setOptions,
+    };
+  }, [instanceOptions]);
+
   return (
     <InstanceOptionsContext.Provider
-      value={{
-        options: instanceOptions, setOptions,
-      }}
+      value={instanceOptionsValue}
     >
       { children }
     </InstanceOptionsContext.Provider>

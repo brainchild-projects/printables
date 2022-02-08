@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-render-in-setup */
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
@@ -67,7 +68,8 @@ describe('CustomizeAftbForm', () => {
       : labelRegexp() as HTMLInputElement;
     if (found instanceof HTMLInputElement) {
       ReactTestUtils.Simulate.change(
-        found, { target: { value: value.toString() } as unknown as EventTarget },
+        found,
+        { target: { value: value.toString() } as unknown as EventTarget },
       );
     } else {
       throw Error(`Unable to find ${field}`);
