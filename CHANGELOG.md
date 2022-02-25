@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.36](https://github.com/brainchild-projects/printables/compare/v0.0.35...v0.0.36) (2022-02-25)
+
+
+### Features
+
+* change number of columns for worksheets ([c234134](https://github.com/brainchild-projects/printables/commit/c2341340fa7c88dea8dfa05612ae2ef67d159612))
+* worksheet font size can be changed ([ca4d14c](https://github.com/brainchild-projects/printables/commit/ca4d14c2e3bd1423c564fd4d4738b7c5dbbe9c07))
+
+
+### Bug Fixes
+
+* **lint:** lint errors in patterns forms ([5db630e](https://github.com/brainchild-projects/printables/commit/5db630ec56f190c1162bb98523bc4d17970d17bf))
+
 ### [0.0.35](https://github.com/brainchild-projects/printables/compare/v0.0.34...v0.0.35) (2022-02-13)
 
 ### [0.0.34](https://github.com/brainchild-projects/printables/compare/v0.0.33...v0.0.34) (2022-02-08)
