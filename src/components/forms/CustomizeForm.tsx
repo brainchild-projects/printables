@@ -4,15 +4,16 @@ import React, {
 } from 'react';
 import html2pdf from 'html2pdf.js';
 import {
-  Button, Collapse, IconButton, makeStyles, Select, Typography,
+  Button, Collapse, IconButton, makeStyles, Typography,
 } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
 import Alert from '@material-ui/lab/Alert';
-import FieldSet from './FieldSet';
 import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider';
 import paperSizes, { getPaperSizeFromName, Orientation } from '../../lib/paperSizes';
 import ModalDialog from '../ModalDialog';
 import { useInstanceOptions } from '../InstanceSettingsProvider';
+import SelectField from './SelectField';
+import arrayToOptions from './arrayToOptions';
 
 const calendarFormStyles = makeStyles((theme) => ({
   wrapper: {
@@ -131,7 +132,7 @@ function CustomizeForm({
     <div className={classes.wrapper}>
       <form className={classes.form} onSubmit={onSubmit}>
         <Collapse in={!!error}>
-          <Alert severity="error">{ error }</Alert>
+          <Alert severity="error">{error}</Alert>
         </Collapse>
 
         <section aria-label="Main Customization">
@@ -144,42 +145,30 @@ function CustomizeForm({
           >
             Print Options
           </Typography>
-          <FieldSet
+          <SelectField
             label="Paper Size"
             id="select-paper-size"
+            name="paperSize"
+            value={options.paperSize.name}
+            onChange={onChangePaperSize}
           >
-            <Select
-              native
-              name="paperSize"
-              id="select-paper-size"
-              fullWidth
-              value={options.paperSize.name}
-              onChange={onChangePaperSize}
-            >
-              {
-                Array.from(paperSizes.values()).map((size) => (
-                  <option key={size.name} value={size.name}>{size.name}</option>
-                ))
-              }
-            </Select>
-          </FieldSet>
-          <FieldSet
+            {
+              arrayToOptions(
+                Array.from(paperSizes.values()).map((size) => size.name),
+              )
+            }
+          </SelectField>
+
+          <SelectField
             label="Orientation"
             id="select-paper-orientation"
+            name="paperOrientation"
+            value={options.orientation}
+            onChange={onChangeOrientation}
           >
-            <Select
-              native
-              name="month"
-              id="select-paper-orientation"
-              value={options.orientation}
-              fullWidth
-              onChange={onChangeOrientation}
-            >
-              <option value="portrait">Portrait</option>
-              <option value="landscape">Landscape</option>
-            </Select>
-
-          </FieldSet>
+            <option value="portrait">Portrait</option>
+            <option value="landscape">Landscape</option>
+          </SelectField>
         </section>
         <Button
           type="submit"
@@ -194,7 +183,7 @@ function CustomizeForm({
         >
           Print
           {' '}
-          { name }
+          {name}
         </Button>
         <IconButton
           aria-label="Printing Tips"

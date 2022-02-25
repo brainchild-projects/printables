@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface Stringable {
-  toString: () => string;
-}
+import Stringable from '../../lib/Stringable';
 
 function stringMapToOptions(map: Map<string, string | number | Stringable>): Array<JSX.Element> {
   return Array.from(map.entries()).map(([value, label]) => (

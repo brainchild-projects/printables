@@ -2,6 +2,7 @@ import { TextField } from '@material-ui/core';
 import React, { ChangeEvent, useState } from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import FieldSet from '../../components/forms/FieldSet';
+import NumberField from '../../components/forms/NumberField';
 import numberOrEmpty from '../../lib/numberOrEmpty';
 import PatternsData from './PatternsData';
 
@@ -26,22 +27,16 @@ function CustomizePatternsForm({
       onBeforePrint={() => true}
       name="Worksheet"
     >
-      <FieldSet>
-        <TextField
-          type="number"
-          name="count"
-          id="input-patterns-count"
-          label="Number of Problems"
-          InputLabelProps={{ shrink: true }}
-          fullWidth
-          variant="outlined"
-          value={numberOrEmpty(data.count)}
-          onChange={(event: ChangeEvent<{ value: unknown }>) => {
-            const count = Number.parseInt(event.target.value as string, 10);
-            updateData({ ...data, count });
-          }}
-        />
-      </FieldSet>
+      <NumberField
+        name="count"
+        id="input-patterns-count"
+        label="Number of Problems"
+        value={numberOrEmpty(data.count)}
+        onChange={(event: ChangeEvent<{ value: unknown }>) => {
+          const count = Number.parseInt(event.target.value as string, 10);
+          updateData({ ...data, count });
+        }}
+      />
     </CustomizeForm>
   );
 }

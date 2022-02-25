@@ -1,10 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
-import {
-  Select,
-} from '@material-ui/core';
 import CalendarData from './CalendarData';
-import FieldSet from '../../components/forms/FieldSet';
 import CustomizeForm from '../../components/forms/CustomizeForm';
+import SelectField from '../../components/forms/SelectField';
 
 export interface CustomizeCalendarFormProps {
   initialData: CalendarData,
@@ -59,41 +56,29 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
       onBeforePrint={() => onPrint(data)}
       name="Calendar"
     >
-
-      <FieldSet
+      <SelectField
         label="Year"
         id="select-year"
+        name="year"
+        value={data.year}
+        onChange={changeHandler('year')}
       >
-        <Select
-          native
-          name="year"
-          id="select-year"
-          value={data.year}
-          fullWidth
-          onChange={changeHandler('year')}
-        >
-          { yearOptions(currentYear) }
-        </Select>
-      </FieldSet>
-      <FieldSet
+        {yearOptions(currentYear)}
+      </SelectField>
+
+      <SelectField
         label="Month"
         id="select-month"
+        name="month"
+        value={data.month}
+        onChange={changeHandler('month')}
       >
-        <Select
-          native
-          name="month"
-          id="select-month"
-          value={data.month}
-          fullWidth
-          onChange={changeHandler('month')}
-        >
-          {
-            months.map((month, index) => (
-              <option value={index} key={month}>{month}</option>
-            ))
-          }
-        </Select>
-      </FieldSet>
+        {
+          months.map((month, index) => (
+            <option value={index} key={month}>{month}</option>
+          ))
+        }
+      </SelectField>
 
     </CustomizeForm>
 
