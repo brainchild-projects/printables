@@ -40,6 +40,7 @@ export interface AdditionSentenceProps {
   addition: Addition;
   showAnswer?: boolean;
   blank?: AdditionBlankPosition;
+  fontSize: number;
 }
 interface BlankOrNumberProps {
   expected: AdditionBlankPosition;
@@ -64,7 +65,7 @@ function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolea
               ? value
               : (
                 <span className="underline">
-                  { underlines(value.toString().length) }
+                  {underlines(value.toString().length)}
                 </span>
               )
           }
@@ -76,12 +77,16 @@ function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolea
 }
 
 function AdditionSentence({
-  addition, blank = 'sum', showAnswer = false,
+  addition, blank = 'sum', showAnswer = false, fontSize = 20,
 }: AdditionSentenceProps): JSX.Element {
   const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
-    <li className="addition-sentence-item" aria-label={label}>
+    <li
+      className="addition-sentence-item"
+      aria-label={label}
+      style={{ fontSize: `${fontSize}px` }}
+    >
       <BlankOrNumber
         value={addition.addendA}
         expected="addendA"
@@ -103,6 +108,7 @@ function AdditionSentence({
 AdditionSentence.defaultProps = {
   showAnswer: false,
   blank: 'sum',
+  fontSize: 20,
 };
 
 export default AdditionSentence;

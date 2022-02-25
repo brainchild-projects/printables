@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, ChangeEvent } from 'react';
-import { Select, TextField } from '@material-ui/core';
+import { Divider, Select, TextField } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 import numberOrEmpty from '../../lib/numberOrEmpty';
+import FontSizeField from '../../components/forms/FontSizeField';
 
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
@@ -196,6 +197,11 @@ function CustomizeAftbForm({
           }
         </Select>
       </FieldSet>
+      <Divider variant="middle" />
+      <FontSizeField
+        value={data.fontSize}
+        onChange={changeHandler('fontSize')}
+      />
     </CustomizeForm>
   );
 }

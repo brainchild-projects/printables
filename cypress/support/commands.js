@@ -85,9 +85,22 @@ Cypress.Commands.add(
   },
 );
 
+Cypress.Commands.add(
+  'shouldHaveFontSize',
+  {
+    prevSubject: true,
+  },
+  (subject, size) => cy.window().then((win) => {
+    const style = win.getComputedStyle(subject[0]);
+    return cy.wrap(style.fontSize).should('eql', `${size}px`);
+  }),
+);
+
 Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-test=${selector}]`, ...args));
 
 Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=${selector}]`, ...args));
+
+Cypress.Commands.add('findPaperPage', (page) => cy.findByRole('region', { name: new RegExp(`paper.+page ${page}`, 'i') }));
 
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',

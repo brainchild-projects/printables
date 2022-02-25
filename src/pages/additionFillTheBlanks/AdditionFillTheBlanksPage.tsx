@@ -13,6 +13,7 @@ const defaultAftbData = {
   problemGeneration: 'single range',
   customAddendsA: { from: 0, to: 9 },
   customAddendsB: { from: 0, to: 9 },
+  fontSize: 20,
 } as AftbData;
 
 function AdditionFillTheBlanksPage(): JSX.Element | null {
@@ -28,7 +29,7 @@ function AdditionFillTheBlanksPage(): JSX.Element | null {
   useEffect(() => {
     const savedData = aftbDataStore.get();
     setAftbData(savedData || defaultAftbData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (aftbData === null) {

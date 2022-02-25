@@ -12,6 +12,7 @@ describe('PreviewAftb', () => {
     problemGeneration: 'single range',
     customAddendsA: { from: 0, to: 9 },
     customAddendsB: { from: 0, to: 9 },
+    fontSize: 20,
   };
 
   describe('default behavior', () => {

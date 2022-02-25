@@ -1,3 +1,5 @@
+import FontSizeData from '../../components/forms/FontSizeData';
+
 export type BlankPositionStrategy = 'sum' | 'addends' | 'random';
 export type ProblemGeneration = 'single range' | 'custom addends';
 
@@ -10,7 +12,7 @@ interface Range {
   from: number;
   to: number;
 }
-export default interface AftbData {
+export default interface AftbData extends FontSizeData {
   rangeFrom: number;
   rangeTo: number;
   problems: number;

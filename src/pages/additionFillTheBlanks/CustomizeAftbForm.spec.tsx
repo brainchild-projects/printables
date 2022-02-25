@@ -20,6 +20,7 @@ describe('CustomizeAftbForm', () => {
     problemGeneration: 'single range',
     customAddendsA: { from: 0, to: 9 },
     customAddendsB: { from: 0, to: 9 },
+    fontSize: 20,
   };
 
   beforeEach(() => {

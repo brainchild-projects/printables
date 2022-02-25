@@ -4,24 +4,24 @@ it('can set print options', () => {
   cy.findByLabelText(/orientation/i).select('portrait');
   cy.findByLabelText(/paper size/i).select('A4');
 
-  cy.findByRole('region', { name: /paper.+page 1/i })
+  cy.findPaperPage(1)
     .invoke('height')
     .shouldHaveMmLength(297);
-  cy.findByRole('region', { name: /paper.+page 1/i })
+  cy.findPaperPage(1)
     .invoke('width')
     .shouldHaveMmLength(210);
 
   cy.findByLabelText(/orientation/i).select('landscape');
-  cy.findByRole('region', { name: /paper.+page 2/i })
+  cy.findPaperPage(2)
     .invoke('width')
     .shouldHaveMmLength(297);
 
-  cy.findByRole('region', { name: /paper.+page 1/i })
+  cy.findPaperPage(1)
     .invoke('height')
     .shouldHaveMmLength(210);
 
   cy.findByLabelText(/paper size/i).select('US Letter');
-  cy.findByRole('region', { name: /paper.+page 1/i })
+  cy.findPaperPage(1)
     .invoke('height')
     .shouldHaveMmLength(216);
 });

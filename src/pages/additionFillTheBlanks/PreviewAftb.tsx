@@ -18,17 +18,18 @@ const pageStyles = makeStyles(() => ({
   heading: {
     textAlign: 'center',
   },
+  // All em units equivalent are based on a 20px font size base
   list: {
     margin: '5mm 0 0 0',
     padding: 0,
-    fontSize: '20px',
+    // fontSize: '20px',
     columnCount: 2,
     columnWidth: 'auto',
     counterReset: 'problem 0',
 
     '& > li': {
-      padding: '6mm 0 6mm 6mm',
-      marginLeft: '10mm',
+      padding: '1.15em 0 1.15em 1.15em', // '6mm 0 6mm 6mm', // 23px
+      marginLeft: '1.9em', // '10mm', // 38px
       counterIncrement: 'problem',
       '-webkit-column-break-inside': 'avoid',
       pabeBreakInside: 'avoid',
@@ -37,15 +38,16 @@ const pageStyles = makeStyles(() => ({
 
     '& > li::marker': {
       content: 'counter(problem) "."',
-      fontSize: '16px',
+      fontSize: '0.8em', // 16px
     },
 
     '& .problem-blank': {
-      borderBottom: '2px solid',
-      paddingLeft: '1mm',
-      paddingRight: '1mm',
+      borderBottom: '0.1em solid', // 2px
+      paddingLeft: '0.2em', // 1mm
+      paddingRight: '0.2em', // 1mm
+
       display: 'inline-block',
-      minWidth: 32,
+      minWidth: '1.6em', // 32px
       textAlign: 'center',
     },
 
@@ -97,6 +99,7 @@ function PreviewAftb({
       key={`problem-${index}`}
       addition={addition}
       blank={blank}
+      fontSize={aftbData.fontSize}
     />
   );
 
@@ -110,7 +113,10 @@ function PreviewAftb({
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper="ol"
-        wrapperProps={{ className: `${classes.list} problems`, 'aria-label': 'Problems' }}
+        wrapperProps={{
+          className: `${classes.list} problems`,
+          'aria-label': 'Problems',
+        }}
         data-test-id="problems"
         wrapperPropsCallback={
           (props, { memberIndex }) => ({
@@ -143,6 +149,7 @@ function PreviewAftb({
               key={`answer-${index}`}
               addition={addition}
               blank={blank}
+              fontSize={aftbData.fontSize}
             />
           )
         }
