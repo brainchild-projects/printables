@@ -1,7 +1,5 @@
-import { TextField } from '@material-ui/core';
 import React, { ChangeEvent, useState } from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
-import FieldSet from '../../components/forms/FieldSet';
 import NumberField from '../../components/forms/NumberField';
 import numberOrEmpty from '../../lib/numberOrEmpty';
 import PatternsData from './PatternsData';
