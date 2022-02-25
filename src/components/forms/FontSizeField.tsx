@@ -1,7 +1,6 @@
 import React from 'react';
 import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
-import Select from '@material-ui/core/Select/Select';
-import FieldSet from './FieldSet';
+import SelectField from './SelectField';
 
 const fontSizes = [
   8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96,
@@ -18,26 +17,19 @@ function FontSizeField({
   id = 'select-font-size', name = 'fontSize', onChange, value,
 }: FontSizeFieldProps): JSX.Element {
   return (
-    <FieldSet
+    <SelectField
       label="Font Size"
       id={id}
+      name={name}
+      value={value}
+      onChange={onChange}
     >
-      <Select
-        native
-        name={name}
-        id={id}
-        fullWidth
-        variant="filled"
-        value={value}
-        onChange={onChange}
-      >
-        {
-          Array.from(fontSizes.values()).map((size) => (
-            <option key={`font-size-${size}`} value={size}>{size}</option>
-          ))
-        }
-      </Select>
-    </FieldSet>
+      {
+        Array.from(fontSizes.values()).map((size) => (
+          <option key={`font-size-${size}`} value={size}>{size}</option>
+        ))
+      }
+    </SelectField>
   );
 }
 

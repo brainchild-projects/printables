@@ -121,7 +121,10 @@ function PreviewAftb({
         wrapperPropsCallback={
           (props, { memberIndex }) => ({
             ...props,
-            style: { counterReset: `problem ${memberIndex}` },
+            style: {
+              counterReset: `problem ${memberIndex}`,
+              columns: aftbData.columns,
+            },
           } as Props)
         }
         data={data}
@@ -139,7 +142,19 @@ function PreviewAftb({
           </Typography>
         )}
         wrapper="ol"
-        wrapperProps={{ className: `${classes.list} answers` }}
+        wrapperProps={{
+          className: `${classes.list} answers`,
+          'aria-label': 'Answers',
+        }}
+        wrapperPropsCallback={
+          (props, { memberIndex }) => ({
+            ...props,
+            style: {
+              counterReset: `problem ${memberIndex}`,
+              columns: aftbData.columns,
+            },
+          } as Props)
+        }
         data={data}
         itemSelector=".addition-sentence-item"
         renderItems={

@@ -96,11 +96,23 @@ Cypress.Commands.add(
   }),
 );
 
+Cypress.Commands.add(
+  'shouldHaveColumns',
+  {
+    prevSubject: true,
+  },
+  (subject, count) => cy.window().then((win) => {
+    const style = win.getComputedStyle(subject[0]);
+    return cy.wrap(style.columnCount).should('eql', count.toString());
+  }),
+);
+
 Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-test=${selector}]`, ...args));
 
 Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=${selector}]`, ...args));
 
 Cypress.Commands.add('findPaperPage', (page) => cy.findByRole('region', { name: new RegExp(`paper.+page ${page}`, 'i') }));
+Cypress.Commands.add('clearType', { prevSubject: true }, (subject, value) => cy.wrap(subject).clear().type(value));
 
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',

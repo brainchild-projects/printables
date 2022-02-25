@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, ChangeEvent } from 'react';
-import { Divider, Select, TextField } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 import numberOrEmpty from '../../lib/numberOrEmpty';
 import FontSizeField from '../../components/forms/FontSizeField';
+import NumberField from '../../components/forms/NumberField';
+import SelectField from '../../components/forms/SelectField';
+import stringMapToOptions from '../../components/forms/stringMapToOptions';
 
 export interface CustomizeAftbFormProps {
   onBeforePrint: (data: AftbData) => boolean,
@@ -83,39 +86,22 @@ function CustomizeAftbForm({
       name="Worksheet"
       error={errorMessage}
     >
-      <FieldSet>
-        <TextField
-          type="number"
-          name="problems"
-          id="input-problems"
-          label="Number of Problems"
-          InputLabelProps={{ shrink: true }}
-          fullWidth
-          variant="outlined"
-          value={numberOrEmpty(data.problems)}
-          onChange={changeHandler('problems')}
-        />
-      </FieldSet>
-      <FieldSet
+      <NumberField
+        name="problems"
+        id="input-problems"
+        label="Number of Problems"
+        value={numberOrEmpty(data.problems)}
+        onChange={changeHandler('problems')}
+      />
+      <SelectField
         label="Problem Generation"
         id="select-problem-generation"
+        name="problemGeneration"
+        value={data.problemGeneration}
+        onChange={changeProblemGeneration}
       >
-        <Select
-          native
-          name="problemGeneration"
-          id="select-problem-generation"
-          fullWidth
-          variant="filled"
-          value={data.problemGeneration}
-          onChange={changeProblemGeneration}
-        >
-          {
-            Array.from(problemGenerations.entries()).map(([value, label]) => (
-              <option key={value} value={value}>{label}</option>
-            ))
-          }
-        </Select>
-      </FieldSet>
+        {stringMapToOptions(problemGenerations)}
+      </SelectField>
       {
         data.problemGeneration === 'single range'
           ? (
@@ -177,27 +163,27 @@ function CustomizeAftbForm({
           : null
       }
 
-      <FieldSet
+      <SelectField
         label="Blank"
         id="select-blank-position-strategy"
+        name="blankStrategy"
+        value={data.blankStrategy}
+        onChange={changeBlankStrategy}
       >
-        <Select
-          native
-          name="blankStrategy"
-          id="select-blank-position-strategy"
-          fullWidth
-          variant="filled"
-          value={data.blankStrategy}
-          onChange={changeBlankStrategy}
-        >
-          {
-            Array.from(blankTypesStrategies.entries()).map(([value, label]) => (
-              <option key={value} value={value}>{label}</option>
-            ))
-          }
-        </Select>
-      </FieldSet>
+        {stringMapToOptions(blankTypesStrategies)}
+      </SelectField>
+
       <Divider variant="middle" />
+      <NumberField
+        label="Columns"
+        id="input-columns"
+        name="columns"
+        value={data.columns}
+        onChange={changeHandler('columns')}
+        min={1}
+        max={10}
+      />
+
       <FontSizeField
         value={data.fontSize}
         onChange={changeHandler('fontSize')}

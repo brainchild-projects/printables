@@ -12,8 +12,10 @@ declare namespace Cypress {
     mmToPixel(mmLength: number): Chainable<number>;
     shouldHaveMmLength(mmLength: number): Chainable<Subject>;
     shouldHaveFontSize(size: number): Chainable<Subject>;
+    shouldHaveColumns(count: number): Chainable<Subject>;
     reactComponent(fn?: (prevSubject: Subject) => void): Chainable<Subject>;
     setNumberRange(id: string, min: number, max: number): Chainable<Subject>;
     findPaperPage(page: number): Chainable<Subject>;
+    clearType(value: string): Chainable<Subject>;
   }
 }

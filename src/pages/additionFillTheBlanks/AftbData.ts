@@ -20,4 +20,5 @@ export default interface AftbData extends FontSizeData {
   problemGeneration: ProblemGeneration;
   customAddendsA: Range;
   customAddendsB: Range;
+  columns: number;
 }

@@ -13,6 +13,7 @@ describe('PreviewAftb', () => {
     customAddendsA: { from: 0, to: 9 },
     customAddendsB: { from: 0, to: 9 },
     fontSize: 20,
+    columns: 2,
   };
 
   describe('default behavior', () => {
