@@ -1,7 +1,7 @@
 it('can create fill in the blanks addition worksheets', () => {
   cy.visitAdditionFillTheBlanks();
 
-  cy.findByLabelText(/number of problems/i).clear().type('25');
+  cy.findByLabelText(/number of problems/i).clearType('25');
 
   cy.setNumberRange('single-range-slider', 2, 3);
 
@@ -24,7 +24,7 @@ it('can create fill in the blanks addition worksheets', () => {
   cy.setNumberRange('custom-addends-a-slider', 2, 3);
   cy.setNumberRange('custom-addends-b-slider', 4, 5);
   cy.findByLabelText('Blank').select('Sum');
-  cy.findByLabelText(/number of problems/i).clear().type('50');
+  cy.findByLabelText(/number of problems/i).clearType('50');
   cy.withinPreview(() => {
     cy.get('ol.problems').find('li').each(($li) => {
       cy.wrap($li).contains(/[23] \+ [45]|[45] \+ [23]/);

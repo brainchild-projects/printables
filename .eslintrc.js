@@ -103,6 +103,7 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'import/no-extraneous-dependencies': 'off',
         'promise/always-return': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off',
       },
     },
     {
