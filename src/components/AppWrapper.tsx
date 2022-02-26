@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
+import ScrollToTop from './ScrollToTop';
 
 const MainPage = lazy(() => import('../pages/main/MainPage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
@@ -36,6 +37,7 @@ function AppWrapper(): JSX.Element {
   const classes = styles();
   return (
     <Router basename={basePath}>
+      <ScrollToTop />
       <MuiThemeProvider theme={theme}>
         <BaseStyle />
         <PrintablesAppBar />
