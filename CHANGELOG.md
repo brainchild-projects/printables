@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.37](https://github.com/brainchild-projects/printables/compare/v0.0.36...v0.0.37) (2022-02-26)
+
+
+### Features
+
+* worksheet for place values ([4423a18](https://github.com/brainchild-projects/printables/commit/4423a180e2cec99444800645abab8c22d27b066e))
+
 ### [0.0.36](https://github.com/brainchild-projects/printables/compare/v0.0.35...v0.0.36) (2022-02-25)
 
 
