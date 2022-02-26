@@ -5,10 +5,12 @@ declare namespace Cypress {
     visitHome(): Chainable<AUTWindow>;
     visitAdditionFillTheBlanks(): Chainable<AUTWindow>;
     visitWorksheetPatterns(): Chainable<AUTWindow>;
+    visitWorksheetPlaceValues(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {
     withinPreview(fn: (currentSubject: Subject) => void): Chainable<Subject>;
+    withinCustomizeForm(fn: (currentSubject: Subject) => void): Chainable<Subject>;
     mmToPixel(mmLength: number): Chainable<number>;
     shouldHaveMmLength(mmLength: number): Chainable<Subject>;
     shouldHaveFontSize(size: number): Chainable<Subject>;

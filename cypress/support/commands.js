@@ -31,6 +31,7 @@ const paths = {
   calendar: '/calendar',
   additionFillTheBlanks: '/addition-fill-the-blanks',
   worksheetPatterns: '/worksheet-patterns',
+  worksheetPlaceValues: '/worksheet-place-values',
 };
 
 const pathNames = Object.keys(paths);
@@ -46,6 +47,11 @@ for (const name of pathNames) {
 Cypress.Commands.add(
   'withinPreview',
   (callback) => cy.findByRole('region', { name: /preview/i }).within(callback),
+);
+
+Cypress.Commands.add(
+  'withinCustomizeForm',
+  (callback) => cy.findByRole('region', { name: /customize form/i }).within(callback),
 );
 
 Cypress.Commands.add(

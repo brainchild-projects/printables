@@ -40,20 +40,6 @@ const pageStyles = makeStyles(() => ({
       content: 'counter(problem) "."',
       fontSize: '0.8em', // 16px
     },
-
-    '& .problem-blank': {
-      borderBottom: '0.1em solid', // 2px
-      paddingLeft: '0.2em', // 1mm
-      paddingRight: '0.2em', // 1mm
-
-      display: 'inline-block',
-      minWidth: '1.6em', // 32px
-      textAlign: 'center',
-    },
-
-    '& .underline': {
-      color: 'transparent',
-    },
   },
 }));
 

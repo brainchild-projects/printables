@@ -11,7 +11,7 @@ const defaultPatternsData: PatternsData = {
 
 function PatternsPage(): JSX.Element | null {
   const [data, setData] = useState<PatternsData | null>(defaultPatternsData);
-  const dataStore = LocalStore.create<PatternsData>('patterns');
+  const dataStore = LocalStore.createCached<PatternsData>('patterns');
   const onChange = (updatedData: PatternsData): void => {
     const updated = { ...data, ...updatedData };
     dataStore.set(updated);
@@ -21,8 +21,8 @@ function PatternsPage(): JSX.Element | null {
   useEffect(() => {
     const savedData = dataStore.get();
     setData(savedData || defaultPatternsData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataStore]);
 
   if (data === null) {
     return null;

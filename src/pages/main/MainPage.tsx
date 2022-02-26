@@ -43,6 +43,10 @@ const worksheetlinks: NavigationLink[] = [
     path: '/worksheet-patterns',
     text: 'Patterns',
   },
+  {
+    path: '/worksheet-place-values',
+    text: 'Place Values',
+  },
 ];
 
 function MainPage(): JSX.Element {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Blank from '../../components/Blank';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import roundRobinRange from '../../lib/roundRobinRange';
 import Addition from './Addition';
@@ -47,30 +48,10 @@ interface BlankOrNumberProps {
   value: number;
 }
 
-const underlines = (length: number): string => {
-  let str = '_';
-  for (let i = 0; i < length; i++) {
-    str += '_';
-  }
-  return str;
-};
-
 function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
   return function bOrNg({ value, expected }: BlankOrNumberProps): JSX.Element {
     return blank === expected
-      ? (
-        <span className="problem-blank">
-          {
-            showAnswer
-              ? value
-              : (
-                <span className="underline">
-                  {underlines(value.toString().length)}
-                </span>
-              )
-          }
-        </span>
-      )
+      ? (<Blank answer={value} showAnswer={showAnswer} />)
       // eslint-disable-next-line react/jsx-no-useless-fragment
       : (<>{value}</>);
   };

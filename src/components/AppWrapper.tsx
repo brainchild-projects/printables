@@ -8,6 +8,7 @@ const MainPage = lazy(() => import('../pages/main/MainPage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
 const AdditionFillTheBlanksPage = lazy(() => import('../pages/additionFillTheBlanks/AdditionFillTheBlanksPage'));
 const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
+const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 
 const { NODE_ENV, PUBLIC_URL } = process.env;
 
@@ -44,6 +45,7 @@ function AppWrapper(): JSX.Element {
             <Route path="/calendar" element={<CalendarPage />} />
             <Route path="/addition-fill-the-blanks" element={<AdditionFillTheBlanksPage />} />
             <Route path="/worksheet-patterns" element={<PatternsPage />} />
+            <Route path="/worksheet-place-values" element={<PlaceValuesPage />} />
           </Routes>
         </main>
       </MuiThemeProvider>
