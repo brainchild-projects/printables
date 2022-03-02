@@ -5,6 +5,10 @@ import {
 import AppWrapper from './AppWrapper';
 
 describe('App', () => {
+  beforeEach(() => {
+    window.scrollTo = jest.fn();
+  });
+
   it('should show site name', async () => {
     render(
       <Suspense fallback="loading app">
