@@ -1,38 +1,43 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import CustomizeCalendarForm from './CustomizeCalendarForm';
 import CalendarData from './CalendarData';
 import PreviewCalendar from './PreviewCalendar';
 import PrintableUI from '../../components/PrintableUI';
-import LocalStore from '../../lib/LocalStore';
+import usePageState from '../usePageState';
 
-function CalendarPage(): JSX.Element | null {
+const dataKey = 'calendar';
+function CalendarPage(): JSX.Element {
   const now = new Date();
-  const calendarDataStore = LocalStore.create<CalendarData>('calendar');
-  const [calendarData, setCalendarData] = useState<CalendarData | null>(null);
-  const onPrint = (data: CalendarData): boolean => {
-    setCalendarData({ ...data });
-    return true;
+  const nowLast = {
+    year: now.getFullYear(),
+    month: now.getMonth(),
+    date: now.getDate(),
   };
-  const onChange = (data: CalendarData): void => {
-    calendarDataStore.set(data);
-    setCalendarData({ ...data });
-  };
+  const { data, onChange } = usePageState<CalendarData>({
+    key: dataKey,
+    defaultData: {
+      year: nowLast.year,
+      month: nowLast.month,
+      lastLoadedDay: nowLast,
+    },
+  });
 
+  const { date, month, year } = data.lastLoadedDay;
   useEffect(() => {
-    const savedData = calendarDataStore.get();
-    setCalendarData(savedData || {
-      year: now.getFullYear(),
-      month: now.getMonth(),
-    } as CalendarData);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (calendarData === null) {
-    return null;
-  }
+    if (
+      date !== nowLast.date
+      || month !== nowLast.month
+      || year !== nowLast.year
+    ) {
+      onChange({
+        ...data,
+        year: nowLast.year,
+        month: nowLast.month,
+        lastLoadedDay: nowLast,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nowLast.date, nowLast.year, date, month, year]);
 
   return (
     <PrintableUI
@@ -42,13 +47,12 @@ function CalendarPage(): JSX.Element | null {
       customizeForm={(
         <CustomizeCalendarForm
           now={now}
-          onBeforePrint={onPrint}
           onChange={onChange}
-          initialData={calendarData}
+          data={data}
         />
       )}
     >
-      <PreviewCalendar calendarData={calendarData} />
+      <PreviewCalendar calendarData={data} />
     </PrintableUI>
   );
 }

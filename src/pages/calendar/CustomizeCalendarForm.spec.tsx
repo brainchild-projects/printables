@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CustomizeCalendarForm from './CustomizeCalendarForm';
+import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm';
 import stubPrint from '../../testing/stubPrint';
+import CalendarData from './CalendarData';
 
 function randomInt(minIn: number, maxIn: number): number {
   const min = Math.floor(minIn);
@@ -10,9 +11,22 @@ function randomInt(minIn: number, maxIn: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-interface CalendarData {
-  month: number;
-  year: number;
+type FormWrapperProps = CustomizeCalendarFormProps;
+
+// This is for making sure that data changes are "persisted"
+function FormWrapper({ data: initialData, now, onChange }: FormWrapperProps): JSX.Element {
+  const [data, setData] = useState<CalendarData>(initialData);
+
+  return (
+    <CustomizeCalendarForm
+      data={data}
+      now={now}
+      onChange={(updated) => {
+        setData(updated);
+        onChange(updated);
+      }}
+    />
+  );
 }
 
 describe('CustomizeCalendarForm', () => {
@@ -21,20 +35,27 @@ describe('CustomizeCalendarForm', () => {
   describe('defaults', () => {
     let year: number;
     let month: number;
-    let onPrint: (data: CalendarData) => boolean;
+    let initialData: CalendarData;
     let onChange: (data: CalendarData) => void;
 
     beforeEach(() => {
-      year = randomInt(2000, 2030);
+      year = randomInt(2020, 2030);
       month = randomInt(0, 11);
       const now = new Date(year, month);
-      onPrint = jest.fn(() => true);
       onChange = jest.fn();
+      initialData = {
+        year,
+        month,
+        lastLoadedDay: {
+          month,
+          year,
+          date: 1,
+        },
+      };
       return render(
-        <CustomizeCalendarForm
-          initialData={{ year, month }}
+        <FormWrapper
+          data={initialData}
           now={now}
-          onBeforePrint={onPrint}
           onChange={onChange}
         />,
       );
@@ -50,24 +71,14 @@ describe('CustomizeCalendarForm', () => {
       expect(monthSelect).toHaveValue(month.toString());
     });
 
-    it('sends calendar data to callback', () => {
-      userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
-      expect(onPrint).toHaveBeenCalledWith({ year, month });
-    });
-
     describe('when the values are changed', () => {
       beforeEach(() => {
-        userEvent.selectOptions(screen.getByLabelText('Year'), '2020');
+        userEvent.selectOptions(screen.getByLabelText('Year'), '2031');
         userEvent.selectOptions(screen.getByLabelText('Month'), 'February');
       });
 
       it('sends calendar data to onChange callback', () => {
-        expect(onChange).toHaveBeenCalledWith({ year: 2020, month: 1 });
-      });
-
-      it('sends calendar data to callback', () => {
-        userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
-        expect(onPrint).toHaveBeenCalledWith({ year: 2020, month: 1 });
+        expect(onChange).toHaveBeenCalledWith({ ...initialData, year: 2031, month: 1 });
       });
     });
   });

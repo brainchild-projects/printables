@@ -10,7 +10,6 @@ import stubPrint from '../../testing/stubPrint';
 describe('CustomizeAftbForm', () => {
   stubPrint();
 
-  let onBeforePrint: (data: AftbData) => boolean;
   let onChange: (data: AftbData) => void;
   const initialData: AftbData = {
     rangeFrom: 0,
@@ -25,11 +24,9 @@ describe('CustomizeAftbForm', () => {
   };
 
   beforeEach(() => {
-    onBeforePrint = jest.fn(() => true);
     onChange = jest.fn();
     return render(
       <CustomizeAftbForm
-        onBeforePrint={onBeforePrint}
         onChange={onChange}
         initialData={initialData}
       />,
@@ -83,17 +80,6 @@ describe('CustomizeAftbForm', () => {
       fillOutInputField(field, value);
     });
   };
-
-  it('sends data to onBeforePrint callback', () => {
-    userEvent.click(screen.getByRole('button', { name: /print[^\w]/i }));
-    expect(onBeforePrint).toHaveBeenCalledWith({
-      ...initialData,
-      rangeFrom: 0,
-      rangeTo: 9,
-      problems: 10,
-      blankStrategy: 'sum',
-    });
-  });
 
   describe('when values are changed', () => {
     beforeEach(() => {

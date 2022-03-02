@@ -1,12 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import CalendarData from './CalendarData';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import SelectField from '../../components/forms/SelectField';
 
 export interface CustomizeCalendarFormProps {
-  initialData: CalendarData,
+  data: CalendarData,
   now: Date,
-  onBeforePrint: (data: CalendarData) => boolean,
   onChange: (data: CalendarData) => void,
 }
 
@@ -37,23 +36,20 @@ function yearOptions(year: number): JSX.Element[] {
 
 function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
   const {
-    now, initialData, onBeforePrint: onPrint, onChange,
+    now, data, onChange,
   } = props;
   const currentYear = now.getFullYear();
-  const [data, setData] = useState<CalendarData>(initialData);
 
   const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
     const updated = {
       ...data,
       [field]: Number.parseInt(event.target.value as string, 10),
     };
-    setData(updated);
     onChange(updated);
   };
 
   return (
     <CustomizeForm
-      onBeforePrint={() => onPrint(data)}
       name="Calendar"
     >
       <SelectField

@@ -50,4 +50,17 @@ it('can create a calendar', () => {
       });
     });
   });
+
+  // TODO: 2022-03-02 - The following spec fails because there's a bug with tick and clock
+  // See: https://github.com/cypress-io/cypress/issues/7834
+  //
+  // New day comes
+  // cy.clock(Date.parse('July 10, 2021'));
+  // void cy.tick(3600 * 1000 * 48).then(() => {
+  //   cy.visitHome();
+  //   cy.visitCalendar();
+  //   return cy.withinPreview(() => {
+  //     cy.contains('July 2021');
+  //   });
+  // });
 });

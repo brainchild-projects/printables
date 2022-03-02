@@ -35,7 +35,7 @@ const calendarFormStyles = makeStyles((theme) => ({
 }));
 
 interface CustomizeFormProps {
-  onBeforePrint: () => boolean;
+  onBeforePrint?: () => boolean;
   name: string;
   children: ReactNode;
   error?: string | null,
@@ -76,7 +76,7 @@ function generatePDF(name: string, options: PaperOptions): void {
 }
 
 function CustomizeForm({
-  onBeforePrint, name, children, error = null,
+  onBeforePrint = () => true, name, children, error = null,
 }: CustomizeFormProps): JSX.Element {
   const classes = calendarFormStyles();
   const { options, setOptions } = usePaperOptions();
@@ -242,6 +242,7 @@ function CustomizeForm({
 
 CustomizeForm.defaultProps = {
   error: null,
+  onBeforePrint: () => true,
 };
 
 export default CustomizeForm;

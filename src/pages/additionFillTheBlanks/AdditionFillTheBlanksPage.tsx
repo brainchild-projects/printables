@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PrintableUI from '../../components/PrintableUI';
-import LocalStore from '../../lib/LocalStore';
+import usePageState from '../usePageState';
 import AftbData from './AftbData';
 import CustomizeAftbForm from './CustomizeAftbForm';
 import PreviewAftb from './PreviewAftb';
@@ -17,25 +17,13 @@ const defaultAftbData = {
   columns: 2,
 } as AftbData;
 
-function AdditionFillTheBlanksPage(): JSX.Element | null {
-  const [aftbData, setAftbData] = useState<AftbData | null>(null);
-  const onPrint = () => true;
-  const aftbDataStore = LocalStore.create<AftbData>('aftbData');
-  const onChange = (data: AftbData): void => {
-    const updated = { ...aftbData, ...data };
-    aftbDataStore.set(updated);
-    setAftbData(updated);
-  };
+const dataKey = 'aftbData';
 
-  useEffect(() => {
-    const savedData = aftbDataStore.get();
-    setAftbData(savedData || defaultAftbData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (aftbData === null) {
-    return null;
-  }
+function AdditionFillTheBlanksPage(): JSX.Element {
+  const { data, onChange } = usePageState<AftbData>({
+    key: dataKey,
+    defaultData: defaultAftbData,
+  });
 
   return (
     <PrintableUI
@@ -43,13 +31,12 @@ function AdditionFillTheBlanksPage(): JSX.Element | null {
       optionsKey="aftb"
       customizeForm={(
         <CustomizeAftbForm
-          onBeforePrint={onPrint}
           onChange={onChange}
-          initialData={aftbData}
+          initialData={data}
         />
       )}
     >
-      <PreviewAftb aftbData={aftbData} />
+      <PreviewAftb aftbData={data} />
     </PrintableUI>
   );
 }

@@ -26,6 +26,11 @@ describe('PreviewCalendar', () => {
       calendarData = {
         year: 2022,
         month: 6,
+        lastLoadedDay: {
+          year: 2022,
+          month: 6,
+          date: 1,
+        },
       };
       render(<PreviewCalendar calendarData={calendarData} />);
     });
@@ -98,6 +103,11 @@ describe('PreviewCalendar', () => {
         const theCalendarData = {
           year: date.getFullYear(),
           month: date.getMonth(),
+          lastLoadedDay: {
+            year: date.getFullYear(),
+            month: date.getMonth(),
+            date: 1,
+          },
         };
         render(<PreviewCalendar calendarData={theCalendarData} />);
       });

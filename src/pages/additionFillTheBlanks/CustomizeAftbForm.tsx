@@ -12,7 +12,6 @@ import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 
 export interface CustomizeAftbFormProps {
-  onBeforePrint: (data: AftbData) => boolean,
   onChange: (data: AftbData) => void,
   initialData: AftbData,
 }
@@ -32,7 +31,7 @@ function changeSelect<T>(callback: ChangeSelectCallback<T>) {
 }
 
 function CustomizeAftbForm({
-  onBeforePrint, onChange,
+  onChange,
   initialData,
 }: CustomizeAftbFormProps): JSX.Element {
   const [data, setData] = useState<AftbData>(initialData);
@@ -82,7 +81,6 @@ function CustomizeAftbForm({
 
   return (
     <CustomizeForm
-      onBeforePrint={() => onBeforePrint(data)}
       name="Worksheet"
       error={errorMessage}
     >

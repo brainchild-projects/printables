@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PrintableUI from '../../components/PrintableUI';
-import LocalStore from '../../lib/LocalStore';
+import usePageState from '../usePageState';
 import CustomizePatternsForm from './CustomizePatternsForm';
 import PatternsData from './PatternsData';
 import PreviewPatterns from './PreviewPatterns';
@@ -8,30 +8,17 @@ import PreviewPatterns from './PreviewPatterns';
 const defaultPatternsData: PatternsData = {
   count: 10,
 };
+const dataKey = 'patterns';
 
-function PatternsPage(): JSX.Element | null {
-  const [data, setData] = useState<PatternsData | null>(defaultPatternsData);
-  const dataStore = LocalStore.createCached<PatternsData>('patterns');
-  const onChange = (updatedData: PatternsData): void => {
-    const updated = { ...data, ...updatedData };
-    dataStore.set(updated);
-    setData(updated);
-  };
-
-  useEffect(() => {
-    const savedData = dataStore.get();
-    setData(savedData || defaultPatternsData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataStore]);
-
-  if (data === null) {
-    return null;
-  }
+function PatternsPage(): JSX.Element {
+  const { data, onChange } = usePageState<PatternsData>({
+    key: dataKey, defaultData: defaultPatternsData,
+  });
 
   return (
     <PrintableUI
       title="Patterns"
-      optionsKey="patterns"
+      optionsKey={dataKey}
       customizeForm={(
         <CustomizePatternsForm
           onBeforePrint={() => true}
