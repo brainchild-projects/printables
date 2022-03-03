@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import CalendarData from './CalendarData';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import SelectField from '../../components/forms/SelectField';
@@ -40,10 +40,10 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
   } = props;
   const currentYear = now.getFullYear();
 
-  const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
+  const changeHandler = (field: string) => (value: string) => {
     const updated = {
       ...data,
-      [field]: Number.parseInt(event.target.value as string, 10),
+      [field]: Number.parseInt(value, 10),
     };
     onChange(updated);
   };
@@ -53,8 +53,6 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
       name="Calendar"
     >
       <SelectField
-        label="Year"
-        id="select-year"
         name="year"
         value={data.year}
         onChange={changeHandler('year')}
@@ -63,8 +61,6 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
       </SelectField>
 
       <SelectField
-        label="Month"
-        id="select-month"
         name="month"
         value={data.month}
         onChange={changeHandler('month')}

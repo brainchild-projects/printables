@@ -1,5 +1,5 @@
 import React from 'react';
-import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import SelectField from './SelectField';
 
 const fontSizes = [
@@ -9,7 +9,7 @@ const fontSizes = [
 interface FontSizeFieldProps {
   id?: string;
   name?: string;
-  onChange: SelectInputProps['onChange'];
+  onChange: (value: number, event: HtmlFieldChangeEvent) => void;
   value: number;
 }
 
@@ -22,7 +22,9 @@ function FontSizeField({
       id={id}
       name={name}
       value={value}
-      onChange={onChange}
+      onChange={(val, e) => {
+        onChange(Number.parseInt(val, 10), e);
+      }}
     >
       {
         Array.from(fontSizes.values()).map((size) => (

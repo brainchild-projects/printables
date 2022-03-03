@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, {
-  ReactNode, FormEvent, ChangeEvent, useState,
+  ReactNode, FormEvent, useState,
 } from 'react';
 import html2pdf from 'html2pdf.js';
 import {
@@ -109,22 +109,20 @@ function CustomizeForm({
     }
   };
 
-  const onChangePaperSize = (event: ChangeEvent<{ value: unknown }>) => {
-    const sizeName = event.target.value as string;
+  const onChangePaperSize = (sizeName: string) => {
     setOptions({
       ...options,
       paperSize: getPaperSizeFromName(sizeName),
     });
   };
 
-  const onChangeOrientation = (event: ChangeEvent<{ value: unknown }>) => {
-    const orientation = event.target.value as string;
+  const onChangeOrientation = (orientation: string) => {
     if (orientation !== 'portrait' && orientation !== 'landscape') {
       throw Error(`Unknown orientation ${orientation}`);
     }
     setOptions({
       ...options,
-      orientation: event.target.value as Orientation,
+      orientation: orientation as Orientation,
     });
   };
 
@@ -146,8 +144,6 @@ function CustomizeForm({
             Print Options
           </Typography>
           <SelectField
-            label="Paper Size"
-            id="select-paper-size"
             name="paperSize"
             value={options.paperSize.name}
             onChange={onChangePaperSize}
@@ -160,8 +156,6 @@ function CustomizeForm({
           </SelectField>
 
           <SelectField
-            label="Orientation"
-            id="select-paper-orientation"
             name="paperOrientation"
             value={options.orientation}
             onChange={onChangeOrientation}

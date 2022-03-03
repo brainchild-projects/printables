@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
@@ -32,21 +32,17 @@ function CustomizePlaceValuesForm({
     >
       <NumberField
         name="count"
-        id="input-place-values-count"
         label="Number of Problems"
         value={numberOrEmpty(data.count)}
-        onChange={(event: ChangeEvent<{ value: unknown; }>) => {
-          const count = Number.parseInt(event.target.value as string, 10);
+        onChange={(count) => {
           updateData({ ...data, count });
         }}
       />
       <SelectField
         name="magnitude"
-        id="select-magnitude"
-        label="Magnitude"
         value={data.magnitude}
-        onChange={(event) => {
-          updateData({ ...data, magnitude: event.target.value as string });
+        onChange={(value) => {
+          updateData({ ...data, magnitude: value });
         }}
       >
         {stringMapToOptions(magnitudes)}

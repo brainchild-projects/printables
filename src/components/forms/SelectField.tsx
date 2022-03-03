@@ -1,13 +1,15 @@
 import Select from '@material-ui/core/Select';
-import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
 import React from 'react';
+import generateId from '../../lib/generateId';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
+import titleize from '../../lib/titlelize';
 import FieldSet from './FieldSet';
 
 interface SelectFieldProps {
-  id: string;
+  id?: string;
   name: string;
-  label: string;
-  onChange: SelectInputProps['onChange'];
+  label?: string;
+  onChange: (value: string, event: HtmlFieldChangeEvent) => void;
   value: unknown;
   children?: React.ReactNode;
 }
@@ -15,19 +17,23 @@ interface SelectFieldProps {
 function SelectField({
   id, name, label, onChange, value, children,
 }: SelectFieldProps): JSX.Element {
+  const theId = id ?? generateId('select', name);
+  const theLabel = label ?? titleize(name);
   return (
     <FieldSet
-      label={label}
-      id={id}
+      label={theLabel}
+      id={theId}
     >
       <Select
         native
         name={name}
-        id={id}
+        id={theId}
         fullWidth
         variant="filled"
         value={value}
-        onChange={onChange}
+        onChange={(event) => {
+          onChange(event.target.value as string, event as HtmlFieldChangeEvent);
+        }}
       >
         {children}
       </Select>
@@ -37,6 +43,8 @@ function SelectField({
 
 SelectField.defaultProps = {
   children: null,
+  id: null,
+  label: null,
 };
 
 export default SelectField;

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
@@ -21,14 +21,6 @@ const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
   ['addends', 'Addends'],
   ['random', 'Random'],
 ]);
-
-type ChangeSelectCallback<T> = (value: T, event: ChangeEvent<{ value: unknown }>) => void;
-function changeSelect<T>(callback: ChangeSelectCallback<T>) {
-  return (event: ChangeEvent<{ value: unknown }>) => {
-    const value = event.target.value as T;
-    callback(value, event);
-  };
-}
 
 function CustomizeAftbForm({
   onChange,
@@ -57,22 +49,21 @@ function CustomizeAftbForm({
     setData(updated);
   };
 
-  const changeBlankStrategy = changeSelect<BlankPositionStrategy>((strategy) => {
+  const changeBlankStrategy = (value: unknown) => {
     updateData({
       ...data,
-      blankStrategy: strategy,
+      blankStrategy: value as BlankPositionStrategy,
     });
-  });
+  };
 
-  const changeProblemGeneration = changeSelect<ProblemGeneration>((problemGeneration) => {
+  const changeProblemGeneration = (value: unknown) => {
     updateData({
       ...data,
-      problemGeneration,
+      problemGeneration: value as ProblemGeneration,
     });
-  });
+  };
 
-  const changeHandler = (field: string) => (event: ChangeEvent<{ value: unknown, }>) => {
-    const value = Number.parseInt(event.target.value as string, 10);
+  const changeHandler = (field: string) => (value: number) => {
     updateData({
       ...data,
       [field]: value,
@@ -86,14 +77,11 @@ function CustomizeAftbForm({
     >
       <NumberField
         name="problems"
-        id="input-problems"
         label="Number of Problems"
         value={numberOrEmpty(data.problems)}
         onChange={changeHandler('problems')}
       />
       <SelectField
-        label="Problem Generation"
-        id="select-problem-generation"
         name="problemGeneration"
         value={data.problemGeneration}
         onChange={changeProblemGeneration}
@@ -110,7 +98,7 @@ function CustomizeAftbForm({
                 to={data.rangeTo}
                 id="single-range-slider"
                 data-test="single-range-slider"
-                onChange={(event, { from, to }) => {
+                onChange={({ from, to }) => {
                   updateData({
                     ...data,
                     rangeFrom: from,
@@ -133,7 +121,7 @@ function CustomizeAftbForm({
                   to={data.customAddendsA.to}
                   id="custom-addends-a-slider"
                   data-test="custom-addends-a-slider"
-                  onChange={(event, { from, to }) => {
+                  onChange={({ from, to }) => {
                     updateData({
                       ...data,
                       customAddendsA: { from, to },
@@ -148,7 +136,7 @@ function CustomizeAftbForm({
                   to={data.customAddendsB.to}
                   id="custom-addends-b-slider"
                   data-test="custom-addends-b-slider"
-                  onChange={(event, { from, to }) => {
+                  onChange={({ from, to }) => {
                     updateData({
                       ...data,
                       customAddendsB: { from, to },
@@ -163,7 +151,6 @@ function CustomizeAftbForm({
 
       <SelectField
         label="Blank"
-        id="select-blank-position-strategy"
         name="blankStrategy"
         value={data.blankStrategy}
         onChange={changeBlankStrategy}
@@ -173,8 +160,6 @@ function CustomizeAftbForm({
 
       <Divider variant="middle" />
       <NumberField
-        label="Columns"
-        id="input-columns"
         name="columns"
         value={data.columns}
         onChange={changeHandler('columns')}

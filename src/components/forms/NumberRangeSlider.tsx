@@ -3,6 +3,7 @@ import {
   Slider, Typography, makeStyles, Grid, FormControl, TextField,
 } from '@material-ui/core';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import './NumberRangeSlider.css';
 
 const valueScale = (x: number): number => {
@@ -44,7 +45,7 @@ interface Range {
   to: number;
 }
 
-export type NumberRangeChangeCallback = (event: React.ChangeEvent<unknown>, value: Range) => void;
+export type NumberRangeChangeCallback = (value: Range, event: HtmlFieldChangeEvent) => void;
 
 interface NumberRangeSliderProps extends Range {
   label: string;
@@ -53,7 +54,7 @@ interface NumberRangeSliderProps extends Range {
   'data-test'?: string;
 }
 
-type ChangeHanlder = (event: ChangeEvent<unknown>, value: number | number[]) => void;
+type ChangeHanlder = (value: number | number[], event: HtmlFieldChangeEvent) => void;
 type InputChangeCallback = (value: number) => Range;
 type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 type InputChangeHandlerBuilder = (callback: InputChangeCallback) => InputChangeHandler;
@@ -64,12 +65,12 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     from, to, label, onChange, id,
   } = options;
   const labelId = `${id}-label`;
-  const changeHandler: ChangeHanlder = (event, value) => {
+  const changeHandler: ChangeHanlder = (value, event) => {
     const [rangeFrom, rangeTo] = value as number[];
     const calcFrom = valueScale(rangeFrom);
     const calcTo = valueScale(rangeTo);
     if ((calcFrom !== from || calcTo !== to) && (calcFrom <= calcTo)) {
-      onChange(event, { from: calcFrom, to: calcTo });
+      onChange({ from: calcFrom, to: calcTo }, event);
     }
   };
 
@@ -78,7 +79,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     if (value !== '') {
       const updated = callback(Number.parseInt(value, 10));
       if (updated.from <= updated.to) {
-        onChange(event, updated);
+        onChange(updated, event);
       }
     }
   };
@@ -137,7 +138,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         id={labelId}
         className={classes.label}
       >
-        { label }
+        {label}
       </Typography>
 
       <Grid container spacing={2} alignItems="center" className={classes.inputGrid}>
@@ -211,7 +212,9 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
           },
         ]}
         scale={valueScale}
-        onChange={changeHandler}
+        onChange={(event, value) => {
+          changeHandler(value, event as HtmlFieldChangeEvent);
+        }}
         valueLabelDisplay="off"
       />
     </div>

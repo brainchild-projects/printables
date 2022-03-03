@@ -1,34 +1,43 @@
-import { InputProps } from '@material-ui/core/Input/Input';
 import TextField from '@material-ui/core/TextField';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import generateId from '../../lib/generateId';
+import parseEventValueAsFloat from '../../lib/parseEventValueAsFloat';
+import parseEventValueAsInt from '../../lib/parseEventValueAsInt';
+import titleize from '../../lib/titlelize';
 import FieldSet from './FieldSet';
 
 interface NumberFieldProps {
-  id: string;
   name: string;
-  label: string;
-  onChange: InputProps['onChange'];
+  id?: string;
+  label?: string;
+  onChange: (value: number, event: ChangeEvent) => void;
   value: unknown;
   min?: number;
   max?: number;
   step?: number;
+  integer?: boolean;
 }
 
 function NumberField({
-  id, name, label, onChange, value, min, max, step,
+  id, name, label, onChange, value, min, max, step, integer,
 }: NumberFieldProps): JSX.Element {
+  const theId = id ?? generateId('input-number', name);
+  const theLabel = label ?? titleize(name);
   return (
     <FieldSet>
       <TextField
         type="number"
         name={name}
-        id={id}
-        label={label}
+        id={theId}
+        label={theLabel}
         InputLabelProps={{ shrink: true }}
         fullWidth
         variant="outlined"
         value={value}
-        onChange={onChange}
+        onChange={(e) => {
+          const val: number = integer ? parseEventValueAsInt(e) : parseEventValueAsFloat(e);
+          onChange(val, e);
+        }}
         inputProps={{
           min, max, step,
         }}
@@ -41,6 +50,9 @@ NumberField.defaultProps = {
   min: null,
   max: null,
   step: null,
+  id: null,
+  label: null,
+  integer: false,
 };
 
 export default NumberField;

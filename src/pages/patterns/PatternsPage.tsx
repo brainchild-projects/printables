@@ -21,9 +21,8 @@ function PatternsPage(): JSX.Element {
       optionsKey={dataKey}
       customizeForm={(
         <CustomizePatternsForm
-          onBeforePrint={() => true}
           onChange={onChange}
-          initialData={data}
+          data={data}
         />
       )}
     >
