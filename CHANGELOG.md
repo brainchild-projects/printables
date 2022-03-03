@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.38](https://github.com/brainchild-projects/printables/compare/v0.0.37...v0.0.38) (2022-03-03)
+
+
+### Bug Fixes
+
+* scroll to top when moving between pages ([3369d7d](https://github.com/brainchild-projects/printables/commit/3369d7d6cbd59c594bdb1f1b0955b3ec74bcb7e8)), closes [#46](https://github.com/brainchild-projects/printables/issues/46)
+* scrollTo failing lint ([fcebe56](https://github.com/brainchild-projects/printables/commit/fcebe566569d12dc5131fe9630aa1d34722e4e2c))
+* spec failing for window.scrollTo ([b9e2893](https://github.com/brainchild-projects/printables/commit/b9e289358c6a0d6a3e0a48f606c955542288c0a5))
+
 ### [0.0.37](https://github.com/brainchild-projects/printables/compare/v0.0.36...v0.0.37) (2022-02-26)
 
 
