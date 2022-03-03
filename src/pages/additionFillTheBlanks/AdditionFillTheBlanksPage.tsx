@@ -32,7 +32,7 @@ function AdditionFillTheBlanksPage(): JSX.Element {
       customizeForm={(
         <CustomizeAftbForm
           onChange={onChange}
-          initialData={data}
+          data={data}
         />
       )}
     >

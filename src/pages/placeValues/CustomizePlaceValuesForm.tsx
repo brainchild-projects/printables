@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
@@ -12,19 +12,12 @@ const magnitudes: Map<string, string> = new Map([
 
 interface CustomizePlaceValuesFormProps {
   onChange: (data: PlaceValuesData) => void;
-  initialData: PlaceValuesData;
+  data: PlaceValuesData;
 }
 
 function CustomizePlaceValuesForm({
-  initialData, onChange,
+  data, onChange,
 }: CustomizePlaceValuesFormProps): JSX.Element {
-  const [data, setData] = useState<PlaceValuesData>(initialData);
-
-  const updateData = (updated: PlaceValuesData): void => {
-    setData(updated);
-    onChange(updated);
-  };
-
   return (
     <CustomizeForm
       onBeforePrint={() => true}
@@ -34,16 +27,12 @@ function CustomizePlaceValuesForm({
         name="count"
         label="Number of Problems"
         value={numberOrEmpty(data.count)}
-        onChange={(count) => {
-          updateData({ ...data, count });
-        }}
+        onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField
         name="magnitude"
         value={data.magnitude}
-        onChange={(value) => {
-          updateData({ ...data, magnitude: value });
-        }}
+        onChange={(value) => onChange({ ...data, magnitude: value })}
       >
         {stringMapToOptions(magnitudes)}
       </SelectField>

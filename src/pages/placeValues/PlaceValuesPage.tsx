@@ -22,7 +22,7 @@ function PlaceValuesPage(): JSX.Element {
       customizeForm={(
         <CustomizePlaceValuesForm
           onChange={onChange}
-          initialData={data}
+          data={data}
         />
       )}
     >

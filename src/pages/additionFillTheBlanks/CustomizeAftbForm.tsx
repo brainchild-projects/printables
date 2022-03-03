@@ -13,7 +13,7 @@ import stringMapToOptions from '../../components/forms/stringMapToOptions';
 
 export interface CustomizeAftbFormProps {
   onChange: (data: AftbData) => void,
-  initialData: AftbData,
+  data: AftbData,
 }
 
 const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
@@ -24,10 +24,8 @@ const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
 
 function CustomizeAftbForm({
   onChange,
-  initialData,
+  data,
 }: CustomizeAftbFormProps): JSX.Element {
-  const [data, setData] = useState<AftbData>(initialData);
-
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const validate = ({ rangeFrom, rangeTo }: AftbData): string | null => {
@@ -46,7 +44,6 @@ function CustomizeAftbForm({
     if (!error) {
       onChange(updated);
     }
-    setData(updated);
   };
 
   const changeBlankStrategy = (value: unknown) => {

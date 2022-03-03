@@ -1,11 +1,28 @@
 /* eslint-disable testing-library/no-render-in-setup */
-import React from 'react';
+import React, { useState } from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CustomizeAftbForm from './CustomizeAftbForm';
+import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm';
 import AftbData from './AftbData';
 import stubPrint from '../../testing/stubPrint';
+
+type FormWrapperProps = CustomizeAftbFormProps;
+
+// This is for making sure that data changes are "persisted"
+function FormWrapper({ data: initialData, onChange }: FormWrapperProps): JSX.Element {
+  const [data, setData] = useState<AftbData>(initialData);
+
+  return (
+    <CustomizeAftbForm
+      onChange={(updated) => {
+        setData(updated);
+        onChange(updated);
+      }}
+      data={data}
+    />
+  );
+}
 
 describe('CustomizeAftbForm', () => {
   stubPrint();
@@ -26,9 +43,9 @@ describe('CustomizeAftbForm', () => {
   beforeEach(() => {
     onChange = jest.fn();
     return render(
-      <CustomizeAftbForm
+      <FormWrapper
         onChange={onChange}
-        initialData={initialData}
+        data={initialData}
       />,
     );
   });
