@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography } from '@material-ui/core';
-import MultiPaperPage, { Builder, Props } from '../../components/MultiPaperPage';
+import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
 import AdditionSentence, {
   AdditionBlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
@@ -9,39 +8,12 @@ import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
 import Addition from './Addition';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import PageTitle from '../../elements/PageTitle';
+import ProblemList from '../../components/ProblemList';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
 }
-
-const pageStyles = makeStyles(() => ({
-  heading: {
-    textAlign: 'center',
-  },
-  // All em units equivalent are based on a 20px font size base
-  list: {
-    margin: '5mm 0 0 0',
-    padding: 0,
-    // fontSize: '20px',
-    columnCount: 2,
-    columnWidth: 'auto',
-    counterReset: 'problem 0',
-
-    '& > li': {
-      padding: '1.15em 0 1.15em 1.15em', // '6mm 0 6mm 6mm', // 23px
-      marginLeft: '1.9em', // '10mm', // 38px
-      counterIncrement: 'problem',
-      '-webkit-column-break-inside': 'avoid',
-      pabeBreakInside: 'avoid',
-      breakInside: 'avoid',
-    },
-
-    '& > li::marker': {
-      content: 'counter(problem) "."',
-      fontSize: '0.8em', // 16px
-    },
-  },
-}));
 
 function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): AdditionBlankPosition {
   switch (blankStrategy) {
@@ -67,7 +39,6 @@ interface AdditionAndMeta {
 function PreviewAftb({
   aftbData,
 }: PreviewAftbProps): JSX.Element {
-  const classes = pageStyles();
   const data = generateAdditionSentences(aftbData).map((addition): AdditionAndMeta => {
     const { blankStrategy } = aftbData;
     const blank = blankTypeFromStrategy(blankStrategy);
@@ -98,49 +69,19 @@ function PreviewAftb({
           </WorksheetHeader>
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}
-        wrapper="ol"
-        wrapperProps={{
-          className: `${classes.list} problems`,
-          'aria-label': 'Problems',
-        }}
+        wrapper={ProblemList}
+        wrapperProps={{ columns: aftbData.columns }}
         data-test-id="problems"
-        wrapperPropsCallback={
-          (props, { memberIndex }) => ({
-            ...props,
-            style: {
-              counterReset: `problem ${memberIndex}`,
-              columns: aftbData.columns,
-            },
-          } as Props)
-        }
         data={data}
         itemSelector=".addition-sentence-item"
         renderItems={problemBuilder}
       />
       <MultiPaperPage<AdditionAndMeta>
         header={(
-          <Typography
-            variant="h6"
-            component="h2"
-            className={classes.heading}
-          >
-            Answer Key
-          </Typography>
+          <PageTitle>Answer Key</PageTitle>
         )}
         wrapper="ol"
-        wrapperProps={{
-          className: `${classes.list} answers`,
-          'aria-label': 'Answers',
-        }}
-        wrapperPropsCallback={
-          (props, { memberIndex }) => ({
-            ...props,
-            style: {
-              counterReset: `problem ${memberIndex}`,
-              columns: aftbData.columns,
-            },
-          } as Props)
-        }
+        wrapperProps={{ className: 'answers', label: 'Answers' }}
         data={data}
         itemSelector=".addition-sentence-item"
         renderItems={

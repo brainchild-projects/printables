@@ -6,6 +6,7 @@ declare namespace Cypress {
     visitAdditionFillTheBlanks(): Chainable<AUTWindow>;
     visitWorksheetPatterns(): Chainable<AUTWindow>;
     visitWorksheetPlaceValues(): Chainable<AUTWindow>;
+    visitWorksheetNumbersToWords(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {

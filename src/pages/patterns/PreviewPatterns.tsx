@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
 import React from 'react';
 import FontLoad from '../../components/FontLoad';
 import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
+import ProblemList from '../../components/ProblemList';
+import ProblemListItem from '../../components/ProblemListItem';
 import WorksheetFooter from '../../components/WorksheetFooter';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import PatternGenerator from '../../lib/PatternGenerator';
@@ -30,13 +32,15 @@ interface PatternProblem {
 }
 
 const problemStyles = makeStyles(() => ({
+  listItem: {
+    paddingTop: '0.15em',
+    paddingBottom: '0.15em',
+  },
   pattern: {
     fontSize: 48,
     fontFamily: "'Sawarabi Gothic', sans-serif",
     display: 'inline-block',
     verticalAlign: 'middle',
-    padding: '0 0 0 2mm',
-    margin: '0 0 2mm',
   },
   patternElement: {
     padding: '0 2mm',
@@ -58,25 +62,25 @@ const problemStyles = makeStyles(() => ({
 function PatternProblemDisplay({ elements }: PatternProblem): JSX.Element {
   const classes = problemStyles();
   return (
-    <li className="pattern-problem-item">
+    <ProblemListItem className={`pattern-problem-item ${classes.listItem}`}>
       <div className={classes.pattern}>
         {
           elements.map((shape, index): JSX.Element => (
             <span className={classes.patternElement} key={`pattern-${index}`}>
               {
-              index === (elements.length - 1)
-                ? (
-                  <span className={classes.problemBlank}>
-                    <span className={classes.underline}>__</span>
-                  </span>
-                )
-                : (<span className="problem-shape">{ shape }</span>)
-            }
+                index === (elements.length - 1)
+                  ? (
+                    <span className={classes.problemBlank}>
+                      <span className={classes.underline}>__</span>
+                    </span>
+                  )
+                  : (<span className="problem-shape">{shape}</span>)
+              }
             </span>
           ))
         }
       </div>
-    </li>
+    </ProblemListItem>
   );
 }
 
@@ -109,8 +113,7 @@ function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
           </WorksheetHeader>
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}
-        wrapper="ol"
-        wrapperProps={{ className: 'problems' }}
+        wrapper={ProblemList}
         data={data}
         itemSelector=".pattern-problem-item"
         renderItems={itemBuilder}

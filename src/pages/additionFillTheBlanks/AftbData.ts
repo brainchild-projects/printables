@@ -1,3 +1,4 @@
+import Range from '../../lib/Range';
 import FontSizeData from '../../components/forms/FontSizeData';
 
 export type BlankPositionStrategy = 'sum' | 'addends' | 'random';
@@ -8,10 +9,6 @@ export const problemGenerations: Map<ProblemGeneration, string> = new Map([
   ['custom addends', 'Custom Addends'],
 ]);
 
-interface Range {
-  from: number;
-  to: number;
-}
 export default interface AftbData extends FontSizeData {
   rangeFrom: number;
   rangeTo: number;

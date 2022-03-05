@@ -47,6 +47,10 @@ const worksheetlinks: NavigationLink[] = [
     path: '/worksheet-place-values',
     text: 'Place Values',
   },
+  {
+    path: '/worksheet-numbers-to-words',
+    text: 'Numbers to Words',
+  },
 ];
 
 function MainPage(): JSX.Element {

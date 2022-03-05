@@ -13,8 +13,22 @@ export type Builder<T> = (item: T, index: number, array: T[] | undefined) => JSX
 
 export type Props = Record<string, unknown>;
 export type PropsCallback = (props: Props, options: PropsCallbackOptions) => Props;
+
+type WrapperWithPropsCallback = ElementType & {
+  propsCallback: PropsCallback;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isWrapperWithPropsCallback(obj: any): obj is WrapperWithPropsCallback {
+  return typeof obj === 'function'
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    && obj.propsCallback !== undefined
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    && typeof obj.propsCallback === 'function';
+}
+
 interface WrapperBuilder<T> {
-  wrapper?: ElementType | null;
+  wrapper?: WrapperWithPropsCallback | ElementType | null;
   wrapperProps?: Props;
   wrapperPropsCallback?: PropsCallback;
   data: T[];
@@ -38,12 +52,21 @@ function wrappedContent<T>({
   instanceIndex, memberIndex,
 }: WrapperBuilderArgs<T>): ReactNode {
   if (wrapper !== null) {
+    let propsCallback = wrapperPropsCallback;
+    if (isWrapperWithPropsCallback(wrapper)) {
+      propsCallback = (props, options) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        wrapperPropsCallback(
+          wrapper.propsCallback(props, options),
+          options,
+        );
+    }
     return createElement(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       wrapper!,
       {
-        ...wrapperPropsCallback(
-          wrapperProps || {},
+        ...propsCallback(
+          wrapperProps ?? {},
           { instanceIndex, memberIndex },
         ),
       },
@@ -141,7 +164,7 @@ function MultiPaperPage<T>({
     }
     setAttemptsTofix(attemptsToFix + 1);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataPages, options]);
 
   let count = 0;
@@ -153,23 +176,23 @@ function MultiPaperPage<T>({
           const rendered = (
             <PaperPage
               pageId={`${index + 1}`}
-                // eslint-disable-next-line react/no-array-index-key
+              // eslint-disable-next-line react/no-array-index-key
               key={`page-${index}`}
               ready={isReady}
             >
-              { index === 0 ? header : null }
+              {index === 0 ? header : null}
               {
-                  wrappedContent<T>({
-                    wrapper,
-                    wrapperProps,
-                    wrapperPropsCallback: wrapperPropsCallback || passThrough,
-                    data: dataPage,
-                    renderItems: builder,
-                    instanceIndex: index,
-                    memberIndex: count,
-                  })
-                }
-              { index === dataPages.length - 1 ? footer : null }
+                wrappedContent<T>({
+                  wrapper,
+                  wrapperProps,
+                  wrapperPropsCallback: wrapperPropsCallback || passThrough,
+                  data: dataPage,
+                  renderItems: builder,
+                  instanceIndex: index,
+                  memberIndex: count,
+                })
+              }
+              {index === dataPages.length - 1 ? footer : null}
             </PaperPage>
           );
           count += dataPage.length;

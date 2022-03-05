@@ -1,10 +1,12 @@
-import { Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import React from 'react';
 import Blank, { BlankProps } from '../../components/Blank';
-import MultiPaperPage, { Props } from '../../components/MultiPaperPage';
+import MultiPaperPage from '../../components/MultiPaperPage';
+import ProblemList from '../../components/ProblemList';
+import ProblemListItem from '../../components/ProblemListItem';
 import WorksheetFooter from '../../components/WorksheetFooter';
 import WorksheetHeader from '../../components/WorksheetHeader';
+import PageTitle from '../../elements/PageTitle';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PlaceValuesData from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
@@ -28,23 +30,15 @@ function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceVal
       problems.push(new PlaceValuesProblem(number));
       track.add(number);
     }
+    if (problems.length % max === 0) {
+      track.clear();
+    }
   }
   return problems;
 }
 
 const pageStyles = makeStyles(() => ({
-  heading: {
-    textAlign: 'center',
-  },
   list: {
-    '& > li': {
-      fontSize: 20,
-      padding: '1.15em 0 1.15em 1.15em', // '6mm 0 6mm 6mm', // 23px
-      counterIncrement: 'problem',
-      '-webkit-column-break-inside': 'avoid',
-      pabeBreakInside: 'avoid',
-      breakInside: 'avoid',
-    },
     '& .and': {
       padding: '0 1.15em',
       display: 'inline-block',
@@ -88,10 +82,10 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
   const itemBuilder = (showAnswer: boolean) => {
     function fn(problem: PlaceValuesProblem, indexNumber: number) {
       return (
-        <li
+        <ProblemListItem
           key={`problem-${indexNumber}`}
           className="place-value-problem-item"
-          aria-label={`Place Value ${showAnswer ? 'Answer' : 'Problem'}`}
+          label={`Place Value ${showAnswer ? 'Answer' : 'Problem'}`}
         >
           {
             customData.magnitude === 'hundreds'
@@ -103,7 +97,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
           <span className={classes.equals}>=</span>
           {' '}
           {problem.number}
-        </li>
+        </ProblemListItem>
       );
     }
     return fn;
@@ -116,7 +110,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
             <p>Fill out the correct number for each place value.</p>
           </WorksheetHeader>
         )}
-        wrapper="ol"
+        wrapper={ProblemList}
         footer={(<WorksheetFooter itemCount={problems.length} />)}
         wrapperProps={{ className: `problems bar ${classes.list} foo` }}
         data={problems}
@@ -125,28 +119,13 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
       />
       <MultiPaperPage
         header={(
-          <Typography
-            variant="h6"
-            component="h2"
-            className={classes.heading}
-          >
-            Answer Key
-          </Typography>
+          <PageTitle>Answer Key</PageTitle>
         )}
-        wrapper="ol"
-        footer={(<WorksheetFooter itemCount={problems.length} />)}
+        wrapper={ProblemList}
         wrapperProps={{
           className: `problems bar ${classes.list}`,
-          'aria-label': 'Answers',
+          label: 'Answers',
         }}
-        wrapperPropsCallback={
-          (props, { memberIndex }) => ({
-            ...props,
-            style: {
-              counterReset: `problem ${memberIndex}`,
-            },
-          } as Props)
-        }
         data={problems}
         itemSelector=".place-value-problem-item"
         renderItems={itemBuilder(true)}

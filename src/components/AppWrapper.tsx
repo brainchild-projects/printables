@@ -4,6 +4,7 @@ import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
 import ScrollToTop from './ScrollToTop';
+import NumbersToWordsPage from '../pages/numbersToWords/NumbersToWordsPage';
 
 const MainPage = lazy(() => import('../pages/main/MainPage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
@@ -48,6 +49,7 @@ function AppWrapper(): JSX.Element {
             <Route path="/addition-fill-the-blanks" element={<AdditionFillTheBlanksPage />} />
             <Route path="/worksheet-patterns" element={<PatternsPage />} />
             <Route path="/worksheet-place-values" element={<PlaceValuesPage />} />
+            <Route path="/worksheet-numbers-to-words" element={<NumbersToWordsPage />} />
           </Routes>
         </main>
       </MuiThemeProvider>

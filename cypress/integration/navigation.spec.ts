@@ -1,13 +1,17 @@
+function goBackHome() {
+  cy.findByRole('banner').within(() => {
+    cy.findByText('Printables').click();
+  });
+}
+
 it('can visit all subpages', () => {
   cy.visitHome();
   cy.contains('Printables');
   cy.findByRole('link', { name: /calendar/i }).click();
   cy.findByRole('button', { name: /print calendar/i });
 
-  // Back home
-  cy.findByRole('banner').within(() => {
-    cy.findByText('Printables').click();
-  });
+  goBackHome();
+
   cy.contains(/Printable Materials for Education/i);
 
   // Addition Worksheets
@@ -19,10 +23,7 @@ it('can visit all subpages', () => {
     cy.findByRole('heading', { name: /addition.+fill.+blank/i });
   });
 
-  // Back home
-  cy.findByRole('banner').within(() => {
-    cy.findByText('Printables').click();
-  });
+  goBackHome();
 
   // Pattern Worksheets
   cy.findByRole('list', { name: /worksheets/i }).within(() => {
@@ -33,10 +34,7 @@ it('can visit all subpages', () => {
     cy.findByRole('heading', { name: /patterns/i });
   });
 
-  // Back home
-  cy.findByRole('banner').within(() => {
-    cy.findByText('Printables').click();
-  });
+  goBackHome();
 
   // Place Value Worksheets
   cy.findByRole('list', { name: /worksheets/i }).within(() => {
@@ -45,5 +43,16 @@ it('can visit all subpages', () => {
 
   cy.withinCustomizeForm(() => {
     cy.findByRole('heading', { name: /place values/i });
+  });
+
+  goBackHome();
+
+  // Numbers to Words
+  cy.findByRole('list', { name: /worksheets/i }).within(() => {
+    cy.findByRole('link', { name: /numbers to words/i }).click();
+  });
+
+  cy.withinCustomizeForm(() => {
+    cy.findByRole('heading', { name: /numbers to words/i });
   });
 });

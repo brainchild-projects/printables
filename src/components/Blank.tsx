@@ -12,15 +12,24 @@ const styles = makeStyles(() => ({
     minWidth: '1.6em', // 32px
     textAlign: 'center',
 
+    '&.problem-blank-wide': {
+      minWidth: '2.6em',
+      paddingLeft: '0.6em',
+      paddingRight: '0.6em',
+    },
+
     '& > .underline': {
       color: 'transparent',
     },
   },
 }));
 
+type BlankWidth = 'short' | 'wide';
+
 export interface BlankProps {
   answer: string | number | Stringable;
   showAnswer: boolean;
+  width?: BlankWidth;
 }
 
 const underlines = (length: number): string => {
@@ -31,10 +40,10 @@ const underlines = (length: number): string => {
   return str;
 };
 
-function Blank({ answer, showAnswer }: BlankProps): JSX.Element {
+function Blank({ answer, showAnswer, width }: BlankProps): JSX.Element {
   const classes = styles();
   return (
-    <span className={`problem-blank ${classes.problemBlank}`}>
+    <span className={`problem-blank problem-blank-${width ?? 'short'} ${classes.problemBlank}`}>
       {
         showAnswer
           ? answer
@@ -47,5 +56,9 @@ function Blank({ answer, showAnswer }: BlankProps): JSX.Element {
     </span>
   );
 }
+
+Blank.defaultProps = {
+  width: 'short',
+};
 
 export default Blank;

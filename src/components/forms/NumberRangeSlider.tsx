@@ -5,17 +5,26 @@ import {
 import React, { ChangeEvent, useEffect, useRef } from 'react';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import './NumberRangeSlider.css';
+import Range from '../../lib/Range';
+
+const { round } = Math;
 
 const valueScale = (x: number): number => {
   if (x < 11) {
     return x;
   }
-  return (x - 10) * 10;
+  if (x < 21) {
+    return (x - 10) * 10;
+  }
+  return (x - 20) * 100;
 };
 
 const valueDescale = (x: number): number => {
+  if (x > 100) {
+    return round((x / 100) + 20);
+  }
   if (x > 10) {
-    return Math.round((x / 10) + 10);
+    return round((x / 10) + 10);
   }
   return x;
 };
@@ -40,16 +49,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface Range {
-  from: number;
-  to: number;
-}
-
 export type NumberRangeChangeCallback = (value: Range, event: HtmlFieldChangeEvent) => void;
 
 interface NumberRangeSliderProps extends Range {
   label: string;
   id: string;
+  magnitude?: number;
   onChange: NumberRangeChangeCallback;
   'data-test'?: string;
 }
@@ -62,7 +67,7 @@ type InputChangeHandlerBuilder = (callback: InputChangeCallback) => InputChangeH
 function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
   const classes = useStyles();
   const {
-    from, to, label, onChange, id,
+    from, to, label, onChange, id, magnitude,
   } = options;
   const labelId = `${id}-label`;
   const changeHandler: ChangeHanlder = (value, event) => {
@@ -132,6 +137,27 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     };
   });
 
+  const marks = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 10,
+      label: '10',
+    },
+    {
+      value: 20,
+      label: '100',
+    },
+  ];
+  let max = 100;
+  if (magnitude === 3) {
+    marks.push({ value: 30, label: '1000' });
+    max = 1000;
+  }
+  const maxSlider = marks[marks.length - 1]?.value ?? 20;
+
   return (
     <div className={classes.root} ref={ref}>
       <Typography
@@ -157,7 +183,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
               inputProps={{
                 step: 1,
                 min: 0,
-                max: 100,
+                max,
                 type: 'number',
                 className: `${classes.input} hidden-spinners`,
                 'data-testid': `${id}-from`,
@@ -180,7 +206,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
               inputProps={{
                 step: 1,
                 min: 0,
-                max: 100,
+                max,
                 type: 'number',
                 className: `${classes.input} hidden-spinners`,
                 'data-testid': `${id}-to`,
@@ -195,22 +221,9 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         aria-labelledby={labelId}
         min={0}
         step={1}
-        max={20}
+        max={maxSlider}
         data-test={options['data-test']}
-        marks={[
-          {
-            value: 0,
-            label: '0',
-          },
-          {
-            value: 10,
-            label: '10',
-          },
-          {
-            value: 20,
-            label: '100',
-          },
-        ]}
+        marks={marks}
         scale={valueScale}
         onChange={(event, value) => {
           changeHandler(value, event as HtmlFieldChangeEvent);
@@ -220,5 +233,9 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     </div>
   );
 }
+
+NumberRangeSlider.defaultProps = {
+  magnitude: 2,
+};
 
 export default NumberRangeSlider;

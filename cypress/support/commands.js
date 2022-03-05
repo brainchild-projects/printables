@@ -32,6 +32,7 @@ const paths = {
   additionFillTheBlanks: '/addition-fill-the-blanks',
   worksheetPatterns: '/worksheet-patterns',
   worksheetPlaceValues: '/worksheet-place-values',
+  worksheetNumbersToWords: '/worksheet-numbers-to-words',
 };
 
 const pathNames = Object.keys(paths);

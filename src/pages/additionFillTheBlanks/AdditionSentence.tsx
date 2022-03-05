@@ -1,5 +1,6 @@
 import React from 'react';
 import Blank from '../../components/Blank';
+import ProblemListItem from '../../components/ProblemListItem';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import roundRobinRange from '../../lib/roundRobinRange';
 import Addition from './Addition';
@@ -63,10 +64,10 @@ function AdditionSentence({
   const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
-    <li
+    <ProblemListItem
       className="addition-sentence-item"
-      aria-label={label}
-      style={{ fontSize: `${fontSize}px` }}
+      label={label}
+      fontSize={fontSize}
     >
       <BlankOrNumber
         value={addition.addendA}
@@ -82,7 +83,7 @@ function AdditionSentence({
         value={addition.sum()}
         expected="sum"
       />
-    </li>
+    </ProblemListItem>
   );
 }
 
