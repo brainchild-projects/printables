@@ -36,29 +36,35 @@ interface AdditionAndMeta {
   blank: AdditionBlankPosition;
 }
 
+type ItemBuilder = (showAnser: boolean) => Builder<AdditionAndMeta>;
+
 function PreviewAftb({
   aftbData,
 }: PreviewAftbProps): JSX.Element {
-  const data = generateAdditionSentences(aftbData).map((addition): AdditionAndMeta => {
+  const data = generateAdditionSentences(aftbData).map((addition) => {
     const { blankStrategy } = aftbData;
     const blank = blankTypeFromStrategy(blankStrategy);
     return {
       addition,
       blank,
-    };
+    } as AdditionAndMeta;
   });
 
-  const problemBuilder: Builder<AdditionAndMeta> = (
-    { addition, blank }: AdditionAndMeta,
-    index: number,
-  ) => (
-    <AdditionSentence
-      key={`problem-${index}`}
-      addition={addition}
-      blank={blank}
-      fontSize={aftbData.fontSize}
-    />
-  );
+  const itemBuilder: ItemBuilder = (showAnswer) => {
+    const keyPrefix = showAnswer ? 'answer' : 'problem';
+    return function builder(addMeta, index) {
+      const { blank, addition } = addMeta;
+      return (
+        <AdditionSentence
+          key={`${keyPrefix}-${index}`}
+          addition={addition}
+          blank={blank}
+          fontSize={aftbData.fontSize}
+          showAnswer={showAnswer}
+        />
+      );
+    };
+  };
 
   return (
     <>
@@ -74,27 +80,17 @@ function PreviewAftb({
         data-test-id="problems"
         data={data}
         itemSelector=".addition-sentence-item"
-        renderItems={problemBuilder}
+        renderItems={itemBuilder(false)}
       />
       <MultiPaperPage<AdditionAndMeta>
         header={(
           <PageTitle>Answer Key</PageTitle>
         )}
-        wrapper="ol"
-        wrapperProps={{ className: 'answers', label: 'Answers' }}
+        wrapper={ProblemList}
+        wrapperProps={{ className: 'answers', label: 'Answers', columns: aftbData.columns }}
         data={data}
         itemSelector=".addition-sentence-item"
-        renderItems={
-          ({ addition, blank }, index) => (
-            <AdditionSentence
-              showAnswer
-              key={`answer-${index}`}
-              addition={addition}
-              blank={blank}
-              fontSize={aftbData.fontSize}
-            />
-          )
-        }
+        renderItems={itemBuilder(true)}
       />
     </>
   );

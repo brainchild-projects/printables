@@ -42,7 +42,7 @@ export interface AdditionSentenceProps {
   addition: Addition;
   showAnswer?: boolean;
   blank?: AdditionBlankPosition;
-  fontSize: number;
+  fontSize?: number;
 }
 interface BlankOrNumberProps {
   expected: AdditionBlankPosition;
