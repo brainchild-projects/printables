@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.39](https://github.com/brainchild-projects/printables/compare/v0.0.38...v0.0.39) (2022-03-06)
+
+
+### Features
+
+* new worksheet: numbers to words ([f63c59f](https://github.com/brainchild-projects/printables/commit/f63c59f854076941efbf20acabbae466a1d3c7bf))
+
+
+### Bug Fixes
+
+* answer fields in aftb not found ([c870308](https://github.com/brainchild-projects/printables/commit/c870308cb21cf63b0fc6f37eb51cf3083e874c64))
+
 ### [0.0.38](https://github.com/brainchild-projects/printables/compare/v0.0.37...v0.0.38) (2022-03-03)
 
 
