@@ -3,7 +3,7 @@ it('can create fill in the blanks addition worksheets', () => {
 
   cy.findByLabelText(/number of problems/i).clearType('25');
 
-  cy.setNumberRange('single-range-slider', 2, 3);
+  cy.setNumberRange(/number range$/i, 2, 3);
 
   cy.withinPreview(() => {
     cy.contains('2 + 3 = ');
@@ -21,8 +21,8 @@ it('can create fill in the blanks addition worksheets', () => {
   });
 
   cy.findByLabelText('Problem Generation').select('Custom Addends');
-  cy.setNumberRange('custom-addends-a-slider', 2, 3);
-  cy.setNumberRange('custom-addends-b-slider', 4, 5);
+  cy.setNumberRange(/addend a/i, 2, 3);
+  cy.setNumberRange(/addend b/i, 4, 5);
   cy.findByLabelText('Blank').select('Sum');
   cy.findByLabelText(/number of problems/i).clearType('50');
   cy.withinPreview(() => {

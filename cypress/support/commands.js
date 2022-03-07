@@ -141,7 +141,9 @@ Cypress.Commands.add('reactComponent', {
   return domFiber.return;
 });
 
-Cypress.Commands.add('setNumberRange', (id, min, max) => cy.getBySel(id)
+Cypress.Commands.add('setNumberRange', (label, min, max) => cy.findAllByLabelText(label)
+  .first()
+  .parent()
   .scrollIntoView()
   .click({ force: true }) // we click so we force focus on the element
   .reactComponent()

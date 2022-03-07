@@ -2,7 +2,7 @@ it('can create numbers to words worksheet', () => {
   cy.visitWorksheetNumbersToWords();
 
   cy.findByLabelText(/number of problems/i).clearType('7');
-  cy.setNumberRange('number-range-slider', 10, 99);
+  cy.setNumberRange(/number range$/i, 10, 99);
   cy.withinPreview(() => {
     cy.findByRole('list', { name: 'Problems' }).within((subject) => {
       cy.wrap(subject).findAllByRole('listitem')

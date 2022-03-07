@@ -2,7 +2,7 @@ it('can save changes in settings', () => {
   cy.clock(Date.parse('July 8, 2021'));
   cy.visitAdditionFillTheBlanks();
   cy.findByLabelText(/number of problems/i).clearType('40');
-  cy.setNumberRange('single-range-slider', 1, 5);
+  cy.setNumberRange(/number range/i, 1, 5);
   cy.findByLabelText('Blank').select('Addends');
 
   cy.visitCalendar();
