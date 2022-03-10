@@ -23,4 +23,14 @@ it('can create place values worksheet', () => {
       cy.findAllByRole('listitem', { name: /answer/i }).should('have.length', 10);
     });
   });
+
+  cy.findByLabelText(/problem type/i).select('Multiple Choice');
+  cy.findByLabelText(/magnitude/i).select('Hundreds');
+
+  cy.withinPreview(() => {
+    cy.findAllByRole('listitem', { name: /choice/i })
+      .within(() => {
+        cy.contains(/hundreds|tens|ones/i);
+      });
+  });
 });

@@ -5,10 +5,11 @@ import CustomizePlaceValuesForm from './CustomizePlaceValuesForm';
 import PlaceValuesData from './PlaceValuesData';
 import PreviewPlaceValues from './PreviewPlaceValues';
 
-const defaultPlaceValuesData = {
+const defaultPlaceValuesData: PlaceValuesData = {
   count: 10,
   magnitude: 'tens',
-} as PlaceValuesData;
+  solution: 'blanks',
+};
 const dataKey = 'placeValues';
 
 function PlaceValuesPage(): JSX.Element {

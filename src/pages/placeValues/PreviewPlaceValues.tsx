@@ -1,6 +1,5 @@
+import React, { ReactNode } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import React from 'react';
-import Blank, { BlankProps } from '../../components/Blank';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import ProblemList from '../../components/ProblemList';
 import ProblemListItem from '../../components/ProblemListItem';
@@ -10,6 +9,8 @@ import PageTitle from '../../elements/PageTitle';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PlaceValuesData from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
+import FillInTheBlanksProblem from './FillInTheBlanksProblem';
+import MultipleChoiceProblem from './MultipleChoiceProblem';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
@@ -17,6 +18,7 @@ interface PreviewPlaceValuesProps {
 
 function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
   let max: number;
+  const magN = magnitude === 'hundreds' ? 3 : 2;
   if (magnitude === 'hundreds') {
     max = 999;
   } else {
@@ -25,9 +27,14 @@ function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceVal
   const problems: Array<PlaceValuesProblem> = [];
   const track: Set<number> = new Set([]);
   while (problems.length < count) {
-    const number = randomGenerator.integer(max);
+    const number = randomGenerator.stepMagnitude(magN);
     if (!track.has(number)) {
-      problems.push(new PlaceValuesProblem(number));
+      problems.push(new PlaceValuesProblem(number, {
+        digitPlaceValue: randomGenerator.integer(
+          PlaceValuesProblem.countWholeNumberDigits(number),
+          1,
+        ),
+      }));
       track.add(number);
     }
     if (problems.length % max === 0) {
@@ -43,71 +50,74 @@ const pageStyles = makeStyles(() => ({
       padding: '0 1.15em',
       display: 'inline-block',
     },
-  },
 
-  equals: {
-    padding: '0 1.15em',
-    display: 'inline-block',
+    '& p u': {
+      borderBottom: '0.1em solid',
+      textDecoration: 'none',
+    },
   },
 }));
 
-interface BlankAndPlaceProps extends BlankProps {
-  place: string;
-  and?: boolean;
+function mapDigitsCallback(digit: number, isItem: boolean): ReactNode {
+  return isItem ? (<u>{digit}</u>) : digit;
 }
 
-function BlankAndPlace({
-  answer, showAnswer, place, and = false,
-}: BlankAndPlaceProps): JSX.Element {
-  return (
-    <>
-      {' '}
-      <Blank answer={answer} showAnswer={showAnswer} />
-      {' '}
-      {place}
-      {' '}
-      {and ? (<span className="and">and</span>) : ''}
-      {' '}
-    </>
-  );
+function underlineDigit(problem: PlaceValuesProblem): Array<ReactNode> {
+  return problem.mapDigits(mapDigitsCallback);
 }
 
-BlankAndPlace.defaultProps = {
-  and: false,
-};
+function itemBuilder(
+  showAnswer: boolean,
+  { magnitude, solution: problemType }: PlaceValuesData,
+) {
+  function fn(problem: PlaceValuesProblem, indexNumber: number) {
+    return (
+      <ProblemListItem
+        key={`problem-${indexNumber}`}
+        className="place-value-problem-item"
+        label={`Place Value ${showAnswer ? 'Answer' : 'Problem'}`}
+      >
+        {
+          problemType === 'blanks'
+            ? (
+              <FillInTheBlanksProblem
+                magnitude={magnitude}
+                problem={problem}
+                showAnswer={showAnswer}
+              />
+            )
+            : (
+              <MultipleChoiceProblem
+                choices={['ones', 'tens', 'hundreds']}
+                answer={problem.digitPlaceValue - 1}
+                showAnswer={showAnswer}
+              >
+                {underlineDigit(problem)}
+              </MultipleChoiceProblem>
+            )
+        }
+
+      </ProblemListItem>
+    );
+  }
+  return fn;
+}
+
+const blanksInstruction = 'Fill out the correct number for each place value.';
+const choiceInstruction = 'What is the place value of the underlined digit? Circle the letter of the correct answer.';
 
 function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Element {
   const classes = pageStyles();
   const problems = generateProblems(customData);
-  const itemBuilder = (showAnswer: boolean) => {
-    function fn(problem: PlaceValuesProblem, indexNumber: number) {
-      return (
-        <ProblemListItem
-          key={`problem-${indexNumber}`}
-          className="place-value-problem-item"
-          label={`Place Value ${showAnswer ? 'Answer' : 'Problem'}`}
-        >
-          {
-            customData.magnitude === 'hundreds'
-              ? (<BlankAndPlace answer={problem.hundreds()} showAnswer={showAnswer} place="hundreds" and />)
-              : ''
-          }
-          <BlankAndPlace answer={problem.tens()} showAnswer={showAnswer} place="tens" and />
-          <BlankAndPlace answer={problem.ones()} showAnswer={showAnswer} place="ones" />
-          <span className={classes.equals}>=</span>
-          {' '}
-          {problem.number}
-        </ProblemListItem>
-      );
-    }
-    return fn;
-  };
+  const { solution: problemType } = customData;
+
+  const instructions = problemType === 'blanks' ? blanksInstruction : choiceInstruction;
   return (
     <>
       <MultiPaperPage
         header={(
           <WorksheetHeader>
-            <p>Fill out the correct number for each place value.</p>
+            <p>{instructions}</p>
           </WorksheetHeader>
         )}
         wrapper={ProblemList}
@@ -115,7 +125,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         wrapperProps={{ className: `problems bar ${classes.list} foo` }}
         data={problems}
         itemSelector=".place-value-problem-item"
-        renderItems={itemBuilder(false)}
+        renderItems={itemBuilder(false, customData)}
       />
       <MultiPaperPage
         header={(
@@ -128,7 +138,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         }}
         data={problems}
         itemSelector=".place-value-problem-item"
-        renderItems={itemBuilder(true)}
+        renderItems={itemBuilder(true, customData)}
       />
     </>
   );
