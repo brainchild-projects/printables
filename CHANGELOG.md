@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.40](https://github.com/brainchild-projects/printables/compare/v0.0.39...v0.0.40) (2022-03-18)
+
+
+### Features
+
+* columns option for place value worksheets ([93a2046](https://github.com/brainchild-projects/printables/commit/93a2046d464c07cf1f241c726b5e91c0c946c832))
+* place value multiple choice ([b1e31b3](https://github.com/brainchild-projects/printables/commit/b1e31b3c4412717025e6d13417ba3a95da05b018))
+
 ### [0.0.39](https://github.com/brainchild-projects/printables/compare/v0.0.38...v0.0.39) (2022-03-06)
 
 
