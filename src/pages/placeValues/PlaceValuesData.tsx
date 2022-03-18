@@ -5,4 +5,5 @@ export default interface PlaceValuesData {
   solution: PlaceValueProblemType;
   count: number;
   magnitude: PlaceValuesMagnitude | string;
+  columns: number;
 }

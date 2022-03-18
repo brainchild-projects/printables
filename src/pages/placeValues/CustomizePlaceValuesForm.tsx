@@ -1,3 +1,4 @@
+import Divider from '@material-ui/core/Divider';
 import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
@@ -43,10 +44,19 @@ function CustomizePlaceValuesForm({
       <SelectField
         name="magnitude"
         value={data.magnitude}
-        onChange={(value) => onChange({ ...data, magnitude: value })}
+        onChange={(magnitude) => onChange({ ...data, magnitude })}
       >
         {stringMapToOptions(magnitudes)}
       </SelectField>
+
+      <Divider variant="middle" />
+      <NumberField
+        name="columns"
+        value={data.columns}
+        onChange={(columns) => onChange({ ...data, columns })}
+        min={1}
+        max={10}
+      />
     </CustomizeForm>
   );
 }

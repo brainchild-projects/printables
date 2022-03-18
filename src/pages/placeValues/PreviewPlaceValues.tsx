@@ -109,7 +109,8 @@ const choiceInstruction = 'What is the place value of the underlined digit? Circ
 function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Element {
   const classes = pageStyles();
   const problems = generateProblems(customData);
-  const { solution: problemType } = customData;
+  const { solution: problemType, columns } = customData;
+  const columnGap = 5;
 
   const instructions = problemType === 'blanks' ? blanksInstruction : choiceInstruction;
   return (
@@ -122,7 +123,11 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         )}
         wrapper={ProblemList}
         footer={(<WorksheetFooter itemCount={problems.length} />)}
-        wrapperProps={{ className: `problems bar ${classes.list} foo` }}
+        wrapperProps={{
+          className: `problems bar ${classes.list}`,
+          columns,
+          columnGap,
+        }}
         data={problems}
         itemSelector=".place-value-problem-item"
         renderItems={itemBuilder(false, customData)}
@@ -135,6 +140,8 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         wrapperProps={{
           className: `problems bar ${classes.list}`,
           label: 'Answers',
+          columns,
+          columnGap,
         }}
         data={problems}
         itemSelector=".place-value-problem-item"

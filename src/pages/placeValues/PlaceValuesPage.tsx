@@ -9,6 +9,7 @@ const defaultPlaceValuesData: PlaceValuesData = {
   count: 10,
   magnitude: 'tens',
   solution: 'blanks',
+  columns: 1,
 };
 const dataKey = 'placeValues';
 

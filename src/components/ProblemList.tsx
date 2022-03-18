@@ -6,6 +6,7 @@ interface ProblemListProps {
   children: ReactNode;
   className?: string;
   columns?: number;
+  columnGap?: number;
   style?: CSSProperties;
   label?: string;
 }
@@ -30,12 +31,13 @@ const styles = makeStyles(() => ({
 }));
 
 function ProblemList({
-  children, className, columns, style, label,
+  children, className, columns, columnGap, style, label,
 }: ProblemListProps): JSX.Element {
   const classes = styles();
   const cols = columns ?? 1;
+  const gap = `${columnGap ?? 1}em`;
   const paddedClassName = className ? ` ${className}` : '';
-  const styleUsed = { ...style, columns: cols };
+  const styleUsed = { ...style, columns: cols, columnGap: gap };
 
   return (
     <ol
@@ -60,6 +62,7 @@ ProblemList.propsCallback = propsCallback;
 ProblemList.defaultProps = {
   className: null,
   columns: 1,
+  columnGap: 2,
   style: null,
   label: null,
 };
