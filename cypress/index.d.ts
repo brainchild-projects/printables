@@ -1,3 +1,4 @@
+type LabelPattern = string | RegExp;
 declare namespace Cypress {
   interface Chainable {
 
@@ -20,5 +21,6 @@ declare namespace Cypress {
     setNumberRange(label: string | RegExp, min: number, max: number): Chainable<Subject>;
     findPaperPage(page: number): Chainable<Subject>;
     clearType(value: string): Chainable<Subject>;
+    hasCustomizeFormHeading(text: LabelPattern): Chainable<Subject>;
   }
 }

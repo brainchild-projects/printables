@@ -1,24 +1,12 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
 import ScrollToTop from './ScrollToTop';
-import NumbersToWordsPage from '../pages/numbersToWords/NumbersToWordsPage';
-
-const MainPage = lazy(() => import('../pages/main/MainPage'));
-const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
-const AdditionFillTheBlanksPage = lazy(() => import('../pages/additionFillTheBlanks/AdditionFillTheBlanksPage'));
-const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
-const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
-const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
-
-const { NODE_ENV, PUBLIC_URL } = process.env;
-const isProduction = NODE_ENV === 'production';
-
-const basePath = isProduction
-  ? PUBLIC_URL
-  : undefined;
+import {
+  allLinks, basePath, mainLinks, mathLinks, miscLinks,
+} from '../lib/linkMap';
 
 const styles = makeStyles(() => ({
   main: {
@@ -36,24 +24,19 @@ const theme = createTheme({
   },
 });
 
-const routesMap = new Map<string, React.ElementType>([
-  ['/', MainPage],
-  ['/calendar', CalendarPage],
-  ['/addition-fill-the-blanks', AdditionFillTheBlanksPage],
-  ['/worksheet-patterns', PatternsPage],
-  ['/worksheet-place-values', PlaceValuesPage],
-  ['/worksheet-numbers-to-words', NumbersToWordsPage],
-]);
-
-if (!isProduction) {
-  routesMap.set('/experiments', ExperimentsPage);
-}
+const linkMap = {
+  allLinks, miscLinks, mainLinks, mathLinks,
+};
 
 function AppWrapper(): JSX.Element {
   const classes = styles();
-  // const routes: Array<JSX.Element> = [];
-  const routes: Array<JSX.Element> = Array.from(routesMap.entries())
-    .map(([path, Node]) => <Route path={path} key={path} element={<Node />} />);
+  const routes: Array<JSX.Element> = Array.from(allLinks.entries())
+    .map(([path, link]) => {
+      if (path === '/') {
+        return <Route path={path} key={path} element={<link.loader linkMap={linkMap} />} />;
+      }
+      return <Route path={path} key={path} element={<link.loader />} />;
+    });
   return (
     <Router basename={basePath}>
       <ScrollToTop />

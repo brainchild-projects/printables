@@ -4,6 +4,12 @@ function goBackHome() {
   });
 }
 
+function clickWorksheetLink(linkText: LabelPattern) {
+  cy.findByRole('list', { name: /worksheets/i }).within(() => {
+    cy.findByRole('link', { name: linkText }).click();
+  });
+}
+
 it('can visit all subpages', () => {
   cy.visitHome();
   cy.contains('Printables');
@@ -15,44 +21,30 @@ it('can visit all subpages', () => {
   cy.contains(/Printable Materials for Education/i);
 
   // Addition Worksheets
-  cy.findByRole('list', { name: /worksheets/i }).within(() => {
-    cy.findByRole('link', { name: /addition.+fill.+blank/i }).click();
-  });
+  clickWorksheetLink(/addition.+fill.+blank/i);
+  cy.hasCustomizeFormHeading(/addition.+fill.+blank/i);
 
-  cy.withinCustomizeForm(() => {
-    cy.findByRole('heading', { name: /addition.+fill.+blank/i });
-  });
+  goBackHome();
+
+  // Addition and Subtraction
+  clickWorksheetLink(/addition.+subtraction/i);
+  cy.hasCustomizeFormHeading(/addition.+subtraction/i);
 
   goBackHome();
 
   // Pattern Worksheets
-  cy.findByRole('list', { name: /worksheets/i }).within(() => {
-    cy.findByRole('link', { name: /patterns/i }).click();
-  });
-
-  cy.withinCustomizeForm(() => {
-    cy.findByRole('heading', { name: /patterns/i });
-  });
+  clickWorksheetLink(/patterns/i);
+  cy.hasCustomizeFormHeading(/patterns/i);
 
   goBackHome();
 
   // Place Value Worksheets
-  cy.findByRole('list', { name: /worksheets/i }).within(() => {
-    cy.findByRole('link', { name: /place values/i }).click();
-  });
-
-  cy.withinCustomizeForm(() => {
-    cy.findByRole('heading', { name: /place values/i });
-  });
+  clickWorksheetLink(/place values/i);
+  cy.hasCustomizeFormHeading(/place values/i);
 
   goBackHome();
 
   // Numbers to Words
-  cy.findByRole('list', { name: /worksheets/i }).within(() => {
-    cy.findByRole('link', { name: /numbers to words/i }).click();
-  });
-
-  cy.withinCustomizeForm(() => {
-    cy.findByRole('heading', { name: /numbers to words/i });
-  });
+  clickWorksheetLink(/numbers to words/i);
+  cy.hasCustomizeFormHeading(/numbers to words/i);
 });

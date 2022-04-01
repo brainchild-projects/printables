@@ -56,6 +56,11 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add(
+  'hasCustomizeFormHeading',
+  (heading) => cy.withinCustomizeForm(() => cy.findByRole('heading', { name: heading })),
+);
+
+Cypress.Commands.add(
   'mmToPixel',
   (mmLength) => cy.get('body').then(($el) => {
     $el.append(`

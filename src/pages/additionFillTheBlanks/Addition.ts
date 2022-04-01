@@ -3,6 +3,8 @@ class Addition {
 
   addendB: number;
 
+  sumValue: number;
+
   static create(addendA: number, addendB: number): Addition {
     return new Addition(addendA, addendB);
   }
@@ -10,10 +12,11 @@ class Addition {
   constructor(addendA: number, addendB: number) {
     this.addendA = addendA;
     this.addendB = addendB;
+    this.sumValue = this.addendA + this.addendB;
   }
 
   sum(): number {
-    return this.addendA + this.addendB;
+    return this.sumValue;
   }
 }
 

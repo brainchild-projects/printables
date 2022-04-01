@@ -8,6 +8,7 @@ import {
 import Hero from '../../components/Hero';
 import Footer from './Footer';
 import LinkRouter from '../../elements/LinkRouter';
+import { SectionLinks } from '../../lib/LinkAndLoaderInterface';
 
 const paperStyles = makeStyles((theme) => ({
   wrapper: {
@@ -29,56 +30,43 @@ const paperStyles = makeStyles((theme) => ({
   },
 }));
 
-interface NavigationLink {
-  path: string;
-  text: string;
+interface LinkMap {
+  mathLinks: SectionLinks;
 }
 
-const worksheetlinks: NavigationLink[] = [
-  {
-    path: '/addition-fill-the-blanks',
-    text: 'Addition: Fill the Blanks',
-  },
-  {
-    path: '/worksheet-patterns',
-    text: 'Patterns',
-  },
-  {
-    path: '/worksheet-place-values',
-    text: 'Place Values',
-  },
-  {
-    path: '/worksheet-numbers-to-words',
-    text: 'Numbers to Words',
-  },
-];
+interface HomePageProps {
+  linkMap: LinkMap;
+}
 
-function MainPage(): JSX.Element {
+function sectionLinksToListItem(links: SectionLinks): Array<JSX.Element> {
+  return Array.from(links.entries()).map(([path, { text }]) => (
+    <ListItem key={path}>
+      <ListItemText>
+        <LinkRouter to={path}>{text}</LinkRouter>
+      </ListItemText>
+    </ListItem>
+  ));
+}
+
+function HomePage({ linkMap }: HomePageProps): JSX.Element {
+  const { mathLinks } = linkMap;
   const classes = paperStyles();
   return (
     <div className={classes.wrapper}>
       <Hero title="Printables" subtitle="Printable Materials for Education" />
       <Container>
         <Paper className={classes.mainContent}>
-          <Typography variant="h4" component="h2">Common</Typography>
+          <Typography variant="h4" component="h2">Math Worksheets</Typography>
+          <List className={classes.list} aria-label="Worksheets">
+            {sectionLinksToListItem(mathLinks)}
+          </List>
+          <Typography variant="h4" component="h2">Miscellaneous</Typography>
           <List className={classes.list}>
             <ListItem>
               <ListItemText secondary="Generate a printable calendar for the month">
                 <LinkRouter to="/calendar">Calendar</LinkRouter>
               </ListItemText>
             </ListItem>
-          </List>
-          <Typography variant="h4" component="h2">Worksheets</Typography>
-          <List className={classes.list} aria-label="Worksheets">
-            {
-              worksheetlinks.map(({ path, text }) => (
-                <ListItem key={path}>
-                  <ListItemText>
-                    <LinkRouter to={path}>{text}</LinkRouter>
-                  </ListItemText>
-                </ListItem>
-              ))
-            }
           </List>
         </Paper>
         <Footer />
@@ -87,4 +75,4 @@ function MainPage(): JSX.Element {
   );
 }
 
-export default MainPage;
+export default HomePage;
