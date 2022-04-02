@@ -24,7 +24,6 @@ export function generateItems(
     rangeA = { from: rangeFrom, to: rangeTo };
     rangeB = rangeA;
   }
-  console.log({ rangeA, rangeB });
 
   const possiblePairs = roundRobinRange(rangeA, rangeB);
   while (generated.length < count) {
