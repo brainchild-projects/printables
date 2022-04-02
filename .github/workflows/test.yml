@@ -161,7 +161,7 @@ jobs:
 
       - name: Update Copyright Year
         if: steps.shouldRelease.outputs.value == 'yes'
-        run: npm run --silent update-copyright-year
+        run: npm run update-copyright-year
 
       - name: Build
         if: steps.shouldRelease.outputs.value == 'yes'
@@ -180,7 +180,10 @@ jobs:
 
       - name: Commit Release
         if: steps.shouldRelease.outputs.value == 'yes'
-        run: git push origin
+        run: |
+          git status
+          git add .
+          git push origin
 
       - name: Create Release
         if: steps.shouldRelease.outputs.value == 'yes'
