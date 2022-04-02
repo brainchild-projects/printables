@@ -24,6 +24,7 @@ export function generateItems(
     rangeA = { from: rangeFrom, to: rangeTo };
     rangeB = rangeA;
   }
+  console.log({ rangeA, rangeB });
 
   const possiblePairs = roundRobinRange(rangeA, rangeB);
   while (generated.length < count) {
@@ -66,7 +67,7 @@ const styles = makeStyles({
     display: 'flex',
     width: '100%',
 
-    '& > div': {
+    '& > span': {
       flex: 1,
     },
   },
@@ -94,7 +95,7 @@ function AdditionSubtractionItem({
       fontSize={fontSize}
     >
       <div className={classes.wrap}>
-        <div>
+        <span>
           {'Since '}
           &nbsp;&nbsp;&nbsp;
           <BlankOrNumber
@@ -111,8 +112,9 @@ function AdditionSubtractionItem({
             value={addition.sum()}
             expected="sum"
           />
-        </div>
-        <div>
+        </span>
+        {' '}
+        <span>
           {'Then '}
           &nbsp;&nbsp;&nbsp;
           <BlankOrNumber
@@ -123,7 +125,7 @@ function AdditionSubtractionItem({
           {subtrahendElement}
           {' = '}
           {differenceElement}
-        </div>
+        </span>
       </div>
     </ProblemListItem>
   );

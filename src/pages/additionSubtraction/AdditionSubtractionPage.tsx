@@ -3,7 +3,7 @@ import PrintableUI from '../../components/PrintableUI';
 import usePageState from '../usePageState';
 import AdditionSubtractionData from './AdditionSubtractionData';
 import CustomizeAdditionSubtractionForm from './CustomizeAdditionSubtractionForm';
-import PreviewAdditionSubtraction from './PreviewAdditionSubtraction';
+import PreviewAddSub from './PreviewAdditionSubtraction';
 
 const defaultData: AdditionSubtractionData = {
   rangeFrom: 0,
@@ -35,7 +35,7 @@ function AdditionSubtractionPage(): JSX.Element {
         />
       )}
     >
-      <PreviewAdditionSubtraction data={data} />
+      <PreviewAddSub data={data} />
     </PrintableUI>
   );
 }

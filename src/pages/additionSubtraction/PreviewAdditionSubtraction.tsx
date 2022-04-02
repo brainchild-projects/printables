@@ -12,7 +12,7 @@ import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 
-interface PreviewAftbProps {
+interface PreviewAddSubProps {
   data: AdditionSubtractionData;
 }
 
@@ -32,7 +32,7 @@ function subtrahendToUse(): AdditionAddends {
   return blankTypesAddends[randomGenerator.integer(blankTypesAddends.length - 1)];
 }
 
-function PreviewAftb({ data }: PreviewAftbProps): JSX.Element {
+function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
   const theData = generateItems(data).map((addition) => {
     const blank = blankType();
     const subtrahend = subtrahendToUse();
@@ -91,4 +91,4 @@ function PreviewAftb({ data }: PreviewAftbProps): JSX.Element {
   );
 }
 
-export default PreviewAftb;
+export default PreviewAddSub;

@@ -33,6 +33,7 @@ const paths = {
   worksheetPatterns: '/worksheet-patterns',
   worksheetPlaceValues: '/worksheet-place-values',
   worksheetNumbersToWords: '/worksheet-numbers-to-words',
+  worksheetAdditionSubtraction: '/worksheet-addition-subtraction',
 };
 
 const pathNames = Object.keys(paths);
