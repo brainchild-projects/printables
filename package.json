@@ -63,10 +63,15 @@
     "@cypress/code-coverage": "^3.9.10",
     "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/cypress": "^8.0.2",
+    "@types/inquirer": "^8.2.1",
+    "@types/shelljs": "^0.8.11",
+    "chalk": "^4.1.2",
     "coveralls": "^3.1.1",
     "cypress": "^9.4.1",
     "cypress-hmr-restarter": "^2.0.2",
-    "istanbul-merge": "^1.1.1"
+    "inquirer": "^8.2.2",
+    "istanbul-merge": "^1.1.1",
+    "shelljs": "^0.8.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -80,7 +85,8 @@
     "release": "standard-version",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
     "update-copyright-year": "ts-node scripts/update-copyright-year.ts",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-page": "node scripts/generate-page"
   },
   "browserslist": {
     "production": [
