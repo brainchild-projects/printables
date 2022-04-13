@@ -124,7 +124,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         wrapper={ProblemList}
         footer={(<WorksheetFooter itemCount={problems.length} />)}
         wrapperProps={{
-          className: `problems bar ${classes.list}`,
+          className: `problems ${classes.list}`,
           columns,
           columnGap,
         }}

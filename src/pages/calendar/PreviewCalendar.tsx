@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { Box, makeStyles } from '@material-ui/core';
 import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
@@ -97,7 +97,7 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
   return (
     <PaperPage noFlexWrap>
       <Box className={classes.wrap}>
-        <h1 className={classes.title}>{ dateFormat.format(referenceDate) }</h1>
+        <h1 className={classes.title}>{dateFormat.format(referenceDate)}</h1>
         <div className={classes.contentWrap}>
           <table className={classes.calendar}>
             <thead className={classes.headers}>
@@ -115,7 +115,7 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
               {
                 weeks.map((week, index) => (
                   <tr key={`week-${index}`}>
-                    { dateCells(week, index) }
+                    {dateCells(week, index)}
                   </tr>
                 ))
               }
