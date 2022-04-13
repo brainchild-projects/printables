@@ -1,12 +1,13 @@
 const { writeFile } = require('fs/promises');
 const { logRed } = require('./colorLogs');
 const { upperCamelCase, titleize } = require('./textManipulation');
+const ImportMap = require('./ImportMap');
 
 async function createDataDefinition(dirPath, pageName, fields) {
   const fileName = `${pageName}Data.ts`;
   const filePath = `${dirPath}/${fileName}`;
 
-  const imports = [];
+  const imports = new ImportMap([]);
   const headDefinitions = [];
   const fieldsDefinition = fields.map(({ fieldName, fieldType, choices }) => {
     const theType = fieldType === 'Select'
@@ -28,8 +29,9 @@ async function createDataDefinition(dirPath, pageName, fields) {
       );
     }
     if (fieldType === 'Range') {
-      imports.push(
-        "import Range from '../../lib/Range';",
+      imports.addImportDefault(
+        '../../lib/Range',
+        'Range',
       );
     }
     return definition;
@@ -37,9 +39,9 @@ async function createDataDefinition(dirPath, pageName, fields) {
   const mainSection = `export default interface ${pageName}Data {\n`
     + `${fieldsDefinition.join('\n')}\n}\n`;
 
-  let content = imports.length === 0
+  let content = imports.size === 0
     ? ''
-    : `${imports.join('\n')}\n\n`;
+    : `${imports.asImportStatements()}\n\n`;
   content += headDefinitions.length === 0
     ? mainSection
     : `${headDefinitions.join('\n')}\n\n${mainSection}`;

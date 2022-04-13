@@ -5,6 +5,10 @@ class ImportMap {
     this.map = new Map([]);
   }
 
+  get size() {
+    return this.map.size;
+  }
+
   addImportDefault(path, def) {
     const importer = this.getImporter(path);
     importer.setDefault(def);
