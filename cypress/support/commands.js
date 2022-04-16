@@ -34,6 +34,7 @@ const paths = {
   worksheetPlaceValues: '/worksheet-place-values',
   worksheetNumbersToWords: '/worksheet-numbers-to-words',
   worksheetAdditionSubtraction: '/worksheet-addition-subtraction',
+  worksheetVerticalAddition: '/worksheet-vertical-addition',
 };
 
 const pathNames = Object.keys(paths);

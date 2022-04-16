@@ -1,6 +1,6 @@
-import roundRobinRange from './roundRobinRange';
+import roundRobinPairsByRanges from './roundRobinPairsByRanges';
+import Range from './Range';
 
-type Range = { from: number, to: number };
 type PairOfRange = [aRange: Range, bRange: Range];
 type NumberPair = [a: number, b: number];
 interface TestData {
@@ -8,7 +8,7 @@ interface TestData {
   pairs: NumberPair[]
 }
 
-describe('roundRobinRange()', () => {
+describe('roundRobinPairsByRanges()', () => {
   const testTable = new Map<string, TestData>([
     ['only zeroes', {
       args: [{ from: 0, to: 0 }, { from: 0, to: 0 }],
@@ -81,7 +81,7 @@ describe('roundRobinRange()', () => {
       let pairings: NumberPair[];
 
       beforeEach(() => {
-        pairings = roundRobinRange(...testData.args);
+        pairings = roundRobinPairsByRanges(...testData.args);
       });
 
       it('contains only possible range', () => {

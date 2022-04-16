@@ -1,8 +1,7 @@
 import React from 'react';
 import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import roundRobinRange from '../../lib/roundRobinRange';
+import pairsByRanges from '../../lib/pairsByRanges';
 import Addition from './Addition';
 import AftbData from './AftbData';
 
@@ -13,7 +12,6 @@ export function generateAdditionSentences(
     rangeFrom, rangeTo, problems, customAddendsA, customAddendsB, problemGeneration,
   }: AftbData,
 ): Addition[] {
-  const generated: Addition[] = [];
   let rangeA: Range;
   let rangeB: Range;
   if (problemGeneration === 'custom addends') {
@@ -24,15 +22,8 @@ export function generateAdditionSentences(
     rangeB = rangeA;
   }
 
-  const possiblePairs = roundRobinRange(rangeA, rangeB);
-  while (generated.length < problems) {
-    const pairBag = possiblePairs.slice(0);
-    for (let i = 0; i < pairBag.length && generated.length < problems; i++) {
-      const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
-      generated.push(Addition.create(...pair));
-    }
-  }
-  return generated;
+  const pairs = pairsByRanges(rangeA, rangeB, problems);
+  return pairs.map((pair) => Addition.create(...pair));
 }
 
 export type AdditionBlankPosition = 'addendA' | 'addendB' | 'sum';

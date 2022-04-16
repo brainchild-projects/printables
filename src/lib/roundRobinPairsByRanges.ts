@@ -1,6 +1,8 @@
+import Range from './Range';
+
 type Pair = [a: number, b: number];
-type Range = { from: number, to: number };
-export default function roundRobinRange(aRange: Range, bRange: Range): Pair[] {
+
+export default function roundRobinPairsByRanges(aRange: Range, bRange: Range): Pair[] {
   const pairs: Pair[] = [];
   const found = new Set<string>();
   for (let i = aRange.from; i <= aRange.to; i++) {

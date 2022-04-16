@@ -26,6 +26,12 @@ it('can visit all subpages', () => {
 
   goBackHome();
 
+  // Vertical Addition Worksheets
+  clickWorksheetLink(/vertical.+addition/i);
+  cy.hasCustomizeFormHeading(/vertical.+addition/i);
+
+  goBackHome();
+
   // Addition and Subtraction
   clickWorksheetLink(/addition.+subtraction/i);
   cy.hasCustomizeFormHeading(/addition.+subtraction/i);

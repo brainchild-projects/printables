@@ -9,6 +9,7 @@ declare namespace Cypress {
     visitWorksheetPlaceValues(): Chainable<AUTWindow>;
     visitWorksheetNumbersToWords(): Chainable<AUTWindow>;
     visitWorksheetAdditionSubtraction(): Chainable<AUTWindow>;
+    visitWorksheetVerticalAddition(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {

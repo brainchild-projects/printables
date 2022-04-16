@@ -5,6 +5,7 @@ const HomePage = lazy(() => import('../pages/main/HomePage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
 const AdditionFillTheBlanksPage = lazy(() => import('../pages/additionFillTheBlanks/AdditionFillTheBlanksPage'));
 const AdditionSubtractionPage = lazy(() => import('../pages/additionSubtraction/AdditionSubtractionPage'));
+const VerticalAdditionPage = lazy(() => import('../pages/verticalAddition/VerticalAdditionPage'));
 const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
@@ -32,13 +33,17 @@ if (!isProduction) {
 }
 
 export const mathLinks: SectionLinks = new Map([
-  ['/worksheet-addition-subtraction', {
-    text: 'Addition-Subtraction Relationship',
-    loader: AdditionSubtractionPage,
-  }],
   ['/addition-fill-the-blanks', {
     text: 'Addition: Fill The Blanks',
     loader: AdditionFillTheBlanksPage,
+  }],
+  ['/worksheet-vertical-addition', {
+    text: 'Vertical Addition',
+    loader: VerticalAdditionPage,
+  }],
+  ['/worksheet-addition-subtraction', {
+    text: 'Addition-Subtraction Relationship',
+    loader: AdditionSubtractionPage,
   }],
   ['/worksheet-patterns', {
     text: 'Patterns',

@@ -3,7 +3,7 @@ import React from 'react';
 import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import roundRobinRange from '../../lib/roundRobinRange';
+import roundRobinPairsByRanges from '../../lib/roundRobinPairsByRanges';
 import Addition from '../additionFillTheBlanks/Addition';
 import AdditionSubtractionData from './AdditionSubtractionData';
 
@@ -25,7 +25,7 @@ export function generateItems(
     rangeB = rangeA;
   }
 
-  const possiblePairs = roundRobinRange(rangeA, rangeB);
+  const possiblePairs = roundRobinPairsByRanges(rangeA, rangeB);
   while (generated.length < count) {
     const pairBag = possiblePairs.slice(0);
     for (let i = 0; i < pairBag.length && generated.length < count; i++) {
