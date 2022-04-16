@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import AdditionSentence, { AdditionBlankPosition } from './AdditionSentence';
-import Addition from './Addition';
+import Addition from '../../lib/math/Addition';
 
 describe('AdditionSentence', () => {
   const element = () => screen.getByRole('listitem');

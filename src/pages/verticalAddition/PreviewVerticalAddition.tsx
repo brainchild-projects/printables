@@ -6,9 +6,9 @@ import WorksheetFooter from '../../components/WorksheetFooter';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import VerticalAdditionData from './VerticalAdditionData';
 import Range from '../../lib/Range';
-import Addition from '../additionFillTheBlanks/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
 import VerticalAdditionItem from './VerticalAdditionItem';
+import Addition from '../../lib/math/Addition';
 
 function generateProblems({
   range, count, problemGeneration, customAddendsA, customAddendsB,

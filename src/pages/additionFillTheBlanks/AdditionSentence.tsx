@@ -1,8 +1,8 @@
 import React from 'react';
 import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
+import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
-import Addition from './Addition';
 import AftbData from './AftbData';
 
 type Range = { from: number, to: number };

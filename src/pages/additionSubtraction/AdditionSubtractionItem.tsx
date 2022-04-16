@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
+import Addition from '../../lib/math/Addition';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import roundRobinPairsByRanges from '../../lib/roundRobinPairsByRanges';
-import Addition from '../additionFillTheBlanks/Addition';
 import AdditionSubtractionData from './AdditionSubtractionData';
 
 type Range = { from: number, to: number };

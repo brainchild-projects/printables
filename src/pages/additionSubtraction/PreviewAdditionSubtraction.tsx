@@ -7,10 +7,10 @@ import AdditionSubtractionItem, {
 import AdditionSubtractionData from './AdditionSubtractionData';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
-import Addition from '../additionFillTheBlanks/Addition';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import Addition from '../../lib/math/Addition';
 
 interface PreviewAddSubProps {
   data: AdditionSubtractionData;

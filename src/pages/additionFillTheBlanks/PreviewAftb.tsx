@@ -6,10 +6,10 @@ import AdditionSentence, {
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
-import Addition from './Addition';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
+import Addition from '../../lib/math/Addition';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
