@@ -82,7 +82,7 @@
     "merge-coverage": "npx istanbul-merge --out coverage/merged/coverage-final.json coverage/unit/coverage-final.json coverage/integration/coverage-final.json",
     "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
     "cypress": "cypress open",
-    "release": "standard-version",
+    "release": "standard-version -a",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
     "update-copyright-year": "ts-node scripts/update-copyright-year.ts",
     "eject": "react-scripts eject",
@@ -113,6 +113,9 @@
   "standard-version": {
     "skip": {
       "tag": true
+    },
+    "scripts": {
+      "prerelease": "npm run update-copyright-year && git add ."
     }
   },
   "engines": {

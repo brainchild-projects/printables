@@ -159,9 +159,9 @@ jobs:
           should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" != "${{ steps.currentVersion.outputs.value }}" ]] && echo "yes" || echo "no"`
           echo "::set-output name=value::${should}"
 
-      - name: Update Copyright Year
-        if: steps.shouldRelease.outputs.value == 'yes'
-        run: npm run update-copyright-year
+      # - name: Update Copyright Year
+      #   if: steps.shouldRelease.outputs.value == 'yes'
+      #   run: npm run update-copyright-year
 
       - name: Build
         if: steps.shouldRelease.outputs.value == 'yes'
