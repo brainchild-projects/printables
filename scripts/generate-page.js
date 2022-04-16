@@ -168,7 +168,7 @@ async function run() {
   const result = await Promise.all([
     createCustomizeForm(dirPath, pageName, fields),
     createDataDefinition(dirPath, pageName, fields),
-    createPreview(dirPath, pageName, fields, pageType, title),
+    createPreview(dirPath, pageName, pageType),
     createPage(dirPath, pageName, fields, title),
   ]);
 
