@@ -108,9 +108,19 @@ async function gatherFields() {
       message: 'Default Value:',
       default: getDefaultValue(field),
     }]);
-    const defaultValue = fieldType === 'Range'
-      ? rangeDefault(fieldDefault)
-      : fieldDefault;
+    let defaultValue;
+    switch (fieldType) {
+      case 'Range':
+        defaultValue = rangeDefault(fieldDefault);
+        break;
+
+      case 'number':
+        defaultValue = parseFloat(fieldDefault);
+        break;
+
+      default:
+        defaultValue = fieldDefault;
+    }
     field.fieldDefault = defaultValue;
 
     fields.push(field);
