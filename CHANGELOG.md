@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.44](https://github.com/brainchild-projects/printables/compare/v0.0.43...v0.0.44) (2022-04-16)
+
+
+### Features
+
+* **worksheet:** vertical addition ([db33c40](https://github.com/brainchild-projects/printables/commit/db33c406226c782d6e10ad2dad198c37779e387b)), closes [#51](https://github.com/brainchild-projects/printables/issues/51)
+
+
+### Bug Fixes
+
+* bug with page generator script wrong type ([e5ee9d8](https://github.com/brainchild-projects/printables/commit/e5ee9d8fcbc611c213adf41322dd2070cfaeed6e))
+
 ### [0.0.43](https://github.com/brainchild-projects/printables/compare/v0.0.42...v0.0.43) (2022-04-13)
 
 ### [0.0.42](https://github.com/brainchild-projects/printables/compare/v0.0.41...v0.0.42) (2022-04-02)
