@@ -6,7 +6,7 @@ it('can create subtraction with figures worksheets', () => {
   cy.setNumberRange(/minuend/i, 5, 6);
 
   cy.withinPreview(() => {
-    cy.contains(/[56]\s+-\s+[0-6]\s+=\s+[0-6]/);
+    cy.contains(/[56]\s+-\s+[0-6]\s+=\s+\d/);
   });
 
   cy.findByLabelText(/problem.+generation/i).select('Subtrahend and Difference');
