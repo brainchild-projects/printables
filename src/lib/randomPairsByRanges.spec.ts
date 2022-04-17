@@ -29,15 +29,6 @@ describe('randomPairsByRanges()', () => {
         [2, 1],
       ],
     }],
-    ['2 vs 1', {
-      args: [{ from: 0, to: 1 }, { from: 2, to: 2 }, 4],
-      pairs: [
-        [0, 2],
-        [1, 2],
-        [2, 0],
-        [2, 1],
-      ],
-    }],
   ]);
 
   testTable.forEach((testData, note) => {
@@ -54,12 +45,27 @@ describe('randomPairsByRanges()', () => {
     });
   });
 
-  it('generates sufficiently unique pairs', () => {
-    const pairings = randomPairsByRanges(
-      { from: 0, to: 100 },
-      { from: 0, to: 100 },
-      20,
-    );
-    expect(setPairs(pairings).size).toEqual(pairings.length);
+  describe('on sufficiently large ranges', () => {
+    let pairings: NumberPair[];
+    beforeEach(() => {
+      pairings = randomPairsByRanges(
+        { from: 0, to: 100 },
+        { from: 0, to: 100 },
+        20,
+      );
+    });
+
+    it('generates sufficiently unique pairs', () => {
+      expect(setPairs(pairings).size).toEqual(pairings.length);
+    });
+
+    it('generates numbers within ranges', () => {
+      pairings.forEach(([a, b]) => {
+        expect(a).toBeLessThanOrEqual(100);
+        expect(a).toBeGreaterThanOrEqual(0);
+        expect(b).toBeLessThanOrEqual(100);
+        expect(b).toBeGreaterThanOrEqual(0);
+      });
+    });
   });
 });
