@@ -164,7 +164,7 @@ jobs:
         run: |
           npm run update-copyright-year
           git status
-          git add .
+          git add src/pages/main/Footer.tsx
 
       - name: Build
         if: steps.shouldRelease.outputs.value == 'yes'
