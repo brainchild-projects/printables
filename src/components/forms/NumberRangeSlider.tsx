@@ -146,12 +146,12 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
       value: 10,
       label: '10',
     },
-    {
-      value: 20,
-      label: '100',
-    },
   ];
-  let max = 100;
+  let max = 10;
+  if (magnitude === 2) {
+    marks.push({ value: 20, label: '100' });
+    max = 100;
+  }
   if (magnitude === 3) {
     marks.push({ value: 30, label: '1000' });
     max = 1000;

@@ -17,16 +17,14 @@ it('can create vertical addition worksheets', () => {
 
   cy.withinPreview(() => {
     // Problems
-    cy.findAllByRole('list', { name: /problems/i })
-      .find('li')
+    cy.problemListItems()
       .should('have.length', 50)
       .each(($li) => {
         cy.wrap($li).contains(/([23]\s+\+\s+[45]|[45]\s+\+\s+[23])/);
       });
 
     // Answers
-    cy.findAllByRole('list', { name: /answers/i })
-      .find('li')
+    cy.answerListItems()
       .should('have.length', 50)
       .each(($li) => {
         cy.wrap($li).contains(/([23]\s+\+\s+[45].+[678]|[45]\s+\+\s+[23].+[678])/);

@@ -35,6 +35,7 @@ const paths = {
   worksheetNumbersToWords: '/worksheet-numbers-to-words',
   worksheetAdditionSubtraction: '/worksheet-addition-subtraction',
   worksheetVerticalAddition: '/worksheet-vertical-addition',
+  worksheetSubtractionWithFigures: '/worksheet-subtraction-with-figures',
 };
 
 const pathNames = Object.keys(paths);
@@ -127,6 +128,16 @@ Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=
 
 Cypress.Commands.add('findPaperPage', (page) => cy.findByRole('region', { name: new RegExp(`paper.+page ${page}`, 'i') }));
 Cypress.Commands.add('clearType', { prevSubject: true }, (subject, value) => cy.wrap(subject).clear().type(value));
+
+Cypress.Commands.add(
+  'problemListItems',
+  () => cy.findAllByRole('list', { name: /problems/i }).find('li'),
+);
+
+Cypress.Commands.add(
+  'answerListItems',
+  () => cy.findAllByRole('list', { name: /answers/i }).find('li'),
+);
 
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',

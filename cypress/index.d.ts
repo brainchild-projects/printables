@@ -10,6 +10,7 @@ declare namespace Cypress {
     visitWorksheetNumbersToWords(): Chainable<AUTWindow>;
     visitWorksheetAdditionSubtraction(): Chainable<AUTWindow>;
     visitWorksheetVerticalAddition(): Chainable<AUTWindow>;
+    visitWorksheetSubtractionWithFigures(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {
@@ -24,5 +25,7 @@ declare namespace Cypress {
     findPaperPage(page: number): Chainable<Subject>;
     clearType(value: string): Chainable<Subject>;
     hasCustomizeFormHeading(text: LabelPattern): Chainable<Subject>;
+    problemListItems(): Chainable<Subject>;
+    answerListItems(): Chainable<Subject>;
   }
 }
