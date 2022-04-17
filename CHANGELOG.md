@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.45](https://github.com/brainchild-projects/printables/compare/v0.0.44...v0.0.45) (2022-04-17)
+
+
+### Features
+
+* **worksheet:** subtraction with figures ([c4c98f4](https://github.com/brainchild-projects/printables/commit/c4c98f4f3eb953ec182a6649d5203909acd7e633)), closes [#66](https://github.com/brainchild-projects/printables/issues/66) [#67](https://github.com/brainchild-projects/printables/issues/67)
+
 ### [0.0.44](https://github.com/brainchild-projects/printables/compare/v0.0.43...v0.0.44) (2022-04-16)
 
 
