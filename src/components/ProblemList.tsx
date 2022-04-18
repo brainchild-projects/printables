@@ -1,4 +1,5 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import classNames from 'classnames';
 import React, { CSSProperties, ReactNode } from 'react';
 import { Props, PropsCallback } from './MultiPaperPage';
 
@@ -36,12 +37,15 @@ function ProblemList({
   const classes = styles();
   const cols = columns ?? 1;
   const gap = `${columnGap ?? 1}em`;
-  const paddedClassName = className ? ` ${className}` : '';
   const styleUsed = { ...style, columns: cols, columnGap: gap };
 
   return (
     <ol
-      className={`problems ${classes.list}${paddedClassName}`}
+      className={classNames(
+        'problems',
+        classes.list,
+        className,
+      )}
       style={styleUsed}
       aria-label={label ?? 'Problems'}
     >

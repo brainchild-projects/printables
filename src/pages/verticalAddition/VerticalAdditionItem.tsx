@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import classNames from 'classnames';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 
@@ -57,7 +58,7 @@ export default function VerticalAdditionItem({
             <span className="number">{add.addendA}</span>
             {' '}
           </span>
-          <span className={[classes.addendRow, classes.lastRow].join(' ')}>
+          <span className={classNames(classes.addendRow, classes.lastRow)}>
             <span className={classes.operator}>+</span>
             {' '}
             <span className={classes.number}>{add.addendB}</span>

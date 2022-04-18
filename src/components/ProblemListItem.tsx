@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 
 interface ProblemListItemProps {
@@ -30,10 +31,9 @@ function ProblemListItem({
   children, label, fontSize, className,
 }: ProblemListItemProps): JSX.Element {
   const classes = styles();
-  const paddedClassName = className ? ` ${className}` : '';
   return (
     <li
-      className={`${classes.li}${paddedClassName}`}
+      className={classNames(classes.li, className)}
       aria-label={label ?? defaultLabel}
       style={{ fontSize: `${fontSize ?? defaultFontSize}px` }}
     >
@@ -44,7 +44,7 @@ function ProblemListItem({
 
 ProblemListItem.defaultProps = {
   fontSize: defaultFontSize,
-  className: '',
+  className: null,
   label: defaultLabel,
 };
 

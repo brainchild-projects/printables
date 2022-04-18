@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
 import Stringable from '../lib/Stringable';
 
 const styles = makeStyles(() => ({
@@ -43,7 +44,12 @@ const underlines = (length: number): string => {
 function Blank({ answer, showAnswer, width }: BlankProps): JSX.Element {
   const classes = styles();
   return (
-    <span className={`problem-blank problem-blank-${width ?? 'short'} ${classes.problemBlank}`}>
+    <span className={classNames(
+      'problem-blank',
+      `problem-blank-${width ?? 'short'}`,
+      classes.problemBlank,
+    )}
+    >
       {
         showAnswer
           ? answer

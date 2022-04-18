@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
+import classNames from 'classnames';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
 import ScrollToTop from './ScrollToTop';
@@ -43,7 +44,13 @@ function AppWrapper(): JSX.Element {
       <MuiThemeProvider theme={theme}>
         <BaseStyle />
         <PrintablesAppBar linkMap={linkMap} />
-        <main className={`${classes.main} print-ignore print-auto-max-width AppWrapper`}>
+        <main className={classNames(
+          classes.main,
+          'print-ignore',
+          'print-auto-max-width',
+          'AppWrapper',
+        )}
+        >
           <Routes>{routes}</Routes>
         </main>
       </MuiThemeProvider>

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import classNames from 'classnames';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import ProblemList from '../../components/ProblemList';
 import ProblemListItem from '../../components/ProblemListItem';
@@ -124,7 +125,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         wrapper={ProblemList}
         footer={(<WorksheetFooter itemCount={problems.length} />)}
         wrapperProps={{
-          className: `problems ${classes.list}`,
+          className: classNames('problems', classes.list),
           columns,
           columnGap,
         }}
@@ -138,7 +139,7 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
         )}
         wrapper={ProblemList}
         wrapperProps={{
-          className: `problems bar ${classes.list}`,
+          className: classNames('problems', classes.list),
           label: 'Answers',
           columns,
           columnGap,

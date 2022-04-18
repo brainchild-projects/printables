@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import classNames from 'classnames';
 import React from 'react';
 import Subtraction from '../../lib/math/Subtraction';
 import CrossableCircle from './CrossableCircle';
@@ -65,7 +66,7 @@ function SubtractionFigure({ subtraction, showAnswer }: SubtractionFigureProps):
     );
   }
   return (
-    <div className={`subtraction-figure ${classes.wrap}`}>{rows}</div>
+    <div className={classNames('subtraction-figure', classes.wrap)}>{rows}</div>
   );
 }
 

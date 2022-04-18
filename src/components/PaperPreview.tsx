@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
 
 const paperPreviewStyles = makeStyles(() => ({
   preview: {
@@ -50,9 +51,9 @@ function PaperPreview({ children }: PaperPreviewProps): JSX.Element {
     <div
       ref={wrapperRef}
       id="paper-preview"
-      className={`paper-preview ${classes.preview}`}
+      className={classNames('paper-preview', classes.preview)}
     >
-      { children }
+      {children}
     </div>
   );
 }

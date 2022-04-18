@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import classNames from 'classnames';
 import React from 'react';
 import FontLoad from '../../components/FontLoad';
 import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
@@ -62,7 +63,9 @@ const problemStyles = makeStyles(() => ({
 function PatternProblemDisplay({ elements }: PatternProblem): JSX.Element {
   const classes = problemStyles();
   return (
-    <ProblemListItem className={`pattern-problem-item ${classes.listItem}`}>
+    <ProblemListItem
+      className={classNames('pattern-problem-item', classes.listItem)}
+    >
       <div className={classes.pattern}>
         {
           elements.map((shape, index): JSX.Element => (

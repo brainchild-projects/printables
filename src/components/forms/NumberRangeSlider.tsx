@@ -3,6 +3,7 @@ import {
   Slider, Typography, makeStyles, Grid, FormControl, TextField,
 } from '@material-ui/core';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
+import classNames from 'classnames';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import './NumberRangeSlider.css';
 import Range from '../../lib/Range';
@@ -167,7 +168,12 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         {label}
       </Typography>
 
-      <Grid container spacing={2} alignItems="center" className={classes.inputGrid}>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        className={classes.inputGrid}
+      >
         <Grid item xs={6}>
           <FormControl>
             <TextField
@@ -185,7 +191,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
                 min: 0,
                 max,
                 type: 'number',
-                className: `${classes.input} hidden-spinners`,
+                className: classNames(classes.input, 'hidden-spinners'),
                 'data-testid': `${id}-from`,
               }}
             />
@@ -208,7 +214,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
                 min: 0,
                 max,
                 type: 'number',
-                className: `${classes.input} hidden-spinners`,
+                className: classNames(classes.input, 'hidden-spinners'),
                 'data-testid': `${id}-to`,
               }}
             />

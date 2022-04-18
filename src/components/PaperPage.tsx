@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import classNames from 'classnames';
 import { usePaperOptions } from './PaperOptionsProvider';
 
 const paperPageStyles = makeStyles(() => ({
@@ -75,24 +76,34 @@ function PaperPage({
   }
 
   const dimensionStyles = paperSize.dimensionsStr(orientation);
-  const pageClassNames = `printable-paper ${!ready ? 'not-ready' : ''} ${classes.paper}`;
 
   return (
     <Paper
-      className={pageClassNames}
+      className={classNames(
+        'printable-paper',
+        classes.paper,
+        { 'not-ready': !ready },
+      )}
       style={paperStyle}
       component="section"
       data-page-id={pageId}
     >
       <div
-        className={`${classes.content} printable-paper-content`}
+        className={classNames(
+          classes.content,
+          'printable-paper-content',
+        )}
         style={{ padding: margin, ...dimensionStyles }}
       >
         {
           noFlexWrap
             ? children
             : (
-              <div className={`${classes.innerWrap} printable-paper-inner-wrap`}>
+              <div className={classNames(
+                classes.innerWrap,
+                'printable-paper-inner-wrap',
+              )}
+              >
                 {children}
               </div>
             )

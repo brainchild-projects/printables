@@ -1,4 +1,5 @@
 import { Link, makeStyles, Typography } from '@material-ui/core';
+import classNames from 'classnames';
 import React from 'react';
 
 const styles = makeStyles((theme) => ({
@@ -13,7 +14,7 @@ const styles = makeStyles((theme) => ({
 function Footer(): JSX.Element {
   const classes = styles();
   return (
-    <footer className={`${classes.footer} no-print`}>
+    <footer className={classNames(classes.footer, 'no-print')}>
       <Typography component="p">
         Copyright ©
         {' '}

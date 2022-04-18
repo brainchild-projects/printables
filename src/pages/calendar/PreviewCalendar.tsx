@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { Box, makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
 import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
@@ -111,7 +112,7 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
                 <th>Saturday</th>
               </tr>
             </thead>
-            <tbody aria-label="Dates" className={`${classes.body} calendar-body`}>
+            <tbody aria-label="Dates" className={classNames(classes.body, 'calendar-body')}>
               {
                 weeks.map((week, index) => (
                   <tr key={`week-${index}`}>

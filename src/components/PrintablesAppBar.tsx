@@ -7,6 +7,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import { LinkMap } from '../lib/linkMap';
 import Sidebar from './Sidebar';
 
@@ -50,7 +51,7 @@ function PrintablesAppBar({ linkMap }: PrintablesAppBarProps): JSX.Element {
   };
 
   return (
-    <div className={`${classes.wrap} no-print`}>
+    <div className={classNames(classes.wrap, 'no-print')}>
       <MuiThemeProvider theme={theme}>
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>

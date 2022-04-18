@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
 import Footer from '../pages/main/Footer';
@@ -48,14 +49,32 @@ function PrintableUI({
   return (
     <InstanceOptionsProvider>
       <PaperOptionsProvider orientation={defaultOrientation} optionsKey={key}>
-        <Grid container spacing={3} className={`${classes.container} print-ignore print-auto-max-width`}>
-          <Grid item xs={3} sm={2} className={`${classes.column} no-print`}>
+        <Grid
+          container
+          spacing={3}
+          className={classNames(
+            classes.container,
+            'print-ignore',
+            'print-auto-max-width',
+          )}
+        >
+          <Grid
+            item
+            xs={3}
+            sm={2}
+            className={classNames(classes.column, 'no-print')}
+          >
             <section aria-label="Customize Form" className={classes.sideColumn}>
               <Typography variant="h5" component="h1">{title}</Typography>
               {customizeForm}
             </section>
           </Grid>
-          <Grid item xs={9} sm={10} className={`${classes.main} print-ignore`}>
+          <Grid
+            item
+            xs={9}
+            sm={10}
+            className={classNames(classes.main, 'print-ignore')}
+          >
             <section aria-label="Preview">
               <PaperPreview>{children}</PaperPreview>
             </section>
