@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.46](https://github.com/brainchild-projects/printables/compare/v0.0.45...v0.0.46) (2022-04-18)
+
+
+### Features
+
+* navigation sidebar ([debece9](https://github.com/brainchild-projects/printables/commit/debece908317c2af810b2ef49636365159b8d1d3)), closes [#69](https://github.com/brainchild-projects/printables/issues/69)
+
 ### [0.0.45](https://github.com/brainchild-projects/printables/compare/v0.0.44...v0.0.45) (2022-04-17)
 
 
