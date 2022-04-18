@@ -29,6 +29,7 @@ function SwitchField({
             onChange(val, e);
           }}
           name={name}
+          color="primary"
         />
       )}
       label={theLabel}

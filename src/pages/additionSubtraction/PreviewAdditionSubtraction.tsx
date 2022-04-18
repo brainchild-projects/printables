@@ -52,6 +52,7 @@ function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
         <AdditionSubtractionItem
           key={`${keyPrefix}-${index}`}
           blank={blank}
+          blanksOnAddition={data.blanksOnAddition}
           addition={addition}
           subtrahend={subtrahend}
           fontSize={data.fontSize}

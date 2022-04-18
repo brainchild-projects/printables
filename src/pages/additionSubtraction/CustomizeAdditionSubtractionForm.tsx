@@ -10,6 +10,7 @@ import FontSizeField from '../../components/forms/FontSizeField';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import SwitchField from '../../components/forms/SwitchField';
 
 export interface CustomizeAdditionSubtractionFormProps {
   onChange: (data: AdditionSubtractionData) => void,
@@ -47,7 +48,7 @@ function CustomizeAdditionSubtractionForm({
     });
   };
 
-  const changeHandler = (field: string) => (value: number) => {
+  const changeHandler = (field: string) => (value: number | boolean) => {
     updateData({
       ...data,
       [field]: value,
@@ -133,6 +134,12 @@ function CustomizeAdditionSubtractionForm({
           : null
       }
 
+      <SwitchField
+        name="blanksOnAddition"
+        label="Blanks on Addition"
+        onChange={changeHandler('blanksOnAddition')}
+        value={data.blanksOnAddition}
+      />
       <Divider variant="middle" />
       <NumberField
         name="columns"

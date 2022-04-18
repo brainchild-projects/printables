@@ -27,5 +27,7 @@ declare namespace Cypress {
     hasCustomizeFormHeading(text: LabelPattern): Chainable<Subject>;
     problemListItems(): Chainable<Subject>;
     answerListItems(): Chainable<Subject>;
+    toggleOnSwitch(label: string | RegExp): Chainable<Subject>;
+    toggleOffSwitch(label: string | RegExp): Chainable<Subject>;
   }
 }

@@ -9,6 +9,19 @@ it('can create addition-subtraction relationship worksheets', () => {
     cy.contains(/\w+\s+[_23]_* \+ [_23]_* = [56_]_*\s+\w+\s+[56_]_* - [_23]_* = [_23]_*/);
   });
 
+  cy.toggleOffSwitch(/blanks.+addition/i);
+  cy.findByLabelText(/number of problems/i).clearType('10');
+
+  cy.withinPreview(() => {
+    cy.problemListItems()
+      .should('have.length', 10)
+      .each(($li) => {
+        cy.wrap($li).contains(/\d \+ \d = \d/);
+      });
+  });
+
+  cy.toggleOnSwitch(/blanks.+addition/i);
+
   cy.findByLabelText('Problem Generation').select('Custom Addends');
   cy.setNumberRange(/addend a/i, 2, 3);
   cy.setNumberRange(/addend b/i, 4, 5);

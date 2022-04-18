@@ -46,6 +46,7 @@ export interface AdditionSubtractionItemProps {
   blank?: AdditionBlankPosition;
   fontSize?: number;
   subtrahend: AdditionAddends;
+  blanksOnAddition: boolean;
 }
 interface BlankOrNumberProps {
   expected: AdditionBlankPosition;
@@ -74,7 +75,7 @@ const styles = makeStyles({
 
 function AdditionSubtractionItem({
   addition, blank = 'sum', showAnswer = false, fontSize = 20,
-  subtrahend,
+  subtrahend, blanksOnAddition,
 }: AdditionSubtractionItemProps): JSX.Element {
   const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
@@ -86,6 +87,33 @@ function AdditionSubtractionItem({
     : <BlankOrNumber value={addition.addendA} expected="addendA" />;
 
   const classes = styles();
+  const addendAElement = blanksOnAddition
+    ? (
+      <BlankOrNumber
+        value={addition.addendA}
+        expected="addendA"
+      />
+    )
+    : addition.addendA;
+
+  const addendBElement = blanksOnAddition
+    ? (
+      <BlankOrNumber
+        value={addition.addendB}
+        expected="addendB"
+      />
+    )
+    : addition.addendB;
+
+  const sumElement = blanksOnAddition
+    ? (
+
+      <BlankOrNumber
+        value={addition.sum()}
+        expected="sum"
+      />
+    )
+    : addition.sum();
 
   return (
     <ProblemListItem
@@ -97,20 +125,11 @@ function AdditionSubtractionItem({
         <span>
           {'Since '}
           &nbsp;&nbsp;&nbsp;
-          <BlankOrNumber
-            value={addition.addendA}
-            expected="addendA"
-          />
+          {addendAElement}
           {' + '}
-          <BlankOrNumber
-            value={addition.addendB}
-            expected="addendB"
-          />
+          {addendBElement}
           {' = '}
-          <BlankOrNumber
-            value={addition.sum()}
-            expected="sum"
-          />
+          {sumElement}
         </span>
         {' '}
         <span>

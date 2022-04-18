@@ -14,6 +14,7 @@ const defaultData: AdditionSubtractionData = {
   customAddendsB: { from: 0, to: 9 },
   fontSize: 20,
   columns: 1,
+  blanksOnAddition: true,
 };
 
 const dataKey = 'additionSubtraction';

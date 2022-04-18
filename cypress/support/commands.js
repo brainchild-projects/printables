@@ -139,6 +139,16 @@ Cypress.Commands.add(
   () => cy.findAllByRole('list', { name: /answers/i }).find('li'),
 );
 
+Cypress.Commands.add(
+  'toggleOffSwitch',
+  (label) => cy.findByLabelText(label).uncheck(),
+);
+
+Cypress.Commands.add(
+  'toggleOnSwitch',
+  (label) => cy.findByLabelText(label).check(),
+);
+
 Cypress.Commands.add('reactComponent', {
   prevSubject: 'element',
 }, ($el) => {
