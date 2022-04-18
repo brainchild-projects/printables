@@ -70,6 +70,11 @@ export const miscLinks: SectionLinks = new Map([
     loader: CalendarPage,
   }],
 ]);
+export interface LinkMap {
+  mathLinks: SectionLinks;
+  mainLinks: SectionLinks;
+  miscLinks: SectionLinks;
+}
 
 export const allLinks = new Map([
   ...mainLinks,

@@ -42,7 +42,7 @@ function AppWrapper(): JSX.Element {
       <ScrollToTop />
       <MuiThemeProvider theme={theme}>
         <BaseStyle />
-        <PrintablesAppBar />
+        <PrintablesAppBar linkMap={linkMap} />
         <main className={`${classes.main} print-ignore print-auto-max-width AppWrapper`}>
           <Routes>{routes}</Routes>
         </main>
