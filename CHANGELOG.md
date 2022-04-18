@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.47](https://github.com/brainchild-projects/printables/compare/v0.0.46...v0.0.47) (2022-04-18)
+
+
+### Features
+
+* toggle addition blanks in add-sub relationship worksheet ([a590add](https://github.com/brainchild-projects/printables/commit/a590add99a70fc6ab70f7b6c6a8aa5092e749b70)), closes [#72](https://github.com/brainchild-projects/printables/issues/72)
+
 ### [0.0.46](https://github.com/brainchild-projects/printables/compare/v0.0.45...v0.0.46) (2022-04-18)
 
 
