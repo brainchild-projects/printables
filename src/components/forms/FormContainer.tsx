@@ -1,9 +1,9 @@
 import Collapse from '@material-ui/core/Collapse';
-import { DefaultTheme, makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import React, { FormEvent, ReactNode } from 'react';
 
-const styles = makeStyles((theme: DefaultTheme) => ({
+const styles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
