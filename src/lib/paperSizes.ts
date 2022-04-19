@@ -15,6 +15,13 @@ function unknownOrientationError(orientation: string): Error {
   return Error(`Unknown orientation "${orientation}}". Expected "portrait" or "landscape".`);
 }
 
+export interface PaperSizeJSON {
+  name: string;
+  width: number;
+  height: number;
+  code: string;
+}
+
 export class PaperSize {
   name: string;
 
@@ -85,6 +92,15 @@ export class PaperSize {
       default:
         throw unknownOrientationError(orientation);
     }
+  }
+
+  toJSON(): PaperSizeJSON {
+    const {
+      name, width, height, code,
+    } = this;
+    return {
+      name, width, height, code,
+    };
   }
 }
 

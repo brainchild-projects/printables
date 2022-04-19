@@ -58,7 +58,7 @@ function PrintablesAppBar({ linkMap }: PrintablesAppBarProps): JSX.Element {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="menu"
+              aria-label="Open Menu"
               onClick={toggleDrawer}
             >
               <MenuIcon />

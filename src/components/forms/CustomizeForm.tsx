@@ -4,35 +4,18 @@ import React, {
 } from 'react';
 import html2pdf from 'html2pdf.js';
 import {
-  Button, Collapse, IconButton, makeStyles, Typography,
+  IconButton, Typography,
 } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
-import Alert from '@material-ui/lab/Alert';
 import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider';
-import paperSizes, { getPaperSizeFromName, Orientation } from '../../lib/paperSizes';
+import { Orientation, PaperSize } from '../../lib/paperSizes';
 import ModalDialog from '../ModalDialog';
 import { useInstanceOptions } from '../InstanceSettingsProvider';
 import SelectField from './SelectField';
-import arrayToOptions from './arrayToOptions';
-
-const calendarFormStyles = makeStyles((theme) => ({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-
-    '& > section': {
-      marginBottom: theme.spacing(3),
-    },
-  },
-  submit: {
-    margin: theme.spacing(1, 0, 2),
-  },
-}));
+import SubmitButton from './SubmitButton';
+import SelectPaperSizeField from './SelectPaperSizeField';
+import FormContainer from './FormContainer';
+import SectionPageTitle from '../../elements/SectionPageTitle';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;
@@ -78,7 +61,6 @@ function generatePDF(name: string, options: PaperOptions): void {
 function CustomizeForm({
   onBeforePrint = () => true, name, children, error = null,
 }: CustomizeFormProps): JSX.Element {
-  const classes = calendarFormStyles();
   const { options, setOptions } = usePaperOptions();
   const instanceSettings = useInstanceOptions();
   const instanceOptions = instanceSettings.options;
@@ -109,10 +91,10 @@ function CustomizeForm({
     }
   };
 
-  const onChangePaperSize = (sizeName: string) => {
+  const onChangePaperSize = (size: PaperSize) => {
     setOptions({
       ...options,
-      paperSize: getPaperSizeFromName(sizeName),
+      paperSize: size,
     });
   };
 
@@ -127,110 +109,84 @@ function CustomizeForm({
   };
 
   return (
-    <div className={classes.wrapper}>
-      <form className={classes.form} onSubmit={onSubmit}>
-        <Collapse in={!!error}>
-          <Alert severity="error">{error}</Alert>
-        </Collapse>
+    <FormContainer
+      onSubmit={onSubmit}
+      error={error}
+    >
+      <section aria-label="Main Customization">
+        {children}
+      </section>
+      <section aria-label="Printing Options">
+        <SectionPageTitle>Print Options</SectionPageTitle>
+        <SelectPaperSizeField
+          name="paperSize"
+          value={options.paperSize}
+          onChange={onChangePaperSize}
+        />
 
-        <section aria-label="Main Customization">
-          {children}
-        </section>
-        <section aria-label="Printing Options">
-          <Typography
-            variant="h6"
-            component="h2"
-          >
-            Print Options
-          </Typography>
-          <SelectField
-            name="paperSize"
-            value={options.paperSize.name}
-            onChange={onChangePaperSize}
-          >
-            {
-              arrayToOptions(
-                Array.from(paperSizes.values()).map((size) => size.name),
-              )
-            }
-          </SelectField>
+        <SelectField
+          name="paperOrientation"
+          value={options.orientation}
+          onChange={onChangeOrientation}
+        >
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </SelectField>
+      </section>
+      <SubmitButton
+        disabled={error !== null}
+        value="print"
+        name="print"
+        id="print-button"
+      >
+        {`Print ${name}`}
+      </SubmitButton>
+      <IconButton
+        aria-label="Printing Tips"
+        onClick={() => setShowPrintingHelp(true)}
+      >
+        <HelpIcon />
+      </IconButton>
+      <ModalDialog
+        title="Printing Tips"
+        open={showPrintingHelp}
+        onClose={onPrintingHelpClose}
+        closeButtonText="Got it"
+      >
+        <Typography gutterBottom>
+          Make sure to match the paper size and orientation
+          on your browser&rsquo;s printer settings.
+          <br />
+        </Typography>
+        <Typography gutterBottom variant="h6" component="h2">Firefox Users</Typography>
+        <Typography gutterBottom>
+          On the print dialog, please set
+        </Typography>
+        <Typography component="ul" gutterBottom>
+          <li>
+            <strong>Scale:</strong>
+            {' '}
+            “100” instead of &quot;Fit to page width&quot;
+          </li>
+          <li>
+            <strong>Margins:</strong>
+            {' '}
+            &quot;Default&quot;
+          </li>
+        </Typography>
+      </ModalDialog>
 
-          <SelectField
-            name="paperOrientation"
-            value={options.orientation}
-            onChange={onChangeOrientation}
-          >
-            <option value="portrait">Portrait</option>
-            <option value="landscape">Landscape</option>
-          </SelectField>
-        </section>
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.submit}
-          disabled={error !== null}
-          value="print"
-          name="print"
-          id="print-button"
-        >
-          Print
-          {' '}
-          {name}
-        </Button>
-        <IconButton
-          aria-label="Printing Tips"
-          onClick={() => setShowPrintingHelp(true)}
-        >
-          <HelpIcon />
-        </IconButton>
-        <ModalDialog
-          title="Printing Tips"
-          open={showPrintingHelp}
-          onClose={onPrintingHelpClose}
-          closeButtonText="Got it"
-        >
-          <Typography gutterBottom>
-            Make sure to match the paper size and orientation
-            on your browser&rsquo;s printer settings.
-            <br />
-          </Typography>
-          <Typography gutterBottom variant="h6" component="h2">Firefox Users</Typography>
-          <Typography gutterBottom>
-            On the print dialog, please set
-          </Typography>
-          <Typography component="ul" gutterBottom>
-            <li>
-              <strong>Scale:</strong>
-              {' '}
-              “100” instead of &quot;Fit to page width&quot;
-            </li>
-            <li>
-              <strong>Margins:</strong>
-              {' '}
-              &quot;Default&quot;
-            </li>
-          </Typography>
-        </ModalDialog>
+      <p> -- or --</p>
 
-        <p> -- or --</p>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.submit}
-          disabled={error !== null}
-          value="pdf"
-          name="pdf"
-        >
-          Generate PDF
-        </Button>
-        <p>Warning: Generate PDF is experimental.</p>
-      </form>
-    </div>
+      <SubmitButton
+        disabled={error !== null}
+        value="pdf"
+        name="pdf"
+      >
+        Generate PDF
+      </SubmitButton>
+      <p>Warning: Generate PDF is experimental.</p>
+    </FormContainer>
   );
 }
 

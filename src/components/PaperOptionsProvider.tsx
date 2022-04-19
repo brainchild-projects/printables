@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import LocalStore from '../lib/LocalStore';
 import { PaperSize, Orientation, US_LETTER } from '../lib/paperSizes';
+import useSettings from '../pages/useSettings';
 
 export interface PaperOptions {
   margin: string;
@@ -33,7 +34,7 @@ const defaultPaperPreviewOptions: PaperOptions = {
   paperSize: US_LETTER,
 };
 
-const noop = () => {};
+const noop = () => { };
 
 const PaperOptionsContext = createContext<PaperOptionsData>({
   options: defaultPaperPreviewOptions,
@@ -71,8 +72,10 @@ function PaperOptionsProvider({
       return savedData as unknown as PaperOptions;
     },
   );
+  const settings = useSettings();
   const defaultOptions = {
     ...defaultPaperPreviewOptions,
+    paperSize: settings.data.defaultPaperSize || defaultPaperPreviewOptions.paperSize,
     margin: typeof margin === 'number' ? `${margin}mm` : margin,
     orientation,
     scale,
@@ -85,7 +88,7 @@ function PaperOptionsProvider({
     if (savedData) {
       setPaperOptions(savedData as unknown as PaperOptions);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setPaperOptions, optionsKey]);
 
   const paperOptionsValue = useMemo(() => {
@@ -107,7 +110,7 @@ function PaperOptionsProvider({
     <PaperOptionsContext.Provider
       value={paperOptionsValue}
     >
-      { children }
+      {children}
     </PaperOptionsContext.Provider>
   );
 }

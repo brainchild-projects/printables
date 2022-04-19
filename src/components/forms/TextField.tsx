@@ -20,7 +20,6 @@ function TextField({
   return (
     <FieldSet>
       <MuiTextField
-        type="number"
         name={name}
         id={theId}
         label={theLabel}

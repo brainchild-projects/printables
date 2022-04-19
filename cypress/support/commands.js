@@ -28,6 +28,7 @@ import '@testing-library/cypress/add-commands';
 
 const paths = {
   home: '/',
+  settings: '/settings',
   calendar: '/calendar',
   additionFillTheBlanks: '/addition-fill-the-blanks',
   worksheetPatterns: '/worksheet-patterns',

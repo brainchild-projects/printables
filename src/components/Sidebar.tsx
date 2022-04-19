@@ -13,6 +13,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from 'react-router-dom';
 import { LinkMap } from '../lib/linkMap';
 import { SectionLinks } from '../lib/LinkAndLoaderInterface';
+import ListItemLink from './ListItemLink';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;
@@ -33,7 +34,7 @@ function nestedLinks(links: SectionLinks): JSX.Element[] {
     <ListItem
       button
       key={path}
-      component={Link}
+      component={ListItemLink}
       to={path}
       className={classes.nested}
     >
@@ -92,38 +93,45 @@ function Sidebar({ open, onClose, linkMap }: SidebarProps): JSX.Element {
       anchor="left"
       open={open}
       onClose={onClose}
-      variant="persistent"
+    // variant="persistent"
     >
       <Box>
         <IconButton
           onClick={onClose}
+          aria-label="Close Menu"
         >
           <ArrowBackIcon />
         </IconButton>
       </Box>
       <Divider />
-      <List>
-        <ExpandableLinks
-          label="Math Worksheets"
-          toggle={toggleLinksOpen('mathLinksOpen')}
-          links={mathLinks}
-          open={openLinks.mathLinksOpen}
-        />
-        <ExpandableLinks
-          label="Miscellaneous"
-          toggle={toggleLinksOpen('miscLinksOpen')}
-          links={miscLinks}
-          open={openLinks.miscLinksOpen}
-        />
-        <Divider />
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
+      <nav aria-label="Sidebar Navigation">
+        <List component="div">
+          <ExpandableLinks
+            label="Math Worksheets"
+            toggle={toggleLinksOpen('mathLinksOpen')}
+            links={mathLinks}
+            open={openLinks.mathLinksOpen}
+          />
+          <ExpandableLinks
+            label="Miscellaneous"
+            toggle={toggleLinksOpen('miscLinksOpen')}
+            links={miscLinks}
+            open={openLinks.miscLinksOpen}
+          />
+          <Divider />
 
-      </List>
+          <ListItem
+            button
+            component={Link}
+            to="/settings"
+          >
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText>Settings</ListItemText>
+          </ListItem>
+        </List>
+      </nav>
     </Drawer>
   );
 }

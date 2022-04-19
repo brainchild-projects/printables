@@ -4,6 +4,7 @@ declare namespace Cypress {
 
     visitCalendar(): Chainable<AUTWindow>;
     visitHome(): Chainable<AUTWindow>;
+    visitSettings(): Chainable<AUTWindow>;
     visitAdditionFillTheBlanks(): Chainable<AUTWindow>;
     visitWorksheetPatterns(): Chainable<AUTWindow>;
     visitWorksheetPlaceValues(): Chainable<AUTWindow>;

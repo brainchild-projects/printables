@@ -11,6 +11,7 @@ const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
+const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
 const { NODE_ENV, PUBLIC_URL } = process.env;
 const isProduction = NODE_ENV === 'production';
@@ -23,6 +24,10 @@ export const mainLinks: SectionLinks = new Map([
   ['/', {
     text: 'Home',
     loader: HomePage,
+  }],
+  ['/settings', {
+    text: 'Settings',
+    loader: SettingsPage,
   }],
 ]);
 

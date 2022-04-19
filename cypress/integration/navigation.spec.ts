@@ -59,4 +59,14 @@ it('can visit all subpages', () => {
   // Numbers to Words
   clickWorksheetLink(/numbers to words/i);
   cy.hasCustomizeFormHeading(/numbers to words/i);
+
+  goBackHome();
+
+  // Settings Page
+  cy.findByRole('button', { name: /open menu/i }).click();
+  cy.findByRole('navigation', { name: /sidebar/i })
+    .find('a:contains("Settings")')
+    .click();
+  cy.findByRole('button', { name: /close menu/i }).click();
+  cy.findByRole('heading', { name: /settings/i });
 });
