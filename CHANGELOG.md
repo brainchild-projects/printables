@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.48](https://github.com/brainchild-projects/printables/compare/v0.0.47...v0.0.48) (2022-04-19)
+
+
+### Features
+
+* settings page and default paper size ([891f522](https://github.com/brainchild-projects/printables/commit/891f522495a7e5628eab54d69ad1939819b37a97)), closes [#70](https://github.com/brainchild-projects/printables/issues/70)
+
+
+### Bug Fixes
+
+* failing test because of type mismatch ([6aadb66](https://github.com/brainchild-projects/printables/commit/6aadb667c2fe048458a8dca3a6e8e35b3070ac29))
+
 ### [0.0.47](https://github.com/brainchild-projects/printables/compare/v0.0.46...v0.0.47) (2022-04-18)
 
 
