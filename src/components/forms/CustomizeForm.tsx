@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, {
   ReactNode, FormEvent, useState,
 } from 'react';
@@ -41,7 +40,6 @@ function generatePDF(name: string, options: PaperOptions): void {
   const element = document.querySelector('#paper-preview');
   if (element !== null) {
     element.classList.add('print-ready');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     html2pdf(element, {
       filename: `${name} ${timeStamp()}`,
       pagebreak: { mode: 'css' },
