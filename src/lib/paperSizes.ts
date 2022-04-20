@@ -1,7 +1,6 @@
 interface Dimension {
   width: number;
   height: number;
-  code: string;
 }
 
 export type Orientation = 'portrait' | 'landscape';
@@ -19,7 +18,6 @@ export interface PaperSizeJSON {
   name: string;
   width: number;
   height: number;
-  code: string;
 }
 
 export class PaperSize {
@@ -31,14 +29,10 @@ export class PaperSize {
   /** Height in millimeters */
   height: number;
 
-  /** Sizes used in js2PDF */
-  code: string;
-
-  constructor(name: string, { width, height, code }: Dimension) {
+  constructor(name: string, { width, height }: Dimension) {
     this.name = name;
     this.width = width;
     this.height = height;
-    this.code = code;
   }
 
   portrait(): DimensionString {
@@ -96,17 +90,17 @@ export class PaperSize {
 
   toJSON(): PaperSizeJSON {
     const {
-      name, width, height, code,
+      name, width, height,
     } = this;
     return {
-      name, width, height, code,
+      name, width, height,
     };
   }
 }
 
-export const US_LETTER = new PaperSize('US Letter', { width: 216, height: 279, code: 'letter' });
-export const US_LEGAL = new PaperSize('US Legal', { width: 216, height: 356, code: 'legal' });
-export const A4 = new PaperSize('A4', { width: 210, height: 297, code: 'a4' });
+export const US_LETTER = new PaperSize('US Letter', { width: 216, height: 279 });
+export const US_LEGAL = new PaperSize('US Legal', { width: 216, height: 356 });
+export const A4 = new PaperSize('A4', { width: 210, height: 297 });
 
 const paperSizes = [
   US_LETTER,

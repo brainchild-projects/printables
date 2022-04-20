@@ -66,7 +66,6 @@ function PaperOptionsProvider({
         {
           width: paperSize.width,
           height: paperSize.height,
-          code: paperSize.code,
         },
       );
       return savedData as unknown as PaperOptions;

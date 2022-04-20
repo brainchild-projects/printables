@@ -20,7 +20,7 @@ function useSettings() {
         return cached as unknown as SettingsData;
       }
       const {
-        name, width, height, code,
+        name, width, height,
       } = defaultPaperSize as PaperSizeJSON;
       return {
         ...cached,
@@ -29,7 +29,6 @@ function useSettings() {
           {
             width,
             height,
-            code,
           },
         ),
       } as unknown as SettingsData;

@@ -49,7 +49,7 @@ function generatePDF(name: string, options: PaperOptions): void {
         scale: 3,
       },
       jsPDF: {
-        format: options.paperSize.code,
+        format: [options.paperSize.width, options.paperSize.height],
         orientation: options.orientation,
       },
     }).then(() => element.classList.remove('print-ready'))
