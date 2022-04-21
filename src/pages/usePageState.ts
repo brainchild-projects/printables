@@ -32,7 +32,8 @@ function usePageState<T, K = T>({
     } else {
       setData(defaultData);
     }
-  }, [dataStore, defaultData]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataStore]);
 
   return { data, setData, onChange };
 }
