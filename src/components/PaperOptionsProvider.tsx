@@ -2,14 +2,22 @@ import React, {
   createContext, ReactNode, useContext, useEffect, useMemo, useState,
 } from 'react';
 import LocalStore from '../lib/LocalStore';
-import { PaperSize, Orientation, US_LETTER } from '../lib/paperSizes';
+import PaperSize, { Orientation, PaperSizeJSON } from '../lib/PaperSize';
+import { US_LETTER } from '../lib/paperSizes';
 import useSettings from '../pages/useSettings';
 
-export interface PaperOptions {
+interface PaperOptionsCommon {
   margin: string;
   orientation: Orientation;
   scale: number;
+}
+
+export interface PaperOptions extends PaperOptionsCommon {
   paperSize: PaperSize;
+}
+
+export interface PaperOptionsJSON extends PaperOptionsCommon {
+  paperSize: PaperSizeJSON;
 }
 interface PaperPreviewProps {
   children: ReactNode;
@@ -30,7 +38,6 @@ const defaultPaperPreviewOptions: PaperOptions = {
   margin: '10mm',
   orientation: 'portrait',
   scale: 1,
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   paperSize: US_LETTER,
 };
 
@@ -45,32 +52,25 @@ export function usePaperOptions(): PaperOptionsData {
   return useContext<PaperOptionsData>(PaperOptionsContext);
 }
 
-interface PaperSizeJson {
-  name: string;
-  code: string;
-  width: number;
-  height: number;
-}
-
 function PaperOptionsProvider({
   children, margin = '10mm', orientation = 'portrait', scale = 1,
   optionsKey,
 }: PaperPreviewProps): JSX.Element {
-  const optionsStore = LocalStore.createCached<PaperOptions>(
-    `paperOptions:${optionsKey}`,
-    (rawData: unknown) => {
-      const savedData = rawData as Record<string, unknown>;
-      const paperSize = (savedData).paperSize as PaperSizeJson;
-      savedData.paperSize = new PaperSize(
-        paperSize.name,
-        {
-          width: paperSize.width,
-          height: paperSize.height,
-        },
-      );
-      return savedData as unknown as PaperOptions;
-    },
-  );
+  const optionsStore = LocalStore.createCached<PaperOptions, PaperOptionsJSON>({
+    key: `paperOptions:${optionsKey}`,
+    fromJSON: (json) => ({
+      margin: json.margin,
+      orientation: json.orientation,
+      scale: json.scale,
+      paperSize: PaperSize.fromJSON(json.paperSize),
+    }),
+    toJSON: (data) => ({
+      margin: data.margin,
+      orientation: data.orientation,
+      scale: data.scale,
+      paperSize: PaperSize.toJSON(data.paperSize),
+    }),
+  });
   const settings = useSettings();
   const defaultOptions = {
     ...defaultPaperPreviewOptions,

@@ -20,7 +20,7 @@ const defaultInstanceOptions: InstanceOptions = {
   hasAlreadyPrinted: false,
 };
 
-const noop = () => {};
+const noop = () => { };
 
 const InstanceOptionsContext = createContext<InstanceOptionsData>({
   options: defaultInstanceOptions,
@@ -36,13 +36,7 @@ interface InstanceProps {
   hasAlreadyPrinted?: boolean;
 }
 
-const optionsStore = LocalStore.create<InstanceOptions>(
-  'instanceOptions',
-  (rawData: unknown) => {
-    const savedData = rawData as Record<string, unknown>;
-    return savedData as unknown as InstanceOptions;
-  },
-);
+const optionsStore = LocalStore.create<InstanceOptions>({ key: 'instanceOptions' });
 
 function InstanceOptionsProvider({
   children,
@@ -60,7 +54,7 @@ function InstanceOptionsProvider({
     if (savedData) {
       setInstanceOptions(savedData as unknown as InstanceOptions);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setInstanceOptions]);
 
   const instanceOptionsValue = useMemo(() => {
@@ -81,7 +75,7 @@ function InstanceOptionsProvider({
     <InstanceOptionsContext.Provider
       value={instanceOptionsValue}
     >
-      { children }
+      {children}
     </InstanceOptionsContext.Provider>
   );
 }

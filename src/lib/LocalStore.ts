@@ -1,6 +1,8 @@
 type SetItem = (key: string, value: string) => void;
 type GetItem = (key: string) => string | null;
-type Builder<T> = (savedRaw: unknown) => T;
+
+export type ToJSON<T, K> = (obj: T) => K;
+export type FromJSON<T, K> = (jsonObj: K) => T;
 
 interface Storage {
   setItem: SetItem;
@@ -9,34 +11,60 @@ interface Storage {
 
 const localStoreCache: Map<string, LocalStore<unknown>> = new Map<string, LocalStore<unknown>>([]);
 
-class LocalStore<T> {
+interface CreateLocalStoreProps<T, K = T> {
+  key: string,
+  fromJSON?: FromJSON<T, K> | undefined;
+  toJSON?: ToJSON<T, K> | undefined;
+}
+
+interface LocalStoreProps<T, K = T> extends CreateLocalStoreProps<T, K>{
+  storage: Storage,
+}
+
+class LocalStore<T, K = T> {
   store: Storage;
 
   key: string;
 
-  build: Builder<T>;
+  fromJSON: FromJSON<T, K>;
 
-  constructor(key: string, storage: Storage, build?: Builder<T>) {
+  toJSON: ToJSON<T, K>;
+
+  constructor({
+    key,
+    storage,
+    fromJSON = undefined,
+    toJSON = undefined,
+  }: LocalStoreProps<T, K>) {
     this.store = storage;
     this.key = key;
-    this.build = build || ((savedRaw: unknown) => savedRaw as T);
+    this.fromJSON = fromJSON || ((jsonObj: K) => jsonObj as unknown as T);
+    this.toJSON = toJSON || ((obj: T) => obj as unknown as K);
   }
 
-  static create<T>(key: string, build?: Builder<T>): LocalStore<T> {
-    return new LocalStore<T>(key, global.localStorage, build);
+  static create<T, K = T>({
+    key, fromJSON = undefined, toJSON = undefined,
+  }: CreateLocalStoreProps<T, K>): LocalStore<T, K> {
+    return new LocalStore<T, K>({
+      key,
+      storage: global.localStorage,
+      fromJSON,
+      toJSON,
+    });
   }
 
-  static createCached<T>(key: string, build?: Builder<T>): LocalStore<T> {
+  static createCached<T, K = T>(props: CreateLocalStoreProps<T, K>): LocalStore<T, K> {
+    const { key } = props;
     if (localStoreCache.has(key)) {
-      return localStoreCache.get(key) as LocalStore<T>;
+      return localStoreCache.get(key) as LocalStore<T, K>;
     }
-    const localStore = LocalStore.create<T>(key, build);
-    localStoreCache.set(key, localStore);
+    const localStore = LocalStore.create<T, K>(props);
+    localStoreCache.set(key, localStore as LocalStore<unknown>);
     return localStore;
   }
 
   set(value: T): void {
-    this.store.setItem(this.key, JSON.stringify(value));
+    this.store.setItem(this.key, JSON.stringify(this.toJSON(value)));
   }
 
   get(): T | null {
@@ -45,7 +73,7 @@ class LocalStore<T> {
       return null;
     }
     try {
-      return this.build(JSON.parse(item));
+      return this.fromJSON(JSON.parse(item) as unknown as K);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);

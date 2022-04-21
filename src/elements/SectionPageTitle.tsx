@@ -1,9 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ElementType, ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
+import { Variant } from '@material-ui/core/styles/createTypography';
+import { Grid } from '@material-ui/core';
 
 const styles = makeStyles(() => ({
-  title: {
+  margins: {
     marginTop: 20,
     marginBottom: 10,
   },
@@ -11,19 +13,57 @@ const styles = makeStyles(() => ({
 
 interface SectionPageTitleProps {
   children: ReactNode;
+  level?: number;
+  endAction?: ReactNode | undefined;
 }
 
-function SectionPageTitle({ children }: SectionPageTitleProps): JSX.Element {
+function SectionPageTitle({ children, level = 1, endAction }: SectionPageTitleProps): JSX.Element {
   const classes = styles();
+  const variant = `h${4 + level}` as Variant;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const component = `h${2 + level}` as ElementType<any>;
+
+  if (endAction) {
+    return (
+      <Grid
+        container
+        justifyContent="space-between"
+        className={classes.margins}
+      >
+        <Grid
+          item
+        >
+          <Typography
+            variant={variant}
+            component={component}
+          >
+            {children}
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          style={{ textAlign: 'right' }}
+        >
+          {endAction}
+        </Grid>
+      </Grid>
+    );
+  }
+
   return (
     <Typography
-      variant="h6"
-      component="h3"
-      className={classes.title}
+      variant={variant}
+      component={component}
+      className={classes.margins}
     >
       {children}
     </Typography>
   );
 }
+
+SectionPageTitle.defaultProps = {
+  level: 1,
+  endAction: undefined,
+};
 
 export default SectionPageTitle;

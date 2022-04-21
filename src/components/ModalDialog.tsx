@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createTheme';
 import Button from '@material-ui/core/Button';
@@ -59,33 +59,59 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+type VoidFn = () => void;
+
 interface ModalDialogProps {
   title: string;
   children: ReactNode;
   open: boolean;
   closeButtonText?: string;
-  onClose: () => void;
+  onClose: VoidFn;
+  onSubmit?: VoidFn | undefined;
 }
 
 function ModalDialog({
-  title, children, open, onClose, closeButtonText = 'Done',
+  title, children, open, onClose, closeButtonText = 'Done', onSubmit,
 }: ModalDialogProps): JSX.Element {
+  const [focused, setFocused] = useState<boolean>(false);
+  const onFocus = () => {
+    if (!focused) {
+      const input: HTMLInputElement | null = document.querySelector<HTMLInputElement>('[role="dialog"] input');
+      if (input !== null) {
+        input.focus();
+      }
+      setFocused(true);
+    }
+  };
+  const myClose = () => {
+    setFocused(false);
+    onClose();
+  };
+
+  const mySubmit = () => {
+    setFocused(false);
+    if (onSubmit) {
+      onSubmit();
+    }
+  };
+
   return (
     <Dialog
-      onClose={onClose}
+      onClose={myClose}
       aria-labelledby="customized-dialog-title"
       open={open}
       className="no-print"
+      onFocus={onFocus}
     >
-      <DialogTitle id="customized-dialog-title" onClose={onClose}>
-        { title }
+      <DialogTitle id="customized-dialog-title" onClose={myClose}>
+        {title}
       </DialogTitle>
       <DialogContent dividers>
-        { children }
+        {children}
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose} color="primary">
-          { closeButtonText }
+        <Button autoFocus onClick={onSubmit ? mySubmit : myClose} color="primary">
+          {closeButtonText}
         </Button>
       </DialogActions>
     </Dialog>
@@ -94,6 +120,7 @@ function ModalDialog({
 
 ModalDialog.defaultProps = {
   closeButtonText: 'Done',
+  onSubmit: undefined,
 };
 
 export default ModalDialog;

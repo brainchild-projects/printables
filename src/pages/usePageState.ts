@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import LocalStore from '../lib/LocalStore';
+import LocalStore, { FromJSON, ToJSON } from '../lib/LocalStore';
 
-type TransformFromStore<T> = (cachedData: Record<string, unknown> | null) => (T | null);
-interface PageStateArgs<T> {
+interface PageStateArgs<T, K = T> {
   key: string,
   defaultData: T,
-  transformFromStore?: TransformFromStore<T> | undefined;
+  toJSON?: ToJSON<T, K> | undefined;
+  fromJSON?: FromJSON<T, K> | undefined;
 }
 
-function usePageState<T>({ key, defaultData, transformFromStore }: PageStateArgs<T>) {
-  const dataStore = LocalStore.createCached<T>(key);
+function usePageState<T, K = T>({
+  key, defaultData, toJSON, fromJSON,
+}: PageStateArgs<T, K>) {
+  const dataStore = LocalStore.createCached<T, K>({
+    key, toJSON, fromJSON,
+  });
   const cached = dataStore.get();
   const [data, setData] = useState<T>({
     ...defaultData,
-    ...(
-      transformFromStore === undefined
-        ? cached
-        : transformFromStore(cached as Record<string, unknown>)
-    ),
+    ...(cached || {}),
   } as T);
   const onChange = (updatedData: T): void => {
     const updated = { ...data, ...updatedData };
@@ -32,8 +32,7 @@ function usePageState<T>({ key, defaultData, transformFromStore }: PageStateArgs
     } else {
       setData(defaultData);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataStore]);
+  }, [dataStore, defaultData]);
 
   return { data, setData, onChange };
 }

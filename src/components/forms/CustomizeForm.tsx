@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
 import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider';
-import { Orientation, PaperSize } from '../../lib/paperSizes';
 import ModalDialog from '../ModalDialog';
 import { useInstanceOptions } from '../InstanceSettingsProvider';
 import SelectField from './SelectField';
@@ -15,6 +14,7 @@ import SubmitButton from './SubmitButton';
 import SelectPaperSizeField from './SelectPaperSizeField';
 import FormContainer from './FormContainer';
 import SectionPageTitle from '../../elements/SectionPageTitle';
+import PaperSize, { Orientation } from '../../lib/PaperSize';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;

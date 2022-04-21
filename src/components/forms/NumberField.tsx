@@ -16,15 +16,16 @@ interface NumberFieldProps {
   max?: number;
   step?: number;
   integer?: boolean;
+  spaced?: boolean;
 }
 
 function NumberField({
-  id, name, label, onChange, value, min, max, step, integer,
+  id, name, label, onChange, value, min, max, step, integer, spaced = false,
 }: NumberFieldProps): JSX.Element {
   const theId = id ?? generateId('input-number', name);
   const theLabel = label ?? titleize(name);
   return (
-    <FieldSet>
+    <FieldSet spaced={spaced}>
       <TextField
         type="number"
         name={name}
@@ -53,6 +54,7 @@ NumberField.defaultProps = {
   id: null,
   label: null,
   integer: false,
+  spaced: false,
 };
 
 export default NumberField;

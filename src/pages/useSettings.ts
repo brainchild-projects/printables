@@ -1,38 +1,36 @@
-import { PaperSize, PaperSizeJSON, US_LETTER } from '../lib/paperSizes';
-import SettingsData from './settings/SettingsData';
+import { US_LETTER } from '../lib/paperSizes';
+import PaperSize from '../lib/PaperSize';
+import SettingsData, { SettingsDataJSON } from './settings/SettingsData';
 import usePageState from './usePageState';
 
 const defaultData: SettingsData = {
   defaultPaperSize: US_LETTER,
+  customPaperSizes: [],
 };
 const key = 'settings';
 
+function fromJSON(obj: SettingsDataJSON): SettingsData {
+  const { defaultPaperSize, customPaperSizes } = obj;
+  return {
+    defaultPaperSize: PaperSize.fromJSON(defaultPaperSize),
+    customPaperSizes: PaperSize.fromJSONArray(customPaperSizes || []),
+  };
+}
+
+function toJSON(data: SettingsData): SettingsDataJSON {
+  const { defaultPaperSize, customPaperSizes } = data;
+  return {
+    defaultPaperSize: PaperSize.toJSON(defaultPaperSize),
+    customPaperSizes: PaperSize.toJSONArray(customPaperSizes || []),
+  };
+}
+
 function useSettings() {
-  return usePageState<SettingsData>({
+  return usePageState<SettingsData, SettingsDataJSON>({
     key,
     defaultData,
-    transformFromStore: (cached) => {
-      if (cached === null) {
-        return cached;
-      }
-      const { defaultPaperSize } = cached;
-      if (defaultPaperSize instanceof PaperSize) {
-        return cached as unknown as SettingsData;
-      }
-      const {
-        name, width, height,
-      } = defaultPaperSize as PaperSizeJSON;
-      return {
-        ...cached,
-        defaultPaperSize: new PaperSize(
-          name,
-          {
-            width,
-            height,
-          },
-        ),
-      } as unknown as SettingsData;
-    },
+    toJSON,
+    fromJSON,
   });
 }
 

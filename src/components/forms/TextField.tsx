@@ -10,15 +10,16 @@ interface TextFieldProps {
   label?: string;
   onChange: (value: string, event: ChangeEvent) => void;
   value: unknown;
+  spaced?: boolean;
 }
 
 function TextField({
-  id, name, label, onChange, value,
+  id, name, label, onChange, value, spaced = false,
 }: TextFieldProps): JSX.Element {
   const theId = id ?? generateId('input-text', name);
   const theLabel = label ?? titleize(name);
   return (
-    <FieldSet>
+    <FieldSet spaced={spaced}>
       <MuiTextField
         name={name}
         id={theId}
@@ -39,6 +40,7 @@ function TextField({
 TextField.defaultProps = {
   id: null,
   label: null,
+  spaced: false,
 };
 
 export default TextField;
