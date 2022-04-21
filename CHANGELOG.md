@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.49](https://github.com/brainchild-projects/printables/compare/v0.0.48...v0.0.49) (2022-04-21)
+
+
+### Features
+
+* custom paper sizes ([df74974](https://github.com/brainchild-projects/printables/commit/df74974a005a45504cbfa5a76777a90e89d2d964)), closes [#73](https://github.com/brainchild-projects/printables/issues/73)
+
+
+### Bug Fixes
+
+* bug with maximum render stack (setState) ([0d9f17c](https://github.com/brainchild-projects/printables/commit/0d9f17c3fa07175e586c60fe7b1b5d605ac14d70))
+
 ### [0.0.48](https://github.com/brainchild-projects/printables/compare/v0.0.47...v0.0.48) (2022-04-19)
 
 
