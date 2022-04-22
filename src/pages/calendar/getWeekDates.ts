@@ -64,8 +64,7 @@ function gatherWeekNormalStart({
 export default function getWeekDates(date: Date): DateNumber[][] {
   const year = date.getFullYear();
   const month = date.getMonth();
-  const firstDayDate = new Date(year, month);
-  const firstDay = firstDayDate.getDay();
+  const firstDay = (new Date(year, month)).getDay();
   const lastDayN = dayBefore(new Date(year, month + 1)).getDate();
 
   const weeks: DateNumber[][] = [];
