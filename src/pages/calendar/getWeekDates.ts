@@ -65,6 +65,9 @@ function isIncompleteFirstWeek(weeksLength: number, firstDay: number): boolean {
   return weeksLength === 0 && firstDay > 0;
 }
 
+type Week = DateNumber[];
+type Weeks = Week[];
+
 interface GetWeekProps {
   weeksLength: number;
   firstDay: number;
@@ -75,7 +78,7 @@ interface GetWeekProps {
 }
 
 interface GetWeekReturn {
-  week: DateNumber[];
+  week: Week;
   notDone: boolean;
   n: number;
 }
@@ -84,7 +87,7 @@ function getWeek({
   weeksLength, firstDay, lastDayN,
   year, month, n,
 }: GetWeekProps): GetWeekReturn {
-  let week: DateNumber[] = [];
+  let week: Week = [];
   let notDone = true;
   let m = n;
   if (isIncompleteFirstWeek(weeksLength, firstDay)) {
@@ -103,6 +106,12 @@ function getWeek({
   return { week, notDone, n: m };
 }
 
+function throwOnTooManyWeeks(weeks: Weeks) {
+  if (weeks.length > 6) {
+    throw new Error(`Too many weeks: ${weeks.length}`);
+  }
+}
+
 export default function getWeekDates(date: Date): DateNumber[][] {
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -114,9 +123,7 @@ export default function getWeekDates(date: Date): DateNumber[][] {
   let n = 0;
 
   while (notDone) {
-    if (weeks.length > 6) {
-      throw new Error(`Too many weeks: ${weeks.length}`);
-    }
+    throwOnTooManyWeeks(weeks);
     const weekInfo = getWeek({
       weeksLength: weeks.length,
       firstDay,
