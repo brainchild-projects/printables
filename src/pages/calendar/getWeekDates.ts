@@ -61,6 +61,10 @@ function gatherWeekNormalStart({
   return week;
 }
 
+function isIncompleteFirstWeek(weeksLength: number, firstDay: number): boolean {
+  return weeksLength === 0 && firstDay > 0;
+}
+
 interface GetWeekProps {
   weeksLength: number;
   firstDay: number;
@@ -83,7 +87,7 @@ function getWeek({
   let week: DateNumber[] = [];
   let notDone = true;
   let m = n;
-  if (weeksLength === 0 && firstDay > 0) {
+  if (isIncompleteFirstWeek(weeksLength, firstDay)) {
     week = gatherFirstIncompleteWeek({
       year, month, n, firstDay,
     });
