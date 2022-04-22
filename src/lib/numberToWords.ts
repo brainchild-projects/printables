@@ -47,6 +47,38 @@ function onesValue(n: number): number {
   return n % 10;
 }
 
+function hundredsPart(number: number): string {
+  const hundredth = hundredsDigit(number);
+  const hundreds = numbersMapping.get(hundredth);
+  if (hundredth !== 0 && typeof hundreds === 'string') {
+    return ` ${hundreds} hundred`;
+  }
+  return '';
+}
+
+function numberToWordsUnmapped(number: number): string {
+  let numberStr = '';
+  numberStr += hundredsPart(number);
+
+  const tenth = tensValue(number);
+  const oneth = onesValue(number);
+
+  if (tenth === 10 && oneth > 0) {
+    numberStr += ` ${numbersMapping.get(tenth + oneth) ?? ''}`;
+  } else {
+    const tens = numbersMapping.get(tenth);
+    if (tenth !== 0 && typeof tens === 'string') {
+      numberStr += ` ${tens}`;
+    }
+
+    const ones = numbersMapping.get(oneth);
+    if (oneth !== 0 && typeof ones === 'string') {
+      numberStr += `${tenth !== 0 ? '-' : ' '}${ones}`;
+    }
+  }
+  return numberStr.trim();
+}
+
 // eslint-disable-next-line complexity
 function numberToWords(number: number): string {
   const mapped = numbersMapping.get(number);
@@ -54,32 +86,11 @@ function numberToWords(number: number): string {
     return mapped;
   }
 
-  let numberStr = '';
   if (isInteger(number)) {
-    const hundredth = hundredsDigit(number);
-    const hundreds = numbersMapping.get(hundredth);
-    if (hundredth !== 0 && typeof hundreds === 'string') {
-      numberStr += ` ${hundreds} hundred`;
-    }
-
-    const tenth = tensValue(number);
-    const oneth = onesValue(number);
-
-    if (tenth === 10 && oneth > 0) {
-      numberStr += ` ${numbersMapping.get(tenth + oneth) ?? ''}`;
-    } else {
-      const tens = numbersMapping.get(tenth);
-      if (tenth !== 0 && typeof tens === 'string') {
-        numberStr += ` ${tens}`;
-      }
-
-      const ones = numbersMapping.get(oneth);
-      if (oneth !== 0 && typeof ones === 'string') {
-        numberStr += `${tenth !== 0 ? '-' : ' '}${ones}`;
-      }
-    }
+    return numberToWordsUnmapped(number);
   }
-  return numberStr.trim();
+
+  return '';
 }
 
 export default numberToWords;

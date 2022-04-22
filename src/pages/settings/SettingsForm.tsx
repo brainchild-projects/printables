@@ -10,14 +10,40 @@ import PaperSize from '../../lib/PaperSize';
 import PaperSizeList from './PaperSizeList';
 import { paperSizeArray } from '../../lib/paperSizes';
 
-interface CustomizeSettingsFormProps {
+interface SettingsFormProps {
   onChange: (data: SettingsData) => void;
   data: SettingsData;
 }
 
-function CustomizeSettingsForm({
+function editOrAdd(
+  saved: PaperSize,
+  editing: PaperSize | null,
+  paperSizes: PaperSize[],
+): PaperSize[] {
+  const customPaperSizes = [...paperSizes];
+  const found = customPaperSizes.find((size) => (size === editing));
+  if (found) {
+    const index = customPaperSizes.indexOf(found);
+    customPaperSizes.splice(index, 1, saved);
+  } else {
+    customPaperSizes.push(saved);
+  }
+  return customPaperSizes;
+}
+
+function deleteFromSizes(toDelete: PaperSize, sizes: PaperSize[]) {
+  const customPaperSizes = [...sizes];
+  const found = customPaperSizes.find((size) => size === toDelete);
+  if (found) {
+    const index = customPaperSizes.indexOf(found);
+    customPaperSizes.splice(index, 1);
+  }
+  return customPaperSizes;
+}
+
+function SettingsForm({
   data, onChange,
-}: CustomizeSettingsFormProps): JSX.Element {
+}: SettingsFormProps): JSX.Element {
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
@@ -25,19 +51,9 @@ function CustomizeSettingsForm({
   const [editingSize, setEditingSize] = useState<PaperSize | null>(null);
 
   const savePaperSize = (saved: PaperSize) => {
-    const customPaperSizes = [...data.customPaperSizes];
-    const found = customPaperSizes.find((size) => (size === editingSize));
-    if (found) {
-      const index = customPaperSizes.indexOf(found);
-      customPaperSizes.splice(index, 1, saved);
-    } else {
-      customPaperSizes.push(saved);
-    }
+    const customPaperSizes = editOrAdd(saved, editingSize, data.customPaperSizes);
+    onChange({ ...data, customPaperSizes });
 
-    onChange({
-      ...data,
-      customPaperSizes,
-    });
     if (editingSize) {
       setEditingSize(null);
     }
@@ -45,12 +61,7 @@ function CustomizeSettingsForm({
   };
 
   const onDeletePaperSize = (toDelete: PaperSize) => {
-    const customPaperSizes = [...data.customPaperSizes];
-    const found = customPaperSizes.find((size) => size === toDelete);
-    if (found) {
-      const index = customPaperSizes.indexOf(found);
-      customPaperSizes.splice(index, 1);
-    }
+    const customPaperSizes = deleteFromSizes(toDelete, data.customPaperSizes);
     onChange({ ...data, customPaperSizes });
   };
 
@@ -106,4 +117,4 @@ function CustomizeSettingsForm({
   );
 }
 
-export default CustomizeSettingsForm;
+export default SettingsForm;

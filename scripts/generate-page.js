@@ -18,7 +18,11 @@ const fieldTypes = [
   'Select',
 ];
 
-async function gatherSelectChoices() {
+async function gatherSelectChoices(fieldType) {
+  if (fieldType !== 'Select') {
+    return undefined;
+  }
+
   const choices = [];
   let i = 1;
   while (true) {
@@ -37,7 +41,7 @@ async function gatherSelectChoices() {
   return choices;
 }
 
-function getDefaultValue({ fieldType, choices }) {
+function getDefaultValueCommon(fieldType, choices) {
   switch (fieldType) {
     case 'number':
       return 0;
@@ -61,6 +65,62 @@ function rangeDefault(rangeStr) {
   return { from, to };
 }
 
+async function getFieldName() {
+  const { fieldName } = await inquirer.prompt([{
+    name: 'fieldName',
+    type: 'input',
+    message: 'Field Name:',
+  }]);
+  return fieldName.trim();
+}
+
+async function getFieldType() {
+  const { fieldType } = await inquirer.prompt([{
+    name: 'fieldType',
+    type: 'list',
+    message: 'Field Type:',
+    choices: fieldTypes,
+  }]);
+  return fieldType.trim();
+}
+
+async function getRangeMagnitude(fieldType) {
+  if (fieldType !== 'Range') {
+    return undefined;
+  }
+  const { magnitude } = await inquirer.prompt([{
+    name: 'magnitude',
+    type: 'input',
+    message: '  Range magnitude:',
+    default: 2,
+  }]);
+  return magnitude;
+}
+
+async function getFieldDefault(fieldType, choices) {
+  const { fieldDefault } = await inquirer.prompt([{
+    name: 'fieldDefault',
+    type: 'input',
+    message: 'Default Value:',
+    default: getDefaultValueCommon(fieldType, choices),
+  }]);
+
+  let defaultValue;
+  switch (fieldType) {
+    case 'Range':
+      defaultValue = rangeDefault(fieldDefault);
+      break;
+
+    case 'number':
+      defaultValue = parseFloat(fieldDefault);
+      break;
+
+    default:
+      defaultValue = fieldDefault;
+  }
+  return defaultValue;
+}
+
 async function gatherFields() {
   const fields = [{
     fieldName: 'count',
@@ -70,60 +130,24 @@ async function gatherFields() {
   while (true) {
     const field = {};
     logYellow('');
-    const { fieldName } = await inquirer.prompt([{
-      name: 'fieldName',
-      type: 'input',
-      message: 'Field Name:',
-    }]);
-    if (fieldName.trim() === '') {
+    const fieldName = await getFieldName();
+    if (fieldName === '') {
       break;
     }
     field.fieldName = fieldName;
 
-    const { fieldType } = await inquirer.prompt([{
-      name: 'fieldType',
-      type: 'list',
-      message: 'Field Type:',
-      choices: fieldTypes,
-    }]);
-    field.fieldType = fieldType;
+    const fieldType = await getFieldType();
+    const magnitude = await getRangeMagnitude(fieldType);
+    const choices = await gatherSelectChoices(fieldType);
+    const fieldDefault = await getFieldDefault(fieldType, choices);
 
-    if (fieldType === 'Range') {
-      const { magnitude } = await inquirer.prompt([{
-        name: 'magnitude',
-        type: 'input',
-        message: '  Range magnitude:',
-        default: 2,
-      }]);
-      field.magnitude = magnitude;
-    }
-
-    if (fieldType === 'Select') {
-      field.choices = await gatherSelectChoices();
-    }
-
-    const { fieldDefault } = await inquirer.prompt([{
-      name: 'fieldDefault',
-      type: 'input',
-      message: 'Default Value:',
-      default: getDefaultValue(field),
-    }]);
-    let defaultValue;
-    switch (fieldType) {
-      case 'Range':
-        defaultValue = rangeDefault(fieldDefault);
-        break;
-
-      case 'number':
-        defaultValue = parseFloat(fieldDefault);
-        break;
-
-      default:
-        defaultValue = fieldDefault;
-    }
-    field.fieldDefault = defaultValue;
-
-    fields.push(field);
+    fields.push({
+      fieldName,
+      fieldType,
+      magnitude,
+      choices,
+      fieldDefault,
+    });
   }
   return fields;
 }

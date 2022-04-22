@@ -1,12 +1,11 @@
 /* eslint-disable react/destructuring-assignment */
 import {
-  Slider, Typography, makeStyles, Grid, FormControl, TextField,
+  Slider, Typography, makeStyles, Grid,
 } from '@material-ui/core';
 import React, { ChangeEvent, useEffect, useRef } from 'react';
-import classNames from 'classnames';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
-import './NumberRangeSlider.css';
 import Range from '../../lib/Range';
+import SmallNumberField from './SmallNumberField';
 
 const { round } = Math;
 
@@ -40,9 +39,6 @@ const useStyles = makeStyles(() => ({
   inputGrid: {
     justifyContent: 'space-between',
   },
-  input: {
-    // width: 42,
-  },
   slider: {
     marginTop: 0,
     width: 'calc(100% - 4px)',
@@ -51,6 +47,33 @@ const useStyles = makeStyles(() => ({
 }));
 
 export type NumberRangeChangeCallback = (value: Range, event: HtmlFieldChangeEvent) => void;
+
+const activeEvents = ['mouseover', 'focus'];
+const inactiveEvents = ['mouseleave', 'blur'];
+
+const setInputActive: EventListener = (event) => {
+  const input = event.target as HTMLInputElement;
+  input.classList.add('hidden-spinners-active');
+};
+
+const setInputInActive: EventListener = (event) => {
+  const input = event.target as HTMLInputElement;
+  if (input !== document.activeElement) {
+    input.classList.remove('hidden-spinners-active');
+  }
+};
+
+function addListeners(input: HTMLInputElement, events: string[], listener: EventListener) {
+  events.forEach((event) => {
+    input.addEventListener(event, listener);
+  });
+}
+
+function removeListeners(input: HTMLInputElement, events: string[], listener: EventListener) {
+  events.forEach((event) => {
+    input.removeEventListener(event, listener);
+  });
+}
 
 interface NumberRangeSliderProps extends Range {
   label: string;
@@ -64,6 +87,23 @@ type ChangeHanlder = (value: number | number[], event: HtmlFieldChangeEvent) => 
 type InputChangeCallback = (value: number) => Range;
 type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
 type InputChangeHandlerBuilder = (callback: InputChangeCallback) => InputChangeHandler;
+
+function getMarksAndMax(magnitude: number | undefined) {
+  const marks = [
+    { value: 0, label: '0' },
+    { value: 10, label: '10' },
+  ];
+  let max = 10;
+  if (magnitude === 2) {
+    marks.push({ value: 20, label: '100' });
+    max = 100;
+  }
+  if (magnitude === 3) {
+    marks.push({ value: 30, label: '1000' });
+    max = 1000;
+  }
+  return { marks, max };
+}
 
 function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
   const classes = useStyles();
@@ -98,18 +138,6 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     from, to: value,
   }));
 
-  const setInputActive: EventListener = (event) => {
-    const input = event.target as HTMLInputElement;
-    input.classList.add('hidden-spinners-active');
-  };
-
-  const setInputInActive: EventListener = (event) => {
-    const input = event.target as HTMLInputElement;
-    if (input !== document.activeElement) {
-      input.classList.remove('hidden-spinners-active');
-    }
-  };
-
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const root = ref.current;
@@ -117,10 +145,8 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
       const inputs = root.querySelectorAll('.hidden-spinners');
       inputs.forEach((element) => {
         const input = element as HTMLInputElement;
-        input.addEventListener('mouseover', setInputActive);
-        input.addEventListener('focus', setInputActive);
-        input.addEventListener('mouseleave', setInputInActive);
-        input.addEventListener('blur', setInputInActive);
+        addListeners(input, activeEvents, setInputActive);
+        addListeners(input, inactiveEvents, setInputInActive);
       });
     }
 
@@ -129,96 +155,42 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         const inputs = root.querySelectorAll('.hidden-spinners');
         inputs.forEach((element) => {
           const input = element as HTMLInputElement;
-          input.removeEventListener('mouseover', setInputActive);
-          input.removeEventListener('focus', setInputActive);
-          input.removeEventListener('mouseleave', setInputInActive);
-          input.removeEventListener('blur', setInputInActive);
+          removeListeners(input, activeEvents, setInputActive);
+          removeListeners(input, inactiveEvents, setInputInActive);
         });
       }
     };
   });
 
-  const marks = [
-    {
-      value: 0,
-      label: '0',
-    },
-    {
-      value: 10,
-      label: '10',
-    },
-  ];
-  let max = 10;
-  if (magnitude === 2) {
-    marks.push({ value: 20, label: '100' });
-    max = 100;
-  }
-  if (magnitude === 3) {
-    marks.push({ value: 30, label: '1000' });
-    max = 1000;
-  }
+  const { marks, max } = getMarksAndMax(magnitude);
   const maxSlider = marks[marks.length - 1]?.value ?? 20;
 
   return (
     <div className={classes.root} ref={ref}>
-      <Typography
-        id={labelId}
-        className={classes.label}
-      >
+      <Typography id={labelId} className={classes.label}>
         {label}
       </Typography>
 
-      <Grid
-        container
-        spacing={2}
-        alignItems="center"
-        className={classes.inputGrid}
-      >
+      <Grid container spacing={2} alignItems="center" className={classes.inputGrid}>
         <Grid item xs={6}>
-          <FormControl>
-            <TextField
-              id={`${id}-from`}
-              value={from}
-              name="rangeFrom"
-              margin="dense"
-              onChange={handleInputFromChange}
-              type="number"
-              label="From:"
-              variant="outlined"
-              size="small"
-              inputProps={{
-                step: 1,
-                min: 0,
-                max,
-                type: 'number',
-                className: classNames(classes.input, 'hidden-spinners'),
-                'data-testid': `${id}-from`,
-              }}
-            />
-          </FormControl>
+          <SmallNumberField
+            id={`${id}-from`}
+            value={from}
+            name="rangeFrom"
+            label="From:"
+            onChange={handleInputFromChange}
+            max={max}
+          />
         </Grid>
         <Grid item xs={6}>
-          <FormControl>
-            <TextField
-              id={`${id}-to`}
-              value={to}
-              name="rangeTo"
-              margin="dense"
-              onChange={handleInputToChange}
-              type="number"
-              label="To:"
-              variant="outlined"
-              size="small"
-              inputProps={{
-                step: 1,
-                min: 0,
-                max,
-                type: 'number',
-                className: classNames(classes.input, 'hidden-spinners'),
-                'data-testid': `${id}-to`,
-              }}
-            />
-          </FormControl>
+          <SmallNumberField
+            id={`${id}-to`}
+            value={to}
+            name="rangeTo"
+            label="To:"
+            onChange={handleInputToChange}
+            max={max}
+          />
         </Grid>
       </Grid>
       <Slider
@@ -231,9 +203,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         data-test={options['data-test']}
         marks={marks}
         scale={valueScale}
-        onChange={(event, value) => {
-          changeHandler(value, event as HtmlFieldChangeEvent);
-        }}
+        onChange={(event, value) => changeHandler(value, event as HtmlFieldChangeEvent)}
         valueLabelDisplay="off"
       />
     </div>

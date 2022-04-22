@@ -2,12 +2,9 @@ import React, {
   ReactNode, FormEvent, useState,
 } from 'react';
 import html2pdf from 'html2pdf.js';
-import {
-  IconButton, Typography,
-} from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
 import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider';
-import ModalDialog from '../ModalDialog';
 import { useInstanceOptions } from '../InstanceSettingsProvider';
 import SelectField from './SelectField';
 import SubmitButton from './SubmitButton';
@@ -15,6 +12,7 @@ import SelectPaperSizeField from './SelectPaperSizeField';
 import FormContainer from './FormContainer';
 import SectionPageTitle from '../../elements/SectionPageTitle';
 import PaperSize, { Orientation } from '../../lib/PaperSize';
+import PrintHelpDialog from './PrintHelpDialog';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;
@@ -61,7 +59,7 @@ function CustomizeForm({
 }: CustomizeFormProps): JSX.Element {
   const { options, setOptions } = usePaperOptions();
   const instanceSettings = useInstanceOptions();
-  const instanceOptions = instanceSettings.options;
+  const { hasAlreadyPrinted } = instanceSettings.options;
   const setInstanceOptions = instanceSettings.setOptions;
 
   const [showPrintingHelp, setShowPrintingHelp] = useState<boolean>(false);
@@ -73,7 +71,7 @@ function CustomizeForm({
       const submitType: string = nativeEvent.submitter === undefined ? 'print' : nativeEvent.submitter.value;
       if (submitType === 'pdf') {
         generatePDF(name, options);
-      } else if (!instanceOptions.hasAlreadyPrinted) {
+      } else if (!hasAlreadyPrinted) {
         setShowPrintingHelp(true);
       } else {
         window.print();
@@ -83,7 +81,7 @@ function CustomizeForm({
 
   const onPrintingHelpClose = () => {
     setShowPrintingHelp(false);
-    if (!instanceOptions.hasAlreadyPrinted) {
+    if (!hasAlreadyPrinted) {
       setInstanceOptions({ hasAlreadyPrinted: true });
       window.print();
     }
@@ -145,34 +143,7 @@ function CustomizeForm({
       >
         <HelpIcon />
       </IconButton>
-      <ModalDialog
-        title="Printing Tips"
-        open={showPrintingHelp}
-        onClose={onPrintingHelpClose}
-        closeButtonText="Got it"
-      >
-        <Typography gutterBottom>
-          Make sure to match the paper size and orientation
-          on your browser&rsquo;s printer settings.
-          <br />
-        </Typography>
-        <Typography gutterBottom variant="h6" component="h2">Firefox Users</Typography>
-        <Typography gutterBottom>
-          On the print dialog, please set
-        </Typography>
-        <Typography component="ul" gutterBottom>
-          <li>
-            <strong>Scale:</strong>
-            {' '}
-            “100” instead of &quot;Fit to page width&quot;
-          </li>
-          <li>
-            <strong>Margins:</strong>
-            {' '}
-            &quot;Default&quot;
-          </li>
-        </Typography>
-      </ModalDialog>
+      <PrintHelpDialog open={showPrintingHelp} onClose={onPrintingHelpClose} />
 
       <p> -- or --</p>
 

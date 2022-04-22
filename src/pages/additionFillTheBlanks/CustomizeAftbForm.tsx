@@ -22,19 +22,19 @@ const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
   ['random', 'Random'],
 ]);
 
+function validate({ rangeFrom, rangeTo }: AftbData): string | null {
+  if (rangeFrom > rangeTo) {
+    return 'Number range "From" must be less than "To"';
+  }
+
+  return null;
+}
+
 function CustomizeAftbForm({
   onChange,
   data,
 }: CustomizeAftbFormProps): JSX.Element {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const validate = ({ rangeFrom, rangeTo }: AftbData): string | null => {
-    if (rangeFrom > rangeTo) {
-      return 'Number range "From" must be less than "To"';
-    }
-
-    return null;
-  };
 
   const updateData = (updated: AftbData): void => {
     const error = validate(updated);

@@ -70,47 +70,57 @@ interface ModalDialogProps {
   onSubmit?: VoidFn | undefined;
 }
 
-function ModalDialog({
-  title, children, open, onClose, closeButtonText = 'Done', onSubmit,
-}: ModalDialogProps): JSX.Element {
+function findFirstInput(): HTMLInputElement | null {
+  return document.querySelector<HTMLInputElement>('[role="dialog"] input');
+}
+
+function useFocused(onClose: VoidFn, onSubmit: VoidFn | undefined) {
   const [focused, setFocused] = useState<boolean>(false);
   const onFocus = () => {
     if (!focused) {
-      const input: HTMLInputElement | null = document.querySelector<HTMLInputElement>('[role="dialog"] input');
+      const input = findFirstInput();
       if (input !== null) {
         input.focus();
       }
       setFocused(true);
     }
   };
-  const myClose = () => {
+  const closeFocus = () => {
     setFocused(false);
     onClose();
   };
 
-  const mySubmit = () => {
+  const closeSubmit = () => {
     setFocused(false);
     if (onSubmit) {
       onSubmit();
     }
   };
 
+  return { onFocus, closeFocus, closeSubmit };
+}
+
+function ModalDialog({
+  title, children, open, onClose, closeButtonText = 'Done', onSubmit,
+}: ModalDialogProps): JSX.Element {
+  const { closeFocus, closeSubmit, onFocus } = useFocused(onClose, onSubmit);
+
   return (
     <Dialog
-      onClose={myClose}
+      onClose={closeFocus}
       aria-labelledby="customized-dialog-title"
       open={open}
       className="no-print"
       onFocus={onFocus}
     >
-      <DialogTitle id="customized-dialog-title" onClose={myClose}>
+      <DialogTitle id="customized-dialog-title" onClose={closeFocus}>
         {title}
       </DialogTitle>
       <DialogContent dividers>
         {children}
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onSubmit ? mySubmit : myClose} color="primary">
+        <Button autoFocus onClick={onSubmit ? closeSubmit : closeFocus} color="primary">
           {closeButtonText}
         </Button>
       </DialogActions>

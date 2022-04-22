@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
-import { DateNumber, getWeekDates } from './previewUtils';
+import getWeekDates, { DateNumber } from './getWeekDates';
 
 const dateFormat = new Intl.DateTimeFormat(
   'en-US',

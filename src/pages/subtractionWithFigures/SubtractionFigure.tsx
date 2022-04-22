@@ -25,27 +25,33 @@ interface SubtractionFigureProps {
   showAnswer: boolean;
 }
 
-function SubtractionFigure({ subtraction, showAnswer }: SubtractionFigureProps): JSX.Element {
+function generateFigures(
+  subtraction: Subtraction,
+  showAnswer: boolean,
+  shapeWrapClassName: string,
+) {
   const count = subtraction.minuend;
   const toCross = subtraction.subtrahend;
   const chars: JSX.Element[] = [];
-  const classes = styles();
-
   while (chars.length < count && count > 0) {
     if (showAnswer && chars.length < toCross) {
       chars.push(
-        <span className={classes.shapeWrap}>
+        <span className={shapeWrapClassName}>
           <CrossableCircle crossed />
         </span>,
       );
     } else {
       chars.push(
-        <span className={classes.shapeWrap}>
+        <span className={shapeWrapClassName}>
           <CrossableCircle />
         </span>,
       );
     }
   }
+  return chars;
+}
+
+function renderRows(chars: JSX.Element[], shapeWrapClassName: string): JSX.Element {
   let rows: JSX.Element;
   if (chars.length > 5) {
     const splitAt = Math.ceil(chars.length / 2);
@@ -61,10 +67,17 @@ function SubtractionFigure({ subtraction, showAnswer }: SubtractionFigureProps):
       <>
         {chars}
         <br />
-        <span className={classes.shapeWrap}>&nbsp;</span>
+        <span className={shapeWrapClassName}>&nbsp;</span>
       </>
     );
   }
+  return rows;
+}
+
+function SubtractionFigure({ subtraction, showAnswer }: SubtractionFigureProps): JSX.Element {
+  const classes = styles();
+  const chars = generateFigures(subtraction, showAnswer, classes.shapeWrap);
+  const rows = renderRows(chars, classes.shapeWrap);
   return (
     <div className={classNames('subtraction-figure', classes.wrap)}>{rows}</div>
   );

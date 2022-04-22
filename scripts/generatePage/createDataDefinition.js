@@ -3,10 +3,32 @@ const { logRed } = require('./colorLogs');
 const { upperCamelCase, titleize } = require('./textManipulation');
 const ImportMap = require('./ImportMap');
 
-async function createDataDefinition(dirPath, pageName, fields) {
-  const fileName = `${pageName}Data.ts`;
-  const filePath = `${dirPath}/${fileName}`;
+function createOptions(choices) {
+  return choices
+    .map((val) => `'${val}'`)
+    .join(' | ');
+}
 
+function createOptionsArray(choices) {
+  return choices
+    .map((val) => `  ['${val}', '${titleize(val)}']`)
+    .join(',\n');
+}
+
+function selectHeadDefinitions(fieldName, choices) {
+  const headDefinitions = [];
+  const options = createOptions(choices);
+  const optionsArray = createOptionsArray(choices);
+  headDefinitions.push(
+    `export type ${upperCamelCase(fieldName)} = ${options};`,
+  );
+  headDefinitions.push(
+    `export const ${fieldName}Options = new Map([\n${optionsArray},\n]);`,
+  );
+  return headDefinitions;
+}
+
+function defineFields(fields) {
   const imports = new ImportMap([]);
   const headDefinitions = [];
   const fieldsDefinition = fields.map(({ fieldName, fieldType, choices }) => {
@@ -15,27 +37,22 @@ async function createDataDefinition(dirPath, pageName, fields) {
       : fieldType;
     const definition = `  ${fieldName}: ${theType};`;
     if (fieldType === 'Select') {
-      const options = choices
-        .map((val) => `'${val}'`)
-        .join(' | ');
-      const optionsArray = choices
-        .map((val) => `  ['${val}', '${titleize(val)}']`)
-        .join(',\n');
-      headDefinitions.push(
-        `export type ${upperCamelCase(fieldName)} = ${options};`,
-      );
-      headDefinitions.push(
-        `export const ${fieldName}Options = new Map([\n${optionsArray},\n]);`,
-      );
+      headDefinitions.concat(selectHeadDefinitions(fieldName, choices));
     }
     if (fieldType === 'Range') {
-      imports.addImportDefault(
-        '../../lib/Range',
-        'Range',
-      );
+      imports.addImportDefault('../../lib/Range', 'Range');
     }
     return definition;
   });
+
+  return { fieldsDefinition, imports, headDefinitions };
+}
+
+async function createDataDefinition(dirPath, pageName, fields) {
+  const fileName = `${pageName}Data.ts`;
+  const filePath = `${dirPath}/${fileName}`;
+
+  const { fieldsDefinition, imports, headDefinitions } = defineFields(fields);
   const mainSection = `export default interface ${pageName}Data {\n`
     + `${fieldsDefinition.join('\n')}\n}\n`;
 

@@ -17,18 +17,25 @@ interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
 }
 
-function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
-  let max: number;
-  const magN = magnitude === 'hundreds' ? 3 : 2;
+function maxFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
   if (magnitude === 'hundreds') {
-    max = 999;
-  } else {
-    max = 99;
+    return 999;
   }
+  return 99;
+}
+
+function magNFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
+  return magnitude === 'hundreds' ? 3 : 2;
+}
+
+function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
+  const max = maxFromMagnitude(magnitude);
+  const magNumber = magNFromMagnitude(magnitude);
+
   const problems: Array<PlaceValuesProblem> = [];
   const track: Set<number> = new Set([]);
   while (problems.length < count) {
-    const number = randomGenerator.stepMagnitude(magN);
+    const number = randomGenerator.stepMagnitude(magNumber);
     if (!track.has(number)) {
       problems.push(new PlaceValuesProblem(number, {
         digitPlaceValue: randomGenerator.integer(
