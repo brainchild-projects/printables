@@ -1,6 +1,7 @@
 import factorial from './factorial';
 import { randomGenerator } from './RandomNumberGenerator';
 import Range from './Range';
+import tryByKey from './tryByKey';
 
 type Pair = [a: number, b: number];
 
@@ -33,25 +34,15 @@ function getRandomPairFromRanges(k: number, aRange: Range, bRange: Range): [a: n
 
 export default function randomPairsByRanges(aRange: Range, bRange: Range, count: number): Pair[] {
   const pairs: Pair[] = [];
-  const found = new Set<string>();
   const maxTries = computeMaxTries(aRange, bRange);
-  let tries = 0;
+  const limitedRetries = tryByKey(maxTries);
   let k = 0;
   while (pairs.length < count) {
     k += 1;
-
     const [a, b] = getRandomPairFromRanges(k, aRange, bRange);
-    const key = `${a}:${b}`;
-    if (!found.has(key)) {
+    limitedRetries(`${a}:${b}`, () => {
       pairs.push([a, b]);
-      found.add(key);
-    } else {
-      tries += 1;
-    }
-    if (tries >= maxTries) {
-      found.clear();
-      tries = 0;
-    }
+    });
   }
   return pairs;
 }

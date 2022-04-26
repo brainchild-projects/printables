@@ -34,19 +34,12 @@ function generateFigures(
   const toCross = subtraction.subtrahend;
   const chars: JSX.Element[] = [];
   while (chars.length < count && count > 0) {
-    if (showAnswer && chars.length < toCross) {
-      chars.push(
-        <span className={shapeWrapClassName}>
-          <CrossableCircle crossed />
-        </span>,
-      );
-    } else {
-      chars.push(
-        <span className={shapeWrapClassName}>
-          <CrossableCircle />
-        </span>,
-      );
-    }
+    const crossed = showAnswer && chars.length < toCross;
+    chars.push(
+      <span className={shapeWrapClassName}>
+        <CrossableCircle crossed={crossed} />
+      </span>,
+    );
   }
   return chars;
 }

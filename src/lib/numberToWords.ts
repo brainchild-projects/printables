@@ -56,6 +56,35 @@ function hundredsPart(number: number): string {
   return '';
 }
 
+function mappedOrEmpty(n: number): string {
+  return numbersMapping.get(n) ?? '';
+}
+
+function isBetween11And19(n: number) {
+  return n > 10 && n < 20;
+}
+
+function getTensPart(tenth: number): string {
+  const tens = numbersMapping.get(tenth);
+  if (tenth !== 0 && typeof tens === 'string') {
+    return ` ${tens}`;
+  }
+  return '';
+}
+
+function getOnesPart(tenth: number, oneth: number): string {
+  const ones = numbersMapping.get(oneth);
+  if (oneth !== 0 && typeof ones === 'string') {
+    return `${tenth !== 0 ? '-' : ' '}${ones}`;
+  }
+
+  return '';
+}
+
+function getTensCombination(tenth: number, oneth: number): string {
+  return getTensPart(tenth) + getOnesPart(tenth, oneth);
+}
+
 function numberToWordsUnmapped(number: number): string {
   let numberStr = '';
   numberStr += hundredsPart(number);
@@ -63,18 +92,10 @@ function numberToWordsUnmapped(number: number): string {
   const tenth = tensValue(number);
   const oneth = onesValue(number);
 
-  if (tenth === 10 && oneth > 0) {
-    numberStr += ` ${numbersMapping.get(tenth + oneth) ?? ''}`;
+  if (isBetween11And19(tenth + oneth)) {
+    numberStr += ` ${mappedOrEmpty(tenth + oneth)}`;
   } else {
-    const tens = numbersMapping.get(tenth);
-    if (tenth !== 0 && typeof tens === 'string') {
-      numberStr += ` ${tens}`;
-    }
-
-    const ones = numbersMapping.get(oneth);
-    if (oneth !== 0 && typeof ones === 'string') {
-      numberStr += `${tenth !== 0 ? '-' : ' '}${ones}`;
-    }
+    numberStr += getTensCombination(tenth, oneth);
   }
   return numberStr.trim();
 }

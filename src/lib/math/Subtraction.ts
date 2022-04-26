@@ -1,7 +1,20 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 interface CreateProps {
   minuend?: number;
   subtrahend?: number;
   difference?: number;
+}
+
+function minuendAndSubtrahend({ minuend, subtrahend }: CreateProps): boolean {
+  return minuend !== undefined && subtrahend !== undefined;
+}
+
+function minuendAndDifference({ minuend, difference }: CreateProps): boolean {
+  return minuend !== undefined && difference !== undefined;
+}
+
+function subtrahendAndDifference({ subtrahend, difference }: CreateProps): boolean {
+  return subtrahend !== undefined && difference !== undefined;
 }
 
 class Subtraction {
@@ -11,15 +24,16 @@ class Subtraction {
 
   difference: number;
 
-  static create({ minuend, subtrahend, difference }: CreateProps): Subtraction {
-    if (minuend !== undefined && subtrahend !== undefined) {
-      return new Subtraction(minuend, subtrahend);
+  static create(props: CreateProps): Subtraction {
+    const { minuend, subtrahend, difference } = props;
+    if (minuendAndSubtrahend(props)) {
+      return new Subtraction(minuend!, subtrahend!);
     }
-    if (minuend !== undefined && difference !== undefined) {
-      return new Subtraction(minuend, minuend - difference);
+    if (minuendAndDifference(props)) {
+      return new Subtraction(minuend!, minuend! - difference!);
     }
-    if (subtrahend !== undefined && difference !== undefined) {
-      return new Subtraction(subtrahend + difference, subtrahend);
+    if (subtrahendAndDifference(props)) {
+      return new Subtraction(subtrahend! + difference!, subtrahend!);
     }
     throw Error('Bad arguments');
   }

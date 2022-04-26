@@ -66,16 +66,17 @@ function CustomizeForm({
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (onBeforePrint()) {
-      const nativeEvent = event.nativeEvent as EventWithSubmitter;
-      const submitType: string = nativeEvent.submitter === undefined ? 'print' : nativeEvent.submitter.value;
-      if (submitType === 'pdf') {
-        generatePDF(name, options);
-      } else if (!hasAlreadyPrinted) {
-        setShowPrintingHelp(true);
-      } else {
-        window.print();
-      }
+    if (!onBeforePrint()) {
+      return;
+    }
+    const nativeEvent = event.nativeEvent as EventWithSubmitter;
+    const submitType: string = nativeEvent.submitter === undefined ? 'print' : nativeEvent.submitter.value;
+    if (submitType === 'pdf') {
+      generatePDF(name, options);
+    } else if (!hasAlreadyPrinted) {
+      setShowPrintingHelp(true);
+    } else {
+      window.print();
     }
   };
 

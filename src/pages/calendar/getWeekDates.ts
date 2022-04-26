@@ -4,138 +4,64 @@ export interface DateNumber {
   value: number;
   current: boolean;
 }
+export type Week = DateNumber[];
+export type Weeks = Week[];
 
-interface GatherFirstIncompleteWeekProps {
-  year: number;
-  month: number;
-  n: number; // day number
-  firstDay: number;
+export function getNumberOfWeeks(nOfDays: number, firstDay: number): number {
+  return Math.ceil((nOfDays + firstDay) / 7);
 }
 
-function gatherFirstIncompleteWeek({
-  year, month, n, firstDay,
-}: GatherFirstIncompleteWeekProps) {
-  const previousMonthLastDayDate = (new Date(year, month, -1)).getDate();
-  const firstDayOfWeekN = previousMonthLastDayDate - firstDay + 2;
-  const week: DateNumber[] = [];
-  let m = n;
-
-  for (let i = 0; i < firstDay; i += 1) {
-    week.push({
-      value: firstDayOfWeekN + i,
-      current: false,
-    });
-  }
-  for (let i = 0; i < (7 - firstDay); i += 1) {
-    m += 1;
-    week.push({
-      value: m,
-      current: true,
-    });
-  }
-
-  return week;
-}
-interface GatherWeekNormalStartProps {
-  n: number; // day number
-  lastDayN: number;
-}
-
-function gatherWeekNormalStart({
-  n, lastDayN,
-}: GatherWeekNormalStartProps) {
-  let current = true;
-  const week: DateNumber[] = [];
-  let m = n;
-  for (let index = 0; index < 7; index += 1) {
-    m += 1;
-    week.push({
-      value: m,
-      current,
-    });
-    if (m === lastDayN) {
-      m = 0;
-      current = false;
-    }
+function weekNumbers(start: number, length = 7, current = true): Week {
+  const week: Week = [];
+  for (let n = start; week.length < length; n++) {
+    week.push({ value: n, current });
   }
   return week;
 }
 
-function isIncompleteFirstWeek(weeksLength: number, firstDay: number): boolean {
-  return weeksLength === 0 && firstDay > 0;
-}
-
-type Week = DateNumber[];
-type Weeks = Week[];
-
-interface GetWeekProps {
-  weeksLength: number;
-  firstDay: number;
-  lastDayN: number;
-  year: number;
-  month: number;
-  n: number;
-}
-
-interface GetWeekReturn {
-  week: Week;
-  notDone: boolean;
-  n: number;
-}
-
-function getWeek({
-  weeksLength, firstDay, lastDayN,
-  year, month, n,
-}: GetWeekProps): GetWeekReturn {
-  let week: Week = [];
-  let notDone = true;
-  let m = n;
-  if (isIncompleteFirstWeek(weeksLength, firstDay)) {
-    week = gatherFirstIncompleteWeek({
-      year, month, n, firstDay,
-    });
-    m = week[week.length - 1]?.value || 0;
-  } else {
-    week = gatherWeekNormalStart({ n, lastDayN });
-    const lastN = week[week.length - 1]?.value || 0;
-    if (lastN === lastDayN || lastN < n) {
-      notDone = false;
-    }
-    m = lastN;
+function getFirstDateOfFirstWeek(firstDayOfMonth: number, numberOfDaysLastMonth: number): number {
+  if (firstDayOfMonth === 0) {
+    return 1;
   }
-  return { week, notDone, n: m };
+  return numberOfDaysLastMonth + 1 - firstDayOfMonth;
 }
 
-function throwOnTooManyWeeks(weeks: Weeks) {
-  if (weeks.length > 6) {
-    throw new Error(`Too many weeks: ${weeks.length}`);
-  }
+function lastDayOfWeek(week: Week): number {
+  return week[week.length - 1]?.value ?? 0;
 }
 
-export default function getWeekDates(date: Date): DateNumber[][] {
+export default function getWeekDates(date: Date): Weeks {
   const year = date.getFullYear();
   const month = date.getMonth();
+  const monthDateObj = new Date(year, month);
   const firstDay = (new Date(year, month)).getDay();
-  const lastDayN = dayBefore(new Date(year, month + 1)).getDate();
+  const numberOfDays = dayBefore(new Date(year, month + 1)).getDate();
+  const numberOfDaysLastMonth = dayBefore(monthDateObj).getDate();
+  const numberOfWeeks = getNumberOfWeeks(numberOfDays, firstDay);
+  const firstDateOfFirstWeek = getFirstDateOfFirstWeek(firstDay, numberOfDaysLastMonth);
+  const weeks: Weeks = [];
 
-  const weeks: DateNumber[][] = [];
-  let notDone = true;
-  let n = 0;
-
-  while (notDone) {
-    throwOnTooManyWeeks(weeks);
-    const weekInfo = getWeek({
-      weeksLength: weeks.length,
+  const firstWeek = firstDay > 0
+    ? weekNumbers(
+      firstDateOfFirstWeek,
       firstDay,
-      n,
-      lastDayN,
-      year,
-      month,
-    });
-    notDone = weekInfo.notDone;
-    n = weekInfo.n;
-    weeks.push(weekInfo.week);
+      false,
+    ).concat(weekNumbers(1, 7 - firstDay))
+    : weekNumbers(1);
+  weeks.push(firstWeek);
+  let lastDateN = lastDayOfWeek(firstWeek);
+
+  for (let i = 1; weeks.length < numberOfWeeks - 1; i++) {
+    const week = weekNumbers(lastDateN + 1);
+    lastDateN = lastDayOfWeek(week);
+    weeks.push(week);
   }
+
+  const weekTemp = weekNumbers(lastDateN + 1, numberOfDays - lastDateN);
+  const lastWeek = weekTemp.length < 7
+    ? weekTemp.concat(weekNumbers(1, 7 - weekTemp.length, false))
+    : weekTemp;
+  weeks.push(lastWeek);
 
   return weeks;
 }

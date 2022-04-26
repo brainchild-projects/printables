@@ -22,6 +22,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'sonarjs',
     'cypress',
   ],
   root: true,
@@ -31,7 +32,8 @@ module.exports = {
     'no-void': 'off',
     'no-restricted-syntax': 'off',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-    complexity: ['error', { max: 10 }],
+    'sonarjs/cognitive-complexity': ['error', 5],
+    complexity: ['error', { max: 5 }],
   },
   overrides: [
     {
