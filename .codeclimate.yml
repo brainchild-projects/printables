@@ -3,3 +3,10 @@ checks:
   method-lines:
     config:
       threshold: 80
+
+plugins:
+  duplication:
+    enabled: true
+    exclude_patterns:
+      - "**/*.spec.ts"
+      - "**/*.spec.tsx"
