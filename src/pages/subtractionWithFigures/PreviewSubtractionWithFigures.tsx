@@ -10,23 +10,7 @@ import Subtraction from '../../lib/math/Subtraction';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import SubtractionSentence from './SubtractionSentence';
 import SubtractionFigure from './SubtractionFigure';
-
-function tryByKey(maximumTries = 6) {
-  const found: Map<string, number> = new Map([]);
-  return function wrapper(key: string, fn: () => void) {
-    const set = found.get(key);
-    if (set === undefined) {
-      fn();
-      found.set(key, 1);
-    } else {
-      const retries = set + 1;
-      found.set(key, retries);
-      if (retries > maximumTries) {
-        found.delete(key);
-      }
-    }
-  };
-}
+import tryByKey from '../../lib/tryByKey';
 
 function generateProblemsFromMinuend(minuendRange: Range, count: number): Subtraction[] {
   const problems: Subtraction[] = [];

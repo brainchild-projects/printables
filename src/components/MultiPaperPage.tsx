@@ -110,6 +110,13 @@ function isContentOverflowing(element: HTMLDivElement | null): boolean {
   return content.scrollHeight > content.clientHeight;
 }
 
+interface LeaveUnobscuredElementsProps<T> {
+  dataPage: T[];
+  previousPagedItemsCount: number;
+  page: HTMLDivElement;
+  pageIndex: number;
+}
+
 function MultiPaperPage<T>({
   header = null, footer = null,
   wrapper, wrapperProps = {}, data, renderItems: builder,
@@ -127,11 +134,35 @@ function MultiPaperPage<T>({
     setAttemptsTofix(0);
   }, [data, options]);
 
-  useEffect(() => {
+  // This is just a stop gap so we don't attempt to fix like in
+  // the event of an infinite loop. The limit is pretty arbitrary.
+  const throwOnTooManyAttempts = () => {
     if (attemptsToFix > 100) {
       setIsReady(true);
       throw Error('Attempted to fix paging too many times');
     }
+  };
+
+  const leaveUnobscuredElements = ({
+    dataPage,
+    previousPagedItemsCount,
+    page,
+    pageIndex,
+  }: LeaveUnobscuredElementsProps<T>) => {
+    const itemCount = countUnobscuredElements(page, itemSelector);
+    if (dataPage.length > itemCount) {
+      const previousPages = dataPages.slice(0, pageIndex); // retain previous pages
+      const startIndex = previousPagedItemsCount;
+      const newDataPage = data.slice(startIndex, startIndex + itemCount);
+      const newPages = previousPages.concat(
+        [newDataPage, data.slice(startIndex + itemCount)],
+      );
+      setDataPages(newPages);
+    }
+  };
+
+  useEffect(() => {
+    throwOnTooManyAttempts();
     // Check if last page overflows
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const wrapperEl = wrapperRef.current!;
@@ -143,18 +174,13 @@ function MultiPaperPage<T>({
       const itemCountOnPage = dataPages[pageIndex].length;
 
       if (isContentOverflowing(page)) {
-        const itemCount = countUnobscuredElements(page, itemSelector);
-        const theDataPage = dataPages[pageIndex];
         contentOverflowed = true;
-        if (theDataPage.length > itemCount) {
-          const previousPages = dataPages.slice(0, pageIndex); // retain previous pages
-          const startIndex = previousPagedItemsCount;
-          const newDataPage = data.slice(startIndex, startIndex + itemCount);
-          const newPages = previousPages.concat(
-            [newDataPage, data.slice(startIndex + itemCount)],
-          );
-          setDataPages(newPages);
-        }
+        leaveUnobscuredElements({
+          dataPage: dataPages[pageIndex],
+          page,
+          pageIndex,
+          previousPagedItemsCount,
+        });
         break;
       }
       previousPagedItemsCount += itemCountOnPage;

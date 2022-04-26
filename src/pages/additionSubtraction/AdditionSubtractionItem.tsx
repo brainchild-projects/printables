@@ -1,10 +1,9 @@
-import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
 import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import roundRobinPairsByRanges from '../../lib/roundRobinPairsByRanges';
+import pairsByRanges from '../../lib/pairsByRanges';
 import AdditionSubtractionData from './AdditionSubtractionData';
 
 type Range = { from: number, to: number };
@@ -14,7 +13,6 @@ export function generateItems(
     rangeFrom, rangeTo, count, customAddendsA, customAddendsB, problemGeneration,
   }: AdditionSubtractionData,
 ): Addition[] {
-  const generated: Addition[] = [];
   let rangeA: Range;
   let rangeB: Range;
   if (problemGeneration === 'custom addends') {
@@ -25,15 +23,16 @@ export function generateItems(
     rangeB = rangeA;
   }
 
-  const possiblePairs = roundRobinPairsByRanges(rangeA, rangeB);
-  while (generated.length < count) {
-    const pairBag = possiblePairs.slice(0);
-    for (let i = 0; i < pairBag.length && generated.length < count; i++) {
-      const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
-      generated.push(Addition.create(...pair));
-    }
-  }
-  return generated;
+  // const possiblePairs = roundRobinPairsByRanges(rangeA, rangeB);
+  // while (generated.length < count) {
+  //   const pairBag = possiblePairs.slice(0);
+  //   for (let i = 0; i < pairBag.length && generated.length < count; i++) {
+  //     const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
+  //     generated.push(Addition.create(...pair));
+  //   }
+  // }
+  const pairs = pairsByRanges(rangeA, rangeB, count);
+  return pairs.map((pair) => Addition.create(...pair));
 }
 
 export type AdditionAddends = 'addendA' | 'addendB';
@@ -52,6 +51,8 @@ interface BlankOrNumberProps {
   expected: AdditionBlankPosition;
   value: number;
 }
+
+type BOrNg = (props: BlankOrNumberProps) => JSX.Element;
 
 function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
   return function bOrNg({ value, expected }: BlankOrNumberProps): JSX.Element {
@@ -73,21 +74,32 @@ const styles = makeStyles({
   },
 });
 
-function AdditionSubtractionItem({
-  addition, blank = 'sum', showAnswer = false, fontSize = 20,
-  subtrahend, blanksOnAddition,
-}: AdditionSubtractionItemProps): JSX.Element {
-  const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
-  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
-  const subtrahendElement = subtrahend === 'addendA'
+function getSubtrahendElement(
+  subtrahend: AdditionAddends,
+  addition: Addition,
+  BlankOrNumber: BOrNg,
+): JSX.Element {
+  return subtrahend === 'addendA'
     ? <BlankOrNumber value={addition.addendA} expected="addendA" />
     : <BlankOrNumber value={addition.addendB} expected="addendB" />;
-  const differenceElement = subtrahend === 'addendA'
+}
+
+function getDifferenceElement(
+  subtrahend: AdditionAddends,
+  addition: Addition,
+  BlankOrNumber: BOrNg,
+): JSX.Element {
+  return subtrahend === 'addendA'
     ? <BlankOrNumber value={addition.addendB} expected="addendB" />
     : <BlankOrNumber value={addition.addendA} expected="addendA" />;
+}
 
-  const classes = styles();
-  const addendAElement = blanksOnAddition
+function getAddendAElement(
+  blanksOnAddition: boolean,
+  addition: Addition,
+  BlankOrNumber: BOrNg,
+): JSX.Element | number {
+  return blanksOnAddition
     ? (
       <BlankOrNumber
         value={addition.addendA}
@@ -95,8 +107,14 @@ function AdditionSubtractionItem({
       />
     )
     : addition.addendA;
+}
 
-  const addendBElement = blanksOnAddition
+function getAddendBElement(
+  blanksOnAddition: boolean,
+  addition: Addition,
+  BlankOrNumber: BOrNg,
+): JSX.Element | number {
+  return blanksOnAddition
     ? (
       <BlankOrNumber
         value={addition.addendB}
@@ -104,16 +122,37 @@ function AdditionSubtractionItem({
       />
     )
     : addition.addendB;
+}
 
-  const sumElement = blanksOnAddition
+function getSumElement(
+  blanksOnAddition: boolean,
+  addition: Addition,
+  BlankOrNumber: BOrNg,
+): JSX.Element | number {
+  return blanksOnAddition
     ? (
-
       <BlankOrNumber
         value={addition.sum()}
         expected="sum"
       />
     )
     : addition.sum();
+}
+
+function AdditionSubtractionItem({
+  addition, blank = 'sum', showAnswer = false, fontSize = 20,
+  subtrahend, blanksOnAddition,
+}: AdditionSubtractionItemProps): JSX.Element {
+  const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
+  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
+  const subtrahendElement = getSubtrahendElement(subtrahend, addition, BlankOrNumber);
+  const differenceElement = getDifferenceElement(subtrahend, addition, BlankOrNumber);
+
+  const addendAElement = getAddendAElement(blanksOnAddition, addition, BlankOrNumber);
+  const addendBElement = getAddendBElement(blanksOnAddition, addition, BlankOrNumber);
+  const sumElement = getSumElement(blanksOnAddition, addition, BlankOrNumber);
+
+  const classes = styles();
 
   return (
     <ProblemListItem

@@ -25,6 +25,51 @@ type Config = {
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 };
 
+function precacheReady(registration: ServiceWorkerRegistration, config?: Config) {
+  // At this point, the updated precached content has been fetched,
+  // but the previous service worker will still serve the older
+  // content until all client tabs are closed.
+  console.log(
+    'New content is available and will be used when all '
+      + 'tabs for this page are closed. See https://cra.link/PWA.',
+  );
+
+  // Execute callback
+  if (config && config.onUpdate) {
+    config.onUpdate(registration);
+  }
+}
+
+function contentCachedForOfflineUse(registration: ServiceWorkerRegistration, config?: Config) {
+  // At this point, everything has been precached.
+  // It's the perfect time to display a
+  // "Content is cached for offline use." message.
+  console.log('Content is cached for offline use.');
+
+  // Execute callback
+  if (config && config.onSuccess) {
+    config.onSuccess(registration);
+  }
+}
+
+function installOnstateChangeFn(
+  installingWorker: ServiceWorker,
+  registration: ServiceWorkerRegistration,
+  config?: Config,
+) {
+  return (() => {
+    if (installingWorker.state !== 'installed') {
+      return;
+    }
+
+    if (navigator.serviceWorker.controller) {
+      precacheReady(registration, config);
+    } else {
+      contentCachedForOfflineUse(registration, config);
+    }
+  });
+}
+
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
@@ -35,34 +80,11 @@ function registerValidSW(swUrl: string, config?: Config) {
         if (!installingWorker) {
           return;
         }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all '
-                  + 'tabs for this page are closed. See https://cra.link/PWA.',
-              );
-
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
-
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
-            }
-          }
-        };
+        installingWorker.onstatechange = installOnstateChangeFn(
+          installingWorker,
+          registration,
+          config,
+        );
       };
     })
     .catch((error) => {
@@ -97,6 +119,29 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
     });
 }
 
+function loadListener(config?: Config) {
+  return () => {
+    const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+
+    if (isLocalhost) {
+      // This is running on localhost. Let's check if a service worker still exists or not.
+      checkValidServiceWorker(swUrl, config);
+
+      // Add some additional logging to localhost, pointing developers to the
+      // service worker/PWA documentation.
+      void navigator.serviceWorker.ready.then(() => {
+        console.log(
+          'This web app is being served cache-first by a service '
+            + 'worker. To learn more, visit https://cra.link/PWA',
+        );
+      });
+    } else {
+      // Is not localhost. Just register service worker
+      registerValidSW(swUrl, config);
+    }
+  };
+}
+
 export function register(config?: Config): void {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -108,26 +153,7 @@ export function register(config?: Config): void {
       return;
     }
 
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      if (isLocalhost) {
-        // This is running on localhost. Let's check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl, config);
-
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        void navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service '
-              + 'worker. To learn more, visit https://cra.link/PWA',
-          );
-        });
-      } else {
-        // Is not localhost. Just register service worker
-        registerValidSW(swUrl, config);
-      }
-    });
+    window.addEventListener('load', loadListener(config));
   }
 }
 
