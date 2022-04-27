@@ -70,11 +70,11 @@ jobs:
           ls -ld coverage/integration/lcov.info
           ls -ld coverage/unit/lcov.info
 
-      - name: Codacy Coverage
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: coverage/integration/lcov.info,coverage/unit/lcov.info
+      # - name: Codacy Coverage
+      #   uses: codacy/codacy-coverage-reporter-action@v1
+      #   with:
+      #     project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+      #     coverage-reports: coverage/integration/lcov.info,coverage/unit/lcov.info
 
       - name: Coveralls Unit
         uses: coverallsapp/github-action@master
