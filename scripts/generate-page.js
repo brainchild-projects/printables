@@ -188,7 +188,7 @@ async function run() {
   logGreen('When you are done, hit ENTER for "Field Name"');
   const fields = await gatherFields();
 
-  logYellow();
+  logYellow('');
 
   const pageType = await getPageType();
   const title = await getTitle(pageName);

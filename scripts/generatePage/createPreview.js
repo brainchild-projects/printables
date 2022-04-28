@@ -19,9 +19,9 @@ class [PREVIEW]Problem {
   }
 }
 
-function generateProblems(data: [DATA]): Array<[PREVIEW]Problem> {
+function generateProblems(data: [DATA]): [PREVIEW]Problem[] {
   // WARNING: TOO SIMPLE
-  const problems: Array<[PREVIEW]Problem> = [];
+  const problems: [PREVIEW]Problem[] = [];
   for (let i = 0; i < data.count; i++) {
     problems.push(new [PREVIEW]Problem(i));
   }

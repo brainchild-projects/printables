@@ -37,7 +37,7 @@ function defineFields(fields) {
       : fieldType;
     const definition = `  ${fieldName}: ${theType};`;
     if (fieldType === 'Select') {
-      headDefinitions.concat(selectHeadDefinitions(fieldName, choices));
+      headDefinitions.push(...selectHeadDefinitions(fieldName, choices));
     }
     if (fieldType === 'Range') {
       imports.addImportDefault('../../lib/Range', 'Range');
