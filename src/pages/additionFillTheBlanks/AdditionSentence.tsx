@@ -1,5 +1,5 @@
 import React from 'react';
-import Blank from '../../components/Blank';
+import AdditionSentenceBasic, { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
@@ -26,7 +26,6 @@ export function generateAdditionSentences(
   return pairs.map((pair) => Addition.create(...pair));
 }
 
-export type AdditionBlankPosition = 'addendA' | 'addendB' | 'sum';
 export const blankTypes: AdditionBlankPosition[] = ['addendA', 'addendB', 'sum'];
 export const blankTypesAddends: AdditionBlankPosition[] = ['addendA', 'addendB'];
 export interface AdditionSentenceProps {
@@ -35,24 +34,10 @@ export interface AdditionSentenceProps {
   blank?: AdditionBlankPosition;
   fontSize?: number;
 }
-interface BlankOrNumberProps {
-  expected: AdditionBlankPosition;
-  value: number;
-}
-
-function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
-  return function bOrNg({ value, expected }: BlankOrNumberProps): JSX.Element {
-    return blank === expected
-      ? (<Blank answer={value} showAnswer={showAnswer} />)
-      // eslint-disable-next-line react/jsx-no-useless-fragment
-      : (<>{value}</>);
-  };
-}
 
 function AdditionSentence({
   addition, blank = 'sum', showAnswer = false, fontSize = 20,
 }: AdditionSentenceProps): JSX.Element {
-  const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
     <ProblemListItem
@@ -60,19 +45,10 @@ function AdditionSentence({
       label={label}
       fontSize={fontSize}
     >
-      <BlankOrNumber
-        value={addition.addendA}
-        expected="addendA"
-      />
-      {' + '}
-      <BlankOrNumber
-        value={addition.addendB}
-        expected="addendB"
-      />
-      {' = '}
-      <BlankOrNumber
-        value={addition.sum()}
-        expected="sum"
+      <AdditionSentenceBasic
+        addition={addition}
+        blank={blank}
+        showAnswer={showAnswer}
       />
     </ProblemListItem>
   );

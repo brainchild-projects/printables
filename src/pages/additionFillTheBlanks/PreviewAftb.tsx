@@ -1,7 +1,7 @@
 import React from 'react';
 import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
 import AdditionSentence, {
-  AdditionBlankPosition, blankTypes, blankTypesAddends, generateAdditionSentences,
+  blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
@@ -10,6 +10,7 @@ import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import Addition from '../../lib/math/Addition';
+import { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
 
 interface PreviewAftbProps {
   aftbData: AftbData;

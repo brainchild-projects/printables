@@ -1,10 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import Blank from '../../components/Blank';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
 import AdditionSubtractionData from './AdditionSubtractionData';
+import AdditionSentenceBasic, { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
+import Subtraction from '../../lib/math/Subtraction';
+import SubtractionSentenceBasic, { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic';
 
 type Range = { from: number, to: number };
 
@@ -22,46 +24,12 @@ export function generateItems(
     rangeA = { from: rangeFrom, to: rangeTo };
     rangeB = rangeA;
   }
-
-  // const possiblePairs = roundRobinPairsByRanges(rangeA, rangeB);
-  // while (generated.length < count) {
-  //   const pairBag = possiblePairs.slice(0);
-  //   for (let i = 0; i < pairBag.length && generated.length < count; i++) {
-  //     const pair = pairBag.splice(randomGenerator.integer(pairBag.length - 1), 1)[0];
-  //     generated.push(Addition.create(...pair));
-  //   }
-  // }
   const pairs = pairsByRanges(rangeA, rangeB, count);
   return pairs.map((pair) => Addition.create(...pair));
 }
 
-export type AdditionAddends = 'addendA' | 'addendB';
-export type AdditionBlankPosition = AdditionAddends | 'sum';
 export const blankTypes: AdditionBlankPosition[] = ['addendA', 'addendB', 'sum'];
 export const blankTypesAddends: AdditionAddends[] = ['addendA', 'addendB'];
-export interface AdditionSubtractionItemProps {
-  addition: Addition;
-  showAnswer?: boolean;
-  blank?: AdditionBlankPosition;
-  fontSize?: number;
-  subtrahend: AdditionAddends;
-  blanksOnAddition: boolean;
-}
-interface BlankOrNumberProps {
-  expected: AdditionBlankPosition;
-  value: number;
-}
-
-type BOrNg = (props: BlankOrNumberProps) => JSX.Element;
-
-function blankOrNumberGenerator(blank: AdditionBlankPosition, showAnswer: boolean) {
-  return function bOrNg({ value, expected }: BlankOrNumberProps): JSX.Element {
-    return blank === expected
-      ? (<Blank answer={value} showAnswer={showAnswer} />)
-      // eslint-disable-next-line react/jsx-no-useless-fragment
-      : (<>{value}</>);
-  };
-}
 
 const styles = makeStyles({
   wrap: {
@@ -74,83 +42,44 @@ const styles = makeStyles({
   },
 });
 
-function getSubtrahendElement(
-  subtrahend: AdditionAddends,
+function subtractionFromAddition(
   addition: Addition,
-  BlankOrNumber: BOrNg,
-): JSX.Element {
-  return subtrahend === 'addendA'
-    ? <BlankOrNumber value={addition.addendA} expected="addendA" />
-    : <BlankOrNumber value={addition.addendB} expected="addendB" />;
+  subtrahendPosition: AdditionAddends,
+): Subtraction {
+  const [subtrahend, difference] = subtrahendPosition === 'addendA'
+    ? [addition.addendA, addition.addendB]
+    : [addition.addendB, addition.addendA];
+  return Subtraction.create({ subtrahend, difference });
 }
 
-function getDifferenceElement(
-  subtrahend: AdditionAddends,
-  addition: Addition,
-  BlankOrNumber: BOrNg,
-): JSX.Element {
-  return subtrahend === 'addendA'
-    ? <BlankOrNumber value={addition.addendB} expected="addendB" />
-    : <BlankOrNumber value={addition.addendA} expected="addendA" />;
+function getSubtractionBlank(
+  subtrahendPosition: AdditionAddends,
+  blank: AdditionBlankPosition,
+): SubtractionBlankPosition {
+  if (blank === 'sum') {
+    return 'minuend';
+  }
+  if (blank === subtrahendPosition) {
+    return 'subtrahend';
+  }
+  return 'difference';
 }
 
-function getAddendAElement(
-  blanksOnAddition: boolean,
-  addition: Addition,
-  BlankOrNumber: BOrNg,
-): JSX.Element | number {
-  return blanksOnAddition
-    ? (
-      <BlankOrNumber
-        value={addition.addendA}
-        expected="addendA"
-      />
-    )
-    : addition.addendA;
+export interface AdditionSubtractionItemProps {
+  addition: Addition;
+  showAnswer?: boolean;
+  blank?: AdditionBlankPosition;
+  fontSize?: number;
+  subtrahend: AdditionAddends;
+  blanksOnAddition: boolean;
 }
-
-function getAddendBElement(
-  blanksOnAddition: boolean,
-  addition: Addition,
-  BlankOrNumber: BOrNg,
-): JSX.Element | number {
-  return blanksOnAddition
-    ? (
-      <BlankOrNumber
-        value={addition.addendB}
-        expected="addendB"
-      />
-    )
-    : addition.addendB;
-}
-
-function getSumElement(
-  blanksOnAddition: boolean,
-  addition: Addition,
-  BlankOrNumber: BOrNg,
-): JSX.Element | number {
-  return blanksOnAddition
-    ? (
-      <BlankOrNumber
-        value={addition.sum()}
-        expected="sum"
-      />
-    )
-    : addition.sum();
-}
-
 function AdditionSubtractionItem({
   addition, blank = 'sum', showAnswer = false, fontSize = 20,
   subtrahend, blanksOnAddition,
 }: AdditionSubtractionItemProps): JSX.Element {
-  const BlankOrNumber = blankOrNumberGenerator(blank, showAnswer);
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
-  const subtrahendElement = getSubtrahendElement(subtrahend, addition, BlankOrNumber);
-  const differenceElement = getDifferenceElement(subtrahend, addition, BlankOrNumber);
-
-  const addendAElement = getAddendAElement(blanksOnAddition, addition, BlankOrNumber);
-  const addendBElement = getAddendBElement(blanksOnAddition, addition, BlankOrNumber);
-  const sumElement = getSumElement(blanksOnAddition, addition, BlankOrNumber);
+  const subtraction = subtractionFromAddition(addition, subtrahend);
+  const subtractionBlank = getSubtractionBlank(subtrahend, blank);
 
   const classes = styles();
 
@@ -161,27 +90,22 @@ function AdditionSubtractionItem({
       fontSize={fontSize}
     >
       <div className={classes.wrap}>
-        <span>
-          {'Since '}
-          &nbsp;&nbsp;&nbsp;
-          {addendAElement}
-          {' + '}
-          {addendBElement}
-          {' = '}
-          {sumElement}
+        <span data-subtrahend={subtrahend}>
+          Since &nbsp;&nbsp;&nbsp;
+          <AdditionSentenceBasic
+            addition={addition}
+            blank={blanksOnAddition ? blank : undefined}
+            showAnswer={showAnswer}
+          />
         </span>
         {' '}
-        <span>
-          {'Then '}
-          &nbsp;&nbsp;&nbsp;
-          <BlankOrNumber
-            value={addition.sum()}
-            expected="sum"
+        <span data-sub-blank={subtractionBlank}>
+          Then &nbsp;&nbsp;&nbsp;
+          <SubtractionSentenceBasic
+            subtraction={subtraction}
+            blank={subtractionBlank}
+            showAnswer={showAnswer}
           />
-          {' - '}
-          {subtrahendElement}
-          {' = '}
-          {differenceElement}
         </span>
       </div>
     </ProblemListItem>
