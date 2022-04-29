@@ -19,11 +19,12 @@ function selectHeadDefinitions(fieldName, choices) {
   const headDefinitions = [];
   const options = createOptions(choices);
   const optionsArray = createOptionsArray(choices);
+  const typeName = upperCamelCase(fieldName);
   headDefinitions.push(
-    `export type ${upperCamelCase(fieldName)} = ${options};`,
+    `export type ${typeName} = ${options};`,
   );
   headDefinitions.push(
-    `export const ${fieldName}Options = new Map([\n${optionsArray},\n]);`,
+    `export const ${fieldName}Options = new Map<${typeName}, string>([\n${optionsArray},\n]);`,
   );
   return headDefinitions;
 }
