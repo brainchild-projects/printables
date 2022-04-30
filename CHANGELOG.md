@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.58](https://github.com/brainchild-projects/printables/compare/v0.0.57...v0.0.58) (2022-04-30)
+
+
+### Features
+
+* worksheet subtraction fill in the blanks ([0b7ca25](https://github.com/brainchild-projects/printables/commit/0b7ca2518e193470bf1c0bc704504dfb9a5a831e)), closes [#76](https://github.com/brainchild-projects/printables/issues/76)
+
+
+### Bug Fixes
+
+* page generator not building select fields ([8d55ef7](https://github.com/brainchild-projects/printables/commit/8d55ef7dad79672e0e9be46fe26670d9974f8354))
+
 ### [0.0.57](https://github.com/brainchild-projects/printables/compare/v0.0.56...v0.0.57) (2022-04-28)
 
 ### [0.0.56](https://github.com/brainchild-projects/printables/compare/v0.0.55...v0.0.56) (2022-04-26)
