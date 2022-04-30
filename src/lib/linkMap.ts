@@ -41,7 +41,7 @@ if (!isProduction) {
 
 export const mathLinks: SectionLinks = new Map([
   ['/addition-fill-the-blanks', {
-    text: 'Addition: Fill The Blanks',
+    text: 'Addition: Fill in the Blanks',
     loader: AdditionFillTheBlanksPage,
   }],
   ['/worksheet-vertical-addition', {
