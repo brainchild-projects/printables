@@ -27,7 +27,7 @@ it('can create subtraction with figures worksheets', () => {
     cy.answerListItems()
       .should('have.length', 30)
       .each(($li) => {
-        // TODO: Why does the following not work?
+        // TODO: Change it back when https://github.com/cypress-io/cypress/issues/21108 is fixed
         // cy.wrap($li).contains(/[6-8]\s+-\s+[23]\s+=\s+[45]/);
         cy.wrap($li).contains(/[6-8]\s+-\s+[23]\s+=\s+\d/);
       });

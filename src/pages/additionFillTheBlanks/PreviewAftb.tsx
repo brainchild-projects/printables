@@ -6,11 +6,11 @@ import AdditionSentence, {
 import AftbData, { BlankPositionStrategy } from './AftbData';
 import WorksheetHeader from '../../components/WorksheetHeader';
 import WorksheetFooter from '../../components/WorksheetFooter';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import Addition from '../../lib/math/Addition';
 import { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
+import randomElement from '../../lib/randomElement';
 
 interface PreviewAftbProps {
   aftbData: AftbData;
@@ -19,13 +19,10 @@ interface PreviewAftbProps {
 function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): AdditionBlankPosition {
   switch (blankStrategy) {
     case 'addends':
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      return blankTypesAddends[
-        randomGenerator.integer(blankTypesAddends.length - 1)
-      ] as AdditionBlankPosition;
+      return randomElement(blankTypesAddends);
 
     case 'random':
-      return blankTypes[randomGenerator.integer(blankTypes.length - 1)];
+      return randomElement(blankTypes);
 
     default:
       return 'sum';

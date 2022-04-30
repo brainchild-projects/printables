@@ -147,7 +147,7 @@ function CustomizeAftbForm({
       }
 
       <SelectField
-        label="Blank"
+        label="Blank Position"
         name="blankStrategy"
         value={data.blankStrategy}
         onChange={changeBlankStrategy}

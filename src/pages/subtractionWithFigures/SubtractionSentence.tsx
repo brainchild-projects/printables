@@ -3,13 +3,14 @@ import SubtractionSentenceBasic from '../../components/math/SubtractionSentenceB
 import ProblemListItem from '../../components/ProblemListItem';
 import Subtraction from '../../lib/math/Subtraction';
 
-type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
+export type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
 
 interface SubtractionSentenceProps {
   subtraction: Subtraction;
   blank?: SubtractionBlankPosition;
   showAnswer: boolean;
   prefix?: JSX.Element | string;
+  fontSize?: number;
 }
 
 function SubtractionSentence({
@@ -17,11 +18,13 @@ function SubtractionSentence({
   blank = 'difference',
   showAnswer = false,
   prefix,
+  fontSize = 20,
 }: SubtractionSentenceProps): JSX.Element {
   return (
     <ProblemListItem
       className="subtraction-with-figures-problem-item"
       label={`Subtraction With Figures ${showAnswer ? 'Answer' : 'Problem'}`}
+      fontSize={fontSize}
     >
       {prefix}
       <SubtractionSentenceBasic
@@ -36,6 +39,7 @@ function SubtractionSentence({
 SubtractionSentence.defaultProps = {
   blank: 'difference',
   prefix: '',
+  fontSize: 20,
 };
 
 export default SubtractionSentence;

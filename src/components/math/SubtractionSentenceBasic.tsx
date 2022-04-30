@@ -3,6 +3,9 @@ import Subtraction from '../../lib/math/Subtraction';
 import blankOrNumberGenerator from './blankOrNumberGenerator';
 
 export type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
+export const subtractionBlankPositions: SubtractionBlankPosition[] = [
+  'difference', 'minuend', 'subtrahend',
+];
 
 interface SubtractionBasicProps {
   subtraction: Subtraction;

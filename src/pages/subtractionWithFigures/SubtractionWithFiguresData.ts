@@ -1,4 +1,4 @@
-import Range from '../../lib/Range';
+import { SubtractionProblemsProps } from '../../lib/math/generateSubtractionProblems';
 
 export type ProblemGeneration = 'minuend' | 'subtrahend and difference';
 export const problemGenerationOptions = new Map([
@@ -6,11 +6,6 @@ export const problemGenerationOptions = new Map([
   ['subtrahend and difference', 'Subtrahend and Difference'],
 ]);
 
-export default interface SubtractionWithFiguresData {
-  count: number;
-  problemGeneration: ProblemGeneration;
-  minuend: Range;
-  subtrahend: Range;
-  difference: Range;
+export default interface SubtractionWithFiguresData extends SubtractionProblemsProps {
   columns: number;
 }

@@ -171,7 +171,12 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         {label}
       </Typography>
 
-      <Grid container spacing={2} alignItems="center" className={classes.inputGrid}>
+      <Grid
+        container
+        spacing={2}
+        alignItems="center"
+        className={classes.inputGrid}
+      >
         <Grid item xs={6}>
           <SmallNumberField
             id={`${id}-from`}

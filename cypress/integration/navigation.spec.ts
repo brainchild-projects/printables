@@ -44,6 +44,12 @@ it('can visit all subpages', () => {
 
   goBackHome();
 
+  // Subtraction
+  clickWorksheetLink(/subtraction.+fill.+blank/i);
+  cy.hasCustomizeFormHeading(/subtraction.+fill.+blank/i);
+
+  goBackHome();
+
   // Pattern Worksheets
   clickWorksheetLink(/patterns/i);
   cy.hasCustomizeFormHeading(/patterns/i);

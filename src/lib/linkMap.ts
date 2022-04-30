@@ -4,9 +4,10 @@ import { SectionLinks } from './LinkAndLoaderInterface';
 const HomePage = lazy(() => import('../pages/main/HomePage'));
 const CalendarPage = lazy(() => import('../pages/calendar/CalendarPage'));
 const AdditionFillTheBlanksPage = lazy(() => import('../pages/additionFillTheBlanks/AdditionFillTheBlanksPage'));
+const VerticalAdditionPage = lazy(() => import('../pages/verticalAddition/VerticalAdditionPage'));
 const AdditionSubtractionPage = lazy(() => import('../pages/additionSubtraction/AdditionSubtractionPage'));
 const SubtractionWithFiguresPage = lazy(() => import('../pages/subtractionWithFigures/SubtractionWithFiguresPage'));
-const VerticalAdditionPage = lazy(() => import('../pages/verticalAddition/VerticalAdditionPage'));
+const SubtractionFillInTheBlanksPage = lazy(() => import('../pages/subtractionFillInTheBlanks/SubtractionFillInTheBlanksPage'));
 const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
@@ -54,6 +55,10 @@ export const mathLinks: SectionLinks = new Map([
   ['/worksheet-subtraction-with-figures', {
     text: 'Subtraction with Figures',
     loader: SubtractionWithFiguresPage,
+  }],
+  ['/worksheet-subtraction-fill-in-the-blanks', {
+    text: 'Subtraction: Fill in the Blanks',
+    loader: SubtractionFillInTheBlanksPage,
   }],
   ['/worksheet-patterns', {
     text: 'Patterns',

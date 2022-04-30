@@ -3,7 +3,7 @@ it('can save changes in settings', () => {
   cy.visitAdditionFillTheBlanks();
   cy.findByLabelText(/number of problems/i).clearType('40');
   cy.setNumberRange(/number range/i, 1, 5);
-  cy.findByLabelText('Blank').select('Addends');
+  cy.findByLabelText(/blank.+position/i).select('Addends');
 
   cy.visitCalendar();
   cy.findByLabelText(/month/i).select('December');
@@ -14,7 +14,7 @@ it('can save changes in settings', () => {
   cy.findByLabelText(/number of problems/i).invoke('val').should('equal', '40');
   cy.findByLabelText(/from/i).invoke('val').should('equal', '1');
   cy.findByLabelText(/^to/i).invoke('val').should('equal', '5');
-  cy.findByLabelText('Blank').invoke('val').should('equal', 'addends');
+  cy.findByLabelText(/blank.+position/i).invoke('val').should('equal', 'addends');
 
   cy.visitCalendar();
   cy.findByLabelText(/month/i).invoke('val').should('equal', '11');

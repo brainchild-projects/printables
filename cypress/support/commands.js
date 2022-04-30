@@ -37,6 +37,7 @@ const paths = {
   worksheetAdditionSubtraction: '/worksheet-addition-subtraction',
   worksheetVerticalAddition: '/worksheet-vertical-addition',
   worksheetSubtractionWithFigures: '/worksheet-subtraction-with-figures',
+  worksheetSubtractionFillInTheBlanks: '/worksheet-subtraction-fill-in-the-blanks',
 };
 
 const pathNames = Object.keys(paths);
