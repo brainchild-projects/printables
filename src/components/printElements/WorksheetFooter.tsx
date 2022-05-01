@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import { usePaperOptions } from './PaperOptionsProvider';
+import { usePaperOptions } from '../PaperOptionsProvider';
 
 const footerStyles = makeStyles(() => ({
   footer: {
@@ -52,7 +52,7 @@ function WorksheetFooter({ itemCount }: WorksheetFooterProps): JSX.Element {
         <span>
           out of
           {' '}
-          { itemCount }
+          {itemCount}
         </span>
       </div>
       <div className={classes.footerDate}>

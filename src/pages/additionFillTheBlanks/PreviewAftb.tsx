@@ -4,8 +4,8 @@ import AdditionSentence, {
   blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
 import AftbData, { BlankPositionStrategy } from './AftbData';
-import WorksheetHeader from '../../components/WorksheetHeader';
-import WorksheetFooter from '../../components/WorksheetFooter';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import Addition from '../../lib/math/Addition';

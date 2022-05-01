@@ -4,8 +4,8 @@ import AdditionSubtractionItem, {
   blankTypes, blankTypesAddends, generateItems,
 } from './AdditionSubtractionItem';
 import AdditionSubtractionData from './AdditionSubtractionData';
-import WorksheetHeader from '../../components/WorksheetHeader';
-import WorksheetFooter from '../../components/WorksheetFooter';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
