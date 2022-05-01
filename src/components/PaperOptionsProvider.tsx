@@ -5,11 +5,13 @@ import LocalStore from '../lib/LocalStore';
 import PaperSize, { Orientation, PaperSizeJSON } from '../lib/PaperSize';
 import { US_LETTER } from '../lib/paperSizes';
 import useSettings from '../pages/useSettings';
+import { footerNames } from './printElements/Footers';
 
 interface PaperOptionsCommon {
   margin: string;
   orientation: Orientation;
   scale: number;
+  footer: string;
 }
 
 export interface PaperOptions extends PaperOptionsCommon {
@@ -39,6 +41,7 @@ const defaultPaperPreviewOptions: PaperOptions = {
   orientation: 'portrait',
   scale: 1,
   paperSize: US_LETTER,
+  footer: footerNames[0],
 };
 
 const noop = () => { };
@@ -63,12 +66,14 @@ function PaperOptionsProvider({
       orientation: json.orientation,
       scale: json.scale,
       paperSize: PaperSize.fromJSON(json.paperSize),
+      footer: json.footer,
     }),
     toJSON: (data) => ({
       margin: data.margin,
       orientation: data.orientation,
       scale: data.scale,
       paperSize: PaperSize.toJSON(data.paperSize),
+      footer: data.footer,
     }),
   });
   const settings = useSettings();

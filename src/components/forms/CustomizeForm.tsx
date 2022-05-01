@@ -13,6 +13,7 @@ import FormContainer from './FormContainer';
 import SectionPageTitle from '../../elements/SectionPageTitle';
 import PaperSize, { Orientation } from '../../lib/PaperSize';
 import PrintHelpDialog from './PrintHelpDialog';
+import SelectFooterField from './SelectFooterField';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;
@@ -129,6 +130,10 @@ function CustomizeForm({
           <option value="portrait">Portrait</option>
           <option value="landscape">Landscape</option>
         </SelectField>
+        <SelectFooterField
+          value={options.footer}
+          onChange={(footer) => setOptions({ ...options, footer })}
+        />
       </section>
       <SubmitButton
         disabled={error !== null}
