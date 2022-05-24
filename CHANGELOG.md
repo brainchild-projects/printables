@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.59](https://github.com/brainchild-projects/printables/compare/v0.0.58...v0.0.59) (2022-05-24)
+
+
+### Features
+
+* change footer ([f911a19](https://github.com/brainchild-projects/printables/commit/f911a190cc42890ae0c4e29873351d1224943448))
+
+
+### Bug Fixes
+
+* standardize fill in the blanks title ([d796a87](https://github.com/brainchild-projects/printables/commit/d796a87f9df61585b91cae1fe9b265049386586a))
+
 ### [0.0.58](https://github.com/brainchild-projects/printables/compare/v0.0.57...v0.0.58) (2022-04-30)
 
 
