@@ -27,6 +27,7 @@
   },
   "include": [
     "src",
-    "src/custom.d.ts"
+    "src/custom.d.ts",
+    "cypress.config.ts",
   ]
 }

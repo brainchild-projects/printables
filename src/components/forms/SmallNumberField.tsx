@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
-import { FormControl, InputProps, TextField } from '@material-ui/core';
+import { FormControl, TextField } from '@material-ui/core';
 import './SmallNumberField.css';
 import generateId from '../../lib/generateId';
 import titleize from '../../lib/titlelize';

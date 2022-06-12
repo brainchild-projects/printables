@@ -6,8 +6,11 @@ function digits(n: number): number[] {
   return n.toString().split('').map((x) => parseFloat(x));
 }
 
+// Custom extension
+// TODO: Find a better way to do this
 declare global {
   namespace jest {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Matchers<R> {
       toAddToLessThanTenWith(otherNumber: number): CustomMatcherResult;
     }

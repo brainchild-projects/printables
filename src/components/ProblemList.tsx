@@ -31,11 +31,15 @@ const styles = makeStyles(() => ({
   },
 }));
 
+function isAnIntGreaterThan1(n: unknown): boolean {
+  return typeof n === 'number' && Number.isInteger(n) && n > 1;
+}
+
 function ProblemList({
   children, className, columns, columnGap, style, label,
 }: ProblemListProps): JSX.Element {
   const classes = styles();
-  const cols = Number.isInteger(columns) && columns! > 1 ? columns : 1;
+  const cols = isAnIntGreaterThan1(columns) ? columns : 1;
   const gap = `${columnGap ?? 1}em`;
   const styleUsed = { ...style, columns: cols, columnGap: gap };
 
