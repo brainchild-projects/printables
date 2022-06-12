@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { FormControl, InputProps, TextField } from '@material-ui/core';
 import './SmallNumberField.css';
 import generateId from '../../lib/generateId';
@@ -9,7 +9,7 @@ interface SmallNumberFieldProps {
   id?: string;
   label?: string;
   value: number;
-  onChange: InputProps['onChange'];
+  onChange: (value: number) => void;
   min?: number | undefined;
   max?: number | undefined;
 }
@@ -19,14 +19,28 @@ function SmallNumberField({
 }: SmallNumberFieldProps): JSX.Element {
   const theId = id ?? generateId('input-number', name);
   const theLabel = label ?? titleize(name);
+  const [valueS, setValueS] = useState(value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const val = event.target.value;
+    const parsed = parseFloat(val);
+    if (Number.isNaN(parsed)) {
+      setValueS(parsed);
+    } else {
+      setValueS(parsed);
+      onChange(parsed);
+    }
+  };
+  useEffect(() => {
+    setValueS(value);
+  }, [value]);
   return (
     <FormControl>
       <TextField
         id={theId}
-        value={value}
+        value={valueS}
         name={name}
         margin="dense"
-        onChange={onChange}
+        onChange={handleChange}
         type="number"
         label={theLabel}
         variant="outlined"

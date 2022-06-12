@@ -11,6 +11,7 @@ const defaultData: VerticalAdditionData = {
   problemGeneration: 'single range',
   customAddendsA: { from: 0, to: 9 },
   customAddendsB: { from: 0, to: 9 },
+  noRegroupingRange: { from: 0, to: 99 },
   columns: 2,
 };
 const key = 'verticalAddition';

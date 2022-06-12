@@ -37,6 +37,15 @@ function getScales(magnitude: number): ScalingMap<number> {
   return map;
 }
 
+function asInteger(n: number, max: number, min: number): number {
+  maxMustNotBeLessThanMin(max, min);
+  return Math.floor(n * (max - min + 1) + min);
+}
+
+function circular(r: number): number {
+  return Math.sqrt((r - 1) ** 2); // Circular easeout
+}
+
 class RandomNumberGenerator implements NumberGenerator {
   rand: MathRandom;
 
@@ -45,8 +54,15 @@ class RandomNumberGenerator implements NumberGenerator {
   }
 
   integer(max: number, min = 0): number {
-    maxMustNotBeLessThanMin(max, min);
-    return Math.floor(this.rand() * (max - min + 1) + min);
+    return asInteger(this.rand(), max, min);
+  }
+
+  integerBiasLess(max: number, min = 0): number {
+    return asInteger(circular(this.rand()), max, min);
+  }
+
+  integerBiasGreater(max: number, min = 0): number {
+    return asInteger(1 - circular(this.rand()), max, min);
   }
 
   stepMagnitude(magnitude: number): number {

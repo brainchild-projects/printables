@@ -35,7 +35,7 @@ function ProblemList({
   children, className, columns, columnGap, style, label,
 }: ProblemListProps): JSX.Element {
   const classes = styles();
-  const cols = columns ?? 1;
+  const cols = Number.isInteger(columns) && columns! > 1 ? columns : 1;
   const gap = `${columnGap ?? 1}em`;
   const styleUsed = { ...style, columns: cols, columnGap: gap };
 

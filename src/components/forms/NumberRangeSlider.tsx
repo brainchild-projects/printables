@@ -2,7 +2,8 @@
 import {
   Slider, Typography, makeStyles, Grid,
 } from '@material-ui/core';
-import React, { ChangeEvent, useEffect, useRef } from 'react';
+import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import Range from '../../lib/Range';
 import SmallNumberField from './SmallNumberField';
@@ -46,7 +47,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export type NumberRangeChangeCallback = (value: Range, event: HtmlFieldChangeEvent) => void;
+export type NumberRangeChangeCallback = (value: Range) => void;
 
 const activeEvents = ['mouseover', 'focus'];
 const inactiveEvents = ['mouseleave', 'blur'];
@@ -85,7 +86,7 @@ interface NumberRangeSliderProps extends Range {
 
 type ChangeHanlder = (value: number | number[], event: HtmlFieldChangeEvent) => void;
 type InputChangeCallback = (value: number) => Range;
-type InputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => void;
+type InputChangeHandler = (value: number) => void;
 type InputChangeHandlerBuilder = (callback: InputChangeCallback) => InputChangeHandler;
 
 function getMarksAndMax(magnitude: number | undefined) {
@@ -111,22 +112,19 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     from, to, label, onChange, id, magnitude,
   } = options;
   const labelId = `${id}-label`;
-  const changeHandler: ChangeHanlder = (value, event) => {
+  const changeHandler: ChangeHanlder = (value) => {
     const [rangeFrom, rangeTo] = value as number[];
     const calcFrom = valueScale(rangeFrom);
     const calcTo = valueScale(rangeTo);
     if ((calcFrom !== from || calcTo !== to) && (calcFrom <= calcTo)) {
-      onChange({ from: calcFrom, to: calcTo }, event);
+      onChange({ from: calcFrom, to: calcTo });
     }
   };
 
-  const handleInputChange: InputChangeHandlerBuilder = (callback) => (event) => {
-    const { value } = event.target;
-    if (value !== '') {
-      const updated = callback(Number.parseInt(value, 10));
-      if (updated.from <= updated.to) {
-        onChange(updated, event);
-      }
+  const handleInputChange: InputChangeHandlerBuilder = (callback) => (value) => {
+    const updated = callback(value);
+    if (updated.from <= updated.to) {
+      onChange(updated);
     }
   };
 
@@ -166,7 +164,10 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
   const maxSlider = marks[marks.length - 1]?.value ?? 20;
 
   return (
-    <div className={classes.root} ref={ref}>
+    <div
+      className={classNames(classes.root, 'numberRangeSlider')}
+      ref={ref}
+    >
       <Typography id={labelId} className={classes.label}>
         {label}
       </Typography>

@@ -174,8 +174,11 @@ Cypress.Commands.add('reactComponent', {
 Cypress.Commands.add('setNumberRange', (label, min, max) => cy.findAllByLabelText(label)
   .first()
   .parent()
-  .scrollIntoView()
-  .click({ force: true }) // we click so we force focus on the element
-  .reactComponent()
-  .its('memoizedProps')
-  .invoke('onChange', null, [min, max]));
+  .then(async ($el) => {
+    const $root = $el.closest('.numberRangeSlider');
+    const $from = $root.find('input[name="rangeFrom"]');
+    const $to = $root.find('input[name="rangeTo"]');
+    await cy.wrap($root).scrollIntoView({ offset: { top: -150, left: 0 } });
+    await cy.wrap($from).clearType(min.toString());
+    return cy.wrap($to).clearType(max.toString());
+  }));

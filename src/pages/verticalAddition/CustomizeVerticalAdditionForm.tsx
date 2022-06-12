@@ -16,37 +16,58 @@ function CustomizeVerticalAdditionForm({
   data, onChange,
 }: CustomizeVerticalAdditionFormProps): JSX.Element {
   const { problemGeneration } = data;
-  const rangeSliders = problemGeneration === 'single range'
-    ? (
-      <NumberRangeSlider
-        label="Range"
-        id="numberRangeRange"
-        from={data.range.from}
-        to={data.range.to}
-        magnitude={3}
-        onChange={(range) => onChange({ ...data, range })}
-      />
-    )
-    : (
-      <>
+  let generationOptions: JSX.Element;
+  switch (problemGeneration) {
+    case 'custom addends':
+      generationOptions = (
+        <>
+          <NumberRangeSlider
+            label="Custom Addends A"
+            id="numberRangeCustomAddendsA"
+            from={data.customAddendsA.from}
+            to={data.customAddendsA.to}
+            magnitude={3}
+            onChange={(customAddendsA) => onChange({ ...data, customAddendsA })}
+          />
+          <NumberRangeSlider
+            label="Custom Addends B"
+            id="numberRangeCustomAddendsB"
+            from={data.customAddendsB.from}
+            to={data.customAddendsB.to}
+            magnitude={3}
+            onChange={(customAddendsB) => onChange({ ...data, customAddendsB })}
+          />
+        </>
+      );
+      break;
+
+    case 'no regrouping':
+      generationOptions = (
         <NumberRangeSlider
-          label="Custom Addends A"
-          id="numberRangeCustomAddendsA"
-          from={data.customAddendsA.from}
-          to={data.customAddendsA.to}
+          label="Range"
+          id="noRegroupingRange"
+          from={data.noRegroupingRange.from}
+          to={data.noRegroupingRange.to}
           magnitude={3}
-          onChange={(customAddendsA) => onChange({ ...data, customAddendsA })}
+          onChange={(noRegroupingRange) => onChange({ ...data, noRegroupingRange })}
         />
+      );
+      break;
+
+    default:
+      generationOptions = (
         <NumberRangeSlider
-          label="Custom Addends B"
-          id="numberRangeCustomAddendsB"
-          from={data.customAddendsB.from}
-          to={data.customAddendsB.to}
+          label="Range"
+          id="numberRangeRange"
+          from={data.range.from}
+          to={data.range.to}
           magnitude={3}
-          onChange={(customAddendsB) => onChange({ ...data, customAddendsB })}
+          onChange={(range) => onChange({ ...data, range })}
         />
-      </>
-    );
+      );
+      break;
+  }
+
   return (
     <CustomizeForm name="Worksheet">
       <NumberField
@@ -68,7 +89,7 @@ function CustomizeVerticalAdditionForm({
       >
         {stringMapToOptions(problemGenerationOptions)}
       </SelectField>
-      {rangeSliders}
+      {generationOptions}
       <NumberField
         name="columns"
         label="Columns"

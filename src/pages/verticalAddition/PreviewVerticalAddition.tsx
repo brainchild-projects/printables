@@ -9,22 +9,41 @@ import Range from '../../lib/Range';
 import pairsByRanges from '../../lib/pairsByRanges';
 import VerticalAdditionItem from './VerticalAdditionItem';
 import Addition from '../../lib/math/Addition';
+import tryByKey from '../../lib/tryByKey';
+import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import noRegroupPair from '../../lib/math/noRegroupPair';
 
-function generateProblems({
-  range, count, problemGeneration, customAddendsA, customAddendsB,
-}: VerticalAdditionData): Addition[] {
-  let rangeA: Range;
-  let rangeB: Range;
-  if (problemGeneration === 'custom addends') {
-    rangeA = customAddendsA;
-    rangeB = customAddendsB;
-  } else {
-    rangeA = range;
-    rangeB = range;
-  }
-
+function commonRangeProblems(count: number, rangeA: Range, rangeB: Range): Addition[] {
   const pairs = pairsByRanges(rangeA, rangeB, count);
   return pairs.map((pair) => Addition.create(...pair));
+}
+
+function noRegroupingProblems(count: number, range: Range): Addition[] {
+  const limitedRetries = tryByKey(count);
+  const problems: Addition[] = [];
+  while (problems.length < count) {
+    const a = randomGenerator.integerBiasLess(range.to, range.from);
+    const b = noRegroupPair(a, range.to);
+    limitedRetries(`${a}:${b}`, () => {
+      problems.push(Addition.create(a, b));
+    });
+  }
+  return problems;
+}
+
+function generateProblems({
+  problemGeneration, count, range, customAddendsA, customAddendsB, noRegroupingRange,
+}: VerticalAdditionData): Addition[] {
+  switch (problemGeneration) {
+    case 'custom addends':
+      return commonRangeProblems(count, customAddendsA, customAddendsB);
+
+    case 'no regrouping':
+      return noRegroupingProblems(count, noRegroupingRange);
+
+    default:
+      return commonRangeProblems(count, range, range);
+  }
 }
 
 function itemBuilder(
