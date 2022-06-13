@@ -30,6 +30,26 @@ describe('titlelize', () => {
       input: 'MightMakesRight',
       expected: 'Might Makes Right',
     },
+    {
+      input: 'and-it-begins',
+      expected: 'And It Begins',
+    },
+    {
+      input: 'jack_and_jill',
+      expected: 'Jack and Jill',
+    },
+    {
+      input: 'the goat and the goatee',
+      expected: 'The Goat and the Goatee',
+    },
+    {
+      input: 'This is preposterous',
+      expected: 'This Is Preposterous',
+    },
+    {
+      input: 'What is the best thing to do in an emergency?',
+      expected: 'What Is the Best Thing to Do in an Emergency?',
+    },
   ];
 
   testData.forEach(({ input, expected }) => {
