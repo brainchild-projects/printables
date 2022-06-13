@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.60](https://github.com/brainchild-projects/printables/compare/v0.0.59...v0.0.60) (2022-06-13)
+
+
+### Features
+
+* no regrouping problem gen ([ee7d52d](https://github.com/brainchild-projects/printables/commit/ee7d52d5f8d7d220082b12ab6d819d0c784d0275))
+
 ### [0.0.59](https://github.com/brainchild-projects/printables/compare/v0.0.58...v0.0.59) (2022-05-24)
 
 
