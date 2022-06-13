@@ -57,7 +57,7 @@ jobs:
         run: npm run test:coverage
 
       - name: E2E Tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           start: npm run start:coverage
           wait-on: "http://localhost:3000"
