@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.61](https://github.com/brainchild-projects/printables/compare/v0.0.60...v0.0.61) (2022-06-14)
+
+
+### Features
+
+* better titles ([709596b](https://github.com/brainchild-projects/printables/commit/709596bcda30fc51ca6f67c910d0333bf4027251))
+* telling time worksheet ([663706a](https://github.com/brainchild-projects/printables/commit/663706aeae74eb45d71646d3a914b0211dff6e0b)), closes [#50](https://github.com/brainchild-projects/printables/issues/50)
+
+
+### Bug Fixes
+
+* removed temporary file ([cb200e9](https://github.com/brainchild-projects/printables/commit/cb200e92084d14aa22125d0f0894a5643ef510db))
+
 ### [0.0.60](https://github.com/brainchild-projects/printables/compare/v0.0.59...v0.0.60) (2022-06-13)
 
 
