@@ -7,8 +7,8 @@ import MultiPaperPage from '../../components/MultiPaperPage';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
 import ProblemListItem from '../../components/ProblemListItem';
-import WorksheetFooter from '../../components/WorksheetFooter';
-import WorksheetHeader from '../../components/WorksheetHeader';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import [DATA] from './[DATA]';
 
 class [PREVIEW]Problem {
