@@ -14,6 +14,7 @@ import SectionPageTitle from '../../elements/SectionPageTitle';
 import PaperSize, { Orientation } from '../../lib/PaperSize';
 import PrintHelpDialog from './PrintHelpDialog';
 import SelectFooterField from './SelectFooterField';
+import zeroPad from '../../lib/zeroPad';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;
@@ -24,10 +25,6 @@ interface CustomizeFormProps {
 
 interface EventWithSubmitter extends Event {
   submitter: HTMLButtonElement | undefined;
-}
-
-function zeroPad(n: number): string {
-  return n > 9 ? n.toString() : `0${n}`;
 }
 
 function timeStamp(): string {

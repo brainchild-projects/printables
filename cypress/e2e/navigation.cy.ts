@@ -48,27 +48,28 @@ it('can visit all subpages', () => {
   clickWorksheetLink(/subtraction.+fill.+blank/i);
   cy.hasCustomizeFormHeading(/subtraction.+fill.+blank/i);
 
-  goBackHome();
-
   // Pattern Worksheets
+  goBackHome();
   clickWorksheetLink(/patterns/i);
   cy.hasCustomizeFormHeading(/patterns/i);
 
-  goBackHome();
-
   // Place Value Worksheets
+  goBackHome();
   clickWorksheetLink(/place values/i);
   cy.hasCustomizeFormHeading(/place values/i);
 
-  goBackHome();
-
   // Numbers to Words
+  goBackHome();
   clickWorksheetLink(/numbers to words/i);
   cy.hasCustomizeFormHeading(/numbers to words/i);
 
+  // Numbers to Words
   goBackHome();
+  clickWorksheetLink(/telling time/i);
+  cy.hasCustomizeFormHeading(/telling time/i);
 
   // Settings Page
+  goBackHome();
   cy.findByRole('button', { name: /open menu/i }).click();
   cy.findByRole('navigation', { name: /sidebar/i })
     .find('a:contains("Settings")')

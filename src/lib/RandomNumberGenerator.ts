@@ -1,5 +1,6 @@
 import NumberGenerator from './NumberGenerator';
 import { maxMustNotBeLessThanMin } from './numberGeneratorErrors';
+import Range from './Range';
 
 export type MathRandom = () => number;
 
@@ -55,6 +56,10 @@ class RandomNumberGenerator implements NumberGenerator {
 
   integer(max: number, min = 0): number {
     return asInteger(this.rand(), max, min);
+  }
+
+  integerR(range: Range): number {
+    return this.integer(range.to, range.from);
   }
 
   integerBiasLess(max: number, min = 0): number {

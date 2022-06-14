@@ -13,6 +13,7 @@ declare namespace Cypress {
     visitWorksheetVerticalAddition(): Chainable<AUTWindow>;
     visitWorksheetSubtractionWithFigures(): Chainable<AUTWindow>;
     visitWorksheetSubtractionFillInTheBlanks(): Chainable<AUTWindow>;
+    visitWorksheetTellingTime(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {
@@ -25,7 +26,7 @@ declare namespace Cypress {
     reactComponent(fn?: (prevSubject: Subject) => void): Chainable<Subject>;
     setNumberRange(label: string | RegExp, min: number, max: number): Chainable<Subject>;
     findPaperPage(page: number): Chainable<Subject>;
-    clearType(value: string): Chainable<Subject>;
+    clearType(value: string | number): Chainable<Subject>;
     hasCustomizeFormHeading(text: LabelPattern): Chainable<Subject>;
     problemListItems(): Chainable<Subject>;
     answerListItems(): Chainable<Subject>;
