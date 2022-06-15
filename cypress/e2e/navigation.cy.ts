@@ -24,27 +24,23 @@ it('can visit all subpages', () => {
   clickWorksheetLink(/addition.+fill.+blank/i);
   cy.hasCustomizeFormHeading(/addition.+fill.+blank/i);
 
-  goBackHome();
-
   // Vertical Addition Worksheets
+  goBackHome();
   clickWorksheetLink(/vertical.+addition/i);
   cy.hasCustomizeFormHeading(/vertical.+addition/i);
 
-  goBackHome();
-
   // Addition and Subtraction
+  goBackHome();
   clickWorksheetLink(/addition.+subtraction/i);
   cy.hasCustomizeFormHeading(/addition.+subtraction/i);
 
-  goBackHome();
-
   // Subtraction with Figures
+  goBackHome();
   clickWorksheetLink(/subtraction.+figures/i);
   cy.hasCustomizeFormHeading(/subtraction.+figures/i);
 
-  goBackHome();
-
   // Subtraction
+  goBackHome();
   clickWorksheetLink(/subtraction.+fill.+blank/i);
   cy.hasCustomizeFormHeading(/subtraction.+fill.+blank/i);
 
@@ -63,10 +59,15 @@ it('can visit all subpages', () => {
   clickWorksheetLink(/numbers to words/i);
   cy.hasCustomizeFormHeading(/numbers to words/i);
 
-  // Numbers to Words
+  // Telling Time
   goBackHome();
   clickWorksheetLink(/telling time/i);
   cy.hasCustomizeFormHeading(/telling time/i);
+
+  // Number Grid
+  goBackHome();
+  clickWorksheetLink(/number grid/i);
+  cy.hasCustomizeFormHeading(/number grid/i);
 
   // Settings Page
   goBackHome();

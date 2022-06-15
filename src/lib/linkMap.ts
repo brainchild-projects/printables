@@ -12,6 +12,7 @@ const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
 const TellingTimePage = lazy(() => import('../pages/tellingTime/TellingTimePage'));
+const NumberGridPage = lazy(() => import('../pages/numberGrid/NumberGridPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
 const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
@@ -76,6 +77,10 @@ export const mathLinks: SectionLinks = new Map([
   ['/worksheet-telling-time', {
     text: 'Telling Time',
     loader: TellingTimePage,
+  }],
+  ['/worksheet-number-grid', {
+    text: 'Number Grid',
+    loader: NumberGridPage,
   }],
 ]);
 

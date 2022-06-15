@@ -39,6 +39,7 @@ const paths = {
   worksheetSubtractionWithFigures: '/worksheet-subtraction-with-figures',
   worksheetSubtractionFillInTheBlanks: '/worksheet-subtraction-fill-in-the-blanks',
   worksheetTellingTime: '/worksheet-telling-time',
+  worksheetNumberGrid: '/worksheet-number-grid',
 };
 
 const pathNames = Object.keys(paths);
@@ -64,6 +65,11 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'hasCustomizeFormHeading',
   (heading) => cy.withinCustomizeForm(() => cy.findByRole('heading', { name: heading })),
+);
+
+Cypress.Commands.add(
+  'withinAnswerKey',
+  (callback) => cy.findByRole('region', { name: /Answer Key/i }).within(callback),
 );
 
 Cypress.Commands.add(

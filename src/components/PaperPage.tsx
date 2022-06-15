@@ -56,10 +56,11 @@ interface PaperPreviewProps {
   noFlexWrap?: boolean;
   pageId?: string;
   ready?: boolean;
+  label?: string;
 }
 
 function PaperPage({
-  children, noFlexWrap, pageId, ready = true,
+  children, noFlexWrap, pageId, ready = true, label = undefined,
 }: PaperPreviewProps): JSX.Element {
   const { options } = usePaperOptions();
   const {
@@ -87,6 +88,7 @@ function PaperPage({
       style={paperStyle}
       component="section"
       data-page-id={pageId}
+      aria-label={label}
     >
       <div
         className={classNames(
@@ -117,6 +119,7 @@ PaperPage.defaultProps = {
   noFlexWrap: false,
   pageId: undefined,
   ready: true,
+  label: undefined,
 };
 
 export default PaperPage;
