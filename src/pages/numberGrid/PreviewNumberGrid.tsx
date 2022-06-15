@@ -3,7 +3,6 @@ import { Box, makeStyles } from '@material-ui/core';
 import PaperPage from '../../components/PaperPage';
 import NumberGridData from './NumberGridData';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import NumberGrid from './NumberGrid';
 import PageTitle from '../../elements/PageTitle';
 
@@ -79,7 +78,6 @@ function PreviewNumberGrid({ data }: PreviewNumberGridProps): JSX.Element {
                 : <p>&nbsp;</p>
             }
           </WorksheetHeader>
-          <WorksheetFooter itemCount={0} />
           <NumberGrid skipCount={skipCountBy} showAnswer={false} />
         </Box>
       </PaperPage>
