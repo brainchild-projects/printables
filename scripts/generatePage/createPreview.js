@@ -108,6 +108,7 @@ const styles = makeStyles((theme) => ({
     textAlign: 'center',
     display: 'flex',
     flexFlow: 'column',
+    width: '100%',
   },
 }));
 

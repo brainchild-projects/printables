@@ -38,7 +38,13 @@ export default [NAME]Page;
 `;
 
 function createDefaults(fields) {
-  return fields.map(({ fieldName, fieldDefault }) => `  ${fieldName}: ${JSON.stringify(fieldDefault)},`)
+  return fields
+    .map(({ fieldName, fieldDefault, fieldType }) => {
+      const defultValue = fieldType === 'boolean'
+        ? fieldDefault
+        : JSON.stringify(fieldDefault);
+      return `  ${fieldName}: ${defultValue},`;
+    })
     .join('\n');
 }
 
