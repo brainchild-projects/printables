@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.62](https://github.com/brainchild-projects/printables/compare/v0.0.61...v0.0.62) (2022-06-15)
+
+
+### Features
+
+* worksheet number grid ([ce2d770](https://github.com/brainchild-projects/printables/commit/ce2d770dbee2d1dd0bd0b2f5e6160c3cd0b92e11)), closes [#81](https://github.com/brainchild-projects/printables/issues/81)
+
+
+### Bug Fixes
+
+* tweaking preview and data field creation ([ada735b](https://github.com/brainchild-projects/printables/commit/ada735b6dc5f8702c96e788c75e6b0961da405c1))
+
 ### [0.0.61](https://github.com/brainchild-projects/printables/compare/v0.0.60...v0.0.61) (2022-06-14)
 
 
