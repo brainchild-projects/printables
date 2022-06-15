@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.63](https://github.com/brainchild-projects/printables/compare/v0.0.62...v0.0.63) (2022-06-15)
+
+
+### Bug Fixes
+
+* useless footer in number grid worksheet ([a2fe1a5](https://github.com/brainchild-projects/printables/commit/a2fe1a5e8c234eba051edda8cabef439b0baf875)), closes [#83](https://github.com/brainchild-projects/printables/issues/83)
+
 ### [0.0.62](https://github.com/brainchild-projects/printables/compare/v0.0.61...v0.0.62) (2022-06-15)
 
 
