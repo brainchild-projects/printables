@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.65](https://github.com/brainchild-projects/printables/compare/v0.0.64...v0.0.65) (2022-06-17)
+
+
+### Bug Fixes
+
+* less duplication for telling time problems ([6efaed0](https://github.com/brainchild-projects/printables/commit/6efaed0a300fc0a34add7fff7d829095f942a2ab)), closes [#85](https://github.com/brainchild-projects/printables/issues/85)
+
 ### [0.0.64](https://github.com/brainchild-projects/printables/compare/v0.0.63...v0.0.64) (2022-06-17)
 
 
