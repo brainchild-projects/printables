@@ -1,4 +1,5 @@
 const { writeFile } = require('fs');
+const { double } = require('quote-it');
 const { logRed } = require('./colorLogs');
 const { lowerCamelCase } = require('./textManipulation');
 
@@ -40,10 +41,21 @@ export default [NAME]Page;
 function createDefaults(fields) {
   return fields
     .map(({ fieldName, fieldDefault, fieldType }) => {
-      const defultValue = fieldType === 'boolean'
-        ? fieldDefault
-        : JSON.stringify(fieldDefault);
-      return `  ${fieldName}: ${defultValue},`;
+      let value;
+      switch (fieldType) {
+        case 'boolean':
+          value = fieldDefault;
+          break;
+
+        case 'string':
+          value = double(JSON.stringify(fieldDefault));
+          break;
+
+        default:
+          value = JSON.stringify(fieldDefault);
+          break;
+      }
+      return `  ${fieldName}: ${value},`;
     })
     .join('\n');
 }

@@ -74,6 +74,7 @@
     "cypress-hmr-restarter": "^2.0.2",
     "inquirer": "^8.2.2",
     "istanbul-merge": "^1.1.1",
+    "quote-it": "^1.0.1",
     "shelljs": "^0.8.5"
   },
   "scripts": {
