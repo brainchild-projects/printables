@@ -13,6 +13,7 @@ import Range from '../../lib/Range';
 import randomElement from '../../lib/randomElement';
 import ClockFace from './ClockFace';
 import Blank from '../../components/Blank';
+import tryByKey from '../../lib/tryByKey';
 
 const hourRange: Range = { from: 1, to: 12 };
 const minuterRange: Range = { from: 0, to: 59 };
@@ -37,11 +38,15 @@ function generateProblems({ problemType, count }: TellingTimeData): SimpleTime[]
       minuteGen = () => randomGenerator.integerR(minuterRange);
       break;
   }
-  for (let i = 0; i < count; i++) {
+  while (problems.length < count) {
+    const limitedRetries = tryByKey();
     const hour = randomGenerator.integerR(hourRange);
-    problems.push(
-      new SimpleTime(hour, minuteGen()),
-    );
+    const minute = minuteGen();
+    limitedRetries([hour, minute], () => {
+      problems.push(
+        new SimpleTime(hour, minute),
+      );
+    });
   }
 
   return problems;
