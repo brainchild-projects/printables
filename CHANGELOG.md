@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.64](https://github.com/brainchild-projects/printables/compare/v0.0.63...v0.0.64) (2022-06-17)
+
+
+### Features
+
+* **worksheet:** skip counting ([78aa24d](https://github.com/brainchild-projects/printables/commit/78aa24dd1306991963cb1b12241a6d6f253ad053)), closes [#84](https://github.com/brainchild-projects/printables/issues/84)
+
 ### [0.0.63](https://github.com/brainchild-projects/printables/compare/v0.0.62...v0.0.63) (2022-06-15)
 
 
