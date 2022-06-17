@@ -1,5 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import generateId from '../../lib/generateId';
 import parseEventValueAsFloat from '../../lib/parseEventValueAsFloat';
 import parseEventValueAsInt from '../../lib/parseEventValueAsInt';
@@ -11,7 +11,7 @@ interface NumberFieldProps {
   id?: string;
   label?: string;
   onChange: (value: number, event: ChangeEvent) => void;
-  value: unknown;
+  value: number | string;
   min?: number;
   max?: number;
   step?: number;
@@ -24,6 +24,12 @@ function NumberField({
 }: NumberFieldProps): JSX.Element {
   const theId = id ?? generateId('input-number', name);
   const theLabel = label ?? titleize(name);
+  const [showValue, setShowValue] = useState<number | string>(value);
+
+  useEffect(() => {
+    setShowValue(showValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
   return (
     <FieldSet spaced={spaced}>
       <TextField
@@ -34,14 +40,20 @@ function NumberField({
         InputLabelProps={{ shrink: true }}
         fullWidth
         variant="outlined"
-        value={value}
+        value={showValue}
         onChange={(e) => {
           const val: number = integer ? parseEventValueAsInt(e) : parseEventValueAsFloat(e);
-          onChange(val, e);
+          if (!Number.isNaN(val)) {
+            onChange(val, e);
+          }
+          setShowValue(e.target.value);
         }}
-        inputProps={{
-          min, max, step,
+        onBlur={() => {
+          if (Number.isNaN(parseFloat(showValue.toString()))) {
+            setShowValue(value);
+          }
         }}
+        inputProps={{ min, max, step }}
       />
     </FieldSet>
   );

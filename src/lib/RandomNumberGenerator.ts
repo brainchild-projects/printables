@@ -47,6 +47,22 @@ function circular(r: number): number {
   return Math.sqrt((r - 1) ** 2); // Circular easeout
 }
 
+function randNormal(min: number, max: number, rand: MathRandom): number {
+  let u = 0;
+  let v = 0;
+  while (u === 0) u = rand(); // Converting [0,1) to (0,1)
+  while (v === 0) v = rand();
+  let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+
+  num = num / 10.0 + 0.5; // Translate to 0 -> 1
+  if (num > 1 || num < 0) {
+    num = randNormal(min, max, rand); // resample between 0 and 1 if out of range
+  }
+  num *= max - min; // Stretch to fill range
+  num += min; // offset to min
+  return num;
+}
+
 class RandomNumberGenerator implements NumberGenerator {
   rand: MathRandom;
 
@@ -68,6 +84,10 @@ class RandomNumberGenerator implements NumberGenerator {
 
   integerBiasGreater(max: number, min = 0): number {
     return asInteger(1 - circular(this.rand()), max, min);
+  }
+
+  integerNormal(max: number, min = 0): number {
+    return asInteger(randNormal(0, 1, this.rand), max, min);
   }
 
   stepMagnitude(magnitude: number): number {

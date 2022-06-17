@@ -40,6 +40,7 @@ const paths = {
   worksheetSubtractionFillInTheBlanks: '/worksheet-subtraction-fill-in-the-blanks',
   worksheetTellingTime: '/worksheet-telling-time',
   worksheetNumberGrid: '/worksheet-number-grid',
+  worksheetSkipCounting: '/worksheet-skip-counting',
 };
 
 const pathNames = Object.keys(paths);

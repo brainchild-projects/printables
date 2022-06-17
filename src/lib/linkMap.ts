@@ -13,6 +13,7 @@ const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
 const TellingTimePage = lazy(() => import('../pages/tellingTime/TellingTimePage'));
 const NumberGridPage = lazy(() => import('../pages/numberGrid/NumberGridPage'));
+const SkipCountingPage = lazy(() => import('../pages/skipCounting/SkipCountingPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
 const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
@@ -81,6 +82,10 @@ export const mathLinks: SectionLinks = new Map([
   ['/worksheet-number-grid', {
     text: 'Number Grid',
     loader: NumberGridPage,
+  }],
+  ['/worksheet-skip-counting', {
+    text: 'Skip Counting',
+    loader: SkipCountingPage,
   }],
 ]);
 

@@ -69,6 +69,11 @@ it('can visit all subpages', () => {
   clickWorksheetLink(/number grid/i);
   cy.hasCustomizeFormHeading(/number grid/i);
 
+  // Skip Counting
+  goBackHome();
+  clickWorksheetLink(/skip counting/i);
+  cy.hasCustomizeFormHeading(/skip counting/i);
+
   // Settings Page
   goBackHome();
   cy.findByRole('button', { name: /open menu/i }).click();

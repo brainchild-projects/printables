@@ -15,6 +15,7 @@ declare namespace Cypress {
     visitWorksheetSubtractionFillInTheBlanks(): Chainable<AUTWindow>;
     visitWorksheetTellingTime(): Chainable<AUTWindow>;
     visitWorksheetNumberGrid(): Chainable<AUTWindow>;
+    visitWorksheetSkipCounting(): Chainable<AUTWindow>;
   }
 
   interface Chainable<Subject> {
