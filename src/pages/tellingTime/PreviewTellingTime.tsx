@@ -38,8 +38,8 @@ function generateProblems({ problemType, count }: TellingTimeData): SimpleTime[]
       minuteGen = () => randomGenerator.integerR(minuterRange);
       break;
   }
+  const limitedRetries = tryByKey();
   while (problems.length < count) {
-    const limitedRetries = tryByKey();
     const hour = randomGenerator.integerR(hourRange);
     const minute = minuteGen();
     limitedRetries([hour, minute], () => {

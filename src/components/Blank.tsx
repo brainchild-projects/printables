@@ -41,7 +41,7 @@ const underlines = (length: number): string => {
   return str;
 };
 
-function Blank({ answer, showAnswer, width }: BlankProps): JSX.Element {
+function Blank({ answer, showAnswer, width }: BlankProps) {
   const classes = styles();
   return (
     <span className={classNames(
