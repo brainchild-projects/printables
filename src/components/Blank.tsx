@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import Stringable from '../lib/Stringable';
@@ -33,27 +33,36 @@ const styles = makeStyles(() => ({
   },
 }));
 
-type BlankWidth = 'short' | 'wide' | 'narrow';
+type WidthTypes = 'short' | 'wide' | 'narrow';
+type AnswerType = string | number | Stringable | ReactNode;
 
 export interface BlankProps {
-  answer: string | number | Stringable;
+  answer: AnswerType;
   showAnswer: boolean;
-  width?: BlankWidth;
+  width?: WidthTypes;
+  blankWidth?: string | number | undefined;
   lineWidth?: string | number | undefined;
 }
 
-const underlines = (length: number): string => {
-  let str = '_';
-  for (let i = 0; i < length; i++) {
-    str += '_';
+const underlines = (answer: AnswerType): string => {
+  if (typeof answer === 'string' || typeof answer === 'number') {
+    let str = '_';
+    for (let i = 0; i < answer.toString().length; i++) {
+      str += '_';
+    }
+    return str;
   }
-  return str;
+  return '_';
 };
 
 function Blank({
-  answer, showAnswer, width, lineWidth,
+  answer, showAnswer, width, lineWidth, blankWidth,
 }: BlankProps) {
   const classes = styles();
+  const wrapStyle = {
+    borderWidth: lineWidth ?? '0.1em',
+    width: blankWidth,
+  };
   return (
     <span
       className={classNames(
@@ -61,14 +70,14 @@ function Blank({
         `problem-blank-${width ?? 'short'}`,
         classes.problemBlank,
       )}
-      style={{ borderWidth: lineWidth ?? '0.1em' }}
+      style={wrapStyle}
     >
       {
         showAnswer
           ? answer
           : (
             <span className="underline">
-              {underlines(answer.toString().length)}
+              {underlines(answer)}
             </span>
           )
       }
@@ -79,6 +88,7 @@ function Blank({
 Blank.defaultProps = {
   width: 'short',
   lineWidth: undefined,
+  blankWidth: undefined,
 };
 
 export default Blank;

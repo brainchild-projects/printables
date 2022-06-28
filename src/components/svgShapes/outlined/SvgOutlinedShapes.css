@@ -1,0 +1,14 @@
+.svgOutlineWrapper {
+  --strokeColor: #333;
+  --strokeWidth: 24;
+}
+
+.svgOutlineWrapper>circle,
+.svgOutlineWrapper>rect,
+.svgOutlineWrapper>ellipse,
+.svgOutlineWrapper>path {
+  fill: none;
+  stroke: var(--strokeColor);
+  stroke-width: var(--strokeWidth);
+  stroke-linecap: round;
+}

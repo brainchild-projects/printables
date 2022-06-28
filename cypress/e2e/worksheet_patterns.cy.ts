@@ -6,9 +6,12 @@ it('can create patterns worksheet', () => {
   cy.findByLabelText(/blank position/i).select('Random');
 
   cy.withinPreview(() => {
-    cy.get('ol.problems > li').should('have.length', 5);
+    cy.problemListItems()
+      .should('have.length', 5);
     cy.get('ol.problems').find('li').each(($li) => {
-      cy.wrap($li).contains(/[□▢▭▯▱△▷▽◁◇○◸◹◺◿⬭⬯⬠⬡☆♡]+/);
+      cy.wrap($li).contains(
+        /(heart|circle|square|diamond|triangle|rectangle|oval|hexagon|pentagon|star|parallelogram)+/,
+      );
     });
   });
 });

@@ -14,6 +14,17 @@ import PatternsData, { BlankPosition } from './PatternsData';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import PageTitle from '../../elements/PageTitle';
 import Blank from '../../components/Blank';
+import Square from '../../components/svgShapes/outlined/Square';
+import Rectangle from '../../components/svgShapes/outlined/Rectangle';
+import Parallelogram from '../../components/svgShapes/outlined/Parallelogram';
+import Triangle from '../../components/svgShapes/outlined/Triangle';
+import Diamond from '../../components/svgShapes/outlined/Diamond';
+import Circle from '../../components/svgShapes/outlined/Circle';
+import Oval from '../../components/svgShapes/outlined/Oval';
+import Pentagon from '../../components/svgShapes/outlined/Pentagon';
+import Hexagon from '../../components/svgShapes/outlined/Hexagon';
+import Star from '../../components/svgShapes/outlined/Star';
+import Heart from '../../components/svgShapes/outlined/Heart';
 
 interface PreviewPatternsProps {
   patternsData: PatternsData;
@@ -52,8 +63,6 @@ const problemStyles = makeStyles(() => ({
   },
   problemBlank: {
     borderColor: 'black',
-    paddingLeft: '1mm',
-    paddingRight: '1mm',
     display: 'inline-block',
     minWidth: 32,
     textAlign: 'center',
@@ -62,6 +71,22 @@ const problemStyles = makeStyles(() => ({
     color: 'transparent',
   },
 }));
+
+const shapeWidth = 40;
+
+const shapeEquivalents = new Map([
+  ['□', <Square width={shapeWidth} />],
+  ['▭', <Rectangle width={shapeWidth} />],
+  ['▱', <Parallelogram width={shapeWidth} />],
+  ['△', <Triangle width={shapeWidth} />],
+  ['◇', <Diamond width={shapeWidth} />],
+  ['○', <Circle width={shapeWidth} />],
+  ['⬯', <Oval width={shapeWidth} />],
+  ['⬠', <Pentagon width={shapeWidth} />],
+  ['⬡', <Hexagon width={shapeWidth} />],
+  ['☆', <Star width={shapeWidth} />],
+  ['♡', <Heart width={shapeWidth} />],
+]);
 
 interface PatternProblemDisplayProps extends PatternProblem {
   showAnswer: boolean;
@@ -77,24 +102,28 @@ function PatternProblemDisplay({
     >
       <div className={classes.pattern}>
         {
-          elements.map((shape, index): JSX.Element => (
-            <span className={classes.patternElement} key={`pattern-${index}`}>
-              {
-                index === (blankIndex)
-                  ? (
-                    <span className={classes.problemBlank}>
-                      <Blank
-                        showAnswer={showAnswer}
-                        answer={shape}
-                        width="narrow"
-                        lineWidth="2px"
-                      />
-                    </span>
-                  )
-                  : (<span className="problem-shape">{shape}</span>)
-              }
-            </span>
-          ))
+          elements.map((shapeStr, index): JSX.Element => {
+            const shape = shapeEquivalents.get(shapeStr) ?? '';
+            return (
+              <span className={classes.patternElement} key={`pattern-${index}`}>
+                {
+                  index === (blankIndex)
+                    ? (
+                      <span className={classes.problemBlank}>
+                        <Blank
+                          showAnswer={showAnswer}
+                          answer={shape}
+                          width="narrow"
+                          lineWidth="2px"
+                          blankWidth={`${shapeWidth}px`}
+                        />
+                      </span>
+                    )
+                    : (<span className="problem-shape">{shape}</span>)
+                }
+              </span>
+            );
+          })
         }
       </div>
     </ProblemListItem>
@@ -154,7 +183,10 @@ function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
       <MultiPaperPage
         header={(
           <WorksheetHeader>
-            <p>What comes next? Complete the pattern by drawing the correct shape on the blank.</p>
+            <p>
+              {patternsData.blankPosition === 'end' ? 'What comes next? ' : ''}
+              Complete the pattern by drawing the correct shape on the blank.
+            </p>
           </WorksheetHeader>
         )}
         footer={(<WorksheetFooter itemCount={data.length} />)}

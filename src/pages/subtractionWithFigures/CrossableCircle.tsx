@@ -1,4 +1,5 @@
 import React from 'react';
+import SvgWrap from '../../components/svgShapes/SvgWrap';
 
 interface CrossableCircleProps {
   crossed?: boolean,
@@ -40,7 +41,7 @@ function CrossableCircle({
     )
     : '';
   return (
-    <svg viewBox={`0 0 ${width} ${width}`} xmlns="http://www.w3.org/2000/svg">
+    <SvgWrap width={width} height={width}>
       <circle
         cx="50%"
         cy="50%"
@@ -48,7 +49,7 @@ function CrossableCircle({
         style={{ fill: '#aaa', stroke: '#999' }}
       />
       {crossOrBlank}
-    </svg>
+    </SvgWrap>
   );
 }
 
