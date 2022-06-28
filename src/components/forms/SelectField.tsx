@@ -5,18 +5,18 @@ import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import titleize from '../../lib/titlelize';
 import FieldSet from './FieldSet';
 
-interface SelectFieldProps {
+interface SelectFieldProps<T extends string> {
   id?: string;
   name: string;
   label?: string;
-  onChange: (value: string, event: HtmlFieldChangeEvent) => void;
+  onChange: (value: T, event: HtmlFieldChangeEvent) => void;
   value: unknown;
   children?: React.ReactNode;
 }
 
-function SelectField({
+function SelectField<T extends string>({
   id, name, label, onChange, value, children,
-}: SelectFieldProps): JSX.Element {
+}: SelectFieldProps<T>): JSX.Element {
   const theId = id ?? generateId('select', name);
   const theLabel = label ?? titleize(name);
   return (
@@ -32,7 +32,7 @@ function SelectField({
         variant="filled"
         value={value}
         onChange={(event) => {
-          onChange(event.target.value as string, event as HtmlFieldChangeEvent);
+          onChange(event.target.value as T, event as HtmlFieldChangeEvent);
         }}
       >
         {children}

@@ -7,6 +7,7 @@ import PreviewPatterns from './PreviewPatterns';
 
 const defaultPatternsData: PatternsData = {
   count: 10,
+  blankPosition: 'end',
 };
 const dataKey = 'patterns';
 

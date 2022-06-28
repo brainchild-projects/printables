@@ -1,7 +1,9 @@
 import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
-import PatternsData from './PatternsData';
+import SelectField from '../../components/forms/SelectField';
+import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import PatternsData, { BlankPosition, blankPositions } from './PatternsData';
 
 export interface CustomizePatternsFormProps {
   onChange: (data: PatternsData) => void,
@@ -23,6 +25,19 @@ function CustomizePatternsForm({
           onChange({ ...data, count });
         }}
       />
+      <SelectField<BlankPosition>
+        name="blankPosition"
+        label="Blank Position"
+        value={data.blankPosition}
+        onChange={(blankPosition) => {
+          onChange({
+            ...data,
+            blankPosition,
+          });
+        }}
+      >
+        {stringMapToOptions(blankPositions)}
+      </SelectField>
     </CustomizeForm>
   );
 }

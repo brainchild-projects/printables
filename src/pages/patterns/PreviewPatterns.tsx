@@ -10,7 +10,8 @@ import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import PatternGenerator from '../../lib/PatternGenerator';
 import randomElement from '../../lib/randomElement';
-import PatternsData from './PatternsData';
+import PatternsData, { BlankPosition } from './PatternsData';
+import { randomGenerator } from '../../lib/RandomNumberGenerator';
 
 interface PreviewPatternsProps {
   patternsData: PatternsData;
@@ -30,6 +31,7 @@ const patternTypes = [
 
 interface PatternProblem {
   elements: string[];
+  blankIndex: number;
 }
 
 const problemStyles = makeStyles(() => ({
@@ -60,7 +62,7 @@ const problemStyles = makeStyles(() => ({
   },
 }));
 
-function PatternProblemDisplay({ elements }: PatternProblem): JSX.Element {
+function PatternProblemDisplay({ elements, blankIndex }: PatternProblem): JSX.Element {
   const classes = problemStyles();
   return (
     <ProblemListItem
@@ -71,7 +73,7 @@ function PatternProblemDisplay({ elements }: PatternProblem): JSX.Element {
           elements.map((shape, index): JSX.Element => (
             <span className={classes.patternElement} key={`pattern-${index}`}>
               {
-                index === (elements.length - 1)
+                index === (blankIndex)
                   ? (
                     <span className={classes.problemBlank}>
                       <span className={classes.underline}>__</span>
@@ -87,12 +89,30 @@ function PatternProblemDisplay({ elements }: PatternProblem): JSX.Element {
   );
 }
 
-function generatePatternProblems({ count }: PatternsData): PatternProblem[] {
+function getBlankPositionIndex(length: number, pos: BlankPosition): number {
+  const positionMax = length - 1;
+  switch (pos) {
+    case 'start':
+      return 0;
+
+    case 'random':
+      return randomGenerator.integer(positionMax);
+
+    default:
+      return positionMax;
+  }
+}
+
+function generatePatternProblems({ count, blankPosition }: PatternsData): PatternProblem[] {
   const generator = PatternGenerator.create(8);
   const problems: PatternProblem[] = [];
   for (let i = 0; i < count; i++) {
     const elements = generator.generate(randomElement<string>(patternTypes));
-    problems.push({ elements });
+    const blankIndex = getBlankPositionIndex(elements.length, blankPosition);
+    problems.push({
+      elements,
+      blankIndex,
+    });
   }
   return problems;
 }
@@ -100,10 +120,10 @@ function generatePatternProblems({ count }: PatternsData): PatternProblem[] {
 function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
   const data = generatePatternProblems(patternsData);
   const itemBuilder: Builder<PatternProblem> = (
-    { elements }: PatternProblem,
+    { elements, blankIndex: blankPosition }: PatternProblem,
     index: number,
   ) => (
-    <PatternProblemDisplay key={`problem-${index}`} elements={elements} />
+    <PatternProblemDisplay key={`problem-${index}`} elements={elements} blankIndex={blankPosition} />
   );
 
   return (
