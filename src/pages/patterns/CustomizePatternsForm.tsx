@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import PatternsData from './PatternsData';
 
 export interface CustomizePatternsFormProps {
@@ -19,7 +18,7 @@ function CustomizePatternsForm({
       <NumberField
         name="count"
         label="Number of Problems"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => {
           onChange({ ...data, count });
         }}

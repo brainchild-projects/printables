@@ -2,7 +2,6 @@ import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import VerticalAdditionData, { ProblemGeneration, problemGenerationOptions } from './VerticalAdditionData';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
@@ -73,7 +72,7 @@ function CustomizeVerticalAdditionForm({
       <NumberField
         name="count"
         label="Count"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField
@@ -93,7 +92,7 @@ function CustomizeVerticalAdditionForm({
       <NumberField
         name="columns"
         label="Columns"
-        value={numberOrEmpty(data.columns)}
+        value={data.columns}
         onChange={(columns) => onChange({ ...data, columns })}
       />
     </CustomizeForm>

@@ -5,7 +5,6 @@ import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import FontSizeField from '../../components/forms/FontSizeField';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
@@ -75,7 +74,7 @@ function CustomizeAftbForm({
       <NumberField
         name="problems"
         label="Number of Problems"
-        value={numberOrEmpty(data.problems)}
+        value={data.problems}
         onChange={changeHandler('problems')}
       />
       <SelectField

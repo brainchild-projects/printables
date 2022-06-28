@@ -2,7 +2,6 @@ import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberGridData from './NumberGridData';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import SwitchField from '../../components/forms/SwitchField';
 import TextField from '../../components/forms/TextField';
 
@@ -30,7 +29,7 @@ function CustomizeNumberGridForm({
               <NumberField
                 name="skipCount"
                 label="Skip Count By"
-                value={numberOrEmpty(data.skipCount)}
+                value={data.skipCount}
                 onChange={(skipCount) => onChange({ ...data, skipCount })}
                 min={2}
                 max={100}

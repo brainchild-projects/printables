@@ -4,7 +4,6 @@ import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import PlaceValuesData, { PlaceValueProblemType } from './PlaceValuesData';
 
 const problemTypes: Map<PlaceValueProblemType, string> = new Map([
@@ -38,7 +37,7 @@ function CustomizePlaceValuesForm({
       <NumberField
         name="count"
         label="Number of Problems"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField

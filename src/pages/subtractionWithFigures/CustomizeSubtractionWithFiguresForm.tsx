@@ -2,7 +2,6 @@ import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import SubtractionWithFiguresData, { ProblemGeneration, problemGenerationOptions } from './SubtractionWithFiguresData';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
@@ -51,7 +50,7 @@ function CustomizeSubtractionWithFiguresForm({
       <NumberField
         name="count"
         label="Count"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField
@@ -71,7 +70,7 @@ function CustomizeSubtractionWithFiguresForm({
       <NumberField
         name="columns"
         label="Columns"
-        value={numberOrEmpty(data.columns)}
+        value={data.columns}
         onChange={(columns) => onChange({ ...data, columns })}
       />
     </CustomizeForm>

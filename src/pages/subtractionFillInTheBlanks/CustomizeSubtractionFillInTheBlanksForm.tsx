@@ -5,7 +5,6 @@ import SubtractionFillInTheBlanksData, {
   BlankPosition, blankPositions, ProblemGeneration, problemGenerationOptions,
 } from './SubtractionFillInTheBlanksData';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
@@ -55,7 +54,7 @@ function CustomizeSubtractionFillInTheBlanksForm({
       <NumberField
         name="count"
         label="Count"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField
@@ -92,7 +91,7 @@ function CustomizeSubtractionFillInTheBlanksForm({
       <NumberField
         name="columns"
         label="Columns"
-        value={numberOrEmpty(data.columns)}
+        value={data.columns}
         onChange={(columns) => onChange({ ...data, columns })}
       />
       <FontSizeField

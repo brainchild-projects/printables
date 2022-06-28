@@ -2,7 +2,6 @@ import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import NumbersToWordsData from './NumbersToWordsData';
 
 interface CustomizeNumbersToWordsFormProps {
@@ -18,7 +17,7 @@ function CustomizeNumbersToWordsForm({
       <NumberField
         name="count"
         label="Number of Problems"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <NumberRangeSlider

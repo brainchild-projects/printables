@@ -3,7 +3,6 @@ import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import TellingTimeData, { ProblemType, problemTypeOptions } from './TellingTimeData';
 import NumberField from '../../components/forms/NumberField';
-import numberOrEmpty from '../../lib/numberOrEmpty';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 
@@ -20,7 +19,7 @@ function CustomizeTellingTimeForm({
       <NumberField
         name="count"
         label="Count"
-        value={numberOrEmpty(data.count)}
+        value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
       <SelectField
@@ -39,7 +38,7 @@ function CustomizeTellingTimeForm({
       <Divider variant="middle" />
       <NumberField
         name="columns"
-        value={numberOrEmpty(data.columns)}
+        value={data.columns}
         onChange={(columns) => onChange({ ...data, columns })}
       />
     </CustomizeForm>
