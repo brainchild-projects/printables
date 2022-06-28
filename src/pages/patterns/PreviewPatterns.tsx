@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
 import classNames from 'classnames';
 import React from 'react';
 import FontLoad from '../../components/FontLoad';
-import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
+import MultiPaperPage from '../../components/MultiPaperPage';
 import ProblemList from '../../components/ProblemList';
 import ProblemListItem from '../../components/ProblemListItem';
 import WorksheetFooter from '../../components/printElements/WorksheetFooter';
@@ -12,6 +12,8 @@ import PatternGenerator from '../../lib/PatternGenerator';
 import randomElement from '../../lib/randomElement';
 import PatternsData, { BlankPosition } from './PatternsData';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
+import PageTitle from '../../elements/PageTitle';
+import Blank from '../../components/Blank';
 
 interface PreviewPatternsProps {
   patternsData: PatternsData;
@@ -49,7 +51,6 @@ const problemStyles = makeStyles(() => ({
     padding: '0 2mm',
   },
   problemBlank: {
-    borderBottom: '2px solid',
     borderColor: 'black',
     paddingLeft: '1mm',
     paddingRight: '1mm',
@@ -62,7 +63,13 @@ const problemStyles = makeStyles(() => ({
   },
 }));
 
-function PatternProblemDisplay({ elements, blankIndex }: PatternProblem): JSX.Element {
+interface PatternProblemDisplayProps extends PatternProblem {
+  showAnswer: boolean;
+}
+
+function PatternProblemDisplay({
+  elements, blankIndex, showAnswer,
+}: PatternProblemDisplayProps): JSX.Element {
   const classes = problemStyles();
   return (
     <ProblemListItem
@@ -76,7 +83,12 @@ function PatternProblemDisplay({ elements, blankIndex }: PatternProblem): JSX.El
                 index === (blankIndex)
                   ? (
                     <span className={classes.problemBlank}>
-                      <span className={classes.underline}>__</span>
+                      <Blank
+                        showAnswer={showAnswer}
+                        answer={shape}
+                        width="narrow"
+                        lineWidth="2px"
+                      />
                     </span>
                   )
                   : (<span className="problem-shape">{shape}</span>)
@@ -117,14 +129,24 @@ function generatePatternProblems({ count, blankPosition }: PatternsData): Patter
   return problems;
 }
 
-function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
-  const data = generatePatternProblems(patternsData);
-  const itemBuilder: Builder<PatternProblem> = (
+function itemBuilder(showAnswer: boolean) {
+  return function builder(
     { elements, blankIndex: blankPosition }: PatternProblem,
     index: number,
-  ) => (
-    <PatternProblemDisplay key={`problem-${index}`} elements={elements} blankIndex={blankPosition} />
-  );
+  ) {
+    return (
+      <PatternProblemDisplay
+        key={`problem-${index}`}
+        elements={elements}
+        blankIndex={blankPosition}
+        showAnswer={showAnswer}
+      />
+    );
+  };
+}
+
+function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
+  const data = generatePatternProblems(patternsData);
 
   return (
     <>
@@ -139,7 +161,21 @@ function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
         wrapper={ProblemList}
         data={data}
         itemSelector=".pattern-problem-item"
-        renderItems={itemBuilder}
+        renderItems={itemBuilder(false)}
+      />
+
+      <MultiPaperPage
+        header={(
+          <PageTitle>Answer Key</PageTitle>
+        )}
+        wrapper={ProblemList}
+        wrapperProps={{
+          className: 'answers',
+          label: 'Answers',
+        }}
+        data={data}
+        itemSelector=".subtraction-with-figures-problem-item"
+        renderItems={itemBuilder(true)}
       />
     </>
   );

@@ -6,12 +6,20 @@ import Stringable from '../lib/Stringable';
 const styles = makeStyles(() => ({
   problemBlank: {
     borderBottom: '0.1em solid', // 2px
-    paddingLeft: '0.2em', // 1mm
-    paddingRight: '0.2em', // 1mm
-
     display: 'inline-block',
     minWidth: '1.6em', // 32px
     textAlign: 'center',
+
+    '&.problem-blank-narrow': {
+      paddingLeft: 0,
+      paddingRight: 0,
+      minWidth: 0,
+    },
+
+    '&.problem-blank-short': {
+      paddingLeft: '0.2em', // 1mm
+      paddingRight: '0.2em', // 1mm
+    },
 
     '&.problem-blank-wide': {
       minWidth: '2.6em',
@@ -25,12 +33,13 @@ const styles = makeStyles(() => ({
   },
 }));
 
-type BlankWidth = 'short' | 'wide';
+type BlankWidth = 'short' | 'wide' | 'narrow';
 
 export interface BlankProps {
   answer: string | number | Stringable;
   showAnswer: boolean;
   width?: BlankWidth;
+  lineWidth?: string | number | undefined;
 }
 
 const underlines = (length: number): string => {
@@ -41,14 +50,18 @@ const underlines = (length: number): string => {
   return str;
 };
 
-function Blank({ answer, showAnswer, width }: BlankProps) {
+function Blank({
+  answer, showAnswer, width, lineWidth,
+}: BlankProps) {
   const classes = styles();
   return (
-    <span className={classNames(
-      'problem-blank',
-      `problem-blank-${width ?? 'short'}`,
-      classes.problemBlank,
-    )}
+    <span
+      className={classNames(
+        'problem-blank',
+        `problem-blank-${width ?? 'short'}`,
+        classes.problemBlank,
+      )}
+      style={{ borderWidth: lineWidth ?? '0.1em' }}
     >
       {
         showAnswer
@@ -65,6 +78,7 @@ function Blank({ answer, showAnswer, width }: BlankProps) {
 
 Blank.defaultProps = {
   width: 'short',
+  lineWidth: undefined,
 };
 
 export default Blank;
