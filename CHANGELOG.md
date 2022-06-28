@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.68](https://github.com/brainchild-projects/printables/compare/v0.0.67...v0.0.68) (2022-06-28)
+
+
+### Features
+
+* patterns worksheet answer keys ([dff8766](https://github.com/brainchild-projects/printables/commit/dff87665eb5cdcaa4f1e7c6af913274e55f8a535))
+* patterns worksheet svg shapes ([a12880b](https://github.com/brainchild-projects/printables/commit/a12880b3dc3c16abf8744c2daad8374701c35320)), closes [#39](https://github.com/brainchild-projects/printables/issues/39)
+
 ### [0.0.67](https://github.com/brainchild-projects/printables/compare/v0.0.66...v0.0.67) (2022-06-28)
 
 
