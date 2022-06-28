@@ -31,3 +31,9 @@ npm run cypress
 ```
 
 ...and then run your tests from there.
+
+You can also run them all from the command line with the following:
+
+```sh
+npx cypress run
+```
