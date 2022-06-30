@@ -17,4 +17,5 @@ export default interface AdditionSubtractionData extends FontSizeData {
   customAddendsB: Range;
   columns: number;
   blanksOnAddition: boolean;
+  subtractionFirst: boolean;
 }

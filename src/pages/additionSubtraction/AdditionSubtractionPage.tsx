@@ -15,6 +15,7 @@ const defaultData: AdditionSubtractionData = {
   fontSize: 20,
   columns: 1,
   blanksOnAddition: true,
+  subtractionFirst: false,
 };
 
 const dataKey = 'additionSubtraction';

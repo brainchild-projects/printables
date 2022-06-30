@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import ProblemListItem from '../../components/ProblemListItem';
@@ -34,11 +35,9 @@ export const blankTypesAddends: AdditionAddends[] = ['addendA', 'addendB'];
 const styles = makeStyles({
   wrap: {
     display: 'flex',
+    alignContent: 'space-between',
+    gap: '3em',
     width: '100%',
-
-    '& > span': {
-      flex: 1,
-    },
   },
 });
 
@@ -72,16 +71,49 @@ export interface AdditionSubtractionItemProps {
   fontSize?: number;
   subtrahend: AdditionAddends;
   blanksOnAddition: boolean;
+  subtractionFirst: boolean;
 }
-function AdditionSubtractionItem({
-  addition, blank = 'sum', showAnswer = false, fontSize = 20,
-  subtrahend, blanksOnAddition,
-}: AdditionSubtractionItemProps): JSX.Element {
-  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
+
+function getAdditionSide({
+  addition, showAnswer, subtrahend, blanksOnAddition, blank,
+}: AdditionSubtractionItemProps) {
+  return (
+    <span data-subtrahend={subtrahend}>
+      Since &nbsp;&nbsp;&nbsp;
+      <AdditionSentenceBasic
+        addition={addition}
+        blank={blanksOnAddition ? blank : undefined}
+        showAnswer={showAnswer}
+      />
+    </span>
+  );
+}
+
+function getSubtractionSide({
+  addition, subtrahend, blank = 'sum', subtractionFirst, showAnswer,
+}: AdditionSubtractionItemProps) {
   const subtraction = subtractionFromAddition(addition, subtrahend);
   const subtractionBlank = getSubtractionBlank(subtrahend, blank);
-
+  return (
+    <span data-sub-blank={subtractionBlank}>
+      {subtractionFirst ? '' : (<>Then &nbsp;&nbsp;&nbsp;</>)}
+      <SubtractionSentenceBasic
+        subtraction={subtraction}
+        blank={subtractionBlank}
+        showAnswer={showAnswer}
+      />
+    </span>
+  );
+}
+function AdditionSubtractionItem(props: AdditionSubtractionItemProps): JSX.Element {
   const classes = styles();
+  const { fontSize = 20, subtractionFirst, showAnswer } = props;
+  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
+  const additionSide = getAdditionSide(props);
+  const subtractionSide = getSubtractionSide(props);
+
+  const firstElement = subtractionFirst ? subtractionSide : additionSide;
+  const secondElement = subtractionFirst ? additionSide : subtractionSide;
 
   return (
     <ProblemListItem
@@ -90,23 +122,9 @@ function AdditionSubtractionItem({
       fontSize={fontSize}
     >
       <div className={classes.wrap}>
-        <span data-subtrahend={subtrahend}>
-          Since &nbsp;&nbsp;&nbsp;
-          <AdditionSentenceBasic
-            addition={addition}
-            blank={blanksOnAddition ? blank : undefined}
-            showAnswer={showAnswer}
-          />
-        </span>
+        {firstElement}
         {' '}
-        <span data-sub-blank={subtractionBlank}>
-          Then &nbsp;&nbsp;&nbsp;
-          <SubtractionSentenceBasic
-            subtraction={subtraction}
-            blank={subtractionBlank}
-            showAnswer={showAnswer}
-          />
-        </span>
+        {secondElement}
       </div>
     </ProblemListItem>
   );

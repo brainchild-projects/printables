@@ -57,6 +57,7 @@ function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
           subtrahend={subtrahend}
           fontSize={data.fontSize}
           showAnswer={showAnswer}
+          subtractionFirst={data.subtractionFirst}
         />
       );
     };

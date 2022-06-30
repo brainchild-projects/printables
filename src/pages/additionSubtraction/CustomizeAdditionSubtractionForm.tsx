@@ -65,6 +65,12 @@ function CustomizeAdditionSubtractionForm({
         value={data.count}
         onChange={changeHandler('problems')}
       />
+      <SwitchField
+        name="subtractionFirst"
+        label="Subtraction First"
+        onChange={changeHandler('subtractionFirst')}
+        value={data.subtractionFirst}
+      />
       <SelectField
         name="problemGeneration"
         value={data.problemGeneration}
