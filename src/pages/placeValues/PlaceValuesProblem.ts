@@ -1,4 +1,6 @@
-const { floor, log10 } = Math;
+import { countDigits } from '../../lib/math/commaNumberFormat';
+
+const { floor } = Math;
 
 interface PlaceValuesProblemOptions {
   digitPlaceValue: number,
@@ -14,8 +16,8 @@ const placeValueNames = [
   'millions',
 ];
 
-type ForEachCallback = (number: number, isDigitPlaceValue: boolean) => void;
-type MapCallback<T> = (number: number, isDigitPlaceValue: boolean) => T;
+type ForEachCallback = (number: number, isDigitPlaceValue: boolean, index: number) => void;
+type MapCallback<T> = (number: number, isDigitPlaceValue: boolean, index: number) => T;
 
 class PlaceValuesProblem {
   number: number;
@@ -45,6 +47,10 @@ class PlaceValuesProblem {
     return floor((this.number / 100) % 10);
   }
 
+  thousands(): number {
+    return floor((this.number / 1000) % 10);
+  }
+
   digitPlaceValueName(): string {
     return placeValueNames[this.digitPlaceValue - 1];
   }
@@ -56,14 +62,14 @@ class PlaceValuesProblem {
   forEachDigit(callback: ForEachCallback): void {
     const digitCount = this.wholeNumberDigitsCount();
     this.digitsFromGreatest().forEach((n, i) => {
-      callback(n, digitCount - i === this.digitPlaceValue);
+      callback(n, digitCount - i === this.digitPlaceValue, i);
     });
   }
 
   mapDigits<T>(callBack: MapCallback<T>): Array<T> {
     const collection: Array<T> = [];
-    this.forEachDigit((number, isDigitPlaceValue) => {
-      collection.push(callBack(number, isDigitPlaceValue));
+    this.forEachDigit((number, isDigitPlaceValue, i) => {
+      collection.push(callBack(number, isDigitPlaceValue, i));
     });
     return collection;
   }
@@ -73,11 +79,6 @@ class PlaceValuesProblem {
   }
 }
 
-PlaceValuesProblem.countWholeNumberDigits = (number: number): number => {
-  if (number === 0) {
-    return 1;
-  }
-  return floor(log10(number)) + 1;
-};
+PlaceValuesProblem.countWholeNumberDigits = countDigits;
 
 export default PlaceValuesProblem;

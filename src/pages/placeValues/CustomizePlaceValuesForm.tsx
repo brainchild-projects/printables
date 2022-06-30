@@ -4,15 +4,9 @@ import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import PlaceValuesData, { PlaceValueProblemType } from './PlaceValuesData';
-
-const problemTypes: Map<PlaceValueProblemType, string> = new Map([
-  ['blanks', 'Fill in the Blanks'], ['choice', 'Multiple Choice'],
-]);
-
-const magnitudes: Map<string, string> = new Map([
-  ['tens', 'Tens'], ['hundreds', 'Hundreds'],
-]);
+import PlaceValuesData, {
+  magnitudes, PlaceValueProblemType, PlaceValuesMagnitude, problemTypes,
+} from './PlaceValuesData';
 
 interface CustomizePlaceValuesFormProps {
   onChange: (data: PlaceValuesData) => void;
@@ -27,10 +21,10 @@ function CustomizePlaceValuesForm({
       onBeforePrint={() => true}
       name="Worksheet"
     >
-      <SelectField
+      <SelectField<PlaceValueProblemType>
         name="problemType"
         value={data.solution}
-        onChange={(value) => onChange({ ...data, solution: value as PlaceValueProblemType })}
+        onChange={(value) => onChange({ ...data, solution: value })}
       >
         {stringMapToOptions(problemTypes)}
       </SelectField>
@@ -40,7 +34,7 @@ function CustomizePlaceValuesForm({
         value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
-      <SelectField
+      <SelectField<PlaceValuesMagnitude>
         name="magnitude"
         value={data.magnitude}
         onChange={(magnitude) => onChange({ ...data, magnitude })}

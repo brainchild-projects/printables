@@ -6,6 +6,7 @@ interface TestItem {
   expectedOnes: number;
   expectedTens: number;
   expectedHundreds: number;
+  expectedThousands?: number;
   expectedDigitPlaceValueName: string;
   expectedNumberOfDigits: number;
 }
@@ -76,6 +77,16 @@ describe('PlaceValuesProblem', () => {
         expectedDigitPlaceValueName: 'hundreds',
         expectedNumberOfDigits: 3,
       },
+      {
+        number: 1000,
+        digitPlaceValue: 4,
+        expectedOnes: 0,
+        expectedTens: 0,
+        expectedHundreds: 0,
+        expectedThousands: 1,
+        expectedDigitPlaceValueName: 'thousands',
+        expectedNumberOfDigits: 4,
+      },
     ];
 
     items.forEach((item) => {
@@ -95,6 +106,10 @@ describe('PlaceValuesProblem', () => {
 
         it('returns correct hundreds place', () => {
           expect(problem.hundreds()).toEqual(item.expectedHundreds);
+        });
+
+        it('returns correct thousands place', () => {
+          expect(problem.thousands()).toEqual(item.expectedThousands ?? 0);
         });
 
         it('returns correct digit place value name', () => {

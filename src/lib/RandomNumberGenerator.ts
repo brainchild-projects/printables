@@ -30,7 +30,7 @@ function getScales(magnitude: number): ScalingMap<number> {
     const scales = new Map<number, number>([]);
     for (let i = 0; i < magnitude; i++) {
       const exp = i + 1;
-      scales.set(10 ** exp, exp ** i);
+      scales.set(10 ** exp, 2 * (i + 1));
     }
     scalesCache.set(magnitude, scales);
     return scales;

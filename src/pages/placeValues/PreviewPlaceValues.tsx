@@ -8,24 +8,40 @@ import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import PageTitle from '../../elements/PageTitle';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import PlaceValuesData from './PlaceValuesData';
+import PlaceValuesData, { PlaceValuesMagnitude } from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
 import FillInTheBlanksProblem from './FillInTheBlanksProblem';
 import MultipleChoiceProblem from './MultipleChoiceProblem';
+import { shouldAddComma } from '../../lib/math/commaNumberFormat';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
 }
 
 function maxFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
-  if (magnitude === 'hundreds') {
-    return 999;
+  switch (magnitude) {
+    case 'thousands':
+      return 9999;
+
+    case 'hundreds':
+      return 999;
+
+    default:
+      return 99;
   }
-  return 99;
 }
 
 function magNFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
-  return magnitude === 'hundreds' ? 3 : 2;
+  switch (magnitude) {
+    case 'thousands':
+      return 4;
+
+    case 'hundreds':
+      return 3;
+
+    default:
+      return 2;
+  }
 }
 
 function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
@@ -55,7 +71,12 @@ function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceVal
 const pageStyles = makeStyles(() => ({
   list: {
     '& .and': {
-      padding: '0 1.15em',
+      padding: '0 0.5em',
+      display: 'inline-block',
+    },
+
+    '& .comma': {
+      padding: '0 0.5em 0 0',
       display: 'inline-block',
     },
 
@@ -66,18 +87,35 @@ const pageStyles = makeStyles(() => ({
   },
 }));
 
-function mapDigitsCallback(digit: number, isItem: boolean): ReactNode {
-  return isItem ? (<u>{digit}</u>) : digit;
+function mapDigitsCallback(theNumber: number) {
+  return function callback(digit: number, isItem: boolean, index: number): ReactNode {
+    const numPart = isItem ? (<u>{digit}</u>) : digit;
+    return (
+      <span key={index}>
+        {numPart}
+        {shouldAddComma(theNumber, index) ? ',' : ''}
+      </span>
+    );
+  };
 }
 
 function underlineDigit(problem: PlaceValuesProblem): Array<ReactNode> {
-  return problem.mapDigits(mapDigitsCallback);
+  return problem.mapDigits(mapDigitsCallback(problem.number));
+}
+
+function getChoices(magnitude: PlaceValuesMagnitude) {
+  const choices = ['ones', 'tens', 'hundreds'];
+  if (magnitude === 'thousands') {
+    choices.push('thousands');
+  }
+  return choices;
 }
 
 function itemBuilder(
   showAnswer: boolean,
   { magnitude, solution: problemType }: PlaceValuesData,
 ) {
+  const choices = getChoices(magnitude);
   function fn(problem: PlaceValuesProblem, indexNumber: number) {
     return (
       <ProblemListItem
@@ -96,7 +134,7 @@ function itemBuilder(
             )
             : (
               <MultipleChoiceProblem
-                choices={['ones', 'tens', 'hundreds']}
+                choices={choices}
                 answer={problem.digitPlaceValue - 1}
                 showAnswer={showAnswer}
               >

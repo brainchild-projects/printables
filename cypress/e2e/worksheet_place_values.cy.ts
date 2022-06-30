@@ -5,7 +5,7 @@ it('can create place values worksheet', () => {
   cy.findByLabelText(/magnitude/i).select('Hundreds');
 
   cy.withinPreview(() => {
-    cy.contains(/_+\s+hundreds\s+and\s+_+\s+tens\s+and\s+_+\s+ones\s+=\s+[1-9]\d\d/i);
+    cy.contains(/_+\s+hundreds,\s+_+\s+tens\s+and\s+_+\s+ones\s+=\s+[1-9]\d\d/i);
     cy.findAllByRole('listitem', { name: /problem/i }).should('have.length', 5);
   });
 
@@ -31,6 +31,15 @@ it('can create place values worksheet', () => {
     cy.findAllByRole('listitem', { name: /choice/i })
       .within(() => {
         cy.contains(/hundreds|tens|ones/i);
+      });
+  });
+
+  cy.findByLabelText(/magnitude/i).select('thousands');
+
+  cy.withinPreview(() => {
+    cy.findAllByRole('listitem', { name: /choice/i })
+      .within(() => {
+        cy.contains(/thousands|hundreds|tens|ones/i);
       });
   });
 });
