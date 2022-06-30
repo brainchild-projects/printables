@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.69](https://github.com/brainchild-projects/printables/compare/v0.0.68...v0.0.69) (2022-06-30)
+
+
+### Features
+
+* add/sub relationship switch positions ([803cf78](https://github.com/brainchild-projects/printables/commit/803cf78f57875d5021f7e1b649849d6d2e5fc2f0))
+* worksheet place values thousands magnitude ([462e601](https://github.com/brainchild-projects/printables/commit/462e601c155966fb623d8e52a1e9ca7bfc1fe307))
+
 ### [0.0.68](https://github.com/brainchild-projects/printables/compare/v0.0.67...v0.0.68) (2022-06-28)
 
 
