@@ -1,9 +1,10 @@
 import React from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import PlaceValuesData, { magnitudes, PlaceValuesMagnitude } from './PlaceValuesData';
+import PlaceValuesData from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
 import Blank, { BlankProps } from '../../components/Blank';
 import commaNumberFormat from '../../lib/math/commaNumberFormat';
+import { magnitudes, Magnitude } from '../../lib/math/magnitude';
 
 interface BlankAndPlaceProps extends BlankProps {
   place: string;
@@ -46,10 +47,8 @@ const ftbStyle = makeStyles(() => ({
   },
 }));
 
-const magnitudeKeys = Array.from(magnitudes.keys());
-
-function magnitudeN(magnitude: PlaceValuesMagnitude): number {
-  const index = magnitudeKeys.indexOf(magnitude);
+function magnitudeN(magnitude: Magnitude): number {
+  const index = magnitudes.indexOf(magnitude);
   return (index ?? 0) + 2;
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import arrayToOptions from '../../components/forms/arrayToOptions';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
+import SelectField from '../../components/forms/SelectField';
+import { Magnitude, magnitudes } from '../../lib/math/magnitude';
 import NumbersToWordsData from './NumbersToWordsData';
 
 interface CustomizeNumbersToWordsFormProps {
@@ -20,17 +22,13 @@ function CustomizeNumbersToWordsForm({
         value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
-      <NumberRangeSlider
-        label="Number Range"
-        id="number-range-slider"
-        data-test="number-range-slider"
-        onChange={(range) => {
-          onChange({ ...data, range });
-        }}
-        from={data.range.from}
-        to={data.range.to}
-        magnitude={3}
-      />
+      <SelectField<Magnitude>
+        name="magnitude"
+        value={data.magnitude}
+        onChange={(magnitude) => onChange({ ...data, magnitude })}
+      >
+        {arrayToOptions(magnitudes, true)}
+      </SelectField>
     </CustomizeForm>
   );
 }

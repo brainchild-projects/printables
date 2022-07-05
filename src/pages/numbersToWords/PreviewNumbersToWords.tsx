@@ -10,15 +10,17 @@ import numberToWords from '../../lib/numberToWords';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import NumbersToWordsData from './NumbersToWordsData';
 import tryByKey from '../../lib/tryByKey';
+import { magNFromMagnitude, maxFromMagnitude } from '../../lib/math/magnitude';
 
-function generateProblems({ count, range }: NumbersToWordsData): Array<number> {
-  const min = range.from;
-  const max = range.to;
+function generateProblems({ count, magnitude }: NumbersToWordsData): Array<number> {
+  const max = maxFromMagnitude(magnitude);
+  const magNumber = magNFromMagnitude(magnitude);
+
   const problems: Array<number> = [];
-  const limitedRetries = tryByKey();
+  const limitedRetries = tryByKey(max);
 
   while (problems.length < count) {
-    const number = randomGenerator.integer(max, min);
+    const number = randomGenerator.stepMagnitude(magNumber);
     limitedRetries(number, () => {
       problems.push(number);
     });
@@ -30,6 +32,9 @@ function generateProblems({ count, range }: NumbersToWordsData): Array<number> {
 interface PreviewNumbersToWordsProps {
   customData: NumbersToWordsData;
 }
+
+// TODO: Use locale on computer's machine
+const numberFormatter = new Intl.NumberFormat('en-US');
 
 function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.Element {
   const problems = generateProblems(customData);
@@ -46,7 +51,7 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
             numberToWords(number)
           }
           {': '}
-          <Blank answer={number} width="wide" showAnswer={showAnswer} />
+          <Blank answer={numberFormatter.format(number)} width="wide" showAnswer={showAnswer} />
         </ProblemListItem>
       );
     }

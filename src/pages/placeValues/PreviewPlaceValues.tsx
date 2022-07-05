@@ -8,41 +8,16 @@ import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import PageTitle from '../../elements/PageTitle';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import PlaceValuesData, { PlaceValuesMagnitude } from './PlaceValuesData';
+import PlaceValuesData from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
 import FillInTheBlanksProblem from './FillInTheBlanksProblem';
 import MultipleChoiceProblem from './MultipleChoiceProblem';
 import { shouldAddComma } from '../../lib/math/commaNumberFormat';
 import tryByKey from '../../lib/tryByKey';
+import { magNFromMagnitude, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
-}
-
-function maxFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
-  switch (magnitude) {
-    case 'thousands':
-      return 9999;
-
-    case 'hundreds':
-      return 999;
-
-    default:
-      return 99;
-  }
-}
-
-function magNFromMagnitude(magnitude: PlaceValuesData['magnitude']): number {
-  switch (magnitude) {
-    case 'thousands':
-      return 4;
-
-    case 'hundreds':
-      return 3;
-
-    default:
-      return 2;
-  }
 }
 
 function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
@@ -101,7 +76,7 @@ function underlineDigit(problem: PlaceValuesProblem): Array<ReactNode> {
   return problem.mapDigits(mapDigitsCallback(problem.number));
 }
 
-function getChoices(magnitude: PlaceValuesMagnitude) {
+function getChoices(magnitude: Magnitude) {
   const choices = ['ones', 'tens', 'hundreds'];
   if (magnitude === 'thousands') {
     choices.push('thousands');

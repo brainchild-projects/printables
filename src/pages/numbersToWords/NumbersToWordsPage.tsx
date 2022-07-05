@@ -6,7 +6,7 @@ import NumbersToWordsData from './NumbersToWordsData';
 import PreviewNumbersToWords from './PreviewNumbersToWords';
 
 const defaultData: NumbersToWordsData = {
-  range: { from: 0, to: 9 },
+  magnitude: 'tens',
   count: 10,
 };
 const key = 'numbersToWords';

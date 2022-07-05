@@ -1,7 +1,8 @@
-import Range from '../../lib/Range';
+export type NumbersToWordsMagnitude = 'tens' | 'hundreds' | 'thousands';
+export const magnitudes: NumbersToWordsMagnitude[] = ['tens', 'hundreds', 'thousands'];
 
 interface NumbersToWordsData {
-  range: Range;
+  magnitude: NumbersToWordsMagnitude;
   count: number;
 }
 

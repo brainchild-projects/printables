@@ -1,11 +1,13 @@
 import Divider from '@material-ui/core/Divider';
 import React from 'react';
+import arrayToOptions from '../../components/forms/arrayToOptions';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import { Magnitude, magnitudes } from '../../lib/math/magnitude';
 import PlaceValuesData, {
-  magnitudes, PlaceValueProblemType, PlaceValuesMagnitude, problemTypes,
+  PlaceValueProblemType, problemTypes,
 } from './PlaceValuesData';
 
 interface CustomizePlaceValuesFormProps {
@@ -34,12 +36,12 @@ function CustomizePlaceValuesForm({
         value={data.count}
         onChange={(count) => onChange({ ...data, count })}
       />
-      <SelectField<PlaceValuesMagnitude>
+      <SelectField<Magnitude>
         name="magnitude"
         value={data.magnitude}
         onChange={(magnitude) => onChange({ ...data, magnitude })}
       >
-        {stringMapToOptions(magnitudes)}
+        {arrayToOptions(magnitudes, true)}
       </SelectField>
 
       <Divider variant="middle" />

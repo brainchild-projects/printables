@@ -29,10 +29,32 @@ const numbersMapping: Map<number, string> = new Map([
   [90, 'ninety'],
 ]);
 
-const { floor } = Math;
+const scales = [
+  'thousand',
+  'million',
+  'billion',
+  'trillion',
+  'quadrillion',
+];
+
+const { floor, abs } = Math;
 
 function isInteger(n: number): boolean {
   return floor(n) === n;
+}
+
+export function splitBy3s(n: number): number[] {
+  let current = abs(n);
+  const numbers = [];
+  let i = 0;
+  while (current > 999 && i < 100) {
+    const block = floor(current % 1000);
+    numbers.unshift(block);
+    current = floor(current / 1000);
+    i += 1;
+  }
+  numbers.unshift(current);
+  return numbers;
 }
 
 function hundredsDigit(n: number): number {
@@ -85,7 +107,7 @@ function getTensCombination(tenth: number, oneth: number): string {
   return getTensPart(tenth) + getOnesPart(tenth, oneth);
 }
 
-function numberToWordsUnmapped(number: number): string {
+function hundredsBasic(number: number): string {
   let numberStr = '';
   numberStr += hundredsPart(number);
 
@@ -98,6 +120,22 @@ function numberToWordsUnmapped(number: number): string {
     numberStr += getTensCombination(tenth, oneth);
   }
   return numberStr.trim();
+}
+
+function numberToWordsUnmapped(number: number): string {
+  const sections = splitBy3s(number);
+  let numberStr = '';
+  const len = sections.length - 1;
+  for (let i = 0; i < len; i++) {
+    const nbase = hundredsBasic(sections[i]);
+    if (nbase !== '') {
+      const scale = scales[len - 1 - i];
+      numberStr += `${nbase} ${scale} `;
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return (`${numberStr}${hundredsBasic(sections.pop()!)}`).trim();
 }
 
 function numberToWords(number: number): string {

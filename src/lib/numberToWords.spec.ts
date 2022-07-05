@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import numberToWords from './numberToWords';
+import numberToWords, { splitBy3s } from './numberToWords';
 
 interface TestData {
   input: number;
@@ -10,6 +10,24 @@ interface TestData {
 function _t(input: number, expected: string): TestData {
   return { input, expected };
 }
+
+describe('splitBy3s', () => {
+  it('splits numbers by 3s', () => {
+    expect(splitBy3s(987654321)).toEqual([987, 654, 321]);
+  });
+
+  it('splits numbers by 3s with odd numbers', () => {
+    expect(splitBy3s(7654321)).toEqual([7, 654, 321]);
+  });
+
+  it('retains single-digit numbers', () => {
+    expect(splitBy3s(8)).toEqual([8]);
+  });
+
+  it('splits negative numbers', () => {
+    expect(splitBy3s(-54321)).toEqual([54, 321]);
+  });
+});
 
 describe('numberToWords', () => {
   const testData: Array<TestData> = [
@@ -71,6 +89,14 @@ describe('numberToWords', () => {
     _t(617, 'six hundred seventeen'),
     _t(712, 'seven hundred twelve'),
     _t(835, 'eight hundred thirty-five'),
+    _t(1000, 'one thousand'),
+    _t(3452, 'three thousand four hundred fifty-two'),
+    _t(5008, 'five thousand eight'),
+    _t(21749, 'twenty-one thousand seven hundred forty-nine'),
+    _t(589000, 'five hundred eighty-nine thousand'),
+    _t(6000000, 'six million'),
+    _t(7005004000, 'seven billion five million four thousand'),
+    _t(3901234, 'three million nine hundred one thousand two hundred thirty-four'),
   ];
 
   testData.forEach(({ input, expected }) => {
