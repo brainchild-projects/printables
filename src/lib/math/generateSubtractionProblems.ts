@@ -20,7 +20,7 @@ export function generateProblemsFromMinuend(minuendRange: Range, count: number):
     const { from, to } = minuendRange;
     const minuend = randomGenerator.integer(to, from);
     const subtrahend = randomGenerator.integer(minuend, 0);
-    limitedRetries(`${minuend}:${subtrahend}`, () => {
+    limitedRetries([minuend, subtrahend], () => {
       problems.push(Subtraction.create({ minuend, subtrahend }));
     });
   }
@@ -37,7 +37,7 @@ export function generateProblemsFromSubAndDiff(
   for (let i = 0; problems.length < count; i++) {
     const subtrahend = randomGenerator.integer(subRange.to, subRange.from);
     const difference = randomGenerator.integer(diffRange.to, diffRange.from);
-    limitedRetries(`${subtrahend}:${difference}`, () => {
+    limitedRetries([subtrahend, difference], () => {
       problems.push(Subtraction.create({ subtrahend, difference }));
     });
   }

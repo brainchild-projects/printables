@@ -100,18 +100,9 @@ function numberToWordsUnmapped(number: number): string {
   return numberStr.trim();
 }
 
-// eslint-disable-next-line complexity
 function numberToWords(number: number): string {
-  const mapped = numbersMapping.get(number);
-  if (typeof mapped === 'string') {
-    return mapped;
-  }
-
-  if (isInteger(number)) {
-    return numberToWordsUnmapped(number);
-  }
-
-  return '';
+  if (!isInteger(number)) return '';
+  return numbersMapping.get(number) ?? numberToWordsUnmapped(number);
 }
 
 export default numberToWords;

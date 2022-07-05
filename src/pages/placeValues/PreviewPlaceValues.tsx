@@ -13,6 +13,7 @@ import PlaceValuesProblem from './PlaceValuesProblem';
 import FillInTheBlanksProblem from './FillInTheBlanksProblem';
 import MultipleChoiceProblem from './MultipleChoiceProblem';
 import { shouldAddComma } from '../../lib/math/commaNumberFormat';
+import tryByKey from '../../lib/tryByKey';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
@@ -49,21 +50,18 @@ function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceVal
   const magNumber = magNFromMagnitude(magnitude);
 
   const problems: Array<PlaceValuesProblem> = [];
-  const track: Set<number> = new Set([]);
+  const limitedRetries = tryByKey(max);
+
   while (problems.length < count) {
     const number = randomGenerator.stepMagnitude(magNumber);
-    if (!track.has(number)) {
+    limitedRetries(number, () => {
       problems.push(new PlaceValuesProblem(number, {
         digitPlaceValue: randomGenerator.integer(
           PlaceValuesProblem.countWholeNumberDigits(number),
           1,
         ),
       }));
-      track.add(number);
-    }
-    if (problems.length % max === 0) {
-      track.clear();
-    }
+    });
   }
   return problems;
 }

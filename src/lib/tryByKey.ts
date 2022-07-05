@@ -1,9 +1,9 @@
-type RetryKey = string | number[];
+type RetryKey = string | number[] | number;
 type VoidFunction = () => void;
 type RetryFunction = (key: RetryKey, callback: VoidFunction) => void;
 
 /**
- * Returns a function that does not run for a given key
+ * Returns a function that does not run again for a given key
  * unless { maximumTries } is reached.
  *
  * Useful for generating items that are unique enough

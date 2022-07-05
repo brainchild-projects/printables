@@ -9,23 +9,21 @@ import PageTitle from '../../elements/PageTitle';
 import numberToWords from '../../lib/numberToWords';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import NumbersToWordsData from './NumbersToWordsData';
+import tryByKey from '../../lib/tryByKey';
 
 function generateProblems({ count, range }: NumbersToWordsData): Array<number> {
   const min = range.from;
   const max = range.to;
   const problems: Array<number> = [];
-  const track: Set<number> = new Set([]);
-  const limit = max - min;
+  const limitedRetries = tryByKey();
+
   while (problems.length < count) {
     const number = randomGenerator.integer(max, min);
-    if (!track.has(number)) {
+    limitedRetries(number, () => {
       problems.push(number);
-      track.add(number);
-    }
-    if (problems.length % limit === 0) {
-      track.clear();
-    }
+    });
   }
+
   return problems;
 }
 
