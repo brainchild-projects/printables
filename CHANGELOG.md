@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.71](https://github.com/brainchild-projects/printables/compare/v0.0.70...v0.0.71) (2022-07-05)
+
+
+### Features
+
+* thousands magnitude for numbers to words ([7e7d19b](https://github.com/brainchild-projects/printables/commit/7e7d19b6303c9eb45e63a907e3b932680116a8ca))
+
 ### [0.0.70](https://github.com/brainchild-projects/printables/compare/v0.0.69...v0.0.70) (2022-07-05)
 
 
