@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.70](https://github.com/brainchild-projects/printables/compare/v0.0.69...v0.0.70) (2022-07-05)
+
+
+### Bug Fixes
+
+* number to words worksheet freezes ([8a58ba8](https://github.com/brainchild-projects/printables/commit/8a58ba81eccabdad0e658991867e630e112aad19)), closes [#91](https://github.com/brainchild-projects/printables/issues/91)
+
 ### [0.0.69](https://github.com/brainchild-projects/printables/compare/v0.0.68...v0.0.69) (2022-06-30)
 
 
