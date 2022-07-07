@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.72](https://github.com/brainchild-projects/printables/compare/v0.0.71...v0.0.72) (2022-07-07)
+
+
+### Features
+
+* number to words multiple choice ([c12c803](https://github.com/brainchild-projects/printables/commit/c12c8038f1844c99ecff6dc232d557c62a5837ec)), closes [#92](https://github.com/brainchild-projects/printables/issues/92)
+
 ### [0.0.71](https://github.com/brainchild-projects/printables/compare/v0.0.70...v0.0.71) (2022-07-05)
 
 
