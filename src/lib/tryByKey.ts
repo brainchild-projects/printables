@@ -16,7 +16,7 @@ type RetryFunction = (key: RetryKey, callback: VoidFunction) => void;
 export default function tryByKey(maximumTries = 6): RetryFunction {
   const found: Map<string, number> = new Map([]);
   return function wrapper(rawKey, fn) {
-    const key = rawKey.toString();
+    const key = rawKey.toString().trim();
     const set = found.get(key);
     if (set === undefined) {
       fn();

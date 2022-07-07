@@ -12,4 +12,6 @@ it('can create numbers to words worksheet', () => {
         });
     });
   });
+
+  cy.findByLabelText(/problem.+type/i).select('Multiple Choice');
 });

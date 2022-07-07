@@ -108,7 +108,7 @@ function itemBuilder(
             : (
               <MultipleChoiceProblem
                 choices={choices}
-                answer={problem.digitPlaceValue - 1}
+                answer={choices[problem.digitPlaceValue - 1]}
                 showAnswer={showAnswer}
               >
                 {underlineDigit(problem)}

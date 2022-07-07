@@ -6,6 +6,7 @@ import NumbersToWordsData from './NumbersToWordsData';
 import PreviewNumbersToWords from './PreviewNumbersToWords';
 
 const defaultData: NumbersToWordsData = {
+  problemType: 'blanks',
   magnitude: 'tens',
   count: 10,
 };

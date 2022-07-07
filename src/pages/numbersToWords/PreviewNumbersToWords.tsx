@@ -7,40 +7,42 @@ import WorksheetFooter from '../../components/printElements/WorksheetFooter';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import PageTitle from '../../elements/PageTitle';
 import numberToWords from '../../lib/numberToWords';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import NumbersToWordsData from './NumbersToWordsData';
-import tryByKey from '../../lib/tryByKey';
-import { magNFromMagnitude, maxFromMagnitude } from '../../lib/math/magnitude';
+import MultipleChoiceProblem from '../placeValues/MultipleChoiceProblem';
+import formatNumber from '../../lib/formatNumber';
+import generateProblems, { NumToWordsProblem } from './generateProblems';
 
-function generateProblems({ count, magnitude }: NumbersToWordsData): Array<number> {
-  const max = maxFromMagnitude(magnitude);
-  const magNumber = magNFromMagnitude(magnitude);
+interface FillInTheBlanksProps {
+  number: number;
+  showAnswer: boolean;
+}
 
-  const problems: Array<number> = [];
-  const limitedRetries = tryByKey(max);
-
-  while (problems.length < count) {
-    const number = randomGenerator.stepMagnitude(magNumber);
-    limitedRetries(number, () => {
-      problems.push(number);
-    });
-  }
-
-  return problems;
+function FillInTheBlanks({ number, showAnswer }: FillInTheBlanksProps) {
+  return (
+    <>
+      {
+        numberToWords(number)
+      }
+      {': '}
+      <Blank answer={formatNumber(number)} width="wide" showAnswer={showAnswer} />
+    </>
+  );
 }
 
 interface PreviewNumbersToWordsProps {
   customData: NumbersToWordsData;
 }
 
-// TODO: Use locale on computer's machine
-const numberFormatter = new Intl.NumberFormat('en-US');
-
 function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.Element {
+  const { problemType } = customData;
   const problems = generateProblems(customData);
+  const instructions = problemType === 'blanks'
+    ? 'Write the number that is written in words.'
+    : 'Circle the number that the words represent.';
 
   const itemBuilder = (showAnswer: boolean) => {
-    function fn(number: number, indexNumber: number) {
+    function fn(problem: NumToWordsProblem, indexNumber: number) {
+      const { number } = problem;
       return (
         <ProblemListItem
           key={`problem-${indexNumber}`}
@@ -48,10 +50,20 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
           label={`Numbers To Words ${showAnswer ? 'Answer' : 'Problem'}`}
         >
           {
-            numberToWords(number)
+            problemType === 'blanks'
+              ? (
+                <FillInTheBlanks number={number} showAnswer={showAnswer} />
+              )
+              : (
+                <MultipleChoiceProblem
+                  choices={problem.choices}
+                  answer={number}
+                  showAnswer={showAnswer}
+                >
+                  {numberToWords(number)}
+                </MultipleChoiceProblem>
+              )
           }
-          {': '}
-          <Blank answer={numberFormatter.format(number)} width="wide" showAnswer={showAnswer} />
         </ProblemListItem>
       );
     }
@@ -62,7 +74,7 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
       <MultiPaperPage
         header={(
           <WorksheetHeader>
-            <p>Write the number that is written in words.</p>
+            <p>{instructions}</p>
           </WorksheetHeader>
         )}
         footer={(<WorksheetFooter itemCount={problems.length} />)}
