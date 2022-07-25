@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.73](https://github.com/brainchild-projects/printables/compare/v0.0.72...v0.0.73) (2022-07-25)
+
+
+### Features
+
+* compare numbers worksheet ([b74a840](https://github.com/brainchild-projects/printables/commit/b74a840715f8b24bff749613e0d8d211f866ab84))
+
 ### [0.0.72](https://github.com/brainchild-projects/printables/compare/v0.0.71...v0.0.72) (2022-07-07)
 
 
