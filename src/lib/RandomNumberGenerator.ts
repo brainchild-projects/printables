@@ -4,9 +4,9 @@ import Range from './Range';
 
 export type MathRandom = () => number;
 
-type ScalingMap<T> = Map<T, number>;
+export type ScalingMap<T> = Map<T, number>;
 
-function scaledRoulette<T>(scales: ScalingMap<T>): T {
+export function scaledRoulette<T>(scales: ScalingMap<T>): T {
   const r = Math.random();
   const total = Array.from(scales.values())
     .reduce<number>((sum, n) => sum + n, 0);

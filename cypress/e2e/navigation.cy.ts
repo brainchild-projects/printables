@@ -20,7 +20,12 @@ it('can visit all subpages', () => {
 
   cy.contains(/Printable Materials for Education/i);
 
+  // Compare Numbers Worksheets
+  clickWorksheetLink(/compare.+numbers/i);
+  cy.hasCustomizeFormHeading(/compare.+numbers/i);
+
   // Addition Worksheets
+  goBackHome();
   clickWorksheetLink(/addition.+fill.+blank/i);
   cy.hasCustomizeFormHeading(/addition.+fill.+blank/i);
 

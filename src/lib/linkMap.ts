@@ -14,6 +14,7 @@ const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToW
 const TellingTimePage = lazy(() => import('../pages/tellingTime/TellingTimePage'));
 const NumberGridPage = lazy(() => import('../pages/numberGrid/NumberGridPage'));
 const SkipCountingPage = lazy(() => import('../pages/skipCounting/SkipCountingPage'));
+const CompareNumbersPage = lazy(() => import('../pages/compareNumbers/CompareNumbersPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
 const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
@@ -43,6 +44,10 @@ if (!isProduction) {
 }
 
 export const mathLinks: SectionLinks = new Map([
+  ['/worksheet-compare-numbers', {
+    text: 'Compare Numbers',
+    loader: CompareNumbersPage,
+  }],
   ['/addition-fill-the-blanks', {
     text: 'Addition: Fill in the Blanks',
     loader: AdditionFillTheBlanksPage,

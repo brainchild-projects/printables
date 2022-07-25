@@ -41,6 +41,7 @@ const paths = {
   worksheetTellingTime: '/worksheet-telling-time',
   worksheetNumberGrid: '/worksheet-number-grid',
   worksheetSkipCounting: '/worksheet-skip-counting',
+  worksheetCompareNumbers: 'worksheet-compare-numbers',
 };
 
 const pathNames = Object.keys(paths);
