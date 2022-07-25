@@ -37,3 +37,12 @@ You can also run them all from the command line with the following:
 ```sh
 npx cypress run
 ```
+
+### Generating Pages
+
+This project comes with a script to help you build printable materials faster.
+Run the following script and follow the prompts.
+
+```sh
+npm run generate-page
+```
