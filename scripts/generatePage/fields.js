@@ -4,7 +4,7 @@ function numberField(fieldName) {
   return `      <NumberField
         name="${fieldName}"
         label="${titleize(fieldName)}"
-        value={numberOrEmpty(data.${fieldName})}
+        value={data.${fieldName}}
         onChange={(${fieldName}) => onChange({ ...data, ${fieldName} })}
       />`;
 }

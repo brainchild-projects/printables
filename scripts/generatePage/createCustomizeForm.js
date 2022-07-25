@@ -49,10 +49,6 @@ async function createCustomizeForm(dirPath, pageName, fields) {
           '../../components/forms/NumberField',
           'NumberField',
         );
-        imports.addImportDefault(
-          '../../lib/numberOrEmpty',
-          'numberOrEmpty',
-        );
         return numberField(fieldName);
 
       case 'boolean':
