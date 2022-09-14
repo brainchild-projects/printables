@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.74](https://github.com/brainchild-projects/printables/compare/v0.0.73...v0.0.74) (2022-09-14)
+
 ### [0.0.73](https://github.com/brainchild-projects/printables/compare/v0.0.72...v0.0.73) (2022-07-25)
 
 
