@@ -18,7 +18,7 @@ npm start
 
 ### Tests
 
-To run unint tests, run:
+To run unit tests, run:
 
 ```sh
 npm test
