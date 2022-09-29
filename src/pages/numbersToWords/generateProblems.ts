@@ -34,7 +34,7 @@ export default function generateProblems({
   const max = maxFromMagnitude(magnitude);
   const magNumber = magNFromMagnitude(magnitude);
 
-  const problems: Array<NumToWordsProblem> = [];
+  const problems: NumToWordsProblem[] = [];
   const limitedRetries = tryByKey(max);
 
   while (problems.length < count) {
