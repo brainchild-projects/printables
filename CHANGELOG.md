@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.75](https://github.com/brainchild-projects/printables/compare/v0.0.74...v0.0.75) (2022-09-29)
+
+
+### Features
+
+* odd-even worksheets ([2f001c3](https://github.com/brainchild-projects/printables/commit/2f001c3b4a3ba11c5ed02a48effd625f6b3ac2b2))
+
 ### [0.0.74](https://github.com/brainchild-projects/printables/compare/v0.0.73...v0.0.74) (2022-09-14)
 
 ### [0.0.73](https://github.com/brainchild-projects/printables/compare/v0.0.72...v0.0.73) (2022-07-25)
