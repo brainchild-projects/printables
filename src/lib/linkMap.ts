@@ -15,6 +15,7 @@ const TellingTimePage = lazy(() => import('../pages/tellingTime/TellingTimePage'
 const NumberGridPage = lazy(() => import('../pages/numberGrid/NumberGridPage'));
 const SkipCountingPage = lazy(() => import('../pages/skipCounting/SkipCountingPage'));
 const CompareNumbersPage = lazy(() => import('../pages/compareNumbers/CompareNumbersPage'));
+const OddEvenPage = lazy(() => import('../pages/oddEven/OddEvenPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
 const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
@@ -47,6 +48,10 @@ export const mathLinks: SectionLinks = new Map([
   ['/worksheet-compare-numbers', {
     text: 'Compare Numbers',
     loader: CompareNumbersPage,
+  }],
+  ['/worksheet-odd-even', {
+    text: 'Odd Even',
+    loader: OddEvenPage,
   }],
   ['/addition-fill-the-blanks', {
     text: 'Addition: Fill in the Blanks',
