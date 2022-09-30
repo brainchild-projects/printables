@@ -91,8 +91,15 @@ jobs:
           NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "coverage/integration/lcov.info"
+          path-to-lcov: "./coverage/integration/lcov.info"
           parallel: true
+
+      - name: Check coveralls stuff
+        run: |
+          cat ./coverage/unit/lcov.info
+          cat ./coverage/integration/lcov.info
+          ls -la ./coverage
+          cat ./coverage/lcov.info
 
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
