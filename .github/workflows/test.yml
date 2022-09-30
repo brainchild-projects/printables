@@ -94,13 +94,6 @@ jobs:
           path-to-lcov: "./coverage/integration/lcov.info"
           parallel: true
 
-      - name: Check coveralls stuff
-        run: |
-          ls -ld ./coverage/unit/lcov.info
-          ls -ld ./coverage/integration/lcov.info
-          ls -la ./coverage
-          ls -ld ./coverage/lcov.info
-
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
         env:
@@ -108,6 +101,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
+
+      - name: Check coveralls stuff
+        run: |
+          ls -ld ./coverage/unit/lcov.info
+          ls -ld ./coverage/integration/lcov.info
+          ls -la ./coverage
+          ls -ld ./coverage/lcov.info
 
   build:
     name: Build
