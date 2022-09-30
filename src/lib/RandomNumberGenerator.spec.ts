@@ -14,7 +14,7 @@ describe('integer()', () => {
     it('throws error when max is less than minimum', () => {
       expect(() => {
         generator.integer(5, 6);
-      }).toThrowError();
+      }).toThrow();
     });
   });
 

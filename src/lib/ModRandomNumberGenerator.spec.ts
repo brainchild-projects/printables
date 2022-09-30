@@ -11,7 +11,7 @@ describe('ModRandomNumberGenerator', () => {
       it('throws error when max is less than minimum', () => {
         expect(() => {
           generator.integer(5, 6);
-        }).toThrowError('max (5) should not be less than min (6)');
+        }).toThrow('max (5) should not be less than min (6)');
       });
     });
 

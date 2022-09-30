@@ -175,7 +175,7 @@ describe('PlaceValuesProblem', () => {
         expect(() => {
           // eslint-disable-next-line no-new
           new PlaceValuesProblem(25, { digitPlaceValue: 3 });
-        }).toThrowError('The digitPlaceValue "3" for the number "25" is more than the digit count of "2".');
+        }).toThrow('The digitPlaceValue "3" for the number "25" is more than the digit count of "2".');
       });
     });
   });

@@ -26,7 +26,7 @@ module.exports = {
     'cypress',
   ],
   root: true,
-  ignorePatterns: ['/build/**/*'],
+  ignorePatterns: ['/build/**/*', '/coverage/**'],
   rules: {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
