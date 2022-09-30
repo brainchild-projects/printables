@@ -78,26 +78,22 @@ jobs:
 
       - name: Coveralls Unit
         uses: coverallsapp/github-action@master
-        env:
-          NODE_COVERALLS_DEBUG: 1
         with:
+          flag-name: "Unit"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: "./coverage/unit/lcov.info"
           parallel: true
 
       - name: Coveralls Integration
         uses: coverallsapp/github-action@master
-        env:
-          NODE_COVERALLS_DEBUG: 1
         with:
+          flag-name: "E2E"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: "./coverage/integration/lcov.info"
           parallel: true
 
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
-        env:
-          NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
@@ -107,7 +103,6 @@ jobs:
           ls -ld ./coverage/unit/lcov.info
           ls -ld ./coverage/integration/lcov.info
           ls -la ./coverage
-          ls -ld ./coverage/lcov.info
 
   build:
     name: Build
