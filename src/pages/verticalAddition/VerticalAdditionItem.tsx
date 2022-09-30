@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';

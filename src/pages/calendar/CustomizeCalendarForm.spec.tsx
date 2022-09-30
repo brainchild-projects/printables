@@ -72,9 +72,9 @@ describe('CustomizeCalendarForm', () => {
     });
 
     describe('when the values are changed', () => {
-      beforeEach(() => {
-        userEvent.selectOptions(screen.getByLabelText('Year'), '2031');
-        userEvent.selectOptions(screen.getByLabelText('Month'), 'February');
+      beforeEach(async () => {
+        await userEvent.selectOptions(screen.getByLabelText('Year'), '2031');
+        await userEvent.selectOptions(screen.getByLabelText('Month'), 'February');
       });
 
       it('sends calendar data to onChange callback', () => {

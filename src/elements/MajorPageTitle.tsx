@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import PageTitle from './PageTitle';
 
 const styles = makeStyles(() => ({

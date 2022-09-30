@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { Box, makeStyles } from '@material-ui/core';
 import SettingsForm from './SettingsForm';
 import MajorPageTitle from '../../elements/MajorPageTitle';
 import useSettings from '../useSettings';

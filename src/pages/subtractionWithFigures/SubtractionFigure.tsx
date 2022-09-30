@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
 import Subtraction from '../../lib/math/Subtraction';

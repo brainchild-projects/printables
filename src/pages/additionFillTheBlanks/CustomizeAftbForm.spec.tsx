@@ -126,7 +126,7 @@ describe('CustomizeAftbForm', () => {
   describe('when the problem generation is set to custom addends', () => {
     beforeEach(() => {
       const field = screen.getByLabelText(/problem generation/i);
-      userEvent.selectOptions(field, 'Custom Addends');
+      return userEvent.selectOptions(field, 'Custom Addends');
     });
 
     it('hides number range slider', () => {

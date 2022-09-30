@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import classNames from 'classnames';
 import { usePaperOptions } from './PaperOptionsProvider';
 
@@ -67,14 +66,11 @@ function PaperPage({
     margin, orientation, scale, paperSize,
   } = options;
   const classes = paperPageStyles();
-  const paperStyle: CSSProperties = {
+  const paperStyle = {
     aspectRatio: paperSize.aspectRatioStr(orientation),
     width: paperSize.orientationWidth(orientation),
+    transform: scale !== 1 ? `scale(${scale})` : undefined,
   };
-
-  if (scale !== 1) {
-    paperStyle.transform = `scale(${scale})`;
-  }
 
   const dimensionStyles = paperSize.dimensionsStr(orientation);
 

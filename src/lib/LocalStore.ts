@@ -17,7 +17,7 @@ interface CreateLocalStoreProps<T, K = T> {
   toJSON?: ToJSON<T, K> | undefined;
 }
 
-interface LocalStoreProps<T, K = T> extends CreateLocalStoreProps<T, K>{
+interface LocalStoreProps<T, K = T> extends CreateLocalStoreProps<T, K> {
   storage: Storage,
 }
 

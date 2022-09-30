@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import React, { ReactNode } from 'react';
 import formatNumber from '../../lib/formatNumber';
 import uniqueElements from '../../lib/uniqueElements';

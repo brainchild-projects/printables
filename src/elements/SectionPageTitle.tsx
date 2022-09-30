@@ -1,8 +1,7 @@
 import React, { ElementType, ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles, Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import { Grid } from '@material-ui/core';
 
 const styles = makeStyles(() => ({
   margins: {

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { makeStyles } from '@material-ui/core/node_modules/@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
 import FontLoad from '../../components/FontLoad';
