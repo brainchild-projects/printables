@@ -1,6 +1,6 @@
 {
   "name": "printables",
-  "version": "0.0.75",
+  "version": "0.0.76",
   "private": true,
   "dependencies": {
     "@commitlint/cli": "^17.1.2",

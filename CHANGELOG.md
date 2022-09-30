@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.76](https://github.com/brainchild-projects/printables/compare/v0.0.75...v0.0.76) (2022-09-30)
+
+
+### Bug Fixes
+
+* failing tests and library updates ([c668010](https://github.com/brainchild-projects/printables/commit/c668010161ad50aa600564dfe5cbfb7d073b27a9))
+* toThrowError linting issues ([4f29e7c](https://github.com/brainchild-projects/printables/commit/4f29e7cf0d8dee38120f570fab851243ed9fa0e4))
+
 ### [0.0.75](https://github.com/brainchild-projects/printables/compare/v0.0.74...v0.0.75) (2022-09-29)
 
 
