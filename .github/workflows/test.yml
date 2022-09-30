@@ -96,10 +96,10 @@ jobs:
 
       - name: Check coveralls stuff
         run: |
-          cat ./coverage/unit/lcov.info
-          cat ./coverage/integration/lcov.info
+          ls -ld ./coverage/unit/lcov.info
+          ls -ld ./coverage/integration/lcov.info
           ls -la ./coverage
-          cat ./coverage/lcov.info
+          ls -ld ./coverage/lcov.info
 
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
