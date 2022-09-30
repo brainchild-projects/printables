@@ -78,6 +78,8 @@ jobs:
 
       - name: Coveralls Unit
         uses: coverallsapp/github-action@master
+        env:
+          NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: "./coverage/unit/lcov.info"
@@ -85,6 +87,8 @@ jobs:
 
       - name: Coveralls Integration
         uses: coverallsapp/github-action@master
+        env:
+          NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: "coverage/integration/lcov.info"
@@ -92,6 +96,8 @@ jobs:
 
       - name: Coveralls Finished
         uses: coverallsapp/github-action@master
+        env:
+          NODE_COVERALLS_DEBUG: 1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
