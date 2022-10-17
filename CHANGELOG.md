@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.78](https://github.com/brainchild-projects/printables/compare/v0.0.77...v0.0.78) (2022-10-17)
+
+
+### Bug Fixes
+
+* manifest configuration ([bd060fd](https://github.com/brainchild-projects/printables/commit/bd060fd946f50693c08525f1fc26289de1cad7d4))
+* manifest paths ([a0d1767](https://github.com/brainchild-projects/printables/commit/a0d1767d57893ef614fbc281fc98f38a4e36eb7b))
+
 ### [0.0.77](https://github.com/brainchild-projects/printables/compare/v0.0.76...v0.0.77) (2022-09-30)
 
 ### [0.0.76](https://github.com/brainchild-projects/printables/compare/v0.0.75...v0.0.76) (2022-09-30)
