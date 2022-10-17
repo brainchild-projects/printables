@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.79](https://github.com/brainchild-projects/printables/compare/v0.0.78...v0.0.79) (2022-10-17)
+
+
+### Bug Fixes
+
+* remove old manifest and try cf deploy ([db1e14b](https://github.com/brainchild-projects/printables/commit/db1e14b7404492009d3fbc25780a8271583776c5))
+
 ### [0.0.78](https://github.com/brainchild-projects/printables/compare/v0.0.77...v0.0.78) (2022-10-17)
 
 
