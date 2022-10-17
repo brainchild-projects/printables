@@ -206,8 +206,14 @@ jobs:
           name: Release v${{ steps.nextVersion.outputs.value }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push to Heroku
-        run: git push -f https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git origin/main:main
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_PAGES_DEPLOY_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages publish --project-name=printables build
+      # - name: Push to Heroku
+      #   run: git push -f https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git origin/main:main
       # - name: Repository Dispatch
       #   uses: peter-evans/repository-dispatch@v1
       #   with:
