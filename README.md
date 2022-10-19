@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/9ec071fc06eaafecde38/maintainability)](https://codeclimate.com/github/brainchild-projects/printables/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/brainchild-projects/printables/badge.svg?branch=main)](https://coveralls.io/github/brainchild-projects/printables?branch=main)
 
-[https://brainchildprints.herokuapp.com/](https://brainchildprints.herokuapp.com/)
+[https://printables.pages.dev](https://printables.pages.dev)
 
 Printable resources mainly for education.
 
