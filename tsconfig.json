@@ -23,7 +23,8 @@
     "typeRoots": [
       "src/customTypings",
       "node_modules/@types"
-    ]
+    ],
+    "types": ["vite/client"]
   },
   "include": [
     "src",

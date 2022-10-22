@@ -19,11 +19,10 @@ const OddEvenPage = lazy(() => import('../pages/oddEven/OddEvenPage'));
 const ExperimentsPage = lazy(() => import('../pages/experiments/ExperimentsPage'));
 const SettingsPage = lazy(() => import('../pages/settings/SettingsPage'));
 
-const { NODE_ENV, PUBLIC_URL } = process.env;
-const isProduction = NODE_ENV === 'production';
+const isProduction = import.meta.env.PROD;
 
 export const basePath = isProduction
-  ? PUBLIC_URL
+  ? import.meta.env.BASE_URL
   : undefined;
 
 export const mainLinks: SectionLinks = new Map([
