@@ -76,6 +76,7 @@
     "quote-it": "^1.0.1",
     "shelljs": "^0.8.5",
     "vite": "^3.1.8",
+    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-istanbul": "^3.0.1",
     "vitest": "^0.24.3"
   },
@@ -88,6 +89,7 @@
     "merge-coverage": "npx istanbul-merge --out coverage/merged/coverage-final.json coverage/unit/coverage-final.json coverage/integration/coverage-final.json",
     "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
     "cypress": "NODE_OPTIONS=--openssl-legacy-provider cypress open",
+    "cypressrun": "NODE_OPTIONS=--openssl-legacy-provider cypress run",
     "release": "standard-version",
     "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
     "update-copyright-year": "ts-node scripts/update-copyright-year.ts",

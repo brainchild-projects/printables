@@ -7,9 +7,9 @@ import InstanceOptionsProvider from '../InstanceSettingsProvider';
 
 describe('CustomizeForm', () => {
   describe('when there are errors', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       const callback = () => true;
-      await render(
+      render(
         <CustomizeForm
           name="Foo"
           onBeforePrint={callback}
@@ -33,11 +33,11 @@ describe('CustomizeForm', () => {
 
   describe('Printing Tips', () => {
     let printBefore: () => void;
-    beforeEach(async () => {
+    beforeEach(() => {
       printBefore = window.print;
       window.print = vi.fn();
       const callback = () => true;
-      await render(
+      render(
         <InstanceOptionsProvider>
           <CustomizeForm
             name="Foo"

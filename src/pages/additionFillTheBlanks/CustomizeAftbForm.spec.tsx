@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm';
 import AftbData from './AftbData';
@@ -42,9 +41,9 @@ describe('CustomizeAftbForm', () => {
     columns: 2,
   };
 
-  beforeEach(async () => {
+  beforeEach(() => {
     onChange = vi.fn();
-    await render(
+    render(
       <FormWrapper
         onChange={onChange}
         data={initialData}

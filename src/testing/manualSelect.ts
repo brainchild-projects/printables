@@ -1,4 +1,4 @@
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 
 function optionLabelValue(option: HTMLOptionElement): string {
   return option.innerHTML.toString().trim();

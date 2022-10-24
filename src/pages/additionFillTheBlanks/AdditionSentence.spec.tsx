@@ -8,9 +8,9 @@ describe('AdditionSentence', () => {
   const element = () => screen.getByRole('listitem');
 
   describe('default behavior', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       const addition = new Addition(1, 2);
-      await render(
+      render(
         <AdditionSentence addition={addition} />,
       );
     });
@@ -21,8 +21,8 @@ describe('AdditionSentence', () => {
   });
 
   describe('when showAnswer is true', () => {
-    beforeEach(async () => {
-      await render(
+    beforeEach(() => {
+      render(
         <AdditionSentence showAnswer addition={new Addition(3, 4)} />,
       );
     });
@@ -41,8 +41,8 @@ describe('AdditionSentence', () => {
 
     Object.entries(blanks).forEach(([blank, content]) => {
       describe(`when blank=${blank}`, () => {
-        beforeEach(async () => {
-          await render(
+        beforeEach(() => {
+          render(
             <AdditionSentence
               blank={blank as AdditionBlankPosition}
               addition={new Addition(5, 6)}
@@ -56,8 +56,8 @@ describe('AdditionSentence', () => {
       });
 
       describe(`when blank=${blank} but showAnswer=true`, () => {
-        beforeEach(async () => {
-          await render(
+        beforeEach(() => {
+          render(
             <AdditionSentence
               showAnswer
               blank={blank as AdditionBlankPosition}

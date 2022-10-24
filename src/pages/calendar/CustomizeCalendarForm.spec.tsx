@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm';
 import stubPrint from '../../testing/stubPrint';
 import CalendarData from './CalendarData';
@@ -40,7 +39,7 @@ describe('CustomizeCalendarForm', () => {
     let initialData: CalendarData;
     let onChange: (data: CalendarData) => void;
 
-    beforeEach(async () => {
+    beforeEach(() => {
       year = randomInt(2020, 2030);
       month = randomInt(0, 11);
       const now = new Date(year, month);
@@ -54,7 +53,7 @@ describe('CustomizeCalendarForm', () => {
           date: 1,
         },
       };
-      await render(
+      render(
         <FormWrapper
           data={initialData}
           now={now}
@@ -65,9 +64,6 @@ describe('CustomizeCalendarForm', () => {
 
     it('shows current year', () => {
       const yearSelect = screen.getByLabelText('Year');
-      console.log([
-        ...yearSelect.querySelectorAll('option')
-      ].map((opt) => opt.value).join(", "))
       expect(yearSelect).toHaveValue(year.toString());
     });
 

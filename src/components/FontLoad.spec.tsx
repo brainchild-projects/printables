@@ -24,10 +24,8 @@ describe('FontLoad', () => {
   });
 
   describe('if it is called again with the same href', () => {
-    beforeEach(async () => {
-      await render(
-        <FontLoad href="https://somewhere.com/fontfamily" />,
-      );
+    beforeEach(() => {
+      render(<FontLoad href="https://somewhere.com/fontfamily" />);
     });
 
     it('does not add another link node', () => {
