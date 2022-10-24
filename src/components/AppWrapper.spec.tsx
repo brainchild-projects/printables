@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { vi } from 'vitest';
 import {
   render, screen, within, waitFor,
 } from '@testing-library/react';
@@ -6,7 +7,7 @@ import AppWrapper from './AppWrapper';
 
 describe('App', () => {
   beforeEach(() => {
-    window.scrollTo = jest.fn();
+    window.scrollTo = vi.fn();
   });
 
   it('should show site name', async () => {

@@ -87,7 +87,7 @@ function CustomizeAdditionSubtractionForm({
                 from={data.rangeFrom}
                 to={data.rangeTo}
                 id="single-range-slider"
-                data-test="single-range-slider"
+                data-testid="single-range-slider"
                 onChange={({ from, to }) => {
                   updateData({
                     ...data,
@@ -110,7 +110,7 @@ function CustomizeAdditionSubtractionForm({
                   from={data.customAddendsA.from}
                   to={data.customAddendsA.to}
                   id="custom-addends-a-slider"
-                  data-test="custom-addends-a-slider"
+                  data-testid="custom-addends-a-slider"
                   onChange={({ from, to }) => {
                     updateData({
                       ...data,
@@ -125,7 +125,7 @@ function CustomizeAdditionSubtractionForm({
                   from={data.customAddendsB.from}
                   to={data.customAddendsB.to}
                   id="custom-addends-b-slider"
-                  data-test="custom-addends-b-slider"
+                  data-testid="custom-addends-b-slider"
                   onChange={({ from, to }) => {
                     updateData({
                       ...data,

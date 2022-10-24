@@ -74,7 +74,7 @@ function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
         footer={(<WorksheetFooter itemCount={theData.length} />)}
         wrapper={ProblemList}
         wrapperProps={{ columns: data.columns }}
-        data-test-id="problems"
+        data-testid="problems"
         data={theData}
         itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(false)}

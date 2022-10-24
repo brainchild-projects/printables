@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm';
 import AftbData from './AftbData';
 import stubPrint from '../../testing/stubPrint';
+import manualSelect from '../../testing/manualSelect';
 
 type FormWrapperProps = CustomizeAftbFormProps;
 
@@ -40,9 +42,9 @@ describe('CustomizeAftbForm', () => {
     columns: 2,
   };
 
-  beforeEach(() => {
-    onChange = jest.fn();
-    return render(
+  beforeEach(async () => {
+    onChange = vi.fn();
+    await render(
       <FormWrapper
         onChange={onChange}
         data={initialData}
@@ -124,9 +126,9 @@ describe('CustomizeAftbForm', () => {
   });
 
   describe('when the problem generation is set to custom addends', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const field = screen.getByLabelText(/problem generation/i);
-      return userEvent.selectOptions(field, 'Custom Addends');
+      await manualSelect(field as HTMLSelectElement, 'Custom Addends');
     });
 
     it('hides number range slider', () => {

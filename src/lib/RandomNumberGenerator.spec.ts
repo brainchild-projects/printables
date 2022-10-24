@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import RandomNumberGenerator, { MathRandom } from './RandomNumberGenerator';
 
 describe('integer()', () => {
@@ -6,7 +7,7 @@ describe('integer()', () => {
   let generator: RandomNumberGenerator;
 
   beforeEach(() => {
-    randomFn = jest.fn(() => randomFnResult);
+    randomFn = vi.fn(() => randomFnResult);
     generator = new RandomNumberGenerator(randomFn);
   });
 

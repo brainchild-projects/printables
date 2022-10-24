@@ -24,9 +24,11 @@ describe('FontLoad', () => {
   });
 
   describe('if it is called again with the same href', () => {
-    beforeEach(() => render(
-      <FontLoad href="https://somewhere.com/fontfamily" />,
-    ));
+    beforeEach(async () => {
+      await render(
+        <FontLoad href="https://somewhere.com/fontfamily" />,
+      );
+    });
 
     it('does not add another link node', () => {
       const links = document.querySelectorAll('head link[href="https://somewhere.com/fontfamily"]');

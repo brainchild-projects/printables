@@ -1,14 +1,15 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CustomizeForm from './CustomizeForm';
 import InstanceOptionsProvider from '../InstanceSettingsProvider';
 
 describe('CustomizeForm', () => {
   describe('when there are errors', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const callback = () => true;
-      return render(
+      await render(
         <CustomizeForm
           name="Foo"
           onBeforePrint={callback}
@@ -32,11 +33,11 @@ describe('CustomizeForm', () => {
 
   describe('Printing Tips', () => {
     let printBefore: () => void;
-    beforeEach(() => {
+    beforeEach(async () => {
       printBefore = window.print;
-      window.print = jest.fn();
+      window.print = vi.fn();
       const callback = () => true;
-      return render(
+      await render(
         <InstanceOptionsProvider>
           <CustomizeForm
             name="Foo"

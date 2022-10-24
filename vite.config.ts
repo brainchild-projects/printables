@@ -18,5 +18,10 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
-  }
+  },
+  test: {
+    globals: true,
+    setupFiles: ['./vitest.setup.ts'],
+    environment: 'happy-dom',
+  },
 })

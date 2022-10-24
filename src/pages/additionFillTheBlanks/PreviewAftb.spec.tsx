@@ -17,9 +17,9 @@ describe('PreviewAftb', () => {
   };
 
   describe('default behavior', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const aftbData: AftbData = { ...defaultAftbData };
-      return render(
+      await render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -55,13 +55,13 @@ describe('PreviewAftb', () => {
   });
 
   describe('when the strategy is set to "addends"', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const aftbData: AftbData = {
         ...defaultAftbData,
         blankStrategy: 'addends',
       };
 
-      return render(
+      await render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -81,13 +81,13 @@ describe('PreviewAftb', () => {
   });
 
   describe('when the strategy is set to "random"', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const aftbData: AftbData = {
         ...defaultAftbData,
         blankStrategy: 'random',
       };
 
-      return render(
+      await render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -103,7 +103,7 @@ describe('PreviewAftb', () => {
   });
 
   describe('when the problem generation is set to "custom addends', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       const aftbData: AftbData = {
         ...defaultAftbData,
         problemGeneration: 'custom addends',
@@ -111,7 +111,7 @@ describe('PreviewAftb', () => {
         customAddendsB: { from: 5, to: 6 },
       };
 
-      return render(
+      await render(
         <PreviewAftb
           aftbData={aftbData}
         />,

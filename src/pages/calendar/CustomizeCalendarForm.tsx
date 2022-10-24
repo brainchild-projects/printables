@@ -29,7 +29,7 @@ function yearOptions(year: number): JSX.Element[] {
   const end = year + 20;
   const options = [];
   for (let index = start; index <= end; index += 1) {
-    options.push(<option key={index}>{index}</option>);
+    options.push(<option key={index} value={index}>{index}</option>);
   }
   return options;
 }
@@ -54,7 +54,7 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
     >
       <SelectField
         name="year"
-        value={data.year}
+        value={data.year.toString()}
         onChange={changeHandler('year')}
       >
         {yearOptions(currentYear)}
@@ -62,7 +62,7 @@ function CustomizeCalendarForm(props: CustomizeCalendarFormProps): JSX.Element {
 
       <SelectField
         name="month"
-        value={data.month}
+        value={data.month.toString()}
         onChange={changeHandler('month')}
       >
         {

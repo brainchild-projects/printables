@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm';
 import stubPrint from '../../testing/stubPrint';
 import CalendarData from './CalendarData';
+import manualSelect from '../../testing/manualSelect';
 
 function randomInt(minIn: number, maxIn: number): number {
   const min = Math.floor(minIn);
@@ -38,11 +40,11 @@ describe('CustomizeCalendarForm', () => {
     let initialData: CalendarData;
     let onChange: (data: CalendarData) => void;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       year = randomInt(2020, 2030);
       month = randomInt(0, 11);
       const now = new Date(year, month);
-      onChange = jest.fn();
+      onChange = vi.fn();
       initialData = {
         year,
         month,
@@ -52,7 +54,7 @@ describe('CustomizeCalendarForm', () => {
           date: 1,
         },
       };
-      return render(
+      await render(
         <FormWrapper
           data={initialData}
           now={now}
@@ -63,6 +65,9 @@ describe('CustomizeCalendarForm', () => {
 
     it('shows current year', () => {
       const yearSelect = screen.getByLabelText('Year');
+      console.log([
+        ...yearSelect.querySelectorAll('option')
+      ].map((opt) => opt.value).join(", "))
       expect(yearSelect).toHaveValue(year.toString());
     });
 
@@ -73,11 +78,11 @@ describe('CustomizeCalendarForm', () => {
 
     describe('when the values are changed', () => {
       beforeEach(async () => {
-        await userEvent.selectOptions(screen.getByLabelText('Year'), '2031');
-        await userEvent.selectOptions(screen.getByLabelText('Month'), 'February');
+        await manualSelect(screen.getByLabelText('Year'), '2031');
+        await manualSelect(screen.getByLabelText('Month'), 'February');
       });
 
-      it('sends calendar data to onChange callback', () => {
+      it.only('sends calendar data to onChange callback', () => {
         expect(onChange).toHaveBeenCalledWith({ ...initialData, year: 2031, month: 1 });
       });
     });

@@ -81,7 +81,7 @@ interface NumberRangeSliderProps extends Range {
   id: string;
   magnitude?: number;
   onChange: NumberRangeChangeCallback;
-  'data-test'?: string;
+  'data-testid'?: string;
 }
 
 type ChangeHanlder = (value: number | number[], event: HtmlFieldChangeEvent) => void;
@@ -206,7 +206,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         min={0}
         step={1}
         max={maxSlider}
-        data-test={options['data-test']}
+        data-testid={options['data-testid']}
         marks={marks}
         scale={valueScale}
         onChange={(event, value) => changeHandler(value, event as HtmlFieldChangeEvent)}

@@ -24,7 +24,10 @@
       "src/customTypings",
       "node_modules/@types"
     ],
-    "types": ["vite/client"]
+    "types": [
+      "vite/client",
+      "vitest/globals"
+    ]
   },
   "include": [
     "src",

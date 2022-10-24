@@ -2,12 +2,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import MultiPaperPage, { PropsCallback } from './MultiPaperPage';
 
 describe('MultiPaperPage', () => {
   let propsCallback: PropsCallback;
   beforeEach(() => {
-    propsCallback = jest.fn((props, { instanceIndex, memberIndex }) => (
+    propsCallback = vi.fn((props, { instanceIndex, memberIndex }) => (
       { ...props, 'data-info': `${instanceIndex} ${memberIndex}` }
     ));
     render(

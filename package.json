@@ -22,7 +22,6 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "better-react-mathjax": "^2.0.2",
-    "canvas": "^2.10.1",
     "classnames": "^2.3.2",
     "eslint": "^8.24.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -71,19 +70,21 @@
     "coveralls": "^3.1.1",
     "cypress": "^10.10.0",
     "cypress-hmr-restarter": "^2.0.4",
+    "happy-dom": "^7.6.0",
     "inquirer": "^9.1.2",
     "istanbul-merge": "^1.1.1",
     "quote-it": "^1.0.1",
     "shelljs": "^0.8.5",
     "vite": "^3.1.8",
-    "vite-plugin-istanbul": "^3.0.1"
+    "vite-plugin-istanbul": "^3.0.1",
+    "vitest": "^0.24.3"
   },
   "scripts": {
     "start": "VITE_COVERAGE='false' vite",
     "start:coverage": "VITE_COVERAGE='true' start",
     "build": "vite build",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage/unit",
+    "test": "NODE_ENV=test vitest",
+    "test:coverage": "vitest run --watchAll=false --coverage --coverageDirectory=coverage/unit",
     "merge-coverage": "npx istanbul-merge --out coverage/merged/coverage-final.json coverage/unit/coverage-final.json coverage/integration/coverage-final.json",
     "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
     "cypress": "NODE_OPTIONS=--openssl-legacy-provider cypress open",
@@ -122,13 +123,6 @@
   "engines": {
     "npm": "7.x",
     "node": "14.x"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!<rootDir>/node_modules/",
-      "!src/**/*.spec.{js,jsx,ts,tsx}"
-    ]
   },
   "nyc": {
     "report-dir": "coverage/integration",
