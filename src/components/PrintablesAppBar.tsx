@@ -5,6 +5,7 @@ import {
   createTheme, MuiThemeProvider,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
@@ -25,6 +26,9 @@ const styles = makeStyles(() => ({
     '&:hover': {
       textDecoration: 'underline',
     },
+  },
+  title: {
+    flexGrow: 1,
   },
 }));
 
@@ -63,11 +67,21 @@ function PrintablesAppBar({ linkMap }: PrintablesAppBarProps): JSX.Element {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6">
+            <Typography variant="h6" className={classes.title}>
               <Link to="/" className={classes.homeLink}>
                 Printables
               </Link>
             </Typography>
+            <div>
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://github.com/brainchild-projects/printables"
+                target="_blank"
+              >
+                <GitHubIcon />
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
         <Sidebar
