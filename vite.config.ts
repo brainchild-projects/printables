@@ -30,6 +30,7 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       reportsDirectory: './coverage/unit',
+      reporter: ['lcovonly', 'text'],
     },
   },
 });
