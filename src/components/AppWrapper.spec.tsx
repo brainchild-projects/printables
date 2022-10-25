@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { vi } from 'vitest';
 import {
   render, screen, within, waitFor,
@@ -12,14 +12,17 @@ describe('App', () => {
 
   it('should show site name', async () => {
     render(
-      <Suspense fallback="loading app">
+      <React.Suspense fallback="loading app">
         <AppWrapper />
-      </Suspense>,
+      </React.Suspense>,
     );
     await waitFor(
       () => {
         const header = within(screen.getByRole('banner'));
         expect(header.getByRole('heading', { name: /printables/i })).toBeInTheDocument();
+      },
+      {
+        timeout: 3000,
       },
     );
   });
