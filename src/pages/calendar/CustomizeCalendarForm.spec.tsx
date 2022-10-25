@@ -78,7 +78,7 @@ describe('CustomizeCalendarForm', () => {
         await manualSelect(screen.getByLabelText('Month'), 'February');
       });
 
-      it.only('sends calendar data to onChange callback', () => {
+      it('sends calendar data to onChange callback', () => {
         expect(onChange).toHaveBeenCalledWith({ ...initialData, year: 2031, month: 1 });
       });
     });
