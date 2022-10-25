@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/brainchild-projects/printables/compare/v0.0.80...v0.1.0) (2022-10-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* use vite instead of react-scripts (wip)
+
+### Features
+
+* add github link to header and footer ([5b0a2b1](https://github.com/brainchild-projects/printables/commit/5b0a2b16960c9b5fbb99bc570b82b88fcc2f92bf))
+* use vite instead of react-scripts (wip) ([8114e2b](https://github.com/brainchild-projects/printables/commit/8114e2bd9f274448341f4a421b728bbeeea17f6b))
+
 ### [0.0.80](https://github.com/brainchild-projects/printables/compare/v0.0.79...v0.0.80) (2022-10-19)
 
 ### [0.0.79](https://github.com/brainchild-projects/printables/compare/v0.0.78...v0.0.79) (2022-10-17)
