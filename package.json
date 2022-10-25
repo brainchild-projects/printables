@@ -83,7 +83,7 @@
   },
   "scripts": {
     "start": "VITE_COVERAGE='false' vite",
-    "start:coverage": "VITE_COVERAGE='true' start",
+    "start:coverage": "VITE_COVERAGE='true' vite",
     "build": "vite build",
     "test": "NODE_ENV=test vitest",
     "test:coverage": "vitest run --coverage",
