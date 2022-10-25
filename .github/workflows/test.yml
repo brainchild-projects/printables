@@ -162,7 +162,7 @@ jobs:
         if: steps.shouldRelease.outputs.value == 'yes'
         run: |
           npm run build
-          tar -C ./build -czvf ./release-${{ steps.nextVersion.outputs.value }}.tar.gz .
+          tar -C ./dist -czvf ./release-${{ steps.nextVersion.outputs.value }}.tar.gz .
 
       - name: Do Release Changes
         if: steps.shouldRelease.outputs.value == 'yes'
