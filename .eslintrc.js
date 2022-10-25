@@ -5,7 +5,6 @@ module.exports = {
   },
   extends: [
     'react-app',
-    // 'react-app/jest',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
@@ -26,7 +25,11 @@ module.exports = {
     'cypress',
   ],
   root: true,
-  ignorePatterns: ['/build/**/*', '/coverage/**'],
+  ignorePatterns: [
+    '/build/**/*',
+    '/coverage/**',
+    '/dist/**',
+  ],
   rules: {
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
     'no-void': 'off',
@@ -61,11 +64,16 @@ module.exports = {
       files: 'src/**/*.spec.+(ts|tsx)',
       plugins: ['testing-library'],
       extends: [
-        'plugin:jest/recommended',
         'plugin:testing-library/react',
       ],
       rules: {
         'testing-library/no-render-in-setup': ['error', { allowTestingFrameworkSetupHook: 'beforeEach' }],
+      },
+    },
+    {
+      files: 'vite.config.ts',
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
       },
     },
     {

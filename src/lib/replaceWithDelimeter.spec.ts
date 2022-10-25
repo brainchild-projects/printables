@@ -62,7 +62,6 @@ describe('replaceWithDelimeter', () => {
         result = replaceWithDelimeter(subject, param);
       });
 
-      // eslint-disable-next-line jest/valid-title
       it(expectedComment === undefined ? 'returns correct result' : expectedComment, () => {
         expect(result).toEqual(expected);
       });

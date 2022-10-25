@@ -1,11 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { vi, SpyInstance } from 'vitest';
 
 export default function stubPrint(): void {
-  let windowSpy: jest.SpyInstance<void, []>;
+  let windowSpy: SpyInstance<[], void>;
   beforeEach(() => {
-    windowSpy = jest.spyOn(window, 'print');
+    windowSpy = vi.spyOn(window, 'print');
     windowSpy.mockImplementation(() => ({
-      print: () => {},
+      print: () => { },
     }));
   });
 

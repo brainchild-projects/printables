@@ -75,7 +75,7 @@ function PreviewAftb({
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper={ProblemList}
         wrapperProps={{ columns: aftbData.columns }}
-        data-test-id="problems"
+        data-testid="problems"
         data={data}
         itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(false)}

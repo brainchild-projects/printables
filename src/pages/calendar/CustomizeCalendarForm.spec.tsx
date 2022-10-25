@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm';
 import stubPrint from '../../testing/stubPrint';
 import CalendarData from './CalendarData';
+import manualSelect from '../../testing/manualSelect';
 
 function randomInt(minIn: number, maxIn: number): number {
   const min = Math.floor(minIn);
@@ -42,7 +43,7 @@ describe('CustomizeCalendarForm', () => {
       year = randomInt(2020, 2030);
       month = randomInt(0, 11);
       const now = new Date(year, month);
-      onChange = jest.fn();
+      onChange = vi.fn();
       initialData = {
         year,
         month,
@@ -52,7 +53,7 @@ describe('CustomizeCalendarForm', () => {
           date: 1,
         },
       };
-      return render(
+      render(
         <FormWrapper
           data={initialData}
           now={now}
@@ -73,8 +74,8 @@ describe('CustomizeCalendarForm', () => {
 
     describe('when the values are changed', () => {
       beforeEach(async () => {
-        await userEvent.selectOptions(screen.getByLabelText('Year'), '2031');
-        await userEvent.selectOptions(screen.getByLabelText('Month'), 'February');
+        await manualSelect(screen.getByLabelText('Year'), '2031');
+        await manualSelect(screen.getByLabelText('Month'), 'February');
       });
 
       it('sends calendar data to onChange callback', () => {

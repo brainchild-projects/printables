@@ -12,11 +12,15 @@ interface SelectFieldProps<T extends string> {
   onChange: (value: T, event: HtmlFieldChangeEvent) => void;
   value: unknown;
   children?: React.ReactNode;
+  'data-testid'?: string;
 }
 
-function SelectField<T extends string>({
-  id, name, label, onChange, value, children,
-}: SelectFieldProps<T>): JSX.Element {
+function SelectField<T extends string>(props: SelectFieldProps<T>): JSX.Element {
+  const {
+    id, name, label, onChange, value, children,
+  } = props;
+  // eslint-disable-next-line react/destructuring-assignment
+  const testId = props['data-testid'];
   const theId = id ?? generateId('select', name);
   const theLabel = label ?? titleize(name);
   return (
@@ -31,6 +35,7 @@ function SelectField<T extends string>({
         fullWidth
         variant="filled"
         value={value}
+        data-testid={testId}
         onChange={(event) => {
           onChange(event.target.value as T, event as HtmlFieldChangeEvent);
         }}
@@ -45,6 +50,7 @@ SelectField.defaultProps = {
   children: null,
   id: null,
   label: null,
+  'data-testid': undefined,
 };
 
 export default SelectField;

@@ -13,8 +13,15 @@ export default defineConfig({
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      return require('./cypress/plugins/index.js')(on, config);
+      require('@cypress/code-coverage/task')(on, config);
+      return config;
     },
     baseUrl: 'http://localhost:3000',
+  },
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+    },
   },
 });

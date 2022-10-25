@@ -10,7 +10,7 @@ describe('AdditionSentence', () => {
   describe('default behavior', () => {
     beforeEach(() => {
       const addition = new Addition(1, 2);
-      return render(
+      render(
         <AdditionSentence addition={addition} />,
       );
     });
@@ -21,9 +21,11 @@ describe('AdditionSentence', () => {
   });
 
   describe('when showAnswer is true', () => {
-    beforeEach(() => render(
-      <AdditionSentence showAnswer addition={new Addition(3, 4)} />,
-    ));
+    beforeEach(() => {
+      render(
+        <AdditionSentence showAnswer addition={new Addition(3, 4)} />,
+      );
+    });
 
     it('renders the answer instead of blank', () => {
       expect(element()).toHaveTextContent(/3 \+ 4 = 7/);
@@ -39,12 +41,14 @@ describe('AdditionSentence', () => {
 
     Object.entries(blanks).forEach(([blank, content]) => {
       describe(`when blank=${blank}`, () => {
-        beforeEach(() => render(
-          <AdditionSentence
-            blank={blank as AdditionBlankPosition}
-            addition={new Addition(5, 6)}
-          />,
-        ));
+        beforeEach(() => {
+          render(
+            <AdditionSentence
+              blank={blank as AdditionBlankPosition}
+              addition={new Addition(5, 6)}
+            />,
+          );
+        });
 
         it('blanks correct position', () => {
           expect(element()).toHaveTextContent(content);
@@ -52,13 +56,15 @@ describe('AdditionSentence', () => {
       });
 
       describe(`when blank=${blank} but showAnswer=true`, () => {
-        beforeEach(() => render(
-          <AdditionSentence
-            showAnswer
-            blank={blank as AdditionBlankPosition}
-            addition={new Addition(5, 6)}
-          />,
-        ));
+        beforeEach(() => {
+          render(
+            <AdditionSentence
+              showAnswer
+              blank={blank as AdditionBlankPosition}
+              addition={new Addition(5, 6)}
+            />,
+          );
+        });
 
         it('displays everything when show answer is enabled', () => {
           expect(element()).toHaveTextContent(/5 \+ 6 = 11/);

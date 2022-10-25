@@ -19,7 +19,7 @@ describe('PreviewAftb', () => {
   describe('default behavior', () => {
     beforeEach(() => {
       const aftbData: AftbData = { ...defaultAftbData };
-      return render(
+      render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -61,7 +61,7 @@ describe('PreviewAftb', () => {
         blankStrategy: 'addends',
       };
 
-      return render(
+      render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -87,7 +87,7 @@ describe('PreviewAftb', () => {
         blankStrategy: 'random',
       };
 
-      return render(
+      render(
         <PreviewAftb
           aftbData={aftbData}
         />,
@@ -111,7 +111,7 @@ describe('PreviewAftb', () => {
         customAddendsB: { from: 5, to: 6 },
       };
 
-      return render(
+      render(
         <PreviewAftb
           aftbData={aftbData}
         />,

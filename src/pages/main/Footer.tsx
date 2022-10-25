@@ -18,11 +18,20 @@ function Footer(): JSX.Element {
       <Typography component="p">
         Copyright ©
         {' '}
-        <span className="copyright-year">2021</span>
+        <span className="copyright-year">2021-2022</span>
         {' '}
         Wayne Duran
       </Typography>
       <Typography component="p">
+        Help us out on
+        {' '}
+        <a
+          href="https://github.com/brainchild-projects/printables"
+        >
+          GitHub
+        </a>
+      </Typography>
+      <Typography component="p" variant="caption">
         Homepage Photo by
         {' '}
         <Link href="https://unsplash.com/@anniespratt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Annie Spratt</Link>

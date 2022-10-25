@@ -47,7 +47,7 @@ class LocalStore<T, K = T> {
   }: CreateLocalStoreProps<T, K>): LocalStore<T, K> {
     return new LocalStore<T, K>({
       key,
-      storage: global.localStorage,
+      storage: window.localStorage,
       fromJSON,
       toJSON,
     });
