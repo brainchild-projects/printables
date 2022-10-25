@@ -22,8 +22,11 @@ export default defineConfig({
     sourcemap: true,
   },
   test: {
+    environment: 'happy-dom',
     globals: true,
     setupFiles: ['./vitest.setup.ts'],
-    environment: 'happy-dom',
+    coverage: {
+      reportsDirectory: './coverage/unit',
+    },
   },
 });
