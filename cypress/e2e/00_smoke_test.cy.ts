@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 it('shows basic content', () => {
   cy.visitHome();
   cy.contains('Printables');
@@ -10,7 +11,8 @@ it('shows basic content', () => {
 
   // The following is just for the server to warm up
   // TODO: Fix this when we figure out how to solve this slow warm up phase
-  // eslint-disable-next-line cypress/no-unnecessary-waiting
   cy.wait(5000);
   cy.hasCustomizeFormHeading(/number grid/i);
+  cy.wait(5000);
+  cy.visitHome();
 });
