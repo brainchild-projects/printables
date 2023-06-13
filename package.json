@@ -124,8 +124,8 @@
     }
   },
   "engines": {
-    "npm": "7.x",
-    "node": "14.x"
+    "npm": "9.x",
+    "node": "18.x"
   },
   "nyc": {
     "report-dir": "coverage/integration",
