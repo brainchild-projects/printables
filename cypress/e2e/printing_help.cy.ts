@@ -1,6 +1,6 @@
 /* eslint-disable cypress/unsafe-to-chain-command */
 /* eslint-disable promise/no-nesting */
-it('shows printing help for first time users and as ncessary', () => {
+it('shows printing help for first time users and as necessary', () => {
   cy.visitAdditionFillTheBlanks();
 
   void cy.window().then((win) => {
