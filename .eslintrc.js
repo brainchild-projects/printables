@@ -9,7 +9,9 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
+    'plugin:@typescript-eslint/recommended',
     'airbnb',
+    'prettier',
   ],
   parserOptions: {
     ecmaFeatures: {
