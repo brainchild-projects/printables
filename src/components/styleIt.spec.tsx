@@ -1,7 +1,13 @@
 /* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { render } from '@testing-library/react';
-import styleIt, { generateStyleDeclaration, generateDeclarationBlocks, StyleDefinitionCallback, StyleRecords } from './styleIt';
+import styleIt, {
+  generateStyleDeclaration,
+  generateDeclarationBlocks,
+  generateSelector,
+  StyleDefinitionCallback,
+  StyleRecords,
+} from './styleIt';
 
 describe('styleIt', () => {
   let unmount: () => void;
@@ -9,6 +15,10 @@ describe('styleIt', () => {
     title: {
       fontSize: 12,
       display: 'block',
+
+      '&.red': {
+        color: 'red',
+      },
     },
   }));
 
@@ -26,22 +36,22 @@ describe('styleIt', () => {
     expect(style).toBeInTheDocument();
   });
 
-  it.skip('sets h1.title style correctly', () => {
+  it('sets h1.title style correctly', () => {
     const style = document.querySelector('head style');
-    expect(style?.textContent).toMatch(/h1.title-.+{font-size:12px;display:block;}/);
+    expect(style?.textContent).toMatch(/\.title-.+{font-size:12px;display:block;}\n\.title-.+\.red{color:red;}/);
   });
 
   afterEach(() => unmount());
 });
 
-interface GenerateStyleDeclarationTestParam {
+interface GenerateStyleDeclarationTestData {
   description: string;
   params: [string, string | number];
   expected: string;
 }
 
 describe('generateStyleDeclaration', () => {
-  const testData: GenerateStyleDeclarationTestParam[] = [
+  const testData: GenerateStyleDeclarationTestData[] = [
     {
       description: 'generates style declaration with px',
       params: ['fontSize', 12],
@@ -62,11 +72,95 @@ describe('generateStyleDeclaration', () => {
   });
 });
 
+interface GenerateSelectorTestData {
+  description: string;
+  params: {
+    value: string;
+    classNames: Record<string, string>;
+    parentSelector?: string;
+  };
+  expected: string;
+}
+
+describe('generateSelector', () => {
+  const testData: GenerateSelectorTestData[] = [
+    {
+      description: 'pure class name with no parent',
+      params: {
+        value: 'title',
+        classNames: { title: 'title-foo' },
+      },
+      expected: '.title-foo',
+    },
+    {
+      description: 'simple selector with parent and ampersand',
+      params: {
+        value: '&.bar',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '.title-foo.bar',
+    },
+    {
+      description: 'simple selector with parent and no ampersand',
+      params: {
+        value: '.bar',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '.title-foo .bar',
+    },
+    {
+      description: 'simple selector with parent and ampersand as child',
+      params: {
+        value: '.bar &',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '.bar .title-foo',
+    },
+    {
+      description: 'simple selector with ampersand but no parent',
+      params: {
+        value: '&.bar',
+        classNames: { title: 'title-foo' },
+      },
+      expected: '&.bar',
+    },
+    {
+      description: 'pure class name with no parent and no matching class name',
+      params: {
+        value: 'title',
+        classNames: { heading: 'title-foo' },
+      },
+      expected: 'title',
+    },
+    {
+      description: 'comma-delimited class names with parent selector',
+      params: {
+        value: '.bar, .baz',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '.title-foo .bar,.title-foo .baz',
+    },
+  ];
+
+  testData.forEach(({ description, params, expected }) => {
+    it(`generates selector for ${description}`, () => {
+      const { value, classNames, parentSelector } = params;
+      const selector = generateSelector(value, classNames, parentSelector);
+      expect(selector).toEqual(expected);
+    });
+  });
+});
+
 describe('generateDeclarationBlocks', () => {
   let result = '';
   let passed: [string, StyleRecords] | null = null;
   const callback: StyleDefinitionCallback = (key: string, declaration: StyleRecords) => {
     passed = [key, declaration];
+    return 'foo';
   };
 
   beforeEach(() => {
@@ -80,7 +174,7 @@ describe('generateDeclarationBlocks', () => {
   });
 
   it('generates declaration block', () => {
-    expect(result).toEqual('{font-size:12px;display:block;}');
+    expect(result).toEqual('{font-size:12px;display:block;}foo');
   });
 
   it('passes key and declaration to callback', () => {
