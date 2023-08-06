@@ -70,8 +70,8 @@
     "@types/crypto-js": "^4.1.1",
     "@types/inquirer": "^9.0.2",
     "@types/shelljs": "^0.8.11",
-    "@vitejs/plugin-react": "^2.0.1",
-    "@vitest/coverage-c8": "^0.24.3",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitest/coverage-c8": "^0.33.0",
     "chalk": "^5.0.1",
     "coveralls": "^3.1.1",
     "cypress": "^10.10.0",
@@ -82,10 +82,10 @@
     "istanbul-merge": "^1.1.1",
     "quote-it": "^1.0.1",
     "shelljs": "^0.8.5",
-    "vite": "^3.1.8",
+    "vite": "^4.4.8",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-istanbul": "^3.0.1",
-    "vitest": "^0.24.3"
+    "vite-plugin-istanbul": "^5.0.0",
+    "vitest": "^0.34.1"
   },
   "scripts": {
     "start": "VITE_COVERAGE='false' vite",
