@@ -58,7 +58,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           start: npm run start:coverage
-          wait-on: "http://localhost:3000"
+          # wait-on: "http://localhost:3000"
+          wait-on: 'http://[::1]:3000'
           config-file: cypress.config.ci.ts
 
       - name: Merge Coverage Reports
