@@ -9,7 +9,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
-    'plugin:@typescript-eslint/recommended',
     'airbnb',
     'prettier',
   ],
@@ -22,7 +21,6 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint',
     'sonarjs',
     'cypress',
   ],

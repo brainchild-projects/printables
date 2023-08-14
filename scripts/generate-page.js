@@ -1,8 +1,8 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-await-in-loop */
-const inquirer = require('inquirer');
 const { existsSync } = require('fs');
 const { mkdir } = require('fs/promises');
+const inquirer = require('inquirer');
 const { logGreen, logYellow } = require('./generatePage/colorLogs');
 const { lowerCamelCase, titleize } = require('./generatePage/textManipulation');
 const { createDataDefinition } = require('./generatePage/createDataDefinition');
