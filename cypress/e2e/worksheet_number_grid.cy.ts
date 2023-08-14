@@ -12,7 +12,7 @@ it('can create number grid worksheet', () => {
   cy.toggleOnSwitch(/skip counting/i);
   cy.findByLabelText(/skip count by/i).clearType(5);
 
-  cy.findByRole('section', { name: /answer key/i })
+  cy.findByRole('region', { name: /answer key/i })
     .within(() => {
       let k = 1;
       cy.findByRole('table', { name: 'Number Grid' })

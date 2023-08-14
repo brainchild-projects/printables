@@ -11,7 +11,7 @@ it('can set settings', () => {
 
   // Custom Paper Size
   cy.visitSettings();
-  cy.findByRole('section', { name: /paper sizes/i }).within(() => {
+  cy.findByRole('region', { name: /paper sizes/i }).within(() => {
     cy.findByRole('button', { name: /add/i }).click();
   });
 
