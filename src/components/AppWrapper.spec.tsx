@@ -6,8 +6,14 @@ import {
 import AppWrapper from './AppWrapper';
 
 describe('App', () => {
+  const oldScrollTo = window.scrollTo;
+
   beforeEach(() => {
-    window.scrollTo = vi.fn();
+    window.scrollTo = vi.fn().mockImplementation(oldScrollTo);
+  });
+
+  afterEach(() => {
+    window.scrollTo = oldScrollTo;
   });
 
   it('should show site name', async () => {

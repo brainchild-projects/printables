@@ -29,8 +29,10 @@ it('can create place values worksheet', () => {
 
   cy.withinPreview(() => {
     cy.findAllByRole('listitem', { name: /choice/i })
-      .within(() => {
-        cy.contains(/hundreds|tens|ones/i);
+      .each((item) => {
+        cy.wrap(item).within(() => {
+          cy.contains(/hundreds|tens|ones/i);
+        });
       });
   });
 
@@ -38,8 +40,10 @@ it('can create place values worksheet', () => {
 
   cy.withinPreview(() => {
     cy.findAllByRole('listitem', { name: /choice/i })
-      .within(() => {
-        cy.contains(/thousands|hundreds|tens|ones/i);
+      .each((item) => {
+        cy.wrap(item).within(() => {
+          cy.contains(/thousands|hundreds|tens|ones/i);
+        });
       });
   });
 });
