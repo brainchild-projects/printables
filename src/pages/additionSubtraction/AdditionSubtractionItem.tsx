@@ -32,14 +32,14 @@ export function generateItems(
 export const blankTypes: AdditionBlankPosition[] = ['addendA', 'addendB', 'sum'];
 export const blankTypesAddends: AdditionAddends[] = ['addendA', 'addendB'];
 
-const styles = styleIt({
+const styles = styleIt(() => ({
   wrap: {
     display: 'flex',
     alignContent: 'space-between',
     gap: '3em',
     width: '100%',
   },
-});
+}));
 
 function subtractionFromAddition(
   addition: Addition,
