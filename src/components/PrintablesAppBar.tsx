@@ -14,7 +14,7 @@ import styleIt from './styleIt';
 
 const styles = styleIt(() => ({
   appBar: {
-    backgroundColor: '#333333',
+    backgroundColor: '#333333 !important',
   },
   wrap: {
     minHeight: 64,
