@@ -94,16 +94,17 @@ export default [PREVIEW];
 `;
 
 const simpleTemplate = `import React from 'react';
-import { Box, styleIt } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import PageTitle from '../../elements/PageTitle';
 import PaperPage from '../../components/PaperPage';
 import [DATA] from './[DATA]';
+import styleIt from '../../components/styleIt';
 
 interface [PREVIEW]Props {
   data: [DATA],
 }
 
-const styles = makeStyles((theme) => ({
+const styles = styleIt(() => ({
   wrap: {
     textAlign: 'center',
     display: 'flex',
