@@ -1,9 +1,9 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
+import styleIt from '../components/styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   heading: {
     textAlign: 'center',
   },

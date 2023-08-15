@@ -1,10 +1,10 @@
 import React from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import PlaceValuesData from './PlaceValuesData';
 import PlaceValuesProblem from './PlaceValuesProblem';
 import Blank, { BlankProps } from '../../components/Blank';
 import commaNumberFormat from '../../lib/math/commaNumberFormat';
 import { magnitudes, Magnitude } from '../../lib/math/magnitude';
+import styleIt from '../../components/styleIt';
 
 interface BlankAndPlaceProps extends BlankProps {
   place: string;
@@ -40,7 +40,7 @@ interface FillInTheBlanksProblemProps {
   showAnswer: boolean;
 }
 
-const ftbStyle = makeStyles(() => ({
+const ftbStyle = styleIt(() => ({
   equals: {
     padding: '0 0.5em',
     display: 'inline-block',

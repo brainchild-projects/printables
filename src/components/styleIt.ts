@@ -2,10 +2,10 @@ import hash from 'crypto-js/md5';
 
 type ClassNames = string;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface MyRecord<T> extends Record<ClassNames, T> {}
+interface MyRecord<T> extends Record<ClassNames, T> { }
 
 // TODO: This is a hack to get around the fact that TypeScript doesn't support recursive types
-type BasicStyleProp = string | number;
+export type BasicStyleProp = string | number | number[];
 export type StyleProps = MyRecord<StyleProps> | BasicStyleProp;
 export type StyleRecords = Record<ClassNames, StyleProps>;
 export type StyleDefinitionsFunc<T extends StyleRecords> = () => T;
@@ -49,13 +49,28 @@ function propertize(property: string): string {
   return property.replace(/([A-Z])/g, '-$1').toLowerCase();
 }
 
-export function generateStyleDeclaration(property: string, value: string | number): string {
-  const valueString = typeof value === 'number' ? `${value}px` : value;
-  return `${propertize(property)}:${valueString};`;
+function styleProp(value: BasicStyleProp): string {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+
+  return value.map((v) => `${v}${v === 0 ? '' : 'px'}`).join(' ');
+}
+
+export function generateStyleDeclaration(property: string, value: BasicStyleProp): string {
+  return `${propertize(property)}:${styleProp(value)};`;
+}
+
+function isNumberArray(value: unknown): value is number[] {
+  return Array.isArray(value) && (value.length === 0 || typeof value[0] === 'number');
 }
 
 function isBasicStyleProp(value: unknown): value is BasicStyleProp {
-  return typeof value === 'string' || typeof value === 'number';
+  return typeof value === 'string' || typeof value === 'number' || isNumberArray(value);
 }
 
 function isStyleRecord(value: unknown): value is StyleRecords {
@@ -65,15 +80,15 @@ function isStyleRecord(value: unknown): value is StyleRecords {
 function generateDeclarationBlocksOnBlocks<T extends StyleProps>(declarations: T, callback?: StyleDefinitionCallback): string {
   const entries = Object.entries(declarations);
   let declarationBlock = '{';
-  let callbackOutput = '';
+  const callbackOutput: string[] = [];
   for (const [key, value] of entries) {
     if (isBasicStyleProp(value)) {
       declarationBlock += generateStyleDeclaration(key, value);
     } else if (callback && isStyleRecord(value)) {
-      callbackOutput = callback(key, value);
+      callbackOutput.push(callback(key, value));
     }
   }
-  return `${declarationBlock}}${callbackOutput}`;
+  return `${declarationBlock}}${callbackOutput.join('')}`;
 }
 
 export function generateDeclarationBlocks<T extends StyleProps>(declarations: T, callback?: StyleDefinitionCallback): string {

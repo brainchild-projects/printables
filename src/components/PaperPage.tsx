@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-import { makeStyles, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
 import { usePaperOptions } from './PaperOptionsProvider';
+import styleIt from './styleIt';
 
-const paperPageStyles = makeStyles(() => ({
+const paperPageStyles = styleIt(() => ({
   paper: {
     margin: '0 auto 20px',
     position: 'relative',

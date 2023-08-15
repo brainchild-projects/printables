@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import classNames from 'classnames';
 import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
 import getWeekDates, { DateNumber } from './getWeekDates';
+import styleIt from '../../components/styleIt';
 
 const dateFormat = new Intl.DateTimeFormat(
   'en-US',
@@ -19,7 +20,7 @@ interface PreviewCalendarProps {
   calendarData: CalendarData,
 }
 
-const previewStyles = makeStyles((theme) => ({
+const previewStyles = styleIt(() => ({
   title: {
     fontSize: '36px',
     fontWeight: 'normal',
@@ -31,7 +32,7 @@ const previewStyles = makeStyles((theme) => ({
     flexFlow: 'column',
   },
   contentWrap: {
-    flexGrow: 1,
+    flexGrow: '1',
   },
   calendar: {
     width: '100%',
@@ -48,7 +49,7 @@ const previewStyles = makeStyles((theme) => ({
       textTransform: 'uppercase',
       fontWeight: 'normal',
       letterSpacing: '0.07em',
-      padding: theme.spacing(1, 0),
+      padding: '8px 0',
       border: '1px solid #666',
       borderCollapse: 'collapse',
       width: `${1.0 / 7}%`,
@@ -59,7 +60,7 @@ const previewStyles = makeStyles((theme) => ({
   },
   body: {
     '& td': {
-      padding: theme.spacing(1),
+      padding: 8,
       minHeight: '40px',
       textAlign: 'left',
       border: '1px solid #666',

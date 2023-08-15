@@ -1,8 +1,8 @@
-import { makeStyles } from '@material-ui/core';
 import React, { ReactNode } from 'react';
 import { Link, To } from 'react-router-dom';
+import styleIt from './styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   link: {
     color: 'inherit',
     textDecoration: 'inherit',

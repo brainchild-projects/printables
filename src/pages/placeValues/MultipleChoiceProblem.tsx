@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core';
 import React, { ReactNode } from 'react';
+import styleIt from '../../components/styleIt';
 import formatNumber from '../../lib/formatNumber';
 import uniqueElements from '../../lib/uniqueElements';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   choices: {
     listStyleType: 'lower-alpha',
     // columnCount: 3,

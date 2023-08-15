@@ -3,30 +3,30 @@ import {
   List, ListItem, ListItemText, Container,
   Typography,
   Paper,
-  makeStyles,
 } from '@material-ui/core';
 import Hero from '../../components/Hero';
 import Footer from './Footer';
 import LinkRouter from '../../elements/LinkRouter';
 import { SectionLinks } from '../../lib/LinkAndLoaderInterface';
+import styleIt from '../../components/styleIt';
 
-const paperStyles = makeStyles((theme) => ({
+const paperStyles = styleIt(() => ({
   wrapper: {
     backgroundImage: 'url(/printables-bg2.jpg)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed',
-    margin: '-76px 0',
+    margin: [-76, 0],
     minHeight: 'calc(100vh - 64px)',
   },
   mainContent: {
-    padding: theme.spacing(4),
+    padding: 32,
     maxWidth: 500,
     margin: '0 auto',
   },
   list: {
-    marginLeft: theme.spacing(-2),
-    marginRight: theme.spacing(-2),
+    marginLeft: -2,
+    marginRight: -2,
   },
 }));
 

@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core';
+import styleIt from '../components/styleIt';
 import PageTitle from './PageTitle';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   title: {
     marginBottom: 20,
   },

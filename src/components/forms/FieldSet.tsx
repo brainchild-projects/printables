@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react';
-import { FormControl, InputLabel, makeStyles } from '@material-ui/core';
+import { FormControl, InputLabel } from '@material-ui/core';
+import styleIt from '../styleIt';
 
-const styles = makeStyles((theme) => ({
+const styles = styleIt(() => ({
   formControl: {
-    marginTop: theme.spacing(1),
+    marginTop: 8,
   },
   spaced: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    marginTop: 16,
+    marginBottom: 16,
   },
 }));
 

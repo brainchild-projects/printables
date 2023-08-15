@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
@@ -11,6 +10,7 @@ import SkipCountingProblem from './SkipCountingProblem';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import Blank from '../../components/Blank';
 import tryByKey from '../../lib/tryByKey';
+import styleIt from '../../components/styleIt';
 
 function generateProblems({ skipCountBy, count }: SkipCountingData): SkipCountingProblem[] {
   const problems: SkipCountingProblem[] = [];
@@ -34,7 +34,7 @@ function generateProblems({ skipCountBy, count }: SkipCountingData): SkipCountin
   return problems;
 }
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   number: {
     padding: '0 2mm',
   },

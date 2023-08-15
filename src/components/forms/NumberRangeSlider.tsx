@@ -1,11 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import {
-  Slider, Typography, makeStyles, Grid,
+  Slider, Typography, Grid,
 } from '@material-ui/core';
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import Range from '../../lib/Range';
+import styleIt from '../styleIt';
 import SmallNumberField from './SmallNumberField';
 
 const { round } = Math;
@@ -30,7 +31,7 @@ const valueDescale = (x: number): number => {
   return x;
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = styleIt(() => ({
   root: {
     width: '100%',
   },

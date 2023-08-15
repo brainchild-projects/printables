@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
 import FontLoad from '../../components/FontLoad';
@@ -25,6 +24,7 @@ import Pentagon from '../../components/svgShapes/outlined/Pentagon';
 import Hexagon from '../../components/svgShapes/outlined/Hexagon';
 import Star from '../../components/svgShapes/outlined/Star';
 import Heart from '../../components/svgShapes/outlined/Heart';
+import styleIt from '../../components/styleIt';
 
 interface PreviewPatternsProps {
   patternsData: PatternsData;
@@ -47,7 +47,7 @@ interface PatternProblem {
   blankIndex: number;
 }
 
-const problemStyles = makeStyles(() => ({
+const problemStyles = styleIt(() => ({
   listItem: {
     paddingTop: '0.15em',
     paddingBottom: '0.15em',

@@ -4,7 +4,6 @@ import {
   Box, Divider, Drawer, IconButton,
   List, ListItem, ListItemIcon, ListItemText,
   Collapse,
-  makeStyles,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackOutlined';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -14,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { LinkMap } from '../lib/linkMap';
 import { SectionLinks } from '../lib/LinkAndLoaderInterface';
 import ListItemLink from './ListItemLink';
+import styleIt from './styleIt';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;
@@ -22,7 +22,7 @@ interface LinkMapToggle {
 
 type LinkMapToggleKey = keyof LinkMapToggle;
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   nested: {
     paddingLeft: 30,
   },

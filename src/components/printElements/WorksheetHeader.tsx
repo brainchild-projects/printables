@@ -1,27 +1,27 @@
-import { makeStyles } from '@material-ui/core';
 import React, { ReactNode } from 'react';
+import styleIt from '../styleIt';
 
-const headerStyles = makeStyles(() => ({
+const headerStyles = styleIt(() => ({
   header: {
     display: 'flex',
     marginTop: 20,
   },
   headerName: {
-    flexGrow: 4,
+    flexGrow: '4',
     display: 'flex',
     paddingRight: '2em',
   },
   label: {
-    flexGrow: 0,
+    flexGrow: '0',
     fontWeight: 'normal',
     paddingRight: '0.3em',
   },
   headerDate: {
-    flexGrow: 2,
+    flexGrow: '2',
     display: 'flex',
   },
   headerBlank: {
-    flexGrow: 1,
+    flexGrow: '1',
     borderBottom: '1px solid black',
   },
   instructions: {

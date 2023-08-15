@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
@@ -14,6 +13,7 @@ import randomElement from '../../lib/randomElement';
 import ClockFace from './ClockFace';
 import Blank from '../../components/Blank';
 import tryByKey from '../../lib/tryByKey';
+import styleIt from '../../components/styleIt';
 
 const hourRange: Range = { from: 1, to: 12 };
 const minuterRange: Range = { from: 0, to: 59 };
@@ -52,7 +52,7 @@ function generateProblems({ problemType, count }: TellingTimeData): SimpleTime[]
   return problems;
 }
 
-const itemStyles = makeStyles(() => ({
+const itemStyles = styleIt(() => ({
   wrapper: {
     display: 'inline-block',
     verticalAlign: 'text-top',

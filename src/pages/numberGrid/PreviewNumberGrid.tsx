@@ -1,16 +1,17 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import PaperPage from '../../components/PaperPage';
 import NumberGridData from './NumberGridData';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import NumberGrid from './NumberGrid';
 import PageTitle from '../../elements/PageTitle';
+import styleIt from '../../components/styleIt';
 
 interface PreviewNumberGridProps {
   data: NumberGridData,
 }
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   wrap: {
     display: 'flex',
     flexFlow: 'column',

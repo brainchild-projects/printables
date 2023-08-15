@@ -1,11 +1,11 @@
 import Button from '@material-ui/core/Button';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import classNames from 'classnames';
 import React from 'react';
+import styleIt from '../styleIt';
 
-const styles = makeStyles((theme) => ({
+const styles = styleIt(() => ({
   submit: {
-    margin: theme.spacing(2, 0, 2),
+    margin: [16, 0, 16],
   },
 }));
 

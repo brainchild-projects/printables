@@ -6,13 +6,13 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { LinkMap } from '../lib/linkMap';
 import Sidebar from './Sidebar';
+import styleIt from './styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   appBar: {
     backgroundColor: '#333333',
   },
@@ -28,7 +28,7 @@ const styles = makeStyles(() => ({
     },
   },
   title: {
-    flexGrow: 1,
+    flexGrow: '1',
   },
 }));
 

@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
+import styleIt from './styleIt';
 
-const paperPreviewStyles = makeStyles(() => ({
+const paperPreviewStyles = styleIt(() => ({
   preview: {
     padding: 0,
     overflow: 'auto',

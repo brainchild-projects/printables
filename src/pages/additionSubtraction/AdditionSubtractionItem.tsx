@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
@@ -8,6 +7,7 @@ import AdditionSubtractionData from './AdditionSubtractionData';
 import AdditionSentenceBasic, { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
 import Subtraction from '../../lib/math/Subtraction';
 import SubtractionSentenceBasic, { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic';
+import styleIt from '../../components/styleIt';
 
 type Range = { from: number, to: number };
 
@@ -32,7 +32,7 @@ export function generateItems(
 export const blankTypes: AdditionBlankPosition[] = ['addendA', 'addendB', 'sum'];
 export const blankTypesAddends: AdditionAddends[] = ['addendA', 'addendB'];
 
-const styles = makeStyles({
+const styles = styleIt({
   wrap: {
     display: 'flex',
     alignContent: 'space-between',

@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
+import styleIt from './styleIt';
 
 interface ProblemListItemProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ interface ProblemListItemProps {
 const defaultFontSize = 20;
 const defaultLabel = 'Problem';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   // All em units equivalent are based on a 20px font size base
   li: {
     padding: '1.15em 0 1.15em 1.15em', // '6mm 0 6mm 6mm', // 23px

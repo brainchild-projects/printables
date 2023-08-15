@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import SettingsForm from './SettingsForm';
 import MajorPageTitle from '../../elements/MajorPageTitle';
 import useSettings from '../useSettings';
+import styleIt from '../../components/styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   wrap: {
     maxWidth: 500,
     width: '100%',

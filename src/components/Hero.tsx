@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Container, Typography } from '@material-ui/core';
+import styleIt from './styleIt';
 
-const heroStyles = makeStyles((theme) => ({
+const heroStyles = styleIt(() => ({
   heroContent: {
-    padding: theme.spacing(12, 0, 11),
+    padding: [12 * 8, 0, 11 * 8],
     margin: '-76px 0 0',
     textAlign: 'center',
   },

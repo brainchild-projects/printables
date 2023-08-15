@@ -1,9 +1,10 @@
 import React, { ElementType, ReactNode } from 'react';
-import { makeStyles, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Variant } from '@material-ui/core/styles/createTypography';
+import styleIt from '../components/styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   margins: {
     marginTop: 20,
     marginBottom: 10,

@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import classNames from 'classnames';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import ProblemList from '../../components/ProblemList';
@@ -15,6 +14,7 @@ import MultipleChoiceProblem from './MultipleChoiceProblem';
 import { shouldAddComma } from '../../lib/math/commaNumberFormat';
 import tryByKey from '../../lib/tryByKey';
 import { magNFromMagnitude, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude';
+import styleIt from '../../components/styleIt';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;
@@ -41,7 +41,7 @@ function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceVal
   return problems;
 }
 
-const pageStyles = makeStyles(() => ({
+const pageStyles = styleIt(() => ({
   list: {
     '& .and': {
       padding: '0 0.5em',

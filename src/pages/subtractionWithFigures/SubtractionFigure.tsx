@@ -1,13 +1,13 @@
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
+import styleIt from '../../components/styleIt';
 import Subtraction from '../../lib/math/Subtraction';
 import CrossableCircle from './CrossableCircle';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   wrap: {
     fontSize: '2em',
-    lineHeight: 0.6,
+    lineHeight: '0.6',
     position: 'relative',
     left: '-0.05em',
     marginBottom: '0.4em',

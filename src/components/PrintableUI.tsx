@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react';
-import { Grid, Typography, makeStyles } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
 import Footer from '../pages/main/Footer';
 import InstanceOptionsProvider from './InstanceSettingsProvider';
+import styleIt from './styleIt';
 
-const pageStyles = makeStyles((theme) => ({
+const pageStyles = styleIt(() => ({
   container: {
     marginTop: '-64px',
     alignItems: 'stretch',
-    padding: theme.spacing(0, 2),
+    padding: [0, 16],
     maxWidth: '100vw',
 
     '& > .MuiGrid-item': {
@@ -30,7 +31,7 @@ const pageStyles = makeStyles((theme) => ({
     },
   },
   sideColumn: {
-    paddingTop: theme.spacing(2),
+    paddingTop: 16,
   },
 }));
 

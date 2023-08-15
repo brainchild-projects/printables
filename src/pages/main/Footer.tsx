@@ -1,13 +1,14 @@
-import { Link, makeStyles, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
+import styleIt from '../../components/styleIt';
 
-const styles = makeStyles((theme) => ({
+const styles = styleIt(() => ({
   footer: {
     textAlign: 'center',
-    padding: theme.spacing(4, 0),
-    margin: theme.spacing(6, 0, 2),
-    color: theme.palette.grey[600],
+    padding: [32, 0],
+    margin: [48, 0, 16],
+    color: '#757575',
   },
 }));
 

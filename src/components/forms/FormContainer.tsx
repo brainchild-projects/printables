@@ -1,9 +1,9 @@
 import Collapse from '@material-ui/core/Collapse';
-import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import React, { FormEvent, ReactNode } from 'react';
+import styleIt from '../styleIt';
 
-const styles = makeStyles((theme) => ({
+const styles = styleIt(() => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -11,10 +11,10 @@ const styles = makeStyles((theme) => ({
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(1),
+    marginTop: 8,
 
     '& > section': {
-      marginBottom: theme.spacing(3),
+      marginBottom: 24,
     },
   },
 }));

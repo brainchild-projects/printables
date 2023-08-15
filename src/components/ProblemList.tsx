@@ -1,7 +1,7 @@
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import classNames from 'classnames';
 import React, { CSSProperties, ReactNode } from 'react';
 import { Props, PropsCallback } from './MultiPaperPage';
+import styleIt from './styleIt';
 
 interface ProblemListProps {
   children: ReactNode;
@@ -12,12 +12,12 @@ interface ProblemListProps {
   label?: string;
 }
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   // All em units equivalent are based on a 20px font size base
   list: {
     margin: '5mm 0 0 0',
     padding: 0,
-    columnCount: 2,
+    columnCount: '2',
     columnWidth: 'auto',
     counterReset: 'problem',
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
+import styleIt from '../../components/styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   mainWrap: {
     display: 'flex',
   },
@@ -33,9 +33,6 @@ const styles = makeStyles(() => ({
     left: 0,
     paddingRight: '1em',
   },
-  number: {
-    //
-  },
 }));
 
 interface VerticalAdditionItemProps {
@@ -61,7 +58,7 @@ export default function VerticalAdditionItem({
           <span className={classNames(classes.addendRow, classes.lastRow)}>
             <span className={classes.operator}>+</span>
             {' '}
-            <span className={classes.number}>{add.addendB}</span>
+            <span>{add.addendB}</span>
           </span>
           <span className={classes.answerRow}>
             {' '}

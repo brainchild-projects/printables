@@ -7,6 +7,7 @@ import styleIt, {
   generateSelector,
   StyleDefinitionCallback,
   StyleRecords,
+  BasicStyleProp,
 } from './styleIt';
 
 describe('styleIt', () => {
@@ -18,6 +19,10 @@ describe('styleIt', () => {
 
       '&.red': {
         color: 'red',
+      },
+
+      '& > span': {
+        color: 'blue',
       },
     },
   }));
@@ -38,7 +43,15 @@ describe('styleIt', () => {
 
   it('sets h1.title style correctly', () => {
     const style = document.querySelector('head style');
-    expect(style?.textContent).toMatch(/\.title-.+{font-size:12px;display:block;}\n\.title-.+\.red{color:red;}/);
+    try {
+      expect(style?.textContent).toMatch(
+        /\.title-.+{font-size:12px;display:block;}\n\.title-.+\.red{color:red;}\n\.title-.+ > span{color:blue;}/,
+      );
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(`Generated style:\n${style?.textContent || 'empty'}`);
+      throw e;
+    }
   });
 
   afterEach(() => unmount());
@@ -46,7 +59,7 @@ describe('styleIt', () => {
 
 interface GenerateStyleDeclarationTestData {
   description: string;
-  params: [string, string | number];
+  params: [string, BasicStyleProp];
   expected: string;
 }
 
@@ -58,6 +71,11 @@ describe('generateStyleDeclaration', () => {
       expected: 'font-size:12px;',
     },
     {
+      description: 'generates style declaration with arrays',
+      params: ['padding', [12, 0, 1]],
+      expected: 'padding:12px 0 1px;',
+    },
+    {
       description: 'generates style declaration with string',
       params: ['display', 'block'],
       expected: 'display:block;',
@@ -66,7 +84,8 @@ describe('generateStyleDeclaration', () => {
 
   testData.forEach(({ description, params, expected }) => {
     it(description, () => {
-      const styleDeclaration = generateStyleDeclaration(...params);
+      const [left, right] = params;
+      const styleDeclaration = generateStyleDeclaration(left, right);
       expect(styleDeclaration).toEqual(expected);
     });
   });
@@ -143,6 +162,15 @@ describe('generateSelector', () => {
         parentSelector: '.title-foo',
       },
       expected: '.title-foo .bar,.title-foo .baz',
+    },
+    {
+      description: 'descendant selector',
+      params: {
+        value: '& > .bar',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '.title-foo > .bar',
     },
   ];
 

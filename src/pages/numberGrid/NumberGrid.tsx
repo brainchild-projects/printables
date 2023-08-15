@@ -1,8 +1,8 @@
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
+import styleIt from '../../components/styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   table: {
     borderCollapse: 'collapse',
     width: '170mm',

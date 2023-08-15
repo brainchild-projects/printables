@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import styleIt from '../styleIt';
 import FooterProps from './FooterProps';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   footer: {
     display: 'flex',
     padding: '10mm 5mm 5mm 0',
@@ -13,12 +13,12 @@ const styles = makeStyles(() => ({
     width: '70mm',
   },
   label: {
-    flexGrow: 0,
+    flexGrow: '0',
     fontWeight: 'normal',
     paddingRight: '0.3em',
   },
   footerBlank: {
-    flexGrow: 1,
+    flexGrow: '1',
     borderBottom: '1px solid black',
   },
 }));
