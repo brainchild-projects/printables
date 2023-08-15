@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import Stringable from '../lib/Stringable';
+import styleIt from './styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   problemBlank: {
     borderBottom: '0.1em solid', // 2px
     display: 'inline-block',

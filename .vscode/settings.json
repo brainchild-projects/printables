@@ -5,7 +5,8 @@
         "listitem",
         "printables",
         "propertize",
-        "sonarjs"
+        "sonarjs",
+        "stringable"
     ],
 
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",

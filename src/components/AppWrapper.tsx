@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { createTheme, makeStyles, MuiThemeProvider } from '@material-ui/core';
+import { createTheme, MuiThemeProvider } from '@material-ui/core';
 import classNames from 'classnames';
 import BaseStyle from './BaseStyle';
 import PrintablesAppBar from './PrintablesAppBar';
@@ -8,8 +8,9 @@ import ScrollToTop from './ScrollToTop';
 import {
   allLinks, basePath, mainLinks, mathLinks, miscLinks,
 } from '../lib/linkMap';
+import styleIt from './styleIt';
 
-const styles = makeStyles(() => ({
+const styles = styleIt(() => ({
   main: {
     backgroundSize: 'cover',
     padding: '76px 0 0',

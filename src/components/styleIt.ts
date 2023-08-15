@@ -107,6 +107,7 @@ function styleIt<T extends StyleRecords>(styleFunc: StyleDefinitionsFunc<T>): Cl
   const suffix = generateSuffix(styleDefs);
   const classNames = generateClassNames(suffix, styleDefs);
   const styleElement = document.createElement('style');
+  styleElement.setAttribute('data-meta', 'styleIt');
 
   styleElement.textContent = generateStyleContent(styleDefs, classNames);
   document.head.appendChild(styleElement);
