@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import { Box } from '@material-ui/core';
 import classNames from 'classnames';
 import PaperPage from '../../components/PaperPage';
 
 import CalendarData from './CalendarData';
 import getWeekDates, { DateNumber } from './getWeekDates';
 import styleIt from '../../components/styleIt';
+import Box from '../../components/uiElements/Box';
 
 const dateFormat = new Intl.DateTimeFormat(
   'en-US',

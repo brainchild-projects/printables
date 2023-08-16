@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
 import SettingsForm from './SettingsForm';
 import MajorPageTitle from '../../elements/MajorPageTitle';
 import useSettings from '../useSettings';
 import styleIt from '../../components/styleIt';
+import Box from '../../components/uiElements/Box';
 
 const styles = styleIt(() => ({
   wrap: {

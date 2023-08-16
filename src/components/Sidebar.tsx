@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  Box, Divider, Drawer, IconButton,
+  Divider, Drawer, IconButton,
   List, ListItem, ListItemIcon, ListItemText,
   Collapse,
 } from '@material-ui/core';
@@ -14,6 +14,7 @@ import { LinkMap } from '../lib/linkMap';
 import { SectionLinks } from '../lib/LinkAndLoaderInterface';
 import ListItemLink from './ListItemLink';
 import styleIt from './styleIt';
+import Box from './uiElements/Box';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;

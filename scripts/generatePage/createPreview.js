@@ -94,7 +94,7 @@ export default [PREVIEW];
 `;
 
 const simpleTemplate = `import React from 'react';
-import { Box } from '@material-ui/core';
+import Box from '../../components/uiElements/Box';
 import PageTitle from '../../elements/PageTitle';
 import PaperPage from '../../components/PaperPage';
 import [DATA] from './[DATA]';

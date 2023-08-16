@@ -2,13 +2,13 @@ import React from 'react';
 import {
   List, ListItem, ListItemText, Container,
   Typography,
-  Paper,
 } from '@material-ui/core';
 import Hero from '../../components/Hero';
 import Footer from './Footer';
 import LinkRouter from '../../elements/LinkRouter';
 import { SectionLinks } from '../../lib/LinkAndLoaderInterface';
 import styleIt from '../../components/styleIt';
+import Paper from '../../components/uiElements/Paper';
 
 const paperStyles = styleIt(() => ({
   wrapper: {

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
 import PaperPage from '../../components/PaperPage';
 import NumberGridData from './NumberGridData';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader';
 import NumberGrid from './NumberGrid';
 import PageTitle from '../../elements/PageTitle';
 import styleIt from '../../components/styleIt';
+import Box from '../../components/uiElements/Box';
 
 interface PreviewNumberGridProps {
   data: NumberGridData,

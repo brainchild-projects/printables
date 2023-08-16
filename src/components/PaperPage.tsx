@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
 import { usePaperOptions } from './PaperOptionsProvider';
 import styleIt from './styleIt';
+import Paper from './uiElements/Paper';
 
 const paperPageStyles = styleIt(() => ({
   paper: {
