@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
-import PropsOf from './PropsOf';
+import ComponetablePaperProps from './ComponetableProps';
+
 
 const styles = styleIt(() => ({
   paper: {
@@ -13,19 +13,9 @@ const styles = styleIt(() => ({
   },
 }));
 
-interface PaperProps<Tag extends AnyTag> {
-  component: Tag;
-  className?: string;
-}
-
-function Paper<Tag extends AnyTag>(
-  props: React.PropsWithChildren<PaperProps<Tag>> & PropsOf<Tag>
-): JSX.Element;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Paper(props: any) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { component: Component, className, ...other } = props;
+function Paper<Tag extends keyof JSX.IntrinsicElements = 'div'>(
+  { component: Component = 'div', className, ...other }: ComponetablePaperProps<Tag>,
+): JSX.Element {
   const classes = styles();
   return (
     <Component
@@ -35,10 +25,5 @@ function Paper(props: any) {
     />
   );
 }
-
-Paper.defaultProps = {
-  component: 'div',
-  className: undefined,
-};
 
 export default Paper;
