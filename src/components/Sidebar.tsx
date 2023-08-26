@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import {
   Divider, Drawer, IconButton,
-  ListItemIcon, ListItemText,
   Collapse,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackOutlined';
@@ -17,6 +16,8 @@ import styleIt from './styleIt';
 import Box from './uiElements/Box';
 import List from './uiElements/List';
 import ListItem from './uiElements/ListItem';
+import ListItemIcon from './uiElements/ListItemIcon';
+import ListItemText from './uiElements/ListItemText';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;

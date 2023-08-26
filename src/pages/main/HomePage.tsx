@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ListItemText, Container,
+  Container,
   Typography,
 } from '@material-ui/core';
 import Hero from '../../components/Hero';
@@ -11,6 +11,7 @@ import styleIt from '../../components/styleIt';
 import Paper from '../../components/uiElements/Paper';
 import List from '../../components/uiElements/List';
 import ListItem from '../../components/uiElements/ListItem';
+import ListItemText from '../../components/uiElements/ListItemText';
 
 const paperStyles = styleIt(() => ({
   wrapper: {

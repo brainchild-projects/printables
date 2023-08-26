@@ -2,7 +2,7 @@ import React, { ComponentPropsWithRef } from 'react';
 import AnyTag from './AnyTag';
 
 type BoxProps<Tag extends AnyTag> = {
-  component: Tag;
+  component?: Tag;
 } & ComponentPropsWithRef<Tag>;
 
 function Box<Tag extends AnyTag = 'div'>(
@@ -11,5 +11,9 @@ function Box<Tag extends AnyTag = 'div'>(
   // eslint-disable-next-line react/jsx-props-no-spreading
   return <Component {...other} />;
 }
+
+Box.defaultProps = {
+  component: 'div',
+};
 
 export default Box;

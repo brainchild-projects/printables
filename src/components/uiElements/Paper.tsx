@@ -13,7 +13,7 @@ const styles = styleIt(() => ({
 }));
 
 type PaperProps<Tag extends AnyTag = 'div'> = {
-  component: Tag;
+  component?: Tag;
   className?: string | undefined;
 } & ComponentPropsWithRef<Tag>;
 
@@ -31,6 +31,7 @@ function Paper<Tag extends AnyTag = 'div'>(
 }
 
 Paper.defaultProps = {
+  component: 'div',
   className: undefined,
 };
 

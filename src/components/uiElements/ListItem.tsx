@@ -61,5 +61,3 @@ ListItem.defaultProps = {
 };
 
 export default ListItem;
-
-
