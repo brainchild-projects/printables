@@ -1,15 +1,15 @@
-import React, { PropsWithChildren } from 'react';
+import React, { ComponentPropsWithRef } from 'react';
+import AnyTag from './AnyTag';
 
-interface BoxProps {
-  className?: string;
+type BoxProps<Tag extends AnyTag> = {
+  component: Tag;
+} & ComponentPropsWithRef<Tag>;
+
+function Box<Tag extends AnyTag = 'div'>(
+  { component: Component = 'div' as Tag, ...other }: BoxProps<Tag>,
+): JSX.Element {
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  return <Component {...other} />;
 }
-
-function Box({ children, className }: PropsWithChildren<BoxProps>): JSX.Element {
-  return <div className={className}>{ children }</div>;
-}
-
-Box.defaultProps = {
-  className: undefined,
-};
 
 export default Box;

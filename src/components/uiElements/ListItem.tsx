@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import React, { ComponentType } from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
+import AnyTag from './AnyTag';
 
 const styles = styleIt(() => ({
   listItem: {
@@ -32,19 +33,21 @@ const styles = styleIt(() => ({
   },
 }));
 
-type ListItemProps<Tag extends keyof JSX.IntrinsicElements = 'li'> = {
-  component?: ComponentType | keyof JSX.IntrinsicElements;
-  className?: string;
-  button?: boolean;
-} & JSX.IntrinsicElements[Tag];
+const DEFAULT_TAG = 'li' as const;
 
-function ListItem<Tag extends keyof JSX.IntrinsicElements = 'li'>(
-  { component: Component = 'li', button, className, ...other }: ListItemProps<Tag>,
+type ListItemProps<Tag extends AnyTag> = {
+  component: Tag;
+  className?: string | undefined;
+  button?: boolean;
+} & ComponentPropsWithRef<Tag>;
+
+function ListItem<Tag extends AnyTag>(
+  { component: Component = DEFAULT_TAG, button, className, ...other }: ListItemProps<Tag>,
 ): JSX.Element {
   const classes = styles();
   return (
     <Component
-      className={classNames(classes.listItem, className as string, button)}
+      className={classNames(classes.listItem, className as string, button as boolean)}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
@@ -52,7 +55,6 @@ function ListItem<Tag extends keyof JSX.IntrinsicElements = 'li'>(
 }
 
 ListItem.defaultProps = {
-  component: 'li',
   className: undefined,
   button: false,
 };

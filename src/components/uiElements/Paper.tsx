@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
-import ComponetablePaperProps from './ComponetableProps';
-
+import AnyTag from './AnyTag';
 
 const styles = styleIt(() => ({
   paper: {
@@ -13,8 +12,13 @@ const styles = styleIt(() => ({
   },
 }));
 
-function Paper<Tag extends keyof JSX.IntrinsicElements = 'div'>(
-  { component: Component = 'div', className, ...other }: ComponetablePaperProps<Tag>,
+type PaperProps<Tag extends AnyTag = 'div'> = {
+  component: Tag;
+  className?: string | undefined;
+} & ComponentPropsWithRef<Tag>;
+
+function Paper<Tag extends AnyTag = 'div'>(
+  { component: Component = 'div' as Tag, className, ...other }: PaperProps<Tag>,
 ): JSX.Element {
   const classes = styles();
   return (
@@ -25,5 +29,9 @@ function Paper<Tag extends keyof JSX.IntrinsicElements = 'div'>(
     />
   );
 }
+
+Paper.defaultProps = {
+  className: undefined,
+};
 
 export default Paper;

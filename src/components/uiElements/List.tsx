@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-import React  from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
-import ComponetablePaperProps from './ComponetableProps';
-
+import AnyTag from './AnyTag';
 
 const styles = styleIt(() => ({
   list: {
@@ -13,8 +12,15 @@ const styles = styleIt(() => ({
   },
 }));
 
-function List<Tag extends keyof JSX.IntrinsicElements = 'ul'>(
-  { component: Component = 'ul', className, ...other }: ComponetablePaperProps<Tag>,
+const DEFAULT_TAG = 'ul' as const;
+
+type ListProps<Tag extends AnyTag> = {
+  component: Tag;
+  className?: string | undefined;
+} & ComponentPropsWithRef<Tag>;
+
+function List<Tag extends AnyTag>(
+  { component: Component = DEFAULT_TAG, className, ...other }: ListProps<Tag>,
 ): JSX.Element {
   const classes = styles();
   return (
@@ -25,6 +31,10 @@ function List<Tag extends keyof JSX.IntrinsicElements = 'ul'>(
     />
   );
 }
+
+List.defaultProps = {
+  className: undefined,
+};
 
 export default List;
 
