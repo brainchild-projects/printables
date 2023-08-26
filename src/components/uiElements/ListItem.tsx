@@ -14,6 +14,7 @@ const styles = styleIt(() => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     textDecoration: 'none',
+    color: 'inherit',
 
     '&.button': {
       transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
