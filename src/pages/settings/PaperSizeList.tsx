@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   IconButton,
-  ListItemSecondaryAction,
   Typography,
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
@@ -10,6 +9,7 @@ import PaperSize from '../../lib/PaperSize';
 import Paper from '../../components/uiElements/Paper';
 import List from '../../components/uiElements/List';
 import ListItem from '../../components/uiElements/ListItem';
+import ListItemSecondaryAction from '../../components/uiElements/ListIteemSecondaryAction';
 import ListItemText from '../../components/uiElements/ListItemText';
 
 interface PaperSizeListProps {
