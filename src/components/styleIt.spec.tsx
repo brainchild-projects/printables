@@ -24,6 +24,9 @@ describe('styleIt', () => {
       '& > span': {
         color: 'blue',
       },
+      '@media(min-width: 600px)': {
+        fontSize: 16,
+      },
     },
   }));
 
@@ -45,7 +48,7 @@ describe('styleIt', () => {
     const style = document.querySelector('head style');
     try {
       expect(style?.textContent).toMatch(
-        /\.title-.+{font-size:12px;display:block;}\n\.title-.+\.red{color:red;}\n\.title-.+ > span{color:blue;}/,
+        /\.title-.+{font-size:12px;display:block;}\n\.title-.+\.red{color:red;}\n\.title-.+ > span{color:blue;}\n@media\(min-width: 600px\){\n\.title-.+{font-size:16px;}\n}/,
       );
     } catch (e) {
       // eslint-disable-next-line no-console
@@ -171,6 +174,15 @@ describe('generateSelector', () => {
         parentSelector: '.title-foo',
       },
       expected: '.title-foo > .bar',
+    },
+    {
+      description: 'media query',
+      params: {
+        value: '@media(max-width: 700px)',
+        classNames: { title: 'title-foo' },
+        parentSelector: '.title-foo',
+      },
+      expected: '@media(max-width: 700px)',
     },
   ];
 

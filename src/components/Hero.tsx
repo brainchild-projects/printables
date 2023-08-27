@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import styleIt from './styleIt';
+import Container from './uiElements/Container';
 
 const heroStyles = styleIt(() => ({
   heroContent: {
@@ -46,7 +47,7 @@ function Hero(properties: HeroProperties): JSX.Element {
             {subtitle}
           </Typography>
         )}
-        { children }
+        {children}
       </Container>
     </div>
   );

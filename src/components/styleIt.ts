@@ -38,7 +38,14 @@ function generateSelectorWithParent(value: string, parentSelector: string): stri
   return `${parentSelector} ${value}`;
 }
 
+function isMediaQuery(value: string): boolean {
+  return value.trim().startsWith('@media');
+}
+
 export function generateSelector(value: string, classNames: Record<ClassNames, string>, parentSelector?: string): string {
+  if (isMediaQuery(value)) {
+    return value;
+  }
   if (parentSelector) {
     return generateSelectorWithParent(value, parentSelector);
   }
@@ -100,6 +107,9 @@ export function generateDeclarationBlocks<T extends StyleProps>(declarations: T,
 
 function generateStyleContentInternal(styleKey: string, styleDefs: StyleRecords, classNames: Record<ClassNames, string>, parentSelector?: string): string {
   const selector = generateSelector(styleKey, classNames, parentSelector);
+  if (isMediaQuery(selector)) {
+    return `${selector}{\n${generateStyleContentInternal(parentSelector ?? '', styleDefs, classNames)}\n}`;
+  }
   return `${selector}${generateDeclarationBlocks(styleDefs, (key, innerStyleDefs) =>
     `\n${generateStyleContentInternal(key, innerStyleDefs, classNames, selector)}`,
   )}`;

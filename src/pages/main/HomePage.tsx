@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Typography,
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Hero from '../../components/Hero';
 import Footer from './Footer';
 import LinkRouter from '../../elements/LinkRouter';
@@ -12,6 +9,7 @@ import Paper from '../../components/uiElements/Paper';
 import List from '../../components/uiElements/List';
 import ListItem from '../../components/uiElements/ListItem';
 import ListItemText from '../../components/uiElements/ListItemText';
+import Container from '../../components/uiElements/Container';
 
 const paperStyles = styleIt(() => ({
   wrapper: {
