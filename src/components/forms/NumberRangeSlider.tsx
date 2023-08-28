@@ -1,13 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
-import {
-  Slider, Typography, Grid,
-} from '@material-ui/core';
+import { Slider, Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
 import Range from '../../lib/Range';
 import styleIt from '../styleIt';
 import SmallNumberField from './SmallNumberField';
+import Grid from '../uiElements/Grid';
 
 const { round } = Math;
 

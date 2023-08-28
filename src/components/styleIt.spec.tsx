@@ -79,6 +79,11 @@ describe('generateStyleDeclaration', () => {
       expected: 'padding:12px 0 1px;',
     },
     {
+      description: 'generates style declaration with arrays of 2 elements',
+      params: ['padding', [0, 16]],
+      expected: 'padding:0 16px;',
+    },
+    {
       description: 'generates style declaration with string',
       params: ['display', 'block'],
       expected: 'display:block;',
@@ -183,6 +188,14 @@ describe('generateSelector', () => {
         parentSelector: '.title-foo',
       },
       expected: '@media(max-width: 700px)',
+    },
+    {
+      description: 'literal selector',
+      params: {
+        value: '!.title',
+        classNames: { title: 'title-foo' },
+      },
+      expected: '.title',
     },
   ];
 

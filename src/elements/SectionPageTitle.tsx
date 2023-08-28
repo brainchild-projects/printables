@@ -1,8 +1,8 @@
 import React, { ElementType, ReactNode } from 'react';
-import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { Variant } from '@material-ui/core/styles/createTypography';
 import styleIt from '../components/styleIt';
+import Grid from '../components/uiElements/Grid';
 
 const styles = styleIt(() => ({
   margins: {

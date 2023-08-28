@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Grid } from '@material-ui/core';
 import ModalDialog from '../../components/ModalDialog';
 import TextField from '../../components/forms/TextField';
 import NumberField from '../../components/forms/NumberField';
 import PaperSize, { PaperSizeJSON } from '../../lib/PaperSize';
+import Grid from '../../components/uiElements/Grid';
 
 interface PaperSizeDialogProps {
   paperSize: PaperSize | null;

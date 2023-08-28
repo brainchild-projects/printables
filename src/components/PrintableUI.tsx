@@ -1,20 +1,25 @@
 import React, { ReactNode } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
 import Footer from '../pages/main/Footer';
 import InstanceOptionsProvider from './InstanceSettingsProvider';
 import styleIt from './styleIt';
+import Grid from './uiElements/Grid';
 
 const pageStyles = styleIt(() => ({
   container: {
     marginTop: '-64px',
     alignItems: 'stretch',
-    padding: [0, 16],
     maxWidth: '100vw',
+    padding: [0, 16],
 
     '& > .MuiGrid-item': {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+    '&.grid-container > .grid-item': {
       paddingTop: 0,
       paddingBottom: 0,
     },

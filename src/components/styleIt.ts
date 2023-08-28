@@ -43,6 +43,9 @@ function isMediaQuery(value: string): boolean {
 }
 
 export function generateSelector(value: string, classNames: Record<ClassNames, string>, parentSelector?: string): string {
+  if (value.startsWith('!')) {
+    return value.substring(1);
+  }
   if (isMediaQuery(value)) {
     return value;
   }
