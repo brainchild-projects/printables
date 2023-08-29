@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
 import FieldSet from '../../components/forms/FieldSet';
@@ -9,6 +8,7 @@ import FontSizeField from '../../components/forms/FontSizeField';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import Divider from '../../components/uiElements/Divider';
 
 export interface CustomizeAftbFormProps {
   onChange: (data: AftbData) => void,

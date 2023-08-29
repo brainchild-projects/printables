@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {
-  Divider, Drawer, IconButton,
+  Drawer, IconButton,
   Collapse,
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackOutlined';
@@ -18,6 +18,7 @@ import List from './uiElements/List';
 import ListItem from './uiElements/ListItem';
 import ListItemIcon from './uiElements/ListItemIcon';
 import ListItemText from './uiElements/ListItemText';
+import Divider from './uiElements/Divider';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;
@@ -107,7 +108,7 @@ function Sidebar({ open, onClose, linkMap }: SidebarProps): JSX.Element {
           <ArrowBackIcon />
         </IconButton>
       </Box>
-      <Divider />
+      <Divider dark />
       <nav aria-label="Sidebar Navigation">
         <List component="div">
           <ExpandableLinks
@@ -122,7 +123,7 @@ function Sidebar({ open, onClose, linkMap }: SidebarProps): JSX.Element {
             links={miscLinks}
             open={openLinks.miscLinksOpen}
           />
-          <Divider />
+          <Divider dark />
 
           <ListItem
             button

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import AdditionSubtractionData, { ProblemGeneration, problemGenerations } from './AdditionSubtractionData';
 import FieldSet from '../../components/forms/FieldSet';
@@ -10,6 +9,7 @@ import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 import SwitchField from '../../components/forms/SwitchField';
+import Divider from '../../components/uiElements/Divider';
 
 export interface CustomizeAdditionSubtractionFormProps {
   onChange: (data: AdditionSubtractionData) => void,

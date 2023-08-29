@@ -1,4 +1,3 @@
-import Divider from '@material-ui/core/Divider';
 import React from 'react';
 import arrayToOptions from '../../components/forms/arrayToOptions';
 import CustomizeForm from '../../components/forms/CustomizeForm';
@@ -9,6 +8,7 @@ import { Magnitude, magnitudes } from '../../lib/math/magnitude';
 import PlaceValuesData, {
   PlaceValueProblemType, problemTypes,
 } from './PlaceValuesData';
+import Divider from '../../components/uiElements/Divider';
 
 interface CustomizePlaceValuesFormProps {
   onChange: (data: PlaceValuesData) => void;

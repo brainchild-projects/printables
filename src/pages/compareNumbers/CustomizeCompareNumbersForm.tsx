@@ -1,11 +1,11 @@
 import React from 'react';
-import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import CompareNumbersData from './CompareNumbersData';
 import NumberField from '../../components/forms/NumberField';
 import { Magnitude, magnitudes } from '../../lib/math/magnitude';
 import SelectField from '../../components/forms/SelectField';
 import arrayToOptions from '../../components/forms/arrayToOptions';
+import Divider from '../../components/uiElements/Divider';
 
 interface CustomizeCompareNumbersFormProps {
   onChange: (data: CompareNumbersData) => void;

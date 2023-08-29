@@ -1,6 +1,6 @@
 import React from 'react';
-import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
+import Divider from '../../components/uiElements/Divider';
 import TellingTimeData, { ProblemType, problemTypeOptions } from './TellingTimeData';
 import NumberField from '../../components/forms/NumberField';
 import SelectField from '../../components/forms/SelectField';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Divider } from '@material-ui/core';
 import CustomizeForm from '../../components/forms/CustomizeForm';
 import SubtractionFillInTheBlanksData, {
   BlankPosition, blankPositions, ProblemGeneration, problemGenerationOptions,
@@ -9,6 +8,7 @@ import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
 import FontSizeField from '../../components/forms/FontSizeField';
+import Divider from '../../components/uiElements/Divider';
 
 interface CustomizeSubtractionFillInTheBlanksFormProps {
   onChange: (data: SubtractionFillInTheBlanksData) => void;
