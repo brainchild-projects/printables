@@ -1,6 +1,6 @@
-import { Typography } from '@material-ui/core';
 import React from 'react';
 import ModalDialog from '../ModalDialog';
+import Typography from '../uiElements/Typography';
 
 interface PrintHelpDialogProps {
   open: boolean;

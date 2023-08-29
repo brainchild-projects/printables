@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef, ReactNode } from 'react';
-import { Typography } from '@material-ui/core';
 import styleIt from '../styleIt';
 import AnyTag from './AnyTag';
+import Typography from './Typography';
 
 const styles = styleIt(() => ({
   listItemText: {
@@ -40,7 +40,7 @@ function LitItemText<Tag extends AnyTag>(
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     >
-      <Typography variant="body1" component='div'>{primary ?? children}</Typography>
+      <Typography variant="body1" component='div' color="inherit">{primary ?? children}</Typography>
       {
         secondary && (
           <Typography variant="body2" component='div' className="secondary">{secondary}</Typography>

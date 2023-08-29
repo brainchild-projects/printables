@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import Hero from '../../components/Hero';
 import Footer from './Footer';
 import LinkRouter from '../../elements/LinkRouter';
@@ -10,6 +9,7 @@ import List from '../../components/uiElements/List';
 import ListItem from '../../components/uiElements/ListItem';
 import ListItemText from '../../components/uiElements/ListItemText';
 import Container from '../../components/uiElements/Container';
+import Typography from '../../components/uiElements/Typography';
 
 const paperStyles = styleIt(() => ({
   wrapper: {
@@ -26,8 +26,8 @@ const paperStyles = styleIt(() => ({
     margin: '0 auto',
   },
   list: {
-    marginLeft: -2,
-    marginRight: -2,
+    marginLeft: -16,
+    marginRight: -16,
   },
 }));
 

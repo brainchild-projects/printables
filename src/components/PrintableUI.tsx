@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import { Typography } from '@material-ui/core';
 import classNames from 'classnames';
 import PaperPreview from './PaperPreview';
 import PaperOptionsProvider from './PaperOptionsProvider';
@@ -7,6 +6,7 @@ import Footer from '../pages/main/Footer';
 import InstanceOptionsProvider from './InstanceSettingsProvider';
 import styleIt from './styleIt';
 import Grid from './uiElements/Grid';
+import Typography from './uiElements/Typography';
 
 const pageStyles = styleIt(() => ({
   container: {

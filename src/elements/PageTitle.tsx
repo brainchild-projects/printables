@@ -1,7 +1,7 @@
-import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
 import styleIt from '../components/styleIt';
+import Typography from '../components/uiElements/Typography';
 
 const styles = styleIt(() => ({
   heading: {

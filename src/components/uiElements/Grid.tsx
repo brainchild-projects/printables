@@ -2,30 +2,12 @@ import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
 import AnyTag from './AnyTag';
+import objectFromNumber from '../../lib/objectFromNumber';
+import objectFromArray from '../../lib/objectFromArray';
 
 type JustifyContent = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 type AlignContent = 'stretch' | 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around';
 type AlignItems = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
-
-type RecordGenerator<K, T> = (key: K) => [string, T];
-
-function objectFromNumber<T>(number: number, generator: RecordGenerator<number, T>): Record<string, T> {
-  const obj = {} as Record<string, T>;
-  for (let i = 0; i < number; i += 1) {
-    const [key, value] = generator(i);
-    obj[key] = value;
-  }
-  return obj;
-}
-
-function objectFromArray<K, T>(array: K[], generator: RecordGenerator<K, T>): Record<string, T> {
-  const obj = {} as Record<string, T>;
-  for (let i = 0; i < array.length; i += 1) {
-    const [key, value] = generator(array[i]);
-    obj[key] = value;
-  }
-  return obj;
-}
 
 const justifyContentValues: JustifyContent[] = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'];
 const alignContentValues: AlignContent[] = ['stretch', 'center', 'flex-start', 'flex-end', 'space-between', 'space-around'];

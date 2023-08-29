@@ -1,7 +1,7 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import styleIt from './styleIt';
 import Container from './uiElements/Container';
+import Typography from './uiElements/Typography';
 
 const heroStyles = styleIt(() => ({
   heroContent: {

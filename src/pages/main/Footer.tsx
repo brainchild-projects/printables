@@ -1,7 +1,8 @@
-import { Link, Typography } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import classNames from 'classnames';
 import React from 'react';
 import styleIt from '../../components/styleIt';
+import Typography from '../../components/uiElements/Typography';
 
 const styles = styleIt(() => ({
   footer: {
@@ -16,14 +17,14 @@ function Footer(): JSX.Element {
   const classes = styles();
   return (
     <footer className={classNames(classes.footer, 'no-print')}>
-      <Typography component="p">
+      <Typography component="p" color="inherit">
         Copyright ©
         {' '}
         <span className="copyright-year">2021-2022</span>
         {' '}
         Wayne Duran
       </Typography>
-      <Typography component="p">
+      <Typography component="p" color="inherit">
         Help us out on
         {' '}
         <a
@@ -32,7 +33,7 @@ function Footer(): JSX.Element {
           GitHub
         </a>
       </Typography>
-      <Typography component="p" variant="caption">
+      <Typography component="p" variant="caption" color="inherit">
         Homepage Photo by
         {' '}
         <Link href="https://unsplash.com/@anniespratt?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Annie Spratt</Link>

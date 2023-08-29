@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   AppBar, IconButton,
-  Toolbar, Typography,
+  Toolbar,
   createTheme, MuiThemeProvider,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { LinkMap } from '../lib/linkMap';
 import Sidebar from './Sidebar';
 import styleIt from './styleIt';
+import Typography from './uiElements/Typography';
 
 const styles = styleIt(() => ({
   appBar: {
@@ -67,7 +68,7 @@ function PrintablesAppBar({ linkMap }: PrintablesAppBarProps): JSX.Element {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.title} color="inherit">
               <Link to="/" className={classes.homeLink}>
                 Printables
               </Link>

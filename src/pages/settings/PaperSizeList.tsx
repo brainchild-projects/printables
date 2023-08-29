@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PaperSize from '../../lib/PaperSize';
@@ -11,6 +8,7 @@ import List from '../../components/uiElements/List';
 import ListItem from '../../components/uiElements/ListItem';
 import ListItemSecondaryAction from '../../components/uiElements/ListIteemSecondaryAction';
 import ListItemText from '../../components/uiElements/ListItemText';
+import Typography from '../../components/uiElements/Typography';
 
 interface PaperSizeListProps {
   paperSizes: PaperSize[];
