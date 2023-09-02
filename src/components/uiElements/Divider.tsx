@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
 import AnyTag from './AnyTag';
+import theme from './theme';
 
 type Variant = 'fullWidth' | 'inset' | 'middle';
 
@@ -10,11 +11,11 @@ const styles = styleIt(() => ({
     border: 'none',
     height: 1,
     margin: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.12)',
+    backgroundColor: theme.colors.transparentBlack,
     flexShrink: 0,
   },
   '!.divider-dark': {
-    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+    backgroundColor: theme.colors.transparentWhite,
   },
   '!.divider-variant-fullWidth': {
     width: '100%',

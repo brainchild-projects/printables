@@ -2,13 +2,14 @@ import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
 import styleIt from '../styleIt';
 import AnyTag from './AnyTag';
+import theme from './theme';
 
 const styles = styleIt(() => ({
   paper: {
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: theme.colors.paperColor,
     borderRadius: 4,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
-    backgroundColor: '#ffffff',
+    backgroundColor: theme.colors.paperBackgroundColor,
+    boxShadow: `0px 2px 1px -1px ${theme.colors.boxShadow1},0px 1px 1px 0px ${theme.colors.boxShadow2},0px 1px 3px 0px ${theme.colors.boxShadow1}}`,
   },
 }));
 

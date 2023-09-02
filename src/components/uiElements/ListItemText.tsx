@@ -3,6 +3,7 @@ import React, { ComponentPropsWithRef, ReactNode } from 'react';
 import styleIt from '../styleIt';
 import AnyTag from './AnyTag';
 import Typography from './Typography';
+import theme from './theme';
 
 const styles = styleIt(() => ({
   listItemText: {
@@ -12,7 +13,7 @@ const styles = styleIt(() => ({
     marginBottom: 4,
 
     '.secondary': {
-      color: 'rgba(0, 0, 0, 0.54)',
+      color: theme.colors.transparentBlack2,
     },
   },
 }));
