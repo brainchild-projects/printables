@@ -28,12 +28,10 @@ type ListItemTextProps<Tag extends AnyTag> = {
   children?: ReactNode;
 } & ComponentPropsWithRef<Tag>;
 
-function LitItemText<Tag extends AnyTag>(
-  {
-    component: Component = DEFAULT_TAG,
-    children, primary, secondary, className, ...other
-  }: ListItemTextProps<Tag>,
-): JSX.Element {
+function LitItemText<Tag extends AnyTag>({
+  component: Component = DEFAULT_TAG,
+  children, primary, secondary, className, ...other
+}: ListItemTextProps<Tag>): JSX.Element {
   const classes = styles();
   return (
     <Component
