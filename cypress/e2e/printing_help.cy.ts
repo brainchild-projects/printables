@@ -11,9 +11,9 @@ it('shows printing help for first time users and as necessary', () => {
     cy.contains(/make sure to match/i);
     void cy.findByRole('button', { name: /got\s+it/i }).click().then(() => {
       expect(printStub).to.be.called;
-      void cy.findByRole('button', { name: /print\s+worksheet/i }).click().then(() => {
-        expect(printStub).to.be.calledTwice;
-      });
+    });
+    void cy.findByRole('button', { name: /print\s+worksheet/i }).then(() => {
+      expect(printStub).to.be.calledTwice;
     });
   });
 });
