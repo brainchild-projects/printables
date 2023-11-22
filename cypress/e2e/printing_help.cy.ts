@@ -1,3 +1,4 @@
+/* eslint-disable cypress/unsafe-to-chain-command */
 /* eslint-disable promise/no-nesting */
 it('shows printing help for first time users and as ncessary', () => {
   cy.visitAdditionFillTheBlanks();

@@ -43,11 +43,11 @@ it('can create a calendar', () => {
   void cy.window().then((win) => {
     const printStub = cy.stub(win, 'print');
 
-    void cy.findByRole('button', { name: /print\s+calendar/i }).click().then(() => {
-      void cy.findByRole('button', { name: /got\s+it/i }).click().then(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        expect(printStub).to.be.called;
-      });
+    cy.findByRole('button', { name: /print\s+calendar/i }).click();
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
+    void cy.findByRole('button', { name: /got\s+it/i }).click().then(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(printStub).to.be.called;
     });
   });
 
