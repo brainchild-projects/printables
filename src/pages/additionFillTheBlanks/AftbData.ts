@@ -1,7 +1,7 @@
 import Range from '../../lib/Range';
 import FontSizeData from '../../components/forms/FontSizeData';
 
-export type BlankPositionStrategy = 'sum' | 'addends' | 'random';
+export type BlankPositionStrategy = 'sum' | 'addends' | 'addend a' | 'addend b' | 'random';
 export type ProblemGeneration = 'single range' | 'custom addends' | 'custom sum';
 
 export const problemGenerations: Map<ProblemGeneration, string> = new Map([

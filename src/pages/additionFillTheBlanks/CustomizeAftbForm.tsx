@@ -18,6 +18,8 @@ export interface CustomizeAftbFormProps {
 const blankTypesStrategies = new Map<BlankPositionStrategy, string>([
   ['sum', 'Sum'],
   ['addends', 'Addends'],
+  ['addend a', 'Addend A'],
+  ['addend b', 'Addend B'],
   ['random', 'Random'],
 ]);
 

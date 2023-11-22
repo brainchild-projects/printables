@@ -21,6 +21,12 @@ function blankTypeFromStrategy(blankStrategy: BlankPositionStrategy): AdditionBl
     case 'addends':
       return randomElement(blankTypesAddends);
 
+    case 'addend a':
+      return 'addendA';
+
+    case 'addend b':
+      return 'addendB';
+
     case 'random':
       return randomElement(blankTypes);
 
