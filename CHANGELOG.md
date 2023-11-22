@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/brainchild-projects/printables/compare/v0.1.1...v0.1.2) (2023-11-22)
+
+
+### Features
+
+* addition problems by sum ([b5726a2](https://github.com/brainchild-projects/printables/commit/b5726a251d430e2cda9090e7982bf06b80347c29))
+* aftb addend A and addend B blank positions ([518df74](https://github.com/brainchild-projects/printables/commit/518df7428a9a5ef0360f7cbcb3c20242a16b0209))
+
+
+### Bug Fixes
+
+* avoid nesting promises ([72e0b44](https://github.com/brainchild-projects/printables/commit/72e0b44ae43bb0f5a8ff002fba3ebbba6d1ef868))
+* update outdated dependencies ([cefb2fe](https://github.com/brainchild-projects/printables/commit/cefb2fe9c93e762cac24d4e53eceb8d862a4707d))
+
 ### [0.1.1](https://github.com/brainchild-projects/printables/compare/v0.1.0...v0.1.1) (2022-10-25)
 
 ## [0.1.0](https://github.com/brainchild-projects/printables/compare/v0.0.80...v0.1.0) (2022-10-25)
