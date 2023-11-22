@@ -56,12 +56,12 @@ for (const name of pathNames) {
 
 Cypress.Commands.add(
   'withinPreview',
-  (callback) => cy.findByRole('region', { name: /preview/i }).within(callback),
+  (callback) => cy.findByRole('section', { name: /preview/i }).within(callback),
 );
 
 Cypress.Commands.add(
   'withinCustomizeForm',
-  (callback) => cy.findByRole('region', { name: /customize form/i }).within(callback),
+  (callback) => cy.findByRole('section', { name: /customize form/i }).within(callback),
 );
 
 Cypress.Commands.add(
@@ -71,7 +71,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'withinAnswerKey',
-  (callback) => cy.findByRole('region', { name: /Answer Key/i }).within(callback),
+  (callback) => cy.findByRole('section', { name: /Answer Key/i }).within(callback),
 );
 
 Cypress.Commands.add(
@@ -137,8 +137,11 @@ Cypress.Commands.add('getBySel', (selector, ...args) => cy.get(`[data-test=${sel
 
 Cypress.Commands.add('getBySelLike', (selector, ...args) => cy.get(`[data-test*=${selector}]`, ...args));
 
-Cypress.Commands.add('findPaperPage', (page) => cy.findByRole('region', { name: new RegExp(`paper.+page ${page}`, 'i') }));
-Cypress.Commands.add('clearType', { prevSubject: true }, (subject, value) => cy.wrap(subject).clear().type(value));
+Cypress.Commands.add('findPaperPage', (page) => cy.findByRole('section', { name: new RegExp(`paper.+page ${page}`, 'i') }));
+Cypress.Commands.add('clearType', { prevSubject: true }, (subject, value) => {
+  cy.wrap(subject).clear();
+  cy.wrap(subject).type(value);
+});
 
 Cypress.Commands.add(
   'problemListItems',
