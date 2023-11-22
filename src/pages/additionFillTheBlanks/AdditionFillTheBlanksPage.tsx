@@ -8,6 +8,8 @@ import PreviewAftb from './PreviewAftb';
 const defaultAftbData = {
   rangeFrom: 0,
   rangeTo: 9,
+  sumRangeFrom: 0,
+  sumRangeTo: 9,
   problems: 20,
   blankStrategy: 'sum',
   problemGeneration: 'single range',

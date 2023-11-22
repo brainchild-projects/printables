@@ -4,25 +4,34 @@ import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
 import AftbData from './AftbData';
+import NumberPair from '../../lib/NumberPair';
+import pairsBySumRange from '../../lib/pairsBySumRange';
 
 type Range = { from: number, to: number };
 
 export function generateAdditionSentences(
   {
-    rangeFrom, rangeTo, problems, customAddendsA, customAddendsB, problemGeneration,
+    rangeFrom, rangeTo, sumRangeFrom, sumRangeTo,
+    problems, customAddendsA, customAddendsB, problemGeneration,
   }: AftbData,
 ): Addition[] {
-  let rangeA: Range;
-  let rangeB: Range;
-  if (problemGeneration === 'custom addends') {
-    rangeA = customAddendsA;
-    rangeB = customAddendsB;
+  let pairs: NumberPair[];
+
+  if (problemGeneration === 'custom sum') {
+    pairs = pairsBySumRange({ from: sumRangeFrom, to: sumRangeTo }, problems);
   } else {
-    rangeA = { from: rangeFrom, to: rangeTo };
-    rangeB = rangeA;
+    let rangeA: Range;
+    let rangeB: Range;
+    if (problemGeneration === 'custom addends') {
+      rangeA = customAddendsA;
+      rangeB = customAddendsB;
+    } else {
+      rangeA = { from: rangeFrom, to: rangeTo };
+      rangeB = rangeA;
+    }
+    pairs = pairsByRanges(rangeA, rangeB, problems);
   }
 
-  const pairs = pairsByRanges(rangeA, rangeB, problems);
   return pairs.map((pair) => Addition.create(...pair));
 }
 

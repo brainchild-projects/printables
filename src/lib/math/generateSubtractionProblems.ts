@@ -2,6 +2,7 @@ import { randomGenerator } from '../RandomNumberGenerator';
 import tryByKey from '../tryByKey';
 import Subtraction from './Subtraction';
 import Range from '../Range';
+import pairsBySumRange from '../pairsBySumRange';
 
 export type ProblemGeneration = 'minuend' | 'subtrahend and difference';
 
@@ -14,17 +15,8 @@ export interface SubtractionProblemsProps {
 }
 
 export function generateProblemsFromMinuend(minuendRange: Range, count: number): Subtraction[] {
-  const problems: Subtraction[] = [];
-  const limitedRetries = tryByKey();
-  for (let i = 0; problems.length < count; i++) {
-    const { from, to } = minuendRange;
-    const minuend = randomGenerator.integer(to, from);
-    const subtrahend = randomGenerator.integer(minuend, 0);
-    limitedRetries([minuend, subtrahend], () => {
-      problems.push(Subtraction.create({ minuend, subtrahend }));
-    });
-  }
-  return problems;
+  const pairs = pairsBySumRange(minuendRange, count);
+  return pairs.map(([subtrahend, difference]) => Subtraction.create({ subtrahend, difference }));
 }
 
 export function generateProblemsFromSubAndDiff(

@@ -28,6 +28,85 @@ function validate({ rangeFrom, rangeTo }: AftbData): string | null {
 
   return null;
 }
+type UpdateAftbData = (updated: AftbData) => void;
+
+function problemGenerationFields(data: AftbData, updateData: UpdateAftbData): JSX.Element {
+  switch (data.problemGeneration) {
+    case 'custom addends':
+      return (
+        <>
+          <FieldSet>
+            <NumberRangeSlider
+              label="Addend A"
+              from={data.customAddendsA.from}
+              to={data.customAddendsA.to}
+              id="custom-addends-a-slider"
+              data-testid="custom-addends-a-slider"
+              onChange={({ from, to }) => {
+                updateData({
+                  ...data,
+                  customAddendsA: { from, to },
+                });
+              }}
+            />
+          </FieldSet>
+          <FieldSet>
+            <NumberRangeSlider
+              label="Addend B"
+              from={data.customAddendsB.from}
+              to={data.customAddendsB.to}
+              id="custom-addends-b-slider"
+              data-testid="custom-addends-b-slider"
+              onChange={({ from, to }) => {
+                updateData({
+                  ...data,
+                  customAddendsB: { from, to },
+                });
+              }}
+            />
+          </FieldSet>
+        </>
+      );
+    case 'custom sum':
+      return (
+        <FieldSet>
+          <NumberRangeSlider
+            label="Sum Range"
+            from={data.sumRangeFrom}
+            to={data.sumRangeTo}
+            id="sum-range-slider"
+            data-testid="sum-range-slider"
+            onChange={({ from, to }) => {
+              updateData({
+                ...data,
+                sumRangeFrom: from,
+                sumRangeTo: to,
+              });
+            }}
+          />
+        </FieldSet>
+      );
+    default:
+      return (
+        <FieldSet>
+          <NumberRangeSlider
+            label="Number Range"
+            from={data.rangeFrom}
+            to={data.rangeTo}
+            id="single-range-slider"
+            data-testid="single-range-slider"
+            onChange={({ from, to }) => {
+              updateData({
+                ...data,
+                rangeFrom: from,
+                rangeTo: to,
+              });
+            }}
+          />
+        </FieldSet>
+      );
+  }
+}
 
 function CustomizeAftbForm({
   onChange,
@@ -84,66 +163,8 @@ function CustomizeAftbForm({
       >
         {stringMapToOptions(problemGenerations)}
       </SelectField>
-      {
-        data.problemGeneration === 'single range'
-          ? (
-            <FieldSet>
-              <NumberRangeSlider
-                label="Number Range"
-                from={data.rangeFrom}
-                to={data.rangeTo}
-                id="single-range-slider"
-                data-testid="single-range-slider"
-                onChange={({ from, to }) => {
-                  updateData({
-                    ...data,
-                    rangeFrom: from,
-                    rangeTo: to,
-                  });
-                }}
-              />
-            </FieldSet>
-          )
-          : null
-      }
-      {
-        data.problemGeneration === 'custom addends'
-          ? (
-            <>
-              <FieldSet>
-                <NumberRangeSlider
-                  label="Addend A"
-                  from={data.customAddendsA.from}
-                  to={data.customAddendsA.to}
-                  id="custom-addends-a-slider"
-                  data-testid="custom-addends-a-slider"
-                  onChange={({ from, to }) => {
-                    updateData({
-                      ...data,
-                      customAddendsA: { from, to },
-                    });
-                  }}
-                />
-              </FieldSet>
-              <FieldSet>
-                <NumberRangeSlider
-                  label="Addend B"
-                  from={data.customAddendsB.from}
-                  to={data.customAddendsB.to}
-                  id="custom-addends-b-slider"
-                  data-testid="custom-addends-b-slider"
-                  onChange={({ from, to }) => {
-                    updateData({
-                      ...data,
-                      customAddendsB: { from, to },
-                    });
-                  }}
-                />
-              </FieldSet>
-            </>
-          )
-          : null
-      }
+
+      {problemGenerationFields(data, updateData)}
 
       <SelectField
         label="Blank Position"

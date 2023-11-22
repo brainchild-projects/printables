@@ -7,6 +7,8 @@ describe('PreviewAftb', () => {
   const defaultAftbData: AftbData = {
     rangeFrom: 1,
     rangeTo: 20,
+    sumRangeFrom: 0,
+    sumRangeTo: 9,
     problems: 20,
     blankStrategy: 'sum',
     problemGeneration: 'single range',

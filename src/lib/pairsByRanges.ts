@@ -1,11 +1,10 @@
+import NumberPair from './NumberPair';
 import { randomGenerator } from './RandomNumberGenerator';
 import randomPairsByRanges from './randomPairsByRanges';
 import Range from './Range';
 import roundRobinPairsByRanges from './roundRobinPairsByRanges';
 
-type Pair = [a: number, b: number];
-
-export default function pairsByRanges(aRange: Range, bRange: Range, count: number): Pair[] {
+export default function pairsByRanges(aRange: Range, bRange: Range, count: number): NumberPair[] {
   const minRange = Math.min(
     (aRange.to - aRange.from + 1),
     (bRange.to - bRange.from + 1),
@@ -14,7 +13,7 @@ export default function pairsByRanges(aRange: Range, bRange: Range, count: numbe
     return randomPairsByRanges(aRange, bRange, count);
   }
 
-  const generated: Pair[] = [];
+  const generated: NumberPair[] = [];
   const possiblePairs = roundRobinPairsByRanges(aRange, bRange);
   while (generated.length < count) {
     const pairBag = possiblePairs.slice(0);
