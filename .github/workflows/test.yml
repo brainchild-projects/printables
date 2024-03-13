@@ -148,7 +148,6 @@ jobs:
 
       - name: Should We Release?
         id: shouldRelease
-        if: steps.shouldRelease.outputs.value == 'yes'
         run: |
           should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" != "${{ steps.currentVersion.outputs.value }}" ]] && echo "yes" || echo "no"`
           echo "value=${should}" >> $GITHUB_OUTPUT
