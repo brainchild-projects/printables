@@ -102,7 +102,7 @@
     "cypress": "NODE_OPTIONS=--openssl-legacy-provider cypress open",
     "cypressrun": "NODE_OPTIONS=--openssl-legacy-provider cypress run",
     "release": "standard-version",
-    "release-version": "standard-version --dry-run | ts-node scripts/next-release-version.ts",
+    "release-version": "standard-version --dry-run | node scripts/next-release-version.js",
     "update-copyright-year": "ts-node scripts/update-copyright-year.ts",
     "generate-page": "node scripts/generate-page.js"
   },

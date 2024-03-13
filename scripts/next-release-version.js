@@ -10,7 +10,8 @@ const r1 = createInterface({
 
 const reg = /^. bumping version .+ to (.+)$/;
 let found = false;
-r1.on('line', (line: string) => {
+
+r1.on('line', (line) => {
   if (found) return;
   const match = reg.exec(line);
   if (match) {

@@ -148,6 +148,7 @@ jobs:
 
       - name: Should We Release?
         id: shouldRelease
+        if: steps.shouldRelease.outputs.value == 'yes'
         run: |
           should=`[[ "${{ steps.nextVersion.outputs.value }}" != "" ]] && [[ "${{ steps.nextVersion.outputs.value }}" != "${{ steps.currentVersion.outputs.value }}" ]] && echo "yes" || echo "no"`
           echo "value=${should}" >> $GITHUB_OUTPUT
@@ -192,7 +193,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@2.0.0
+        if: steps.shouldRelease.outputs.value == 'yes'
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_PAGES_DEPLOY_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
