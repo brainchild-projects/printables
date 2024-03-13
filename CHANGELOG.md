@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/brainchild-projects/printables/compare/v0.1.2...v0.1.3) (2024-03-13)
+
+
+### Features
+
+* experiment with styleIt usage ([350d3a2](https://github.com/brainchild-projects/printables/commit/350d3a2dd3e57b04941b90727ebb158e4785cc1d))
+* replace Box and Paper with custom implementation ([d22bf8b](https://github.com/brainchild-projects/printables/commit/d22bf8bfdd5f2e4e9a7223d9fb888a2b4ca0de7b))
+* replace list and list item elements ([27891cd](https://github.com/brainchild-projects/printables/commit/27891cd54e62dbae44e99887ef5237766781798b))
+* wip textfield input ([97c529d](https://github.com/brainchild-projects/printables/commit/97c529d084b86b19c5eff5f938a7844a1fbafda5))
+* worksheet vertical subtraction ([511e0c9](https://github.com/brainchild-projects/printables/commit/511e0c9bca783903b9156405d24656c8fd245c1b))
+
+
+### Bug Fixes
+
+* appbar color fix ([d0a12da](https://github.com/brainchild-projects/printables/commit/d0a12da854d30feab9b2bdcb93a98e005f1c8f0f))
+* better type defs for ui elements ([76a8499](https://github.com/brainchild-projects/printables/commit/76a8499c91a5d1c74185b297033ef9e86cd4a58e))
+* regression in settings paper list ([428aa13](https://github.com/brainchild-projects/printables/commit/428aa13bd4863634a69e257261c01b2957c2139e))
+* replace Divider ([9dab667](https://github.com/brainchild-projects/printables/commit/9dab6673d4780f06abf52fc6d4f30bf58fa3d1d2))
+* replace LisstItemSecondaryAction ([ad14a48](https://github.com/brainchild-projects/printables/commit/ad14a4845300fb7b6c575d655c30fef7d3361600))
+* replace ListItemText and ListItemIcon ([124c2b0](https://github.com/brainchild-projects/printables/commit/124c2b08a0264f10fd6eaca89e59f155e2d4d88b))
+* replace makeStyles with styleIt in page gen ([2e09e90](https://github.com/brainchild-projects/printables/commit/2e09e9025443a7dc380258428bf8f5816393dc63))
+* replace mui Container ([3fc969b](https://github.com/brainchild-projects/printables/commit/3fc969b305f3ac200ad45a4523ca3ad15743c286))
+* replace mui Grid ([fc85421](https://github.com/brainchild-projects/printables/commit/fc8542172055d4b095458ae7aeaa4f7a768cc3b6))
+* replace mui Modals ([44e193f](https://github.com/brainchild-projects/printables/commit/44e193fe8688b3f2dcc485396ae9db40caef8a57))
+* replace mui Typography ([ba74157](https://github.com/brainchild-projects/printables/commit/ba741573afe897f202a1f617675420980c6481d1))
+* sidebar links color ([7fefa48](https://github.com/brainchild-projects/printables/commit/7fefa48b8bf1a541ae56c35642b18bb3dfa70dbe))
+* theme colors ([5ad89be](https://github.com/brainchild-projects/printables/commit/5ad89becdabc2dc8d3142c200fa6f3c1f65aa9e5))
+* wrong styleIt call ([9c64f6b](https://github.com/brainchild-projects/printables/commit/9c64f6b12aeb496d2cc7cff05764621f71f38829))
+
 ### [0.1.2](https://github.com/brainchild-projects/printables/compare/v0.1.1...v0.1.2) (2023-11-22)
 
 
