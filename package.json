@@ -48,7 +48,6 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.4.1",
     "standard-version": "^9.5.0",
-    "ts-node": "^10.9.1",
     "typescript": "^4.8.4",
     "uuid": "^9.0.0",
     "web-vitals": "^3.0.2",
@@ -86,6 +85,7 @@
     "istanbul-merge": "^1.1.1",
     "quote-it": "^1.0.1",
     "shelljs": "^0.8.5",
+    "tsx": "^4.7.1",
     "vite": "^4.4.8",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-istanbul": "^5.0.0",
@@ -103,7 +103,7 @@
     "cypressrun": "NODE_OPTIONS=--openssl-legacy-provider cypress run",
     "release": "standard-version",
     "release-version": "standard-version --dry-run | node scripts/next-release-version.js",
-    "update-copyright-year": "ts-node scripts/update-copyright-year.ts",
+    "update-copyright-year": "tsx scripts/update-copyright-year.ts",
     "generate-page": "node scripts/generate-page.js"
   },
   "browserslist": {

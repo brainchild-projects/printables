@@ -5,7 +5,7 @@ import copyrightYear from '../src/lib/copyrightYear';
 
 const footerFile = './src/pages/main/Footer.tsx';
 const startYear = 2021;
-readFile(footerFile, 'utf8', (err, data): void => {
+readFile(footerFile, 'utf8', (err, data) => {
   if (err) {
     console.log(err);
     return;
