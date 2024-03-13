@@ -88,6 +88,7 @@ module.exports = {
       files: ['cypress/**/*', 'scripts/**/*'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'import/extensions': 'off',
       },
       extends: [
         'plugin:cypress/recommended',

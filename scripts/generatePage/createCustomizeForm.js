@@ -1,10 +1,10 @@
-const { writeFile } = require('fs/promises');
-const { logRed } = require('./colorLogs');
-const { upperCamelCase } = require('./textManipulation');
-const ImportMap = require('./ImportMap');
-const {
+import { writeFile } from 'fs/promises';
+import { logRed } from './colorLogs.js';
+import { upperCamelCase } from './textManipulation.js';
+import ImportMap from './ImportMap.js';
+import {
   numberField, switchField, numberRangeField, selectField, textField,
-} = require('./fields');
+} from './fields.js';
 
 const template = `import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm';
@@ -115,4 +115,5 @@ async function createCustomizeForm(dirPath, pageName, fields) {
 
   return filePath;
 }
-exports.createCustomizeForm = createCustomizeForm;
+
+export default createCustomizeForm;

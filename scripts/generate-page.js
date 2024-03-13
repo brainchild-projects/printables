@@ -1,14 +1,14 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-await-in-loop */
-const { existsSync } = require('fs');
-const { mkdir } = require('fs/promises');
-const inquirer = require('inquirer');
-const { logGreen, logYellow } = require('./generatePage/colorLogs');
-const { lowerCamelCase, titleize } = require('./generatePage/textManipulation');
-const { createDataDefinition } = require('./generatePage/createDataDefinition');
-const { createCustomizeForm } = require('./generatePage/createCustomizeForm');
-const createPreview = require('./generatePage/createPreview');
-const createPage = require('./generatePage/createPage');
+import { existsSync } from 'fs';
+import { mkdir } from 'fs/promises';
+import inquirer from 'inquirer';
+import { logGreen, logYellow } from './generatePage/colorLogs.js';
+import { lowerCamelCase, titleize } from './generatePage/textManipulation.js';
+import createDataDefinition from './generatePage/createDataDefinition.js';
+import createCustomizeForm from './generatePage/createCustomizeForm.js';
+import createPreview from './generatePage/createPreview.js';
+import createPage from './generatePage/createPage.js';
 
 const fieldTypes = [
   'number',

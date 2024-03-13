@@ -1,6 +1,6 @@
-const { upperCamelCase, titleize } = require('./textManipulation');
+import { upperCamelCase, titleize } from './textManipulation.js';
 
-function numberField(fieldName) {
+export function numberField(fieldName) {
   return `      <NumberField
         name="${fieldName}"
         label="${titleize(fieldName)}"
@@ -8,9 +8,8 @@ function numberField(fieldName) {
         onChange={(${fieldName}) => onChange({ ...data, ${fieldName} })}
       />`;
 }
-exports.numberField = numberField;
 
-function textField(fieldName) {
+export function textField(fieldName) {
   return `      <TextField
         name="${fieldName}"
         label="${titleize(fieldName)}"
@@ -18,9 +17,8 @@ function textField(fieldName) {
         onChange={(${fieldName}) => onChange({ ...data, ${fieldName} })}
       />`;
 }
-exports.textField = textField;
 
-function switchField(fieldName) {
+export function switchField(fieldName) {
   return `      <SwitchField
         name="${fieldName}"
         label="${titleize(fieldName)}"
@@ -28,9 +26,8 @@ function switchField(fieldName) {
         onChange={(${fieldName}) => onChange({ ...data, ${fieldName} })}
       />`;
 }
-exports.switchField = switchField;
 
-function numberRangeField(fieldName, magnitude) {
+export function numberRangeField(fieldName, magnitude) {
   return `      <NumberRangeSlider
         label="${titleize(fieldName)}"
         id="numberRange${upperCamelCase(fieldName)}"
@@ -40,9 +37,8 @@ function numberRangeField(fieldName, magnitude) {
         onChange={(${fieldName}) => onChange({ ...data, ${fieldName} })}
       />`;
 }
-exports.numberRangeField = numberRangeField;
 
-function selectField(fieldName) {
+export function selectField(fieldName) {
   return `      <SelectField
         name="${fieldName}"
         label="${titleize(fieldName)}"
@@ -57,4 +53,3 @@ function selectField(fieldName) {
         {stringMapToOptions(${fieldName}Options)}
       </SelectField>`;
 }
-exports.selectField = selectField;

@@ -1,4 +1,4 @@
-const ImportThing = require('./ImportThing');
+import ImportThing from './ImportThing.js';
 
 class ImportMap {
   constructor() {
@@ -37,4 +37,4 @@ class ImportMap {
   }
 }
 
-module.exports = ImportMap;
+export default ImportMap;

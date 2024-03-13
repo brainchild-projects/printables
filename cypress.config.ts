@@ -4,6 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress';
+import cctask from '@cypress/code-coverage/task';
 
 export default defineConfig({
   video: false,
@@ -13,7 +14,7 @@ export default defineConfig({
     // You may want to clean this up later by importing these.
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      require('@cypress/code-coverage/task')(on, config);
+      cctask(on, config);
       return config;
     },
     baseUrl: 'http://localhost:3000',

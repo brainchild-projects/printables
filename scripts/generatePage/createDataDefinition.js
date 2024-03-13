@@ -1,7 +1,7 @@
-const { writeFile } = require('fs/promises');
-const { logRed } = require('./colorLogs');
-const { upperCamelCase, titleize } = require('./textManipulation');
-const ImportMap = require('./ImportMap');
+import { writeFile } from 'fs/promises';
+import { logRed } from './colorLogs.js';
+import { upperCamelCase, titleize } from './textManipulation.js';
+import ImportMap from './ImportMap.js';
 
 function createOptions(choices) {
   return choices
@@ -72,4 +72,5 @@ async function createDataDefinition(dirPath, pageName, fields) {
   return filePath;
 }
 
-exports.createDataDefinition = createDataDefinition;
+export default createDataDefinition;
+

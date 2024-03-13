@@ -1,6 +1,6 @@
-const { writeFile } = require('fs');
-const { logRed } = require('./colorLogs');
-const { titleize, dashed } = require('./textManipulation');
+import { writeFile } from 'fs';
+import { logRed } from './colorLogs.js';
+import { titleize, dashed } from './textManipulation.js';
 
 const multiTemplate = `import React from 'react';
 import MultiPaperPage from '../../components/MultiPaperPage';
@@ -168,4 +168,4 @@ async function createPreview(dirPath, pageName, pageType) {
   return filePath;
 }
 
-module.exports = createPreview;
+export default createPreview;

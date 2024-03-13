@@ -31,4 +31,4 @@ class ImportThing {
   }
 }
 
-module.exports = ImportThing;
+export default ImportThing;

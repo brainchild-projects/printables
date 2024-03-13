@@ -1,7 +1,7 @@
-const { writeFile } = require('fs');
-const { double } = require('quote-it');
-const { logRed } = require('./colorLogs');
-const { lowerCamelCase } = require('./textManipulation');
+import { writeFile } from 'fs';
+import { double } from 'quote-it';
+import { logRed } from './colorLogs.js';
+import { lowerCamelCase } from './textManipulation.js';
 
 const template = `import React from 'react';
 import PrintableUI from '../../components/PrintableUI';
@@ -94,4 +94,4 @@ async function createPage(dirPath, pageName, fields, title) {
   return filePath;
 }
 
-module.exports = createPage;
+export default createPage;
