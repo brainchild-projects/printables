@@ -1,39 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
-import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
-import styleIt from '../../components/styleIt';
+import VerticalOperationItem from '../../components/math/VerticalOperationItem';
 
-const styles = styleIt(() => ({
-  mainWrap: {
-    display: 'flex',
-  },
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  addendRow: {
-    alignSelf: 'flex-end',
-    flexShrink: 1,
-    textAlign: 'right',
-    position: 'relative',
-  },
-  answerRow: {
-    flexGrow: 1,
-    textAlign: 'right',
-    alignSelf: 'flex-end',
-    paddingTop: '0.2em',
-  },
-  lastRow: {
-    display: 'flex',
-    borderBottom: '2px solid',
-    paddingBottom: '0.2em',
-  },
-  operator: {
-    left: 0,
-    paddingRight: '1em',
-  },
-}));
 
 interface VerticalAdditionItemProps {
   add: Addition;
@@ -43,29 +11,14 @@ interface VerticalAdditionItemProps {
 export default function VerticalAdditionItem({
   add, showAnswer,
 }: VerticalAdditionItemProps): JSX.Element {
-  const classes = styles();
   return (
-    <ProblemListItem
+    <VerticalOperationItem
+      numbers={[add.addendA, add.addendB]}
+      answer={add.sum()}
+      operator="+"
+      showAnswer={showAnswer}
+      label="Vertical Addition"
       className="vertical-addition-problem-item"
-      label={`Vertical Addition ${showAnswer ? 'Answer' : 'Problem'}`}
-    >
-      <div className={classes.mainWrap}>
-        <div className={classes.wrap}>
-          <span className={classes.addendRow}>
-            <span className="number">{add.addendA}</span>
-            {' '}
-          </span>
-          <span className={classNames(classes.addendRow, classes.lastRow)}>
-            <span className={classes.operator}>+</span>
-            {' '}
-            <span>{add.addendB}</span>
-          </span>
-          <span className={classes.answerRow}>
-            {' '}
-            {showAnswer ? add.sum() : (<>&nbsp;</>)}
-          </span>
-        </div>
-      </div>
-    </ProblemListItem>
+    />
   );
 }

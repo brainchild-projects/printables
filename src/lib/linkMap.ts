@@ -8,6 +8,7 @@ const VerticalAdditionPage = lazy(() => import('../pages/verticalAddition/Vertic
 const AdditionSubtractionPage = lazy(() => import('../pages/additionSubtraction/AdditionSubtractionPage'));
 const SubtractionWithFiguresPage = lazy(() => import('../pages/subtractionWithFigures/SubtractionWithFiguresPage'));
 const SubtractionFillInTheBlanksPage = lazy(() => import('../pages/subtractionFillInTheBlanks/SubtractionFillInTheBlanksPage'));
+const VerticalSubtractionPage = lazy(() => import('../pages/verticalSubtraction/VerticalSubtractionPage'));
 const PatternsPage = lazy(() => import('../pages/patterns/PatternsPage'));
 const PlaceValuesPage = lazy(() => import('../pages/placeValues/PlaceValuesPage'));
 const NumbersToWordsPage = lazy(() => import('../pages/numbersToWords/NumbersToWordsPage'));
@@ -71,6 +72,10 @@ export const mathLinks: SectionLinks = new Map([
   ['/worksheet-subtraction-fill-in-the-blanks', {
     text: 'Subtraction: Fill in the Blanks',
     loader: SubtractionFillInTheBlanksPage,
+  }],
+  ['workheet-vertical-subtraction', {
+    text: 'Vertical Subtraction',
+    loader: VerticalSubtractionPage,
   }],
   ['/worksheet-patterns', {
     text: 'Patterns',
