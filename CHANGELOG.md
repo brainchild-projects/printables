@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/brainchild-projects/printables/compare/v0.1.5...v0.1.6) (2024-07-20)
+
+
+### Features
+
+* increase number of digitis for vertical add and sub ([9d80254](https://github.com/brainchild-projects/printables/commit/9d8025421e85e00a1662a369b4278aab3434143b))
+
 ### [0.1.5](https://github.com/brainchild-projects/printables/compare/v0.1.4...v0.1.5) (2024-03-27)
 
 ### [0.1.4](https://github.com/brainchild-projects/printables/compare/v0.1.2...v0.1.4) (2024-03-13)
