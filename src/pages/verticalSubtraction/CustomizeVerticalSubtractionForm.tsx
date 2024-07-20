@@ -22,7 +22,7 @@ function CustomizeVerticalSubtractionForm({
         id="numberRangeMinuend"
         from={data.minuend.from}
         to={data.minuend.to}
-        magnitude={3}
+        magnitude={4}
         onChange={(minuend) => onChange({ ...data, minuend })}
       />
     )
@@ -33,7 +33,7 @@ function CustomizeVerticalSubtractionForm({
           id="numberRangeSubtrahend"
           from={data.subtrahend.from}
           to={data.subtrahend.to}
-          magnitude={3}
+          magnitude={4}
           onChange={(subtrahend) => onChange({ ...data, subtrahend })}
         />
         <NumberRangeSlider
@@ -41,7 +41,7 @@ function CustomizeVerticalSubtractionForm({
           id="numberRangeDifference"
           from={data.difference.from}
           to={data.difference.to}
-          magnitude={3}
+          magnitude={4}
           onChange={(difference) => onChange({ ...data, difference })}
         />
       </>

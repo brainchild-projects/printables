@@ -18,10 +18,17 @@ const valueScale = (x: number): number => {
   if (x < 21) {
     return (x - 10) * 10;
   }
-  return (x - 20) * 100;
+  if (x < 31) {
+    return (x - 20) * 100;
+  }
+
+  return (x - 30) * 1000;
 };
 
 const valueDescale = (x: number): number => {
+  if (x > 1000) {
+    return round((x / 1000) + 30);
+  }
   if (x > 100) {
     return round((x / 100) + 20);
   }
@@ -96,13 +103,17 @@ function getMarksAndMax(magnitude: number | undefined) {
     { value: 10, label: '10' },
   ];
   let max = 10;
-  if (magnitude === 2) {
+  if (magnitude > 1) {
     marks.push({ value: 20, label: '100' });
     max = 100;
   }
-  if (magnitude === 3) {
+  if (magnitude > 2) {
     marks.push({ value: 30, label: '1000' });
     max = 1000;
+  }
+  if (magnitude > 3) {
+    marks.push({ value: 40, label: '10000' });
+    max = 10000;
   }
   return { marks, max };
 }

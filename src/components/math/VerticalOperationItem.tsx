@@ -74,14 +74,14 @@ export default function VerticalOperationItem({
                       </>
                     )
                   }
-                  <span>{num}</span>
+                  <span>{num.toLocaleString()}</span>
                   {' '}
                 </span>
               );
             })
           }
           <span className={classes.answerRow}>
-            {showAnswer ? answer : (<>&nbsp;</>)}
+            {showAnswer ? answer.toLocaleString() : (<>&nbsp;</>)}
           </span>
         </div>
       </div>

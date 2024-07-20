@@ -25,7 +25,7 @@ function CustomizeVerticalAdditionForm({
             id="numberRangeCustomAddendsA"
             from={data.customAddendsA.from}
             to={data.customAddendsA.to}
-            magnitude={3}
+            magnitude={4}
             onChange={(customAddendsA) => onChange({ ...data, customAddendsA })}
           />
           <NumberRangeSlider
@@ -33,7 +33,7 @@ function CustomizeVerticalAdditionForm({
             id="numberRangeCustomAddendsB"
             from={data.customAddendsB.from}
             to={data.customAddendsB.to}
-            magnitude={3}
+            magnitude={4}
             onChange={(customAddendsB) => onChange({ ...data, customAddendsB })}
           />
         </>
@@ -47,7 +47,7 @@ function CustomizeVerticalAdditionForm({
           id="noRegroupingRange"
           from={data.noRegroupingRange.from}
           to={data.noRegroupingRange.to}
-          magnitude={3}
+          magnitude={4}
           onChange={(noRegroupingRange) => onChange({ ...data, noRegroupingRange })}
         />
       );
@@ -60,7 +60,7 @@ function CustomizeVerticalAdditionForm({
           id="numberRangeRange"
           from={data.range.from}
           to={data.range.to}
-          magnitude={3}
+          magnitude={4}
           onChange={(range) => onChange({ ...data, range })}
         />
       );
