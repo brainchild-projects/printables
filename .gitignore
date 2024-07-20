@@ -26,3 +26,11 @@ yarn-error.log*
 # Cypress
 cypress/screenshots/
 cypress/videos/
+
+# Devenv and direnv
+.devenv*
+devenv.local.nix
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
