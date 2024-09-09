@@ -6,10 +6,11 @@ import VerticalSubtractionData from './VerticalSubtractionData';
 import PreviewVerticalSubtraction from './PreviewVerticalSubtraction';
 
 const defaultData: VerticalSubtractionData = {
+  problemGeneration: 'subtrahend and difference',
   count: 10,
-  minuend: { 'from':0, 'to':9 },
-  subtrahend: { 'from':0, 'to':9 },
-  difference: { 'from':0, 'to':9 },
+  minuend: { 'from': 0, 'to': 9 },
+  subtrahend: { 'from': 0, 'to': 9 },
+  difference: { 'from': 0, 'to': 9 },
   columns: 1,
 };
 const key = 'verticalSubtraction';

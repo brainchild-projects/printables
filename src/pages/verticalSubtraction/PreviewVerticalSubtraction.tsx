@@ -34,7 +34,7 @@ interface PreviewVerticalSubtractionProps {
 
 function PreviewVerticalSubtraction({ data }: PreviewVerticalSubtractionProps): JSX.Element {
   const problems = generateSubtractionProblems(data);
-  const instructions = 'Solve the following subtraction problems';
+  const instructions = 'Solve the following subtraction problems.';
 
   return (
     <>
