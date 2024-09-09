@@ -6,7 +6,7 @@
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
-    nodejs_18
+    nodejs_20
   ];
 
   # https://devenv.sh/scripts/
@@ -21,5 +21,11 @@
     echo "Running tests"
     npm test
   '';
+
+  languages.javascript = {
+    enable = true;
+    package = pkgs.nodejs_20;
+  };
+
   processes.serve.exec = "npm start";
 }
