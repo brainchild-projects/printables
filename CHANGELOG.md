@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/brainchild-projects/printables/compare/v0.1.6...v0.1.7) (2024-09-09)
+
+
+### Features
+
+* vertical multiplication worksheet ([8cb76ff](https://github.com/brainchild-projects/printables/commit/8cb76ff0bfd1c2bc57893fa93d0314a76d84e683))
+
+
+### Bug Fixes
+
+* grammar and formatting ([a1108d4](https://github.com/brainchild-projects/printables/commit/a1108d49e4e3224b42afe008490dffaaa64b65cc))
+
 ### [0.1.6](https://github.com/brainchild-projects/printables/compare/v0.1.5...v0.1.6) (2024-07-20)
 
 
