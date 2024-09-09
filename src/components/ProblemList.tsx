@@ -6,7 +6,7 @@ import styleIt from './styleIt';
 interface ProblemListProps {
   children: ReactNode;
   className?: string;
-  columns?: number;
+  columns: number;
   columnGap?: number;
   style?: CSSProperties;
   label?: string;
@@ -69,7 +69,6 @@ ProblemList.propsCallback = propsCallback;
 
 ProblemList.defaultProps = {
   className: null,
-  columns: 1,
   columnGap: 2,
   style: null,
   label: null,
