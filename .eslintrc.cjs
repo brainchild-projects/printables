@@ -37,6 +37,7 @@ module.exports = {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'sonarjs/cognitive-complexity': ['error', 5],
     complexity: ['error', { max: 5 }],
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
   },
   overrides: [
     {
