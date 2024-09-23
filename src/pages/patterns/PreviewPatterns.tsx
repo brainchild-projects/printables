@@ -192,7 +192,6 @@ function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
         footer={(<WorksheetFooter itemCount={data.length} />)}
         wrapper={ProblemList}
         data={data}
-        itemSelector=".pattern-problem-item"
         renderItems={itemBuilder(false)}
       />
 
@@ -206,7 +205,6 @@ function PreviewPatterns({ patternsData }: PreviewPatternsProps): JSX.Element {
           label: 'Answers',
         }}
         data={data}
-        itemSelector=".subtraction-with-figures-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

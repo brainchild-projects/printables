@@ -2,14 +2,18 @@ import React, {
   ReactNode, ElementType, createElement, useState, useEffect, useRef,
 } from 'react';
 import { usePaperOptions } from './PaperOptionsProvider';
-import PaperPage from './PaperPage';
+import PaperPage, { elementClasser, NodeWithClassName } from './PaperPage';
+import WorksheetFooter from './printElements/WorksheetFooter';
+import WorksheetHeader from './printElements/WorksheetHeader';
+import PagingWithColumns from '../lib/layout/PagingWithColumns';
 
 type PropsCallbackOptions = {
   instanceIndex: number,
   memberIndex: number,
 };
 
-export type Builder<T> = (item: T, index: number, array: T[] | undefined) => JSX.Element;
+// export type Builder<T> = (item: T, index: number, array: T[] | undefined) => JSX.Element;
+export type Builder<T> = (item: T, index: number, array: T[] | undefined) => NodeWithClassName;
 
 export type Props = Record<string, unknown>;
 export type PropsCallback = (props: Props, options: PropsCallbackOptions) => Props;
@@ -42,161 +46,174 @@ interface WrapperBuilderArgs<T> extends WrapperBuilder<T> {
 
 const passThrough = (props: Props) => props;
 interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
-  header?: ReactNode | null;
-  footer?: ReactNode | null;
-  itemSelector: string;
+  header?: React.ReactElement<typeof WorksheetHeader> | null;
+  footer?: React.ReactElement<typeof WorksheetFooter> | null;
+}
+
+function itemClasser<T>(builder: Builder<T>): Builder<T> {
+  return (item, index, collection) => {
+    const el = builder(item, index, collection);
+    const itemn = 'mpp-item mpp-item-$index';
+    return elementClasser(el, itemn) as JSX.Element;
+  };
 }
 
 function wrappedContent<T>({
   wrapper, wrapperProps, wrapperPropsCallback, data, renderItems: builder,
   instanceIndex, memberIndex,
 }: WrapperBuilderArgs<T>): ReactNode {
-  if (wrapper !== null) {
-    let propsCallback = wrapperPropsCallback;
-    if (isWrapperWithPropsCallback(wrapper)) {
-      propsCallback = (props, options) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        wrapperPropsCallback(
-          wrapper.propsCallback(props, options),
-          options,
-        );
-    }
-    return createElement(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      wrapper!,
+  const realBuilder: Builder<T> = itemClasser(builder);
+
+  if (wrapper === null) {
+    return data.map(realBuilder);
+  }
+
+  let propsCallback = wrapperPropsCallback;
+  if (isWrapperWithPropsCallback(wrapper)) {
+    propsCallback = (props, options) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      wrapperPropsCallback(
+        wrapper.propsCallback(props, options),
+        options,
+      );
+  }
+
+  return (
+    <div className="mpp-wrapper">
       {
-        ...propsCallback(
-          wrapperProps ?? {},
-          { instanceIndex, memberIndex },
-        ),
-      },
-      data.map(builder),
-    );
-  }
-  return data.map(builder);
+        createElement(
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          wrapper!,
+          {
+            ...propsCallback(
+              wrapperProps ?? {},
+              { instanceIndex, memberIndex },
+            ),
+          },
+          data.map(realBuilder),
+        )
+      }
+    </div>
+  );
 }
 
-function clientRectangle(element: HTMLElement): DOMRect {
-  return element.getClientRects()[0];
-}
+type DataPage<T> = T[];
+type DataPages<T> = DataPage<T>[];
 
-function countUnobscuredElements(pageContent: HTMLDivElement, itemSelector: string): number {
-  const innerWrap = pageContent.querySelector('.printable-paper-inner-wrap') as HTMLElement;
-  if (innerWrap === null) {
-    throw Error('Page content inner wrap is missing');
-  }
-  const wrapperRect = clientRectangle(innerWrap);
-  const wrapperBottom = wrapperRect.bottom;
-  let visibilityCount = 0;
-  const items: NodeListOf<HTMLElement> = innerWrap.querySelectorAll(itemSelector);
-  items.forEach((item) => {
-    const itemBottom = clientRectangle(item).bottom;
-    if (itemBottom <= wrapperBottom) {
-      visibilityCount += 1;
-    }
-  });
-  return visibilityCount;
-}
-
-function isContentOverflowing(element: HTMLDivElement | null): boolean {
+function offsetHeight(element: HTMLElement | null): number {
   if (element === null) {
-    return false;
-  }
-  const content = element.querySelector('.printable-paper-inner-wrap');
-  if (content === null) {
-    return false;
+    return 0;
   }
 
-  return content.scrollHeight > content.clientHeight;
+  return element.offsetHeight;
 }
 
-interface LeaveUnobscuredElementsProps<T> {
-  dataPage: T[];
-  previousPagedItemsCount: number;
-  page: HTMLDivElement;
-  pageIndex: number;
+type ColumnProps = {
+  columnCount: number;
+  gap: number;
+};
+
+function getColumnProps(wrapper: HTMLDivElement | null): ColumnProps {
+  if (wrapper === null) {
+    return { columnCount: 1, gap: 0 };
+  }
+  const computedStyle = getComputedStyle(wrapper);
+  const { columnCount } = computedStyle;
+  const columns = parseInt(columnCount, 10);
+  const gapProp = parseInt(computedStyle.columnGap, 10);
+
+  const count = Number.isNaN(columns) ? 1 : columns;
+  const gap = Number.isNaN(gapProp) ? 1 : gapProp;
+
+  return { columnCount: count, gap };
+}
+
+function numberOrDefault(value: unknown, defaultValue: number): number {
+  return Number.isNaN(value) ? defaultValue : value as number;
+}
+
+type GatherPagesArgs<T> = {
+  data: T[],
+  itemHeights: number[],
+  columnCount: number,
+  contentHeight: number,
+  headerHeight: number,
+  footerHeight: number,
+};
+
+function gatherPages<T>({
+  data,
+  itemHeights,
+  columnCount,
+  contentHeight,
+  headerHeight,
+  footerHeight,
+}: GatherPagesArgs<T>): DataPages<T> {
+  const colItems = data.map((item, i) => ({ item, height: numberOrDefault(itemHeights[i], 0) }));
+  const paginator = new PagingWithColumns(colItems, {
+    columns: columnCount,
+    height: contentHeight,
+    header: headerHeight,
+    footer: footerHeight,
+  });
+
+  return paginator.columnGroups.map((columnGroup) => columnGroup.items);
 }
 
 function MultiPaperPage<T>({
   header = null, footer = null,
   wrapper, wrapperProps = {}, data, renderItems: builder,
   wrapperPropsCallback = passThrough,
-  itemSelector,
 }: MultiPaperPageProps<T>): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { options } = usePaperOptions();
   const [isReady, setIsReady] = useState(false);
   const [dataPages, setDataPages] = useState([data]);
-  const [attemptsToFix, setAttemptsTofix] = useState(0);
+  const [pagingArgs, setPagingArgs] = useState<GatherPagesArgs<T> | null>(null);
 
   useEffect(() => {
     setDataPages([data]);
-    setAttemptsTofix(0);
+    setIsReady(false);
+    setPagingArgs(null);
   }, [data, options]);
 
-  // This is just a stop gap so we don't attempt to fix like in
-  // the event of an infinite loop. The limit is pretty arbitrary.
-  const throwOnTooManyAttempts = () => {
-    if (attemptsToFix > 100) {
-      setIsReady(true);
-      throw Error('Attempted to fix paging too many times');
-    }
-  };
-
-  const leaveUnobscuredElements = ({
-    dataPage,
-    previousPagedItemsCount,
-    page,
-    pageIndex,
-  }: LeaveUnobscuredElementsProps<T>) => {
-    const itemCount = countUnobscuredElements(page, itemSelector);
-    if (dataPage.length > itemCount) {
-      const previousPages = dataPages.slice(0, pageIndex); // retain previous pages
-      const startIndex = previousPagedItemsCount;
-      const newDataPage = data.slice(startIndex, startIndex + itemCount);
-      const newPages = previousPages.concat(
-        [newDataPage, data.slice(startIndex + itemCount)],
-      );
-      setDataPages(newPages);
-    }
-  };
-
   useEffect(() => {
-    throwOnTooManyAttempts();
-    // Check if last page overflows
+    if (pagingArgs !== null) {
+      return;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const wrapperEl = wrapperRef.current!;
-    const pages: NodeListOf<HTMLDivElement> = wrapperEl.querySelectorAll('.printable-paper-content');
-    let previousPagedItemsCount = 0;
-    let contentOverflowed = false;
-    for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
-      const page = pages[pageIndex];
-      const itemCountOnPage = dataPages[pageIndex].length;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const contentElement: HTMLDivElement = wrapperEl.querySelector('.printable-paper-content')!;
+    const headerHeight = offsetHeight(wrapperEl.querySelector('.mpp-header'));
+    const footerHeight = offsetHeight(wrapperEl.querySelector('.worksheet-footer'));
+    const { columnCount } = getColumnProps(contentElement.querySelector('.mpp-wrapper > *'));
+    const itemEls: NodeListOf<HTMLElement> = wrapperEl.querySelectorAll('.mpp-item');
+    const itemHeights = Array.from(itemEls).map((el) => el.offsetHeight);
+    setPagingArgs({
+      data, itemHeights, columnCount, contentHeight: contentElement.clientHeight,
+      headerHeight, footerHeight,
+    });
+  }, [options, data, pagingArgs]);
 
-      if (isContentOverflowing(page)) {
-        contentOverflowed = true;
-        leaveUnobscuredElements({
-          dataPage: dataPages[pageIndex],
-          page,
-          pageIndex,
-          previousPagedItemsCount,
-        });
-        break;
-      }
-      previousPagedItemsCount += itemCountOnPage;
-      if (!contentOverflowed) {
-        setIsReady(true);
-      }
+  useEffect(() => {
+    if (isReady) {
+      return;
     }
-    setAttemptsTofix(attemptsToFix + 1);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataPages, options]);
+    if (pagingArgs === null) {
+      return;
+    }
+
+    setDataPages(gatherPages(pagingArgs));
+    setIsReady(true);
+  }, [isReady, pagingArgs, data]);
 
   let count = 0;
 
   return (
-    <div ref={wrapperRef}>
+    <div className="multipaperpage-wrapper" ref={wrapperRef}>
       {
         dataPages.map((dataPage, index) => {
           const rendered = (
@@ -205,8 +222,13 @@ function MultiPaperPage<T>({
               // eslint-disable-next-line react/no-array-index-key
               key={`page-${index}`}
               ready={isReady}
+              unlimitedHeight={!isReady}
             >
-              {index === 0 ? header : null}
+              {
+                index === 0
+                  ? (<div className="mpp-header">{header}</div>)
+                  : null
+              }
               {
                 wrappedContent<T>({
                   wrapper,
@@ -218,7 +240,11 @@ function MultiPaperPage<T>({
                   memberIndex: count,
                 })
               }
-              {index === dataPages.length - 1 ? footer : null}
+              {
+                index === dataPages.length - 1
+                  ? (<div className="mpp-footer">{footer}</div>)
+                  : null
+              }
             </PaperPage>
           );
           count += dataPage.length;

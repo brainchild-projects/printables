@@ -56,7 +56,6 @@ function PreviewSubtractionWithFigures({ data }: PreviewSubtractionWithFiguresPr
           columns,
         }}
         data={problems}
-        itemSelector=".subtraction-with-figures-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -70,7 +69,6 @@ function PreviewSubtractionWithFigures({ data }: PreviewSubtractionWithFiguresPr
           columns,
         }}
         data={problems}
-        itemSelector=".subtraction-with-figures-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

@@ -105,7 +105,6 @@ function PreviewTellingTime({ data }: PreviewTellingTimeProps): JSX.Element {
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".telling-time-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -119,7 +118,6 @@ function PreviewTellingTime({ data }: PreviewTellingTimeProps): JSX.Element {
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".telling-time-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

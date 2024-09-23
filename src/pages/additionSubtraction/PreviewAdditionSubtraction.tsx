@@ -76,7 +76,6 @@ function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
         wrapperProps={{ columns: data.columns }}
         data-testid="problems"
         data={theData}
-        itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage<AdditionAndMeta>
@@ -86,7 +85,6 @@ function PreviewAddSub({ data }: PreviewAddSubProps): JSX.Element {
         wrapper={ProblemList}
         wrapperProps={{ className: 'answers', label: 'Answers', columns: data.columns }}
         data={theData}
-        itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(true)}
       />
     </>

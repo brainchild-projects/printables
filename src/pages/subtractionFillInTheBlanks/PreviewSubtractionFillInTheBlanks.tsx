@@ -75,7 +75,6 @@ function PreviewSubtractionFillInTheBlanks({
           columns,
         }}
         data={problems}
-        itemSelector=".subtraction-fill-in-the-blanks-problem-item"
         renderItems={itemBuilder(false, fontSize)}
       />
       <MultiPaperPage
@@ -89,7 +88,6 @@ function PreviewSubtractionFillInTheBlanks({
           columns,
         }}
         data={problems}
-        itemSelector=".subtraction-fill-in-the-blanks-problem-item"
         renderItems={itemBuilder(true, fontSize)}
       />
     </>

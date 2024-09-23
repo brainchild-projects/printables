@@ -80,7 +80,6 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
         footer={(<WorksheetFooter itemCount={problems.length} />)}
         wrapper={ProblemList}
         data={problems}
-        itemSelector=".numbers-to-words-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -88,7 +87,6 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
         wrapper={ProblemList}
         wrapperProps={{ label: 'Answers' }}
         data={problems}
-        itemSelector=".numbers-to-words-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

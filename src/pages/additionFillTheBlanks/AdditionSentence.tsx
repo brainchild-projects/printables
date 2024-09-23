@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import AdditionSentenceBasic, { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
@@ -42,15 +43,16 @@ export interface AdditionSentenceProps {
   showAnswer?: boolean;
   blank?: AdditionBlankPosition;
   fontSize?: number;
+  className?: string;
 }
 
 function AdditionSentence({
-  addition, blank = 'sum', showAnswer = false, fontSize = 20,
+  addition, blank = 'sum', showAnswer = false, fontSize = 20, className = '',
 }: AdditionSentenceProps): JSX.Element {
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
     <ProblemListItem
-      className="addition-sentence-item"
+      className={classNames('addition-sentence-item', className)}
       label={label}
       fontSize={fontSize}
     >
@@ -67,6 +69,7 @@ AdditionSentence.defaultProps = {
   showAnswer: false,
   blank: 'sum',
   fontSize: 20,
+  className: '',
 };
 
 export default AdditionSentence;

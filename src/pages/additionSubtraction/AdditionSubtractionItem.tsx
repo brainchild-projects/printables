@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
+import classNames from 'classnames';
 import ProblemListItem from '../../components/ProblemListItem';
 import Addition from '../../lib/math/Addition';
 import pairsByRanges from '../../lib/pairsByRanges';
@@ -72,6 +73,7 @@ export interface AdditionSubtractionItemProps {
   subtrahend: AdditionAddends;
   blanksOnAddition: boolean;
   subtractionFirst: boolean;
+  className?: string;
 }
 
 function getAdditionSide({
@@ -107,7 +109,7 @@ function getSubtractionSide({
 }
 function AdditionSubtractionItem(props: AdditionSubtractionItemProps): JSX.Element {
   const classes = styles();
-  const { fontSize = 20, subtractionFirst, showAnswer } = props;
+  const { fontSize = 20, subtractionFirst, showAnswer, className } = props;
   const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   const additionSide = getAdditionSide(props);
   const subtractionSide = getSubtractionSide(props);
@@ -117,7 +119,7 @@ function AdditionSubtractionItem(props: AdditionSubtractionItemProps): JSX.Eleme
 
   return (
     <ProblemListItem
-      className="addition-sentence-item"
+      className={classNames('addition-sentence-item', className)}
       label={label}
       fontSize={fontSize}
     >
@@ -134,6 +136,7 @@ AdditionSubtractionItem.defaultProps = {
   showAnswer: false,
   blank: 'sum',
   fontSize: 20,
+  className: '',
 };
 
 export default AdditionSubtractionItem;

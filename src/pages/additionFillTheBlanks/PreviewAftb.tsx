@@ -83,7 +83,6 @@ function PreviewAftb({
         wrapperProps={{ columns: aftbData.columns }}
         data-testid="problems"
         data={data}
-        itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage<AdditionAndMeta>
@@ -93,7 +92,6 @@ function PreviewAftb({
         wrapper={ProblemList}
         wrapperProps={{ className: 'answers', label: 'Answers', columns: aftbData.columns }}
         data={data}
-        itemSelector=".addition-sentence-item"
         renderItems={itemBuilder(true)}
       />
     </>

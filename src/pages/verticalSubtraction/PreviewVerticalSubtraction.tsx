@@ -51,7 +51,6 @@ function PreviewVerticalSubtraction({ data }: PreviewVerticalSubtractionProps): 
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-subtraction-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -65,7 +64,6 @@ function PreviewVerticalSubtraction({ data }: PreviewVerticalSubtractionProps): 
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-subtraction-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

@@ -5,7 +5,7 @@ import FooterProps from './FooterProps';
 const styles = styleIt(() => ({
   footer: {
     display: 'flex',
-    padding: '10mm 5mm 5mm 0',
+    padding: '5mm 0',
     justifyContent: 'flex-end',
   },
   footerName: {

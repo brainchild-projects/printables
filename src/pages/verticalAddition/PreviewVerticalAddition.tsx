@@ -84,7 +84,6 @@ function PreviewVerticalAddition({ data }: PreviewVerticalAdditionProps): JSX.El
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-addition-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -98,7 +97,6 @@ function PreviewVerticalAddition({ data }: PreviewVerticalAdditionProps): JSX.El
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-addition-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

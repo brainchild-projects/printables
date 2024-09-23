@@ -4,7 +4,7 @@ import styleIt from '../styleIt';
 const headerStyles = styleIt(() => ({
   header: {
     display: 'flex',
-    marginTop: 20,
+    paddingTop: '5.29166mm', // 20px
   },
   headerName: {
     flexGrow: '4',
@@ -28,6 +28,11 @@ const headerStyles = styleIt(() => ({
     marginBottom: 0,
     marginTop: '10mm',
     fontSize: 16,
+    paddingBottom: '5.29166mm', // 20px
+
+    ':last-child': {
+      marginBottom: 0,
+    },
   },
 }));
 
@@ -50,7 +55,7 @@ function WorksheetHeader({ children }: WorksheetHeaderProps): JSX.Element {
         </div>
       </section>
       <div className={classes.instructions}>
-        { children }
+        {children}
       </div>
     </>
   );

@@ -103,7 +103,6 @@ function PreviewSkipCounting({ data }: PreviewSkipCountingProps): JSX.Element {
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".skip-counting-problem-item"
         renderItems={itemBuilder(false, classes.number)}
       />
       <MultiPaperPage
@@ -117,7 +116,6 @@ function PreviewSkipCounting({ data }: PreviewSkipCountingProps): JSX.Element {
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".skip-counting-problem-item"
         renderItems={itemBuilder(true, classes.number)}
       />
     </>

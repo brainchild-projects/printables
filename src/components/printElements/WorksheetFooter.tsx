@@ -8,6 +8,7 @@ function WorksheetFooter(props: FooterProps): JSX.Element {
   const footerRenderer = footers.get(options.footer);
   return (
     <div
+      className="worksheet-footer"
       style={{
         position: 'absolute',
         bottom: options.margin,

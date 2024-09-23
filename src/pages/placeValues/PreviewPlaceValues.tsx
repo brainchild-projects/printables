@@ -148,7 +148,6 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
           columnGap,
         }}
         data={problems}
-        itemSelector=".place-value-problem-item"
         renderItems={itemBuilder(false, customData)}
       />
       <MultiPaperPage
@@ -163,7 +162,6 @@ function PreviewPlaceValues({ customData }: PreviewPlaceValuesProps): JSX.Elemen
           columnGap,
         }}
         data={problems}
-        itemSelector=".place-value-problem-item"
         renderItems={itemBuilder(true, customData)}
       />
     </>

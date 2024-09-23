@@ -97,7 +97,6 @@ function PreviewOddEven({ data }: PreviewOddEvenProps): JSX.Element {
           className: 'problems',
         }}
         data={problems}
-        itemSelector=".odd-even-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -110,7 +109,6 @@ function PreviewOddEven({ data }: PreviewOddEvenProps): JSX.Element {
           label: 'Answers',
         }}
         data={problems}
-        itemSelector=".odd-even-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

@@ -17,7 +17,6 @@ describe('MultiPaperPage', () => {
         wrapperProps={{ className: 'foo' }}
         wrapperPropsCallback={propsCallback}
         data={['a', 'b', 'c', 'd']}
-        itemSelector="p"
         renderItems={
           (letter, index) => (
             <p key={letter}>

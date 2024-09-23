@@ -54,7 +54,6 @@ function PreviewCompareNumbers({ data }: PreviewCompareNumbersProps): JSX.Elemen
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".compare-numbers-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -68,7 +67,6 @@ function PreviewCompareNumbers({ data }: PreviewCompareNumbersProps): JSX.Elemen
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".compare-numbers-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>

@@ -15,7 +15,7 @@ interface ProblemListProps {
 const styles = styleIt(() => ({
   // All em units equivalent are based on a 20px font size base
   list: {
-    margin: '5mm 0 0 0',
+    margin: 0,
     padding: 0,
     columnCount: '2',
     columnWidth: 'auto',

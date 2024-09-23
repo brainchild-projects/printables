@@ -3,6 +3,7 @@ import { logRed } from './colorLogs.js';
 import { titleize, dashed } from './textManipulation.js';
 
 const multiTemplate = `import React from 'react';
+import classNames from 'classnames';
 import MultiPaperPage from '../../components/MultiPaperPage';
 import PageTitle from '../../elements/PageTitle';
 import ProblemList from '../../components/ProblemList';
@@ -32,12 +33,13 @@ function generateProblems(data: [DATA]): [PREVIEW]Problem[] {
 function itemBuilder(
   showAnswer: boolean,
   data: [DATA],
+  className = '',
 ) {
   function fn(problem: [PREVIEW]Problem, indexNumber: number) {
     return (
       <ProblemListItem
         key={\`problem-\${indexNumber}\`}
-        className="[DASHEDNAME]-problem-item"
+        className={classNames('[DASHEDNAME]-problem-item', className)}
         label={\`[LABELPREFIX] \${showAnswer ? 'Answer' : 'Problem'}\`}
       >
         Problem
@@ -70,7 +72,6 @@ function [PREVIEW]({ data }: [PREVIEW]Props): JSX.Element {
           className: 'problems',
         }}
         data={problems}
-        itemSelector=".[DASHEDNAME]-problem-item"
         renderItems={itemBuilder(false, data)}
       />
       <MultiPaperPage
@@ -83,7 +84,6 @@ function [PREVIEW]({ data }: [PREVIEW]Props): JSX.Element {
           label: 'Answers',
         }}
         data={problems}
-        itemSelector=".[DASHEDNAME]-problem-item"
         renderItems={itemBuilder(true, data)}
       />
     </>

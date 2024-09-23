@@ -16,8 +16,8 @@ function itemBuilder(
     return (
       <VerticalOperationItem
         key={`problem-${indexNumber}`}
-        className="vertical-subtraction-problem-item"
-        label="Vertical Subtraction"
+        className="vertical-multiplication-problem-item"
+        label="Vertical Multiplication"
         numbers={[multiplication.multiplicand, multiplication.multiplier]}
         answer={multiplication.product}
         operator="✕"
@@ -51,7 +51,6 @@ function PreviewVerticalMultiplication({ data }: PreviewVerticalMultiplicationPr
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-multiplication-problem-item"
         renderItems={itemBuilder(false)}
       />
       <MultiPaperPage
@@ -65,7 +64,6 @@ function PreviewVerticalMultiplication({ data }: PreviewVerticalMultiplicationPr
           columns: data.columns,
         }}
         data={problems}
-        itemSelector=".vertical-multiplication-problem-item"
         renderItems={itemBuilder(true)}
       />
     </>
