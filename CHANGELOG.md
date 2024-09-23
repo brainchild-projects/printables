@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/brainchild-projects/printables/compare/v0.1.7...v0.1.8) (2024-09-23)
+
+
+### Bug Fixes
+
+* mulit-page pagination calculation errors ([106cfbd](https://github.com/brainchild-projects/printables/commit/106cfbd95961449e8c22c8d1ee86fc81f74a239d)), closes [#100](https://github.com/brainchild-projects/printables/issues/100)
+
 ### [0.1.7](https://github.com/brainchild-projects/printables/compare/v0.1.6...v0.1.7) (2024-09-09)
 
 
