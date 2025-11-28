@@ -6,7 +6,7 @@
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
-    nodejs_20
+    nodejs_24
   ];
 
   # https://devenv.sh/scripts/
@@ -24,7 +24,7 @@
 
   languages.javascript = {
     enable = true;
-    package = pkgs.nodejs_20;
+    package = pkgs.nodejs_24;
   };
 
   processes.serve.exec = "npm start";
