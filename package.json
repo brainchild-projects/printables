@@ -65,7 +65,7 @@
     "workbox-streams": "^7.4.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@cypress/code-coverage": "^3.11.0",
     "@testing-library/cypress": "^9.0.0",
     "@types/crypto-js": "^4.1.1",
