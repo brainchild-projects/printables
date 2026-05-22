@@ -40,7 +40,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-sonarjs": "^0.15.0",
     "eslint-plugin-testing-library": "^5.0.5",
-    "html2pdf.js": "^0.10.1",
+    "html2pdf.js": "^0.14.0",
     "husky": "^8.0.1",
     "prettier": "^2.8.8",
     "react": "^17.0.2",
