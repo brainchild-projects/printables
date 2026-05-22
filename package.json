@@ -85,7 +85,7 @@
     "istanbul-merge": "^1.1.1",
     "quote-it": "^1.0.1",
     "shelljs": "^0.8.5",
-    "tsx": "^4.7.1",
+    "tsx": "^4.22.2",
     "vite": "^4.4.8",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-istanbul": "^5.0.0",
