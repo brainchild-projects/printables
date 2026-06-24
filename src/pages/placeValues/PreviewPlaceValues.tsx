@@ -13,7 +13,7 @@ import FillInTheBlanksProblem from './FillInTheBlanksProblem';
 import MultipleChoiceProblem from './MultipleChoiceProblem';
 import { shouldAddComma } from '../../lib/math/commaNumberFormat';
 import tryByKey from '../../lib/tryByKey';
-import { magNFromMagnitude, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude';
+import { magnitudeDigits, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude';
 import styleIt from '../../components/styleIt';
 
 interface PreviewPlaceValuesProps {
@@ -22,7 +22,7 @@ interface PreviewPlaceValuesProps {
 
 function generateProblems({ count, magnitude }: PlaceValuesData): Array<PlaceValuesProblem> {
   const max = maxFromMagnitude(magnitude);
-  const magNumber = magNFromMagnitude(magnitude);
+  const magNumber = magnitudeDigits(magnitude);
 
   const problems: Array<PlaceValuesProblem> = [];
   const limitedRetries = tryByKey(max);

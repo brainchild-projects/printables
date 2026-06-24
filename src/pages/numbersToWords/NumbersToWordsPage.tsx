@@ -9,6 +9,7 @@ const defaultData: NumbersToWordsData = {
   problemType: 'blanks',
   magnitude: 'tens',
   count: 10,
+  fontSize: 20,
 };
 const key = 'numbersToWords';
 

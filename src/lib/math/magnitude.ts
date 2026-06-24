@@ -1,28 +1,17 @@
-export type Magnitude = 'tens' | 'hundreds' | 'thousands';
-export const magnitudes: Magnitude[] = ['tens', 'hundreds', 'thousands'];
+const magnitudeToDigits = {
+  'tens': 2,
+  'hundreds': 3,
+  'thousands': 4,
+  'millions': 7,
+  'billions': 10,
+} as const;
+export type Magnitude = keyof typeof magnitudeToDigits;
+export const magnitudes = Object.keys(magnitudeToDigits) as Array<Magnitude>;
 
-export function maxFromMagnitude(magnitude: Magnitude): number {
-  switch (magnitude) {
-    case 'thousands':
-      return 9999;
-
-    case 'hundreds':
-      return 999;
-
-    default:
-      return 99;
-  }
+export function magnitudeDigits(magnitude: Magnitude): number {
+  return magnitudeToDigits[magnitude];
 }
 
-export function magNFromMagnitude(magnitude: Magnitude): number {
-  switch (magnitude) {
-    case 'thousands':
-      return 4;
-
-    case 'hundreds':
-      return 3;
-
-    default:
-      return 2;
-  }
+export function maxFromMagnitude(magnitude: Magnitude): number {
+  return (magnitudeDigits(magnitude) ** 2) - 1;
 }

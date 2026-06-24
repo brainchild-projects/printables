@@ -34,7 +34,7 @@ interface PreviewNumbersToWordsProps {
 }
 
 function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.Element {
-  const { problemType } = customData;
+  const { problemType, fontSize } = customData;
   const problems = generateProblems(customData);
   const instructions = problemType === 'blanks'
     ? 'Write the number that is written in words.'
@@ -48,6 +48,7 @@ function PreviewNumbersToWords({ customData }: PreviewNumbersToWordsProps): JSX.
           key={`problem-${indexNumber}`}
           className="numbers-to-words-problem-item"
           label={`Numbers To Words ${showAnswer ? 'Answer' : 'Problem'}`}
+          fontSize={fontSize}
         >
           {
             problemType === 'blanks'

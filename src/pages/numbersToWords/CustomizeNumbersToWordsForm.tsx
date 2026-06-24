@@ -6,6 +6,8 @@ import SelectField from '../../components/forms/SelectField';
 import stringMapToOptions from '../../components/forms/stringMapToOptions';
 import { Magnitude, magnitudes } from '../../lib/math/magnitude';
 import NumbersToWordsData, { NumbersToWordsProblemType, problemTypes } from './NumbersToWordsData';
+import Divider from '../../components/uiElements/Divider';
+import FontSizeField from '../../components/forms/FontSizeField';
 
 interface CustomizeNumbersToWordsFormProps {
   onChange: (data: NumbersToWordsData) => void;
@@ -15,6 +17,7 @@ interface CustomizeNumbersToWordsFormProps {
 function CustomizeNumbersToWordsForm({
   data, onChange,
 }: CustomizeNumbersToWordsFormProps): JSX.Element {
+
   return (
     <CustomizeForm name="Worksheet">
       <SelectField<NumbersToWordsProblemType>
@@ -37,7 +40,15 @@ function CustomizeNumbersToWordsForm({
       >
         {arrayToOptions(magnitudes, true)}
       </SelectField>
-    </CustomizeForm>
+
+      <Divider variant="middle" />
+
+
+      <FontSizeField
+        value={data.fontSize}
+        onChange={(fontSize) => onChange({ ...data, fontSize })}
+      />
+    </CustomizeForm >
   );
 }
 

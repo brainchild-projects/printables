@@ -1,4 +1,4 @@
-import { magNFromMagnitude, maxFromMagnitude } from '../../lib/math/magnitude';
+import { magnitudeDigits, maxFromMagnitude } from '../../lib/math/magnitude';
 import mutateNumber from '../../lib/mutateNumber';
 import { randomGenerator } from '../../lib/RandomNumberGenerator';
 import shuffle from '../../lib/shuffle';
@@ -32,7 +32,7 @@ export default function generateProblems({
   count, magnitude, problemType,
 }: NumbersToWordsData): NumToWordsProblem[] {
   const max = maxFromMagnitude(magnitude);
-  const magNumber = magNFromMagnitude(magnitude);
+  const magNumber = magnitudeDigits(magnitude);
 
   const problems: NumToWordsProblem[] = [];
   const limitedRetries = tryByKey(max);
