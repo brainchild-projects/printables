@@ -14,7 +14,7 @@ describe('PreviewCalendar', () => {
     expect(screen.queryAllByRole('rowgroup', { name: 'Dates' })).toHaveLength(1);
     const calendarBody = within(screen.getByRole('rowgroup', { name: 'Dates' }));
     const dates = calendarBody.queryAllByRole('row').map((row) => (
-      within(row).queryAllByRole('cell').map((cell) => Number.parseInt(cell.textContent as string, 10))
+      within(row).queryAllByRole('cell').map((cell) => Number.parseInt(cell.textContent, 10))
     ));
     return dates;
   }
