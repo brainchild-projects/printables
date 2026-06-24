@@ -1,3 +1,8 @@
+/// <reference types="vite/client" />
+// TODO: Somehow we need to add the above to make sure that `import.meta.env`
+// properly references Vites' version of `ImportMeta` even when we've already
+// added this in tsconfig.json.
+
 import { lazy } from 'react';
 import { SectionLinks } from './LinkAndLoaderInterface';
 
@@ -78,7 +83,7 @@ export const mathLinks: SectionLinks = new Map([
     text: 'Vertical Subtraction',
     loader: VerticalSubtractionPage,
   }],
-  [ '/worksheet-vertical-multiplication', {
+  ['/worksheet-vertical-multiplication', {
     text: 'Vertical Multiplication',
     loader: VerticalMultiplicationPage,
   }],
