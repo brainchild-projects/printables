@@ -15,12 +15,14 @@ const styles = styleIt(() => ({
 
 function Footer(): JSX.Element {
   const classes = styles();
+  const year = (new Date()).getFullYear();
+
   return (
     <footer className={classNames(classes.footer, 'no-print')}>
       <Typography component="p" color="inherit">
         Copyright ©
         {' '}
-        <span className="copyright-year">2021-2022</span>
+        <span className="copyright-year">2021-{year}</span>
         {' '}
         Wayne Duran
       </Typography>
