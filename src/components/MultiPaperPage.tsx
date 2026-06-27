@@ -2,7 +2,7 @@ import React, {
   ReactNode, ElementType, createElement, useState, useEffect, useRef,
 } from 'react';
 import { usePaperOptions } from './PaperOptionsProvider';
-import PaperPage, { elementClasser, NodeWithClassName } from './PaperPage';
+import PaperPage, { classAndKey, NodeWithClassName } from './PaperPage';
 import WorksheetFooter from './printElements/WorksheetFooter';
 import WorksheetHeader from './printElements/WorksheetHeader';
 import PagingWithColumns from '../lib/layout/PagingWithColumns';
@@ -53,8 +53,8 @@ interface MultiPaperPageProps<T> extends WrapperBuilder<T> {
 function itemClasser<T>(builder: Builder<T>): Builder<T> {
   return (item, index, collection) => {
     const el = builder(item, index, collection);
-    const itemn = 'mpp-item mpp-item-$index';
-    return elementClasser(el, itemn) as JSX.Element;
+    const itemn = `mpp-item mpp-item-${index}`;
+    return classAndKey(el, itemn) as JSX.Element;
   };
 }
 

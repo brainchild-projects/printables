@@ -78,6 +78,18 @@ module.exports = {
       },
     },
     {
+      files: [
+        '**/*.spec.ts',
+        '**/*.spec.tsx',
+        'src/testing/**/*.ts',
+        'src/testing/**/*.tsx',
+        'vitest.setup.ts',
+      ],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+    {
       files: 'src/stories/**/*.+(ts|tsx)',
       rules: {
         'import/no-extraneous-dependencies': 'off',

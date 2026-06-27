@@ -8,9 +8,10 @@ import MultiPaperPage, { PropsCallback } from './MultiPaperPage';
 describe('MultiPaperPage', () => {
   let propsCallback: PropsCallback;
   beforeEach(() => {
-    propsCallback = vi.fn((props, { instanceIndex, memberIndex }) => (
-      { ...props, 'data-info': `${instanceIndex} ${memberIndex}` }
-    ));
+    propsCallback = vi.fn((
+      props: Record<string, unknown>,
+      { instanceIndex, memberIndex }: { instanceIndex: number; memberIndex: number },
+    ) => ({ ...props, 'data-info': `${instanceIndex} ${memberIndex}` }));
     render(
       <MultiPaperPage<string>
         wrapper="div"

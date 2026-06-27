@@ -73,11 +73,11 @@ function isNodeWithClassName(node: unknown): node is NodeWithClassName {
   return false;
 }
 
-export function elementClasser(el: ReactNode, classAttribute: string): ReactNode {
+export function classAndKey(el: ReactNode, classAttribute: string, key: string | undefined = undefined): ReactNode {
   if (isNodeWithClassName(el)) {
     const { className } = el.props;
     const classNamesCombined = classNames(classAttribute, className as string | null);
-    return cloneElement(el, { className: classNamesCombined });
+    return cloneElement(el, { className: classNamesCombined, key });
   }
 
   return el;
@@ -85,11 +85,11 @@ export function elementClasser(el: ReactNode, classAttribute: string): ReactNode
 
 function addClassesToChildren(children: ReactNode): ReactNode {
   if (children instanceof Array) {
-    return children.map((child) => elementClasser(child as ReactNode, 'page-item'));
+    return children.map((child, index) => classAndKey(child as ReactNode, 'page-item', `page-${index + 1}`));
   }
 
   if (isNodeWithClassName(children)) {
-    return elementClasser(children, 'page-item');
+    return classAndKey(children, 'page-item', 'page-1');
   }
 
   return children;
