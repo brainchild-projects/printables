@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import PreviewAftb from './PreviewAftb';
-import AftbData from './AftbData';
+import PreviewAftb from './PreviewAftb.js';
+import AftbData from './AftbData.js';
 
 describe('PreviewAftb', () => {
   const defaultAftbData: AftbData = {

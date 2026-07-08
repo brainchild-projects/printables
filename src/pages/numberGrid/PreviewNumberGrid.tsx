@@ -1,11 +1,11 @@
 import React from 'react';
-import PaperPage from '../../components/PaperPage';
-import NumberGridData from './NumberGridData';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import NumberGrid from './NumberGrid';
-import PageTitle from '../../elements/PageTitle';
-import styleIt from '../../components/styleIt';
-import Box from '../../components/uiElements/Box';
+import PaperPage from '../../components/PaperPage.js';
+import NumberGridData from './NumberGridData.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import NumberGrid from './NumberGrid.js';
+import PageTitle from '../../elements/PageTitle.js';
+import styleIt from '../../components/styleIt.js';
+import Box from '../../components/uiElements/Box.js';
 
 interface PreviewNumberGridProps {
   data: NumberGridData,

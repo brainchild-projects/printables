@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeTellingTimeForm from './CustomizeTellingTimeForm';
-import TellingTimeData from './TellingTimeData';
-import PreviewTellingTime from './PreviewTellingTime';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeTellingTimeForm from './CustomizeTellingTimeForm.js';
+import TellingTimeData from './TellingTimeData.js';
+import PreviewTellingTime from './PreviewTellingTime.js';
 
 const defaultData: TellingTimeData = {
   count: 9,

@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import AdditionSubtractionData from './AdditionSubtractionData';
-import CustomizeAdditionSubtractionForm from './CustomizeAdditionSubtractionForm';
-import PreviewAddSub from './PreviewAdditionSubtraction';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import AdditionSubtractionData from './AdditionSubtractionData.js';
+import CustomizeAdditionSubtractionForm from './CustomizeAdditionSubtractionForm.js';
+import PreviewAddSub from './PreviewAdditionSubtraction.js';
 
 const defaultData: AdditionSubtractionData = {
   rangeFrom: 0,

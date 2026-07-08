@@ -1,7 +1,7 @@
-import factorial from './factorial';
-import { randomGenerator } from './RandomNumberGenerator';
-import Range from './Range';
-import tryByKey from './tryByKey';
+import factorial from './factorial.js';
+import { randomGenerator } from './RandomNumberGenerator.js';
+import Range from './Range.js';
+import tryByKey from './tryByKey.js';
 
 type Pair = [a: number, b: number];
 

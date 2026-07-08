@@ -1,4 +1,4 @@
-import generatePattern from './generatePattern';
+import generatePattern from './generatePattern.js';
 
 interface TestData {
   description: string;

@@ -1,4 +1,4 @@
-import PagingWithColumns from './PagingWithColumns';
+import PagingWithColumns from './PagingWithColumns.js';
 
 describe('PagingWithColumns', () => {
   let paging: PagingWithColumns<string>;

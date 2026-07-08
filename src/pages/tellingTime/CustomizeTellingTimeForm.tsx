@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import Divider from '../../components/uiElements/Divider';
-import TellingTimeData, { ProblemType, problemTypeOptions } from './TellingTimeData';
-import NumberField from '../../components/forms/NumberField';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import Divider from '../../components/uiElements/Divider.js';
+import TellingTimeData, { ProblemType, problemTypeOptions } from './TellingTimeData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
 
 interface CustomizeTellingTimeFormProps {
   onChange: (data: TellingTimeData) => void;

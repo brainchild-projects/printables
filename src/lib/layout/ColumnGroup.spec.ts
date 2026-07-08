@@ -1,5 +1,5 @@
-import ColumnGroup from './ColumnGroup';
-import ColumnItemWithHeight from './ColumnItemWithHeight';
+import ColumnGroup from './ColumnGroup.js';
+import ColumnItemWithHeight from './ColumnItemWithHeight.js';
 
 describe('ColumnGroup', () => {
   let group: ColumnGroup<string>;

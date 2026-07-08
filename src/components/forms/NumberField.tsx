@@ -1,10 +1,10 @@
 import TextField from '@material-ui/core/TextField';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import generateId from '../../lib/generateId';
-import parseEventValueAsFloat from '../../lib/parseEventValueAsFloat';
-import parseEventValueAsInt from '../../lib/parseEventValueAsInt';
-import titleize from '../../lib/titlelize';
-import FieldSet from './FieldSet';
+import generateId from '../../lib/generateId.js';
+import parseEventValueAsFloat from '../../lib/parseEventValueAsFloat.js';
+import parseEventValueAsInt from '../../lib/parseEventValueAsInt.js';
+import titleize from '../../lib/titlelize.js';
+import FieldSet from './FieldSet.js';
 
 interface NumberFieldProps {
   name: string;

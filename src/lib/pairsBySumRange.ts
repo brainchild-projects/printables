@@ -1,7 +1,7 @@
-import NumberPair from './NumberPair';
-import { randomGenerator } from './RandomNumberGenerator';
-import Range from './Range';
-import tryByKey from './tryByKey';
+import NumberPair from './NumberPair.js';
+import { randomGenerator } from './RandomNumberGenerator.js';
+import Range from './Range.js';
+import tryByKey from './tryByKey.js';
 
 export default function pairsBySumRange(sumRange: Range, count: number): NumberPair[] {
   const pairs: NumberPair[] = [];

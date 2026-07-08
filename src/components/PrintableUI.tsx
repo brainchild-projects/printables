@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import PaperPreview from './PaperPreview';
-import PaperOptionsProvider from './PaperOptionsProvider';
-import Footer from '../pages/main/Footer';
-import InstanceOptionsProvider from './InstanceSettingsProvider';
-import styleIt from './styleIt';
-import Grid from './uiElements/Grid';
-import Typography from './uiElements/Typography';
+import PaperPreview from './PaperPreview.js';
+import PaperOptionsProvider from './PaperOptionsProvider.js';
+import Footer from '../pages/main/Footer.js';
+import InstanceOptionsProvider from './InstanceSettingsProvider.js';
+import styleIt from './styleIt.js';
+import Grid from './uiElements/Grid.js';
+import Typography from './uiElements/Typography.js';
 
 const pageStyles = styleIt(() => ({
   container: {

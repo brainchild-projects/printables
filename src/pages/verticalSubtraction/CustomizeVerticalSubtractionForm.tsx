@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import VerticalSubtractionData, { ProblemGeneration, problemGenerationOptions } from './VerticalSubtractionData';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import NumberField from '../../components/forms/NumberField';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import VerticalSubtractionData, { ProblemGeneration, problemGenerationOptions } from './VerticalSubtractionData.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
+import NumberField from '../../components/forms/NumberField.js';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider.js';
 
 interface CustomizeVerticalSubtractionFormProps {
   data: VerticalSubtractionData;

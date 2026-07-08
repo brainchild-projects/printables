@@ -1,4 +1,4 @@
-import replaceWithDelimeter, { ReplaceParam } from './replaceWithDelimeter';
+import replaceWithDelimeter, { ReplaceParam } from './replaceWithDelimeter.js';
 
 interface TestData {
   description: string;

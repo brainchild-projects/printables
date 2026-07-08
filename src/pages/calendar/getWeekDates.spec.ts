@@ -1,4 +1,4 @@
-import getWeekDates, { Weeks } from './getWeekDates';
+import getWeekDates, { Weeks } from './getWeekDates.js';
 
 interface TestData {
   month: Date;

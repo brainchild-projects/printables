@@ -1,4 +1,4 @@
-import Subtraction from './Subtraction';
+import Subtraction from './Subtraction.js';
 
 describe('.create()', () => {
   it('can create from just minuend and subtrahend', () => {

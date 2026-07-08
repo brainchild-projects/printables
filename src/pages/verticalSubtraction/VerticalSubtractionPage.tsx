@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeVerticalSubtractionForm from './CustomizeVerticalSubtractionForm';
-import VerticalSubtractionData from './VerticalSubtractionData';
-import PreviewVerticalSubtraction from './PreviewVerticalSubtraction';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeVerticalSubtractionForm from './CustomizeVerticalSubtractionForm.js';
+import VerticalSubtractionData from './VerticalSubtractionData.js';
+import PreviewVerticalSubtraction from './PreviewVerticalSubtraction.js';
 
 const defaultData: VerticalSubtractionData = {
   problemGeneration: 'subtrahend and difference',

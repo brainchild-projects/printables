@@ -1,5 +1,5 @@
-import Range from './Range';
-import randomPairsByRanges from './randomPairsByRanges';
+import Range from './Range.js';
+import randomPairsByRanges from './randomPairsByRanges.js';
 
 type TestArgs = [aRange: Range, bRange: Range, count: number];
 type NumberPair = [a: number, b: number];

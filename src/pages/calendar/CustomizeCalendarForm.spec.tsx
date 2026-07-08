@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm';
-import stubPrint from '../../testing/stubPrint';
-import CalendarData from './CalendarData';
-import manualSelect from '../../testing/manualSelect';
+import CustomizeCalendarForm, { CustomizeCalendarFormProps } from './CustomizeCalendarForm.js';
+import stubPrint from '../../testing/stubPrint.js';
+import CalendarData from './CalendarData.js';
+import manualSelect from '../../testing/manualSelect.js';
 
 function randomInt(minIn: number, maxIn: number): number {
   const min = Math.floor(minIn);

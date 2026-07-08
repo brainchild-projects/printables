@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeVerticalMultiplicationForm from './CustomizeVerticalMultiplicationForm';
-import VerticalMultiplicationData from './VerticalMultiplicationData';
-import PreviewVerticalMultiplication from './PreviewVerticalMultiplication';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeVerticalMultiplicationForm from './CustomizeVerticalMultiplicationForm.js';
+import VerticalMultiplicationData from './VerticalMultiplicationData.js';
+import PreviewVerticalMultiplication from './PreviewVerticalMultiplication.js';
 
 const defaultData: VerticalMultiplicationData = {
   count: 10,

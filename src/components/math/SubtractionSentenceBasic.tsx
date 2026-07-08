@@ -1,6 +1,6 @@
 import React from 'react';
-import Subtraction from '../../lib/math/Subtraction';
-import blankOrNumberGenerator from './blankOrNumberGenerator';
+import Subtraction from '../../lib/math/Subtraction.js';
+import blankOrNumberGenerator from './blankOrNumberGenerator.js';
 
 export type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
 export const subtractionBlankPositions: SubtractionBlankPosition[] = [

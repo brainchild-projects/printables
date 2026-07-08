@@ -1,5 +1,5 @@
-import generatePattern, { GeneratePatternFunction } from './generatePattern';
-import getRandomShape, { ShapeFunction } from './getRandomShape';
+import generatePattern, { GeneratePatternFunction } from './generatePattern.js';
+import getRandomShape, { ShapeFunction } from './getRandomShape.js';
 
 interface PatternGeneratorParams {
   shapeFn: ShapeFunction;

@@ -9,16 +9,16 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from 'react-router-dom';
-import { LinkMap } from '../lib/linkMap';
-import { SectionLinks } from '../lib/LinkAndLoaderInterface';
-import ListItemLink from './ListItemLink';
-import styleIt from './styleIt';
-import Box from './uiElements/Box';
-import List from './uiElements/List';
-import ListItem from './uiElements/ListItem';
-import ListItemIcon from './uiElements/ListItemIcon';
-import ListItemText from './uiElements/ListItemText';
-import Divider from './uiElements/Divider';
+import { LinkMap } from '../lib/linkMap.js';
+import { SectionLinks } from '../lib/LinkAndLoaderInterface.js';
+import ListItemLink from './ListItemLink.js';
+import styleIt from './styleIt.js';
+import Box from './uiElements/Box.js';
+import List from './uiElements/List.js';
+import ListItem from './uiElements/ListItem.js';
+import ListItemIcon from './uiElements/ListItemIcon.js';
+import ListItemText from './uiElements/ListItemText.js';
+import Divider from './uiElements/Divider.js';
 
 interface LinkMapToggle {
   mathLinksOpen: boolean;

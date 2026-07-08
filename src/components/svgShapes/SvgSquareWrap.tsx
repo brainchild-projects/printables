@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import SvgWrap from './SvgWrap';
+import SvgWrap from './SvgWrap.js';
 
 interface SvgSquareWrapProps {
   width: number | string;

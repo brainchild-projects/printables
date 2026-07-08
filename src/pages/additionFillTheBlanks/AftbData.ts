@@ -1,5 +1,5 @@
-import Range from '../../lib/Range';
-import FontSizeData from '../../components/forms/FontSizeData';
+import Range from '../../lib/Range.js';
+import FontSizeData from '../../components/forms/FontSizeData.js';
 
 export type BlankPositionStrategy = 'sum' | 'addends' | 'addend a' | 'addend b' | 'random';
 export type ProblemGeneration = 'single range' | 'custom addends' | 'custom sum';

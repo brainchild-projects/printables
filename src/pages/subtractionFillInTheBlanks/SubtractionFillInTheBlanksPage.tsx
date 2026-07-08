@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeSubtractionFillInTheBlanksForm from './CustomizeSubtractionFillInTheBlanksForm';
-import SubtractionFillInTheBlanksData from './SubtractionFillInTheBlanksData';
-import PreviewSubtractionFillInTheBlanks from './PreviewSubtractionFillInTheBlanks';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeSubtractionFillInTheBlanksForm from './CustomizeSubtractionFillInTheBlanksForm.js';
+import SubtractionFillInTheBlanksData from './SubtractionFillInTheBlanksData.js';
+import PreviewSubtractionFillInTheBlanks from './PreviewSubtractionFillInTheBlanks.js';
 
 const defaultData: SubtractionFillInTheBlanksData = {
   count: 10,

@@ -1,20 +1,20 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import ProblemList from '../../components/ProblemList';
-import ProblemListItem from '../../components/ProblemListItem';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import PageTitle from '../../elements/PageTitle';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import PlaceValuesData from './PlaceValuesData';
-import PlaceValuesProblem from './PlaceValuesProblem';
-import FillInTheBlanksProblem from './FillInTheBlanksProblem';
-import MultipleChoiceProblem from './MultipleChoiceProblem';
-import { shouldAddComma } from '../../lib/math/commaNumberFormat';
-import tryByKey from '../../lib/tryByKey';
-import { magnitudeDigits, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude';
-import styleIt from '../../components/styleIt';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import ProblemList from '../../components/ProblemList.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import PageTitle from '../../elements/PageTitle.js';
+import { randomGenerator } from '../../lib/RandomNumberGenerator.js';
+import PlaceValuesData from './PlaceValuesData.js';
+import PlaceValuesProblem from './PlaceValuesProblem.js';
+import FillInTheBlanksProblem from './FillInTheBlanksProblem.js';
+import MultipleChoiceProblem from './MultipleChoiceProblem.js';
+import { shouldAddComma } from '../../lib/math/commaNumberFormat.js';
+import tryByKey from '../../lib/tryByKey.js';
+import { magnitudeDigits, Magnitude, maxFromMagnitude } from '../../lib/math/magnitude.js';
+import styleIt from '../../components/styleIt.js';
 
 interface PreviewPlaceValuesProps {
   customData: PlaceValuesData;

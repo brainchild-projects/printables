@@ -1,7 +1,7 @@
 import React from 'react';
-import { footerNames } from '../printElements/Footers';
-import arrayToOptions from './arrayToOptions';
-import SelectField from './SelectField';
+import { footerNames } from '../printElements/Footers.js';
+import arrayToOptions from './arrayToOptions.js';
+import SelectField from './SelectField.js';
 
 interface SelectFooterFieldProps {
   value: string;

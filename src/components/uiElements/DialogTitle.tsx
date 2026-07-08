@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import React, { ComponentPropsWithRef, ReactNode } from 'react';
 import { IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
-import Typography from './Typography';
+import styleIt from '../styleIt.js';
+import AnyTag from './AnyTag.js';
+import Typography from './Typography.js';
 
 const styles = styleIt(() => ({
   dialogTitle: {

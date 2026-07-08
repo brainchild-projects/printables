@@ -1,7 +1,7 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import OddEvenData from './OddEvenData';
-import NumberField from '../../components/forms/NumberField';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import OddEvenData from './OddEvenData.js';
+import NumberField from '../../components/forms/NumberField.js';
 
 interface CustomizeOddEvenFormProps {
   onChange: (data: OddEvenData) => void;

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
-import styleIt from './styleIt';
+import styleIt from './styleIt.js';
 
 interface ProblemListItemProps {
   children: ReactNode;

@@ -1,4 +1,4 @@
-import RecordGenerator from './RecordGenerator';
+import RecordGenerator from './RecordGenerator.js';
 
 export default function objectFromNumber<T>(number: number, generator: RecordGenerator<number, T>): Record<string, T> {
   const obj = {} as Record<string, T>;

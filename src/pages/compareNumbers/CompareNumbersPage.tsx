@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeCompareNumbersForm from './CustomizeCompareNumbersForm';
-import CompareNumbersData from './CompareNumbersData';
-import PreviewCompareNumbers from './PreviewCompareNumbers';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeCompareNumbersForm from './CustomizeCompareNumbersForm.js';
+import CompareNumbersData from './CompareNumbersData.js';
+import PreviewCompareNumbers from './PreviewCompareNumbers.js';
 
 const defaultData: CompareNumbersData = {
   count: 10,

@@ -1,9 +1,9 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import NumberGridData from './NumberGridData';
-import NumberField from '../../components/forms/NumberField';
-import SwitchField from '../../components/forms/SwitchField';
-import TextField from '../../components/forms/TextField';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import NumberGridData from './NumberGridData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import SwitchField from '../../components/forms/SwitchField.js';
+import TextField from '../../components/forms/TextField.js';
 
 interface CustomizeNumberGridFormProps {
   onChange: (data: NumberGridData) => void;

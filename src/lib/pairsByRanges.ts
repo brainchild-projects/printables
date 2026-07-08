@@ -1,8 +1,8 @@
-import NumberPair from './NumberPair';
-import { randomGenerator } from './RandomNumberGenerator';
-import randomPairsByRanges from './randomPairsByRanges';
-import Range from './Range';
-import roundRobinPairsByRanges from './roundRobinPairsByRanges';
+import NumberPair from './NumberPair.js';
+import { randomGenerator } from './RandomNumberGenerator.js';
+import randomPairsByRanges from './randomPairsByRanges.js';
+import Range from './Range.js';
+import roundRobinPairsByRanges from './roundRobinPairsByRanges.js';
 
 export default function pairsByRanges(aRange: Range, bRange: Range, count: number): NumberPair[] {
   const minRange = Math.min(

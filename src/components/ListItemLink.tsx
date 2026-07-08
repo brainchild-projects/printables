@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Link, To } from 'react-router-dom';
-import styleIt from './styleIt';
+import styleIt from './styleIt.js';
 
 const styles = styleIt(() => ({
   link: {

@@ -1,7 +1,7 @@
 import React from 'react';
-import styleIt from './styleIt';
-import Container from './uiElements/Container';
-import Typography from './uiElements/Typography';
+import styleIt from './styleIt.js';
+import Container from './uiElements/Container.js';
+import Typography from './uiElements/Typography.js';
 
 const heroStyles = styleIt(() => ({
   heroContent: {

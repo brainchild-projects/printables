@@ -1,11 +1,11 @@
 import React, {
   ReactNode, ElementType, createElement, useState, useEffect, useRef,
 } from 'react';
-import { usePaperOptions } from './PaperOptionsProvider';
-import PaperPage, { classAndKey, NodeWithClassName } from './PaperPage';
-import WorksheetFooter from './printElements/WorksheetFooter';
-import WorksheetHeader from './printElements/WorksheetHeader';
-import PagingWithColumns from '../lib/layout/PagingWithColumns';
+import { usePaperOptions } from './PaperOptionsProvider.js';
+import PaperPage, { classAndKey, NodeWithClassName } from './PaperPage.js';
+import WorksheetFooter from './printElements/WorksheetFooter.js';
+import WorksheetHeader from './printElements/WorksheetHeader.js';
+import PagingWithColumns from '../lib/layout/PagingWithColumns.js';
 
 type PropsCallbackOptions = {
   instanceIndex: number,

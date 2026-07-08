@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
-import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
-import objectFromNumber from '../../lib/objectFromNumber';
-import objectFromArray from '../../lib/objectFromArray';
+import styleIt from '../styleIt.js';
+import AnyTag from './AnyTag.js';
+import objectFromNumber from '../../lib/objectFromNumber.js';
+import objectFromArray from '../../lib/objectFromArray.js';
 
 type JustifyContent = 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
 type AlignContent = 'stretch' | 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around';

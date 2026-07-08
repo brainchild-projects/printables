@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import {
   render, screen, within, waitFor,
 } from '@testing-library/react';
-import AppWrapper from './AppWrapper';
+import AppWrapper from './AppWrapper.js';
 
 describe('App', () => {
   const oldScrollTo = window.scrollTo;

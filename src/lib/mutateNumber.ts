@@ -1,6 +1,6 @@
-import randomElement from './randomElement';
-import { randomGenerator } from './RandomNumberGenerator';
-import shuffle from './shuffle';
+import randomElement from './randomElement.js';
+import { randomGenerator } from './RandomNumberGenerator.js';
+import shuffle from './shuffle.js';
 
 // TODO: Make these work for numbers with decimal places
 function toDigits(n: number): string[] {

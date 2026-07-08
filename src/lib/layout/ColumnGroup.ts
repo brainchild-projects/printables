@@ -1,5 +1,5 @@
-import ColumnItemWithHeight from './ColumnItemWithHeight';
-import ColumnSlot from './ColumnSlot';
+import ColumnItemWithHeight from './ColumnItemWithHeight.js';
+import ColumnSlot from './ColumnSlot.js';
 
 class ColumnGroup<T> {
   private internalSlots: ColumnSlot<T>[];

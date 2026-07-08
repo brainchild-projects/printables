@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-const AppWrapper = lazy(() => import('./AppWrapper'));
+const AppWrapper = lazy(() => import('./AppWrapper.js'));
 
 function Loading(): JSX.Element {
   return (

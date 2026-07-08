@@ -1,9 +1,9 @@
-import { magnitudeDigits, maxFromMagnitude } from '../../lib/math/magnitude';
-import mutateNumber from '../../lib/mutateNumber';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import shuffle from '../../lib/shuffle';
-import tryByKey from '../../lib/tryByKey';
-import NumbersToWordsData from './NumbersToWordsData';
+import { magnitudeDigits, maxFromMagnitude } from '../../lib/math/magnitude.js';
+import mutateNumber from '../../lib/mutateNumber.js';
+import { randomGenerator } from '../../lib/RandomNumberGenerator.js';
+import shuffle from '../../lib/shuffle.js';
+import tryByKey from '../../lib/tryByKey.js';
+import NumbersToWordsData from './NumbersToWordsData.js';
 
 export interface NumToWordsProblem {
   number: number;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import LocalStore, { FromJSON, ToJSON } from '../lib/LocalStore';
+import LocalStore, { FromJSON, ToJSON } from '../lib/LocalStore.js';
 
 interface PageStateArgs<T, K = T> {
   key: string,
@@ -32,7 +32,7 @@ function usePageState<T, K = T>({
     } else {
       setData(defaultData);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataStore]);
 
   return { data, setData, onChange };

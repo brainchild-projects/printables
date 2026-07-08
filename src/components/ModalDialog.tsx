@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import Button from '@material-ui/core/Button';
-import Modal from './uiElements/Modal';
-import DialogTitle from './uiElements/DialogTitle';
-import DialogContent from './uiElements/DialogContent';
-import DialogActions from './uiElements/DialogActions';
+import Modal from './uiElements/Modal.js';
+import DialogTitle from './uiElements/DialogTitle.js';
+import DialogContent from './uiElements/DialogContent.js';
+import DialogActions from './uiElements/DialogActions.js';
 
 interface ModalDialogProps {
   title: string;

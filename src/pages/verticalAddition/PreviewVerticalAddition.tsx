@@ -1,17 +1,17 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import VerticalAdditionData from './VerticalAdditionData';
-import Range from '../../lib/Range';
-import pairsByRanges from '../../lib/pairsByRanges';
-import VerticalAdditionItem from './VerticalAdditionItem';
-import Addition from '../../lib/math/Addition';
-import tryByKey from '../../lib/tryByKey';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import noRegroupPair from '../../lib/math/noRegroupPair';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import VerticalAdditionData from './VerticalAdditionData.js';
+import Range from '../../lib/Range.js';
+import pairsByRanges from '../../lib/pairsByRanges.js';
+import VerticalAdditionItem from './VerticalAdditionItem.js';
+import Addition from '../../lib/math/Addition.js';
+import tryByKey from '../../lib/tryByKey.js';
+import { randomGenerator } from '../../lib/RandomNumberGenerator.js';
+import noRegroupPair from '../../lib/math/noRegroupPair.js';
 
 function commonRangeProblems(count: number, rangeA: Range, rangeB: Range): Addition[] {
   const pairs = pairsByRanges(rangeA, rangeB, count);

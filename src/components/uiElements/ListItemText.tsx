@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef, ReactNode } from 'react';
-import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
-import Typography from './Typography';
-import theme from './theme';
+import styleIt from '../styleIt.js';
+import AnyTag from './AnyTag.js';
+import Typography from './Typography.js';
+import theme from './theme.js';
 
 const styles = styleIt(() => ({
   listItemText: {

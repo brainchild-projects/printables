@@ -1,14 +1,14 @@
 import React, { FormEvent, useState } from 'react';
 import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import SettingsData from './SettingsData';
-import SelectPaperSizeField from '../../components/forms/SelectPaperSizeField';
-import FormContainer from '../../components/forms/FormContainer';
-import SectionPageTitle from '../../elements/SectionPageTitle';
-import PaperSizeDialog from './PaperSizeDialog';
-import PaperSize from '../../lib/PaperSize';
-import PaperSizeList from './PaperSizeList';
-import { paperSizeArray } from '../../lib/paperSizes';
+import SettingsData from './SettingsData.js';
+import SelectPaperSizeField from '../../components/forms/SelectPaperSizeField.js';
+import FormContainer from '../../components/forms/FormContainer.js';
+import SectionPageTitle from '../../elements/SectionPageTitle.js';
+import PaperSizeDialog from './PaperSizeDialog.js';
+import PaperSize from '../../lib/PaperSize.js';
+import PaperSizeList from './PaperSizeList.js';
+import { paperSizeArray } from '../../lib/paperSizes.js';
 
 interface SettingsFormProps {
   onChange: (data: SettingsData) => void;

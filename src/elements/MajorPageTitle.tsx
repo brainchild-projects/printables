@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import styleIt from '../components/styleIt';
-import PageTitle from './PageTitle';
+import styleIt from '../components/styleIt.js';
+import PageTitle from './PageTitle.js';
 
 const styles = styleIt(() => ({
   title: {

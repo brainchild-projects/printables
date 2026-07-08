@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import MultiPaperPage, { PropsCallback } from './MultiPaperPage';
+import MultiPaperPage, { PropsCallback } from './MultiPaperPage.js';
 
 describe('MultiPaperPage', () => {
   let propsCallback: PropsCallback;

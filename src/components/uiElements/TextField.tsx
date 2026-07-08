@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
-import styleIt from '../styleIt';
+import styleIt from '../styleIt.js';
 
 const styles = styleIt(() => ({
   textField: {

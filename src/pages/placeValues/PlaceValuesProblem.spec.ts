@@ -1,4 +1,4 @@
-import PlaceValuesProblem from './PlaceValuesProblem';
+import PlaceValuesProblem from './PlaceValuesProblem.js';
 
 interface TestItem {
   number: number;

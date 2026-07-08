@@ -1,4 +1,4 @@
-import commaNumberFormat from './commaNumberFormat';
+import commaNumberFormat from './commaNumberFormat.js';
 
 describe('commaNumberFormat', () => {
   const testData = new Map<number, string>([

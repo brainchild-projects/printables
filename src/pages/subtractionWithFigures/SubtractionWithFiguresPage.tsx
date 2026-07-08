@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeSubtractionWithFiguresForm from './CustomizeSubtractionWithFiguresForm';
-import SubtractionWithFiguresData from './SubtractionWithFiguresData';
-import PreviewSubtractionWithFigures from './PreviewSubtractionWithFigures';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeSubtractionWithFiguresForm from './CustomizeSubtractionWithFiguresForm.js';
+import SubtractionWithFiguresData from './SubtractionWithFiguresData.js';
+import PreviewSubtractionWithFigures from './PreviewSubtractionWithFigures.js';
 
 const defaultData: SubtractionWithFiguresData = {
   count: 10,

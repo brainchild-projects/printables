@@ -1,16 +1,16 @@
 import React from 'react';
-import Blank from '../../components/Blank';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import ProblemList from '../../components/ProblemList';
-import ProblemListItem from '../../components/ProblemListItem';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import PageTitle from '../../elements/PageTitle';
-import numberToWords from '../../lib/numberToWords';
-import NumbersToWordsData from './NumbersToWordsData';
-import MultipleChoiceProblem from '../placeValues/MultipleChoiceProblem';
-import formatNumber from '../../lib/formatNumber';
-import generateProblems, { NumToWordsProblem } from './generateProblems';
+import Blank from '../../components/Blank.js';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import ProblemList from '../../components/ProblemList.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import PageTitle from '../../elements/PageTitle.js';
+import numberToWords from '../../lib/numberToWords.js';
+import NumbersToWordsData from './NumbersToWordsData.js';
+import MultipleChoiceProblem from '../placeValues/MultipleChoiceProblem.js';
+import formatNumber from '../../lib/formatNumber.js';
+import generateProblems, { NumToWordsProblem } from './generateProblems.js';
 
 interface FillInTheBlanksProps {
   number: number;

@@ -1,4 +1,4 @@
-import RecordGenerator from './RecordGenerator';
+import RecordGenerator from './RecordGenerator.js';
 
 type ObjectInput<K> = [string, K];
 

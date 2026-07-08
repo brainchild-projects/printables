@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
-import styleIt, { StyleRecords } from '../styleIt';
-import AnyTag from './AnyTag';
-import objectFromObject from '../../lib/objectFromObject';
-import objectFromArray from '../../lib/objectFromArray';
+import styleIt, { StyleRecords } from '../styleIt.js';
+import AnyTag from './AnyTag.js';
+import objectFromObject from '../../lib/objectFromObject.js';
+import objectFromArray from '../../lib/objectFromArray.js';
 
 export type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2' | 'subtitle1' | 'subtitle2' | 'caption' | 'button' | 'overline' | 'srOnly' | 'inherit';
 type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';

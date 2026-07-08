@@ -1,7 +1,7 @@
 import React, {
   createContext, ReactNode, useContext, useEffect, useMemo, useState,
 } from 'react';
-import LocalStore from '../lib/LocalStore';
+import LocalStore from '../lib/LocalStore.js';
 
 /// These are options for this specific printable app instance
 interface InstanceOptions {

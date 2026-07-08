@@ -1,8 +1,8 @@
-import { randomGenerator } from '../RandomNumberGenerator';
-import tryByKey from '../tryByKey';
-import Subtraction from './Subtraction';
-import Range from '../Range';
-import pairsBySumRange from '../pairsBySumRange';
+import { randomGenerator } from '../RandomNumberGenerator.js';
+import tryByKey from '../tryByKey.js';
+import Subtraction from './Subtraction.js';
+import Range from '../Range.js';
+import pairsBySumRange from '../pairsBySumRange.js';
 
 export type ProblemGeneration = 'minuend' | 'subtrahend and difference';
 

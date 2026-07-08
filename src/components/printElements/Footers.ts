@@ -1,6 +1,6 @@
-import FooterProps from './FooterProps';
-import FooterScore from './FooterScore';
-import FooterScoreAndTime from './FooterScoreAndTime';
+import FooterProps from './FooterProps.js';
+import FooterScore from './FooterScore.js';
+import FooterScoreAndTime from './FooterScoreAndTime.js';
 
 export type FooterName = 'Score Only' | 'Score and Time';
 type FooterRenderer = (props: FooterProps) => JSX.Element;

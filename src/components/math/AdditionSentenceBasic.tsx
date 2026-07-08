@@ -1,6 +1,6 @@
 import React from 'react';
-import Addition from '../../lib/math/Addition';
-import blankOrNumberGenerator from './blankOrNumberGenerator';
+import Addition from '../../lib/math/Addition.js';
+import blankOrNumberGenerator from './blankOrNumberGenerator.js';
 
 export type AdditionAddends = 'addendA' | 'addendB';
 export type AdditionBlankPosition = AdditionAddends | 'sum';

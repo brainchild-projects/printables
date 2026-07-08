@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeSkipCountingForm from './CustomizeSkipCountingForm';
-import SkipCountingData from './SkipCountingData';
-import PreviewSkipCounting from './PreviewSkipCounting';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeSkipCountingForm from './CustomizeSkipCountingForm.js';
+import SkipCountingData from './SkipCountingData.js';
+import PreviewSkipCounting from './PreviewSkipCounting.js';
 
 const defaultData: SkipCountingData = {
   count: 10,

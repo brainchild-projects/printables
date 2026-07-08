@@ -1,5 +1,5 @@
 import React from 'react';
-import Blank from '../Blank';
+import Blank from '../Blank.js';
 
 interface BlankOrNumberProps {
   expected: string;

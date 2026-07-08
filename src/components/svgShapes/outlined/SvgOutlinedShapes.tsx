@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import SvgWrap from '../SvgWrap';
+import SvgWrap from '../SvgWrap.js';
 import './SvgOutlinedShapes.css';
 
 interface SvgOutlinedShapesProps {

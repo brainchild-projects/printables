@@ -1,6 +1,6 @@
 import React from 'react';
-import ModalDialog from '../ModalDialog';
-import Typography from '../uiElements/Typography';
+import ModalDialog from '../ModalDialog.js';
+import Typography from '../uiElements/Typography.js';
 
 interface PrintHelpDialogProps {
   open: boolean;

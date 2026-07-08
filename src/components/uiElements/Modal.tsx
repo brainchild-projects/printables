@@ -1,8 +1,8 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
-import styleIt from '../styleIt';
-import Paper from './Paper';
+import styleIt from '../styleIt.js';
+import Paper from './Paper.js';
 
 const styles = styleIt(() => ({
   root: {

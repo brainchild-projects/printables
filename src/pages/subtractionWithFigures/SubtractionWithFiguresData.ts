@@ -1,4 +1,4 @@
-import { SubtractionProblemsProps } from '../../lib/math/generateSubtractionProblems';
+import { SubtractionProblemsProps } from '../../lib/math/generateSubtractionProblems.js';
 
 export type ProblemGeneration = 'minuend' | 'subtrahend and difference';
 export const problemGenerationOptions = new Map([

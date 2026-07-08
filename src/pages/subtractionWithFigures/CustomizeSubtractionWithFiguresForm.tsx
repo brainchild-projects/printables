@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import SubtractionWithFiguresData, { ProblemGeneration, problemGenerationOptions } from './SubtractionWithFiguresData';
-import NumberField from '../../components/forms/NumberField';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import SubtractionWithFiguresData, { ProblemGeneration, problemGenerationOptions } from './SubtractionWithFiguresData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider.js';
 
 interface CustomizeSubtractionWithFiguresFormProps {
   onChange: (data: SubtractionWithFiguresData) => void;

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import CustomizeCalendarForm from './CustomizeCalendarForm';
-import CalendarData from './CalendarData';
-import PreviewCalendar from './PreviewCalendar';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
+import CustomizeCalendarForm from './CustomizeCalendarForm.js';
+import CalendarData from './CalendarData.js';
+import PreviewCalendar from './PreviewCalendar.js';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
 
 const dataKey = 'calendar';
 function CalendarPage(): JSX.Element {

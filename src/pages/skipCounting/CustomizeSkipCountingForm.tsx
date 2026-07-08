@@ -1,7 +1,7 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import SkipCountingData from './SkipCountingData';
-import NumberField from '../../components/forms/NumberField';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import SkipCountingData from './SkipCountingData.js';
+import NumberField from '../../components/forms/NumberField.js';
 
 interface CustomizeSkipCountingFormProps {
   onChange: (data: SkipCountingData) => void;

@@ -1,4 +1,4 @@
-import Range from '../../lib/Range';
+import Range from '../../lib/Range.js';
 
 export type ProblemGeneration = 'single range' | 'custom addends' | 'no regrouping';
 export const problemGenerationOptions = new Map<ProblemGeneration, string>([

@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import CustomizeForm from './CustomizeForm';
-import InstanceOptionsProvider from '../InstanceSettingsProvider';
+import CustomizeForm from './CustomizeForm.js';
+import InstanceOptionsProvider from '../InstanceSettingsProvider.js';
 
 describe('CustomizeForm', () => {
   describe('when there are errors', () => {

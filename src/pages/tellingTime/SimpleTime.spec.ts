@@ -1,4 +1,4 @@
-import SimpleTime from './SimpleTime';
+import SimpleTime from './SimpleTime.js';
 
 interface Example {
   input: number[],

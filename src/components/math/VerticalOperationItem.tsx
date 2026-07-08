@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import ProblemListItem from '../ProblemListItem';
-import styleIt from '../styleIt'; 
+import ProblemListItem from '../ProblemListItem.js';
+import styleIt from '../styleIt.js';
 
 const styles = styleIt(() => ({
   mainWrap: {

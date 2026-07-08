@@ -1,7 +1,7 @@
 import React from 'react';
-import CalendarData from './CalendarData';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import SelectField from '../../components/forms/SelectField';
+import CalendarData from './CalendarData.js';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import SelectField from '../../components/forms/SelectField.js';
 
 export interface CustomizeCalendarFormProps {
   data: CalendarData,

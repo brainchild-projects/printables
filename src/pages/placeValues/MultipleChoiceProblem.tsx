@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import styleIt from '../../components/styleIt';
-import formatNumber from '../../lib/formatNumber';
-import uniqueElements from '../../lib/uniqueElements';
+import styleIt from '../../components/styleIt.js';
+import formatNumber from '../../lib/formatNumber.js';
+import uniqueElements from '../../lib/uniqueElements.js';
 
 const styles = styleIt(() => ({
   choices: {

@@ -1,16 +1,16 @@
 import React from 'react';
-import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
+import MultiPaperPage, { Builder } from '../../components/MultiPaperPage.js';
 import AdditionSentence, {
   blankTypes, blankTypesAddends, generateAdditionSentences,
 } from './AdditionSentence';
-import AftbData, { BlankPositionStrategy } from './AftbData';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import Addition from '../../lib/math/Addition';
-import { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
-import randomElement from '../../lib/randomElement';
+import AftbData, { BlankPositionStrategy } from './AftbData.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import Addition from '../../lib/math/Addition.js';
+import { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic.js';
+import randomElement from '../../lib/randomElement.js';
 
 interface PreviewAftbProps {
   aftbData: AftbData;

@@ -1,15 +1,15 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import SubtractionFillInTheBlanksData, { BlankPosition } from './SubtractionFillInTheBlanksData';
-import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems';
-import Subtraction from '../../lib/math/Subtraction';
-import SubtractionSentence from '../subtractionWithFigures/SubtractionSentence';
-import { SubtractionBlankPosition, subtractionBlankPositions } from '../../components/math/SubtractionSentenceBasic';
-import randomElement from '../../lib/randomElement';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import SubtractionFillInTheBlanksData, { BlankPosition } from './SubtractionFillInTheBlanksData.js';
+import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems.js';
+import Subtraction from '../../lib/math/Subtraction.js';
+import SubtractionSentence from '../subtractionWithFigures/SubtractionSentence.js';
+import { SubtractionBlankPosition, subtractionBlankPositions } from '../../components/math/SubtractionSentenceBasic.js';
+import randomElement from '../../lib/randomElement.js';
 
 interface SubtractionMeta {
   subtraction: Subtraction;

@@ -1,4 +1,4 @@
-import { Magnitude } from '../../lib/math/magnitude';
+import { Magnitude } from '../../lib/math/magnitude.js';
 
 export type PlaceValueProblemType = 'blanks' | 'choice';
 

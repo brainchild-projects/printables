@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import styleIt from '../../components/styleIt';
+import styleIt from '../../components/styleIt.js';
 
 const styles = styleIt(() => ({
   table: {

@@ -1,4 +1,4 @@
-import tryByKey from './tryByKey';
+import tryByKey from './tryByKey.js';
 
 describe('tryByKey()', () => {
   it('retries on unique numbers', () => {

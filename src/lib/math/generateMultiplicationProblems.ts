@@ -1,8 +1,8 @@
-import Multiplication from './Multiplication';
-import Range from '../Range';
-import tryByKey from '../tryByKey';
-import { randomGenerator } from '../RandomNumberGenerator';
-import NumberPair from '../NumberPair';
+import Multiplication from './Multiplication.js';
+import Range from '../Range.js';
+import tryByKey from '../tryByKey.js';
+import { randomGenerator } from '../RandomNumberGenerator.js';
+import NumberPair from '../NumberPair.js';
 
 export type ProblemGeneration = 'factors' | 'product';
 

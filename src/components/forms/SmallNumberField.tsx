@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { FormControl, TextField } from '@material-ui/core';
 import './SmallNumberField.css';
-import generateId from '../../lib/generateId';
-import titleize from '../../lib/titlelize';
+import generateId from '../../lib/generateId.js';
+import titleize from '../../lib/titlelize.js';
 
 interface SmallNumberFieldProps {
   name: string;

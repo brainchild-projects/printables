@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import SubtractionSentenceBasic from '../../components/math/SubtractionSentenceBasic';
-import ProblemListItem from '../../components/ProblemListItem';
-import Subtraction from '../../lib/math/Subtraction';
+import SubtractionSentenceBasic from '../../components/math/SubtractionSentenceBasic.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import Subtraction from '../../lib/math/Subtraction.js';
 
 export type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
 

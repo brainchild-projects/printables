@@ -1,5 +1,5 @@
-import FontSizeData from '../../components/forms/FontSizeData';
-import { Magnitude } from '../../lib/math/magnitude';
+import FontSizeData from '../../components/forms/FontSizeData.js';
+import { Magnitude } from '../../lib/math/magnitude.js';
 
 export type NumbersToWordsProblemType = 'blanks' | 'choice';
 export const problemTypes = new Map<NumbersToWordsProblemType, string>([

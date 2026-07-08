@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { ReactNode } from 'react';
-import styleIt from '../components/styleIt';
-import Typography from '../components/uiElements/Typography';
+import styleIt from '../components/styleIt.js';
+import Typography from '../components/uiElements/Typography.js';
 
 const styles = styleIt(() => ({
   heading: {

@@ -1,9 +1,9 @@
 import React from 'react';
-import arrayToOptions from './arrayToOptions';
-import SelectField from './SelectField';
-import { getPaperSizeFromName, paperSizeArray } from '../../lib/paperSizes';
-import PaperSize from '../../lib/PaperSize';
-import useSettings from '../../pages/useSettings';
+import arrayToOptions from './arrayToOptions.js';
+import SelectField from './SelectField.js';
+import { getPaperSizeFromName, paperSizeArray } from '../../lib/paperSizes.js';
+import PaperSize from '../../lib/PaperSize.js';
+import useSettings from '../../pages/useSettings.js';
 
 interface SelectPaperSizeFieldProps {
   name?: string;

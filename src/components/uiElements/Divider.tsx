@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
-import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
-import theme from './theme';
+import styleIt from '../styleIt.js';
+import AnyTag from './AnyTag.js';
+import theme from './theme.js';
 
 type Variant = 'fullWidth' | 'inset' | 'middle';
 

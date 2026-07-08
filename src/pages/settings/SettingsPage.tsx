@@ -1,9 +1,9 @@
 import React from 'react';
-import SettingsForm from './SettingsForm';
-import MajorPageTitle from '../../elements/MajorPageTitle';
-import useSettings from '../useSettings';
-import styleIt from '../../components/styleIt';
-import Box from '../../components/uiElements/Box';
+import SettingsForm from './SettingsForm.js';
+import MajorPageTitle from '../../elements/MajorPageTitle.js';
+import useSettings from '../useSettings.js';
+import styleIt from '../../components/styleIt.js';
+import Box from '../../components/uiElements/Box.js';
 
 const styles = styleIt(() => ({
   wrap: {

@@ -1,4 +1,4 @@
-import { randomGenerator } from '../RandomNumberGenerator';
+import { randomGenerator } from '../RandomNumberGenerator.js';
 
 export function singleDigitNRPair(n: number): number {
   const max = 9 - n;

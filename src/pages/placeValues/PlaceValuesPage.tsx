@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizePlaceValuesForm from './CustomizePlaceValuesForm';
-import PlaceValuesData from './PlaceValuesData';
-import PreviewPlaceValues from './PreviewPlaceValues';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizePlaceValuesForm from './CustomizePlaceValuesForm.js';
+import PlaceValuesData from './PlaceValuesData.js';
+import PreviewPlaceValues from './PreviewPlaceValues.js';
 
 const defaultPlaceValuesData: PlaceValuesData = {
   count: 10,

@@ -1,4 +1,4 @@
-import generateId from './generateId';
+import generateId from './generateId.js';
 
 interface TestData {
   prefix: string,

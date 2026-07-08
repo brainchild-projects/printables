@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizePatternsForm from './CustomizePatternsForm';
-import PatternsData from './PatternsData';
-import PreviewPatterns from './PreviewPatterns';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizePatternsForm from './CustomizePatternsForm.js';
+import PatternsData from './PatternsData.js';
+import PreviewPatterns from './PreviewPatterns.js';
 
 const defaultPatternsData: PatternsData = {
   count: 10,

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styleIt from '../styleIt';
+import styleIt from '../styleIt.js';
 
 const headerStyles = styleIt(() => ({
   header: {

@@ -2,12 +2,12 @@
 import { Slider } from '@material-ui/core';
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
-import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
-import Range from '../../lib/Range';
-import styleIt from '../styleIt';
-import SmallNumberField from './SmallNumberField';
-import Grid from '../uiElements/Grid';
-import Typography from '../uiElements/Typography';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent.js';
+import Range from '../../lib/Range.js';
+import styleIt from '../styleIt.js';
+import SmallNumberField from './SmallNumberField.js';
+import Grid from '../uiElements/Grid.js';
+import Typography from '../uiElements/Typography.js';
 
 const { round } = Math;
 

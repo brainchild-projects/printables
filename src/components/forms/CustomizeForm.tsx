@@ -4,17 +4,17 @@ import React, {
 import html2pdf from 'html2pdf.js';
 import { IconButton } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
-import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider';
-import { useInstanceOptions } from '../InstanceSettingsProvider';
-import SelectField from './SelectField';
-import SubmitButton from './SubmitButton';
-import SelectPaperSizeField from './SelectPaperSizeField';
-import FormContainer from './FormContainer';
-import SectionPageTitle from '../../elements/SectionPageTitle';
-import PaperSize, { Orientation } from '../../lib/PaperSize';
-import PrintHelpDialog from './PrintHelpDialog';
-import SelectFooterField from './SelectFooterField';
-import zeroPad from '../../lib/zeroPad';
+import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider.js';
+import { useInstanceOptions } from '../InstanceSettingsProvider.js';
+import SelectField from './SelectField.js';
+import SubmitButton from './SubmitButton.js';
+import SelectPaperSizeField from './SelectPaperSizeField.js';
+import FormContainer from './FormContainer.js';
+import SectionPageTitle from '../../elements/SectionPageTitle.js';
+import PaperSize, { Orientation } from '../../lib/PaperSize.js';
+import PrintHelpDialog from './PrintHelpDialog.js';
+import SelectFooterField from './SelectFooterField.js';
+import zeroPad from '../../lib/zeroPad.js';
 
 interface CustomizeFormProps {
   onBeforePrint?: () => boolean;

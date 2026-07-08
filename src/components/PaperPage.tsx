@@ -1,8 +1,8 @@
 import React, { ReactNode, cloneElement } from 'react';
 import classNames from 'classnames';
-import { usePaperOptions } from './PaperOptionsProvider';
-import styleIt from './styleIt';
-import Paper from './uiElements/Paper';
+import { usePaperOptions } from './PaperOptionsProvider.js';
+import styleIt from './styleIt.js';
+import Paper from './uiElements/Paper.js';
 
 const paperPageStyles = styleIt(() => ({
   paper: {

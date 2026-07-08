@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import classNames from 'classnames';
-import ProblemListItem from '../../components/ProblemListItem';
-import Addition from '../../lib/math/Addition';
-import pairsByRanges from '../../lib/pairsByRanges';
-import AdditionSubtractionData from './AdditionSubtractionData';
-import AdditionSentenceBasic, { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
-import Subtraction from '../../lib/math/Subtraction';
-import SubtractionSentenceBasic, { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic';
-import styleIt from '../../components/styleIt';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import Addition from '../../lib/math/Addition.js';
+import pairsByRanges from '../../lib/pairsByRanges.js';
+import AdditionSubtractionData from './AdditionSubtractionData.js';
+import AdditionSentenceBasic, { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic.js';
+import Subtraction from '../../lib/math/Subtraction.js';
+import SubtractionSentenceBasic, { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic.js';
+import styleIt from '../../components/styleIt.js';
 
 type Range = { from: number, to: number };
 

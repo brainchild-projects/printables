@@ -1,7 +1,7 @@
-import { maxFromMagnitude } from '../../lib/math/magnitude';
-import { randomGenerator, scaledRoulette, ScalingMap } from '../../lib/RandomNumberGenerator';
-import CompareNumbersData, { NumberComparison } from './CompareNumbersData';
-import CompareNumbersProblem from './CompareNumbersProblem';
+import { maxFromMagnitude } from '../../lib/math/magnitude.js';
+import { randomGenerator, scaledRoulette, ScalingMap } from '../../lib/RandomNumberGenerator.js';
+import CompareNumbersData, { NumberComparison } from './CompareNumbersData.js';
+import CompareNumbersProblem from './CompareNumbersProblem.js';
 
 const comparisonWeights: ScalingMap<NumberComparison> = new Map([
   ['<', 2],

@@ -1,6 +1,6 @@
 import React from 'react';
-import styleIt from '../styleIt';
-import FooterProps from './FooterProps';
+import styleIt from '../styleIt.js';
+import FooterProps from './FooterProps.js';
 
 const styles = styleIt(() => ({
   footer: {

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import styleIt from './styleIt';
+import styleIt from './styleIt.js';
 
 const paperPreviewStyles = styleIt(() => ({
   preview: {

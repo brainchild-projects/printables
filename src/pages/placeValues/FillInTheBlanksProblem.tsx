@@ -1,10 +1,10 @@
 import React from 'react';
-import PlaceValuesData from './PlaceValuesData';
-import PlaceValuesProblem from './PlaceValuesProblem';
-import Blank, { BlankProps } from '../../components/Blank';
-import commaNumberFormat from '../../lib/math/commaNumberFormat';
-import { magnitudes, Magnitude } from '../../lib/math/magnitude';
-import styleIt from '../../components/styleIt';
+import PlaceValuesData from './PlaceValuesData.js';
+import PlaceValuesProblem from './PlaceValuesProblem.js';
+import Blank, { BlankProps } from '../../components/Blank.js';
+import commaNumberFormat from '../../lib/math/commaNumberFormat.js';
+import { magnitudes, Magnitude } from '../../lib/math/magnitude.js';
+import styleIt from '../../components/styleIt.js';
 
 interface BlankAndPlaceProps extends BlankProps {
   place: string;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePaperOptions } from '../PaperOptionsProvider';
-import FooterProps from './FooterProps';
-import footers from './Footers';
+import { usePaperOptions } from '../PaperOptionsProvider.js';
+import FooterProps from './FooterProps.js';
+import footers from './Footers.js';
 
 function WorksheetFooter(props: FooterProps): JSX.Element {
   const { options } = usePaperOptions();

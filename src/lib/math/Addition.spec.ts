@@ -1,4 +1,4 @@
-import Addition from './Addition';
+import Addition from './Addition.js';
 
 describe('Addition', () => {
   it('can get sum', () => {

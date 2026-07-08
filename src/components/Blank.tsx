@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import Stringable from '../lib/Stringable';
-import styleIt from './styleIt';
+import Stringable from '../lib/Stringable.js';
+import styleIt from './styleIt.js';
 
 const styles = styleIt(() => ({
   problemBlank: {

@@ -1,6 +1,6 @@
-import NumberGenerator from './NumberGenerator';
-import { maxMustNotBeLessThanMin } from './numberGeneratorErrors';
-import Range from './Range';
+import NumberGenerator from './NumberGenerator.js';
+import { maxMustNotBeLessThanMin } from './numberGeneratorErrors.js';
+import Range from './Range.js';
 
 export type MathRandom = () => number;
 

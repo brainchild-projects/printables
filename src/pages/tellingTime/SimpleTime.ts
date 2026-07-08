@@ -1,4 +1,4 @@
-import zeroPad from '../../lib/zeroPad';
+import zeroPad from '../../lib/zeroPad.js';
 
 class SimpleTime {
   hour: number;

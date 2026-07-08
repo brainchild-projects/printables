@@ -1,4 +1,4 @@
-import PaperSize from './PaperSize';
+import PaperSize from './PaperSize.js';
 
 export const US_LETTER = new PaperSize('US Letter', { width: 216, height: 279 });
 export const US_LEGAL = new PaperSize('US Legal', { width: 216, height: 356 });

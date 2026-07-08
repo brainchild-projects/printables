@@ -1,4 +1,4 @@
-import ModRandomNumberGenerator from './ModRandomNumberGenerator';
+import ModRandomNumberGenerator from './ModRandomNumberGenerator.js';
 
 describe('ModRandomNumberGenerator', () => {
   describe('integer()', () => {

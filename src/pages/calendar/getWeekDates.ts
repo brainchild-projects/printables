@@ -1,4 +1,4 @@
-import dayBefore from './dayBefore';
+import dayBefore from './dayBefore.js';
 
 export interface DateNumber {
   value: number;

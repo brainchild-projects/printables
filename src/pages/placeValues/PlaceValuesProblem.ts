@@ -1,4 +1,4 @@
-import { countDigits } from '../../lib/math/commaNumberFormat';
+import { countDigits } from '../../lib/math/commaNumberFormat.js';
 
 const { floor } = Math;
 

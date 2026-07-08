@@ -1,5 +1,5 @@
-import roundRobinPairsByRanges from './roundRobinPairsByRanges';
-import Range from './Range';
+import roundRobinPairsByRanges from './roundRobinPairsByRanges.js';
+import Range from './Range.js';
 
 type PairOfRange = [aRange: Range, bRange: Range];
 type NumberPair = [a: number, b: number];

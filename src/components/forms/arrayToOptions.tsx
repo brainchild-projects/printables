@@ -1,6 +1,6 @@
 import React from 'react';
-import Stringable from '../../lib/Stringable';
-import asTitleized from '../../lib/titlelize';
+import Stringable from '../../lib/Stringable.js';
+import asTitleized from '../../lib/titlelize.js';
 
 type ArrayItems = string | number | Stringable;
 

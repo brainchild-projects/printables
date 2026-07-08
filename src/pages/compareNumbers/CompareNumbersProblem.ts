@@ -1,4 +1,4 @@
-import { NumberComparison } from './CompareNumbersData';
+import { NumberComparison } from './CompareNumbersData.js';
 
 class CompareNumbersProblem {
   left: number;

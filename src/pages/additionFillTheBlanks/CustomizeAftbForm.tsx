@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData';
-import FieldSet from '../../components/forms/FieldSet';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
-import FontSizeField from '../../components/forms/FontSizeField';
-import NumberField from '../../components/forms/NumberField';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import Divider from '../../components/uiElements/Divider';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import AftbData, { BlankPositionStrategy, ProblemGeneration, problemGenerations } from './AftbData.js';
+import FieldSet from '../../components/forms/FieldSet.js';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider.js';
+import FontSizeField from '../../components/forms/FontSizeField.js';
+import NumberField from '../../components/forms/NumberField.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
+import Divider from '../../components/uiElements/Divider.js';
 
 export interface CustomizeAftbFormProps {
   onChange: (data: AftbData) => void,

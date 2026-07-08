@@ -1,4 +1,4 @@
-import titleize from './titlelize';
+import titleize from './titlelize.js';
 
 interface TestData {
   input: string;

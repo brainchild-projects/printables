@@ -1,4 +1,4 @@
-import SkipCountingProblem from './SkipCountingProblem';
+import SkipCountingProblem from './SkipCountingProblem.js';
 
 describe('SkipCountingProblem', () => {
   describe('sequence()', () => {

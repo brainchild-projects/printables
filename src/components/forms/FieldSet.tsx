@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { FormControl, InputLabel } from '@material-ui/core';
-import styleIt from '../styleIt';
+import styleIt from '../styleIt.js';
 
 const styles = styleIt(() => ({
   formControl: {

@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import AftbData from './AftbData';
-import CustomizeAftbForm from './CustomizeAftbForm';
-import PreviewAftb from './PreviewAftb';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import AftbData from './AftbData.js';
+import CustomizeAftbForm from './CustomizeAftbForm.js';
+import PreviewAftb from './PreviewAftb.js';
 
 const defaultAftbData = {
   rangeFrom: 0,

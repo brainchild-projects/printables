@@ -1,4 +1,4 @@
-import Range from '../../lib/Range';
+import Range from '../../lib/Range.js';
 
 export type ProblemGeneration = 'minuend' | 'subtrahend and difference';
 export const problemGenerationOptions = new Map<ProblemGeneration, string>([

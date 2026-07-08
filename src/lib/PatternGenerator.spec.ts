@@ -1,5 +1,5 @@
-import generatePattern from './generatePattern';
-import PatternGenerator from './PatternGenerator';
+import generatePattern from './generatePattern.js';
+import PatternGenerator from './PatternGenerator.js';
 
 interface TestData {
   description: string;

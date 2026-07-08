@@ -1,11 +1,11 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import VerticalMultiplicationData, { problemGenerationOptions } from './VerticalMultiplicationData';
-import NumberField from '../../components/forms/NumberField';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import { ProblemGeneration } from '../../lib/math/generateMultiplicationProblems';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import VerticalMultiplicationData, { problemGenerationOptions } from './VerticalMultiplicationData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
+import { ProblemGeneration } from '../../lib/math/generateMultiplicationProblems.js';
 
 interface CustomizeVerticalMultiplicationFormProps {
   onChange: (data: VerticalMultiplicationData) => void;

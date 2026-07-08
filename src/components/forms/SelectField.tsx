@@ -1,9 +1,9 @@
 import Select from '@material-ui/core/Select';
 import React from 'react';
-import generateId from '../../lib/generateId';
-import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
-import titleize from '../../lib/titlelize';
-import FieldSet from './FieldSet';
+import generateId from '../../lib/generateId.js';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent.js';
+import titleize from '../../lib/titlelize.js';
+import FieldSet from './FieldSet.js';
 
 interface SelectFieldProps<T extends string> {
   id?: string;

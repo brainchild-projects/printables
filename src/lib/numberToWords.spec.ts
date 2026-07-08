@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import numberToWords, { splitBy3s } from './numberToWords';
+import numberToWords, { splitBy3s } from './numberToWords.js';
 
 interface TestData {
   input: number;

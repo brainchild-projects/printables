@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
-import styleIt from '../styleIt';
-import AnyTag from './AnyTag';
+import styleIt from '../styleIt.js';
+import AnyTag from './AnyTag.js';
 
 const styles = styleIt(() => ({
   listItem: {

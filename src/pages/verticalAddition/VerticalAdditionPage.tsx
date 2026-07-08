@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeVerticalAdditionForm from './CustomizeVerticalAdditionForm';
-import VerticalAdditionData from './VerticalAdditionData';
-import PreviewVerticalAddition from './PreviewVerticalAddition';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeVerticalAdditionForm from './CustomizeVerticalAdditionForm.js';
+import VerticalAdditionData from './VerticalAdditionData.js';
+import PreviewVerticalAddition from './PreviewVerticalAddition.js';
 
 const defaultData: VerticalAdditionData = {
   count: 10,

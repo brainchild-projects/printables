@@ -1,8 +1,8 @@
 import MuiTextField from '@material-ui/core/TextField';
 import React, { ChangeEvent } from 'react';
-import generateId from '../../lib/generateId';
-import titleize from '../../lib/titlelize';
-import FieldSet from './FieldSet';
+import generateId from '../../lib/generateId.js';
+import titleize from '../../lib/titlelize.js';
+import FieldSet from './FieldSet.js';
 
 interface TextFieldProps {
   name: string;

@@ -1,9 +1,9 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import NumberField from '../../components/forms/NumberField';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
-import PatternsData, { BlankPosition, blankPositions } from './PatternsData';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import NumberField from '../../components/forms/NumberField.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
+import PatternsData, { BlankPosition, blankPositions } from './PatternsData.js';
 
 export interface CustomizePatternsFormProps {
   onChange: (data: PatternsData) => void,

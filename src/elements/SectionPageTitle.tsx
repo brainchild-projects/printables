@@ -1,7 +1,7 @@
 import React, { ElementType, ReactNode } from 'react';
-import styleIt from '../components/styleIt';
-import Grid from '../components/uiElements/Grid';
-import Typography, { Variant } from '../components/uiElements/Typography';
+import styleIt from '../components/styleIt.js';
+import Grid from '../components/uiElements/Grid.js';
+import Typography, { Variant } from '../components/uiElements/Typography.js';
 
 const styles = styleIt(() => ({
   margins: {

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { CSSProperties, ReactNode } from 'react';
-import { Props, PropsCallback } from './MultiPaperPage';
-import styleIt from './styleIt';
+import { Props, PropsCallback } from './MultiPaperPage.js';
+import styleIt from './styleIt.js';
 
 interface ProblemListProps {
   children: ReactNode;

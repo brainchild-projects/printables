@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import VerticalAdditionData, { ProblemGeneration, problemGenerationOptions } from './VerticalAdditionData';
-import NumberField from '../../components/forms/NumberField';
-import NumberRangeSlider from '../../components/forms/NumberRangeSlider';
-import SelectField from '../../components/forms/SelectField';
-import stringMapToOptions from '../../components/forms/stringMapToOptions';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import VerticalAdditionData, { ProblemGeneration, problemGenerationOptions } from './VerticalAdditionData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import NumberRangeSlider from '../../components/forms/NumberRangeSlider.js';
+import SelectField from '../../components/forms/SelectField.js';
+import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
 
 interface CustomizeVerticalAdditionFormProps {
   onChange: (data: VerticalAdditionData) => void;

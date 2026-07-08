@@ -1,11 +1,11 @@
 import React, {
   createContext, ReactNode, useContext, useEffect, useMemo, useState,
 } from 'react';
-import LocalStore from '../lib/LocalStore';
-import PaperSize, { Orientation, PaperSizeJSON } from '../lib/PaperSize';
-import { US_LETTER } from '../lib/paperSizes';
-import useSettings from '../pages/useSettings';
-import { footerNames } from './printElements/Footers';
+import LocalStore from '../lib/LocalStore.js';
+import PaperSize, { Orientation, PaperSizeJSON } from '../lib/PaperSize.js';
+import { US_LETTER } from '../lib/paperSizes.js';
+import useSettings from '../pages/useSettings.js';
+import { footerNames } from './printElements/Footers.js';
 
 interface PaperOptionsCommon {
   margin: string;

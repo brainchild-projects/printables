@@ -1,5 +1,5 @@
-import randomElement from './randomElement';
-import { basicOutlinedShapes } from './symbolCharacters';
+import randomElement from './randomElement.js';
+import { basicOutlinedShapes } from './symbolCharacters.js';
 
 export type ShapeFunction = (symbolList?: string[]) => string;
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { randomGenerator } from '../RandomNumberGenerator';
-import noRegroupPair from './noRegroupPair';
+import { randomGenerator } from '../RandomNumberGenerator.js';
+import noRegroupPair from './noRegroupPair.js';
 
 function digits(n: number): number[] {
   return n.toString().split('').map((x) => parseFloat(x));

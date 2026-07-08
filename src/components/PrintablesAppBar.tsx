@@ -8,10 +8,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { LinkMap } from '../lib/linkMap';
-import Sidebar from './Sidebar';
-import styleIt from './styleIt';
-import Typography from './uiElements/Typography';
+import { LinkMap } from '../lib/linkMap.js';
+import Sidebar from './Sidebar.js';
+import styleIt from './styleIt.js';
+import Typography from './uiElements/Typography.js';
 
 const styles = styleIt(() => ({
   appBar: {

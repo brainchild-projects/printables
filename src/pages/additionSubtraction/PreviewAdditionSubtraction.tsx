@@ -1,16 +1,16 @@
 import React from 'react';
-import MultiPaperPage, { Builder } from '../../components/MultiPaperPage';
+import MultiPaperPage, { Builder } from '../../components/MultiPaperPage.js';
 import AdditionSubtractionItem, {
   blankTypes, blankTypesAddends, generateItems,
 } from './AdditionSubtractionItem';
-import AdditionSubtractionData from './AdditionSubtractionData';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import Addition from '../../lib/math/Addition';
-import { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
+import AdditionSubtractionData from './AdditionSubtractionData.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import { randomGenerator } from '../../lib/RandomNumberGenerator.js';
+import Addition from '../../lib/math/Addition.js';
+import { AdditionAddends, AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic.js';
 
 interface PreviewAddSubProps {
   data: AdditionSubtractionData;

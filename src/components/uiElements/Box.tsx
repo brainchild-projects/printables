@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef } from 'react';
-import AnyTag from './AnyTag';
+import AnyTag from './AnyTag.js';
 
 type BoxProps<Tag extends AnyTag> = {
   component?: Tag;

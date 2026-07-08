@@ -1,15 +1,15 @@
 import React from 'react';
-import Hero from '../../components/Hero';
-import Footer from './Footer';
-import LinkRouter from '../../elements/LinkRouter';
-import { SectionLinks } from '../../lib/LinkAndLoaderInterface';
-import styleIt from '../../components/styleIt';
-import Paper from '../../components/uiElements/Paper';
-import List from '../../components/uiElements/List';
-import ListItem from '../../components/uiElements/ListItem';
-import ListItemText from '../../components/uiElements/ListItemText';
-import Container from '../../components/uiElements/Container';
-import Typography from '../../components/uiElements/Typography';
+import Hero from '../../components/Hero.js';
+import Footer from './Footer.js';
+import LinkRouter from '../../elements/LinkRouter.js';
+import { SectionLinks } from '../../lib/LinkAndLoaderInterface.js';
+import styleIt from '../../components/styleIt.js';
+import Paper from '../../components/uiElements/Paper.js';
+import List from '../../components/uiElements/List.js';
+import ListItem from '../../components/uiElements/ListItem.js';
+import ListItemText from '../../components/uiElements/ListItemText.js';
+import Container from '../../components/uiElements/Container.js';
+import Typography from '../../components/uiElements/Typography.js';
 
 const paperStyles = styleIt(() => ({
   wrapper: {

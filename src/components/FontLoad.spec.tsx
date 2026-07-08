@@ -1,7 +1,7 @@
 /* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { render } from '@testing-library/react';
-import FontLoad from './FontLoad';
+import FontLoad from './FontLoad.js';
 
 describe('FontLoad', () => {
   let unmount: () => void;

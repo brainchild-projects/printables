@@ -1,4 +1,4 @@
-import PaperSize, { PaperSizeJSON } from '../../lib/PaperSize';
+import PaperSize, { PaperSizeJSON } from '../../lib/PaperSize.js';
 
 export default interface SettingsData {
   defaultPaperSize: PaperSize;

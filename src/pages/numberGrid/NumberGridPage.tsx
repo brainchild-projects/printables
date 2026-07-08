@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeNumberGridForm from './CustomizeNumberGridForm';
-import NumberGridData from './NumberGridData';
-import PreviewNumberGrid from './PreviewNumberGrid';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeNumberGridForm from './CustomizeNumberGridForm.js';
+import NumberGridData from './NumberGridData.js';
+import PreviewNumberGrid from './PreviewNumberGrid.js';
 
 const defaultData: NumberGridData = {
   skipCountToggle: false,

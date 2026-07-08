@@ -1,14 +1,14 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import SubtractionWithFiguresData from './SubtractionWithFiguresData';
-import Subtraction from '../../lib/math/Subtraction';
-import SubtractionSentence from './SubtractionSentence';
-import SubtractionFigure from './SubtractionFigure';
-import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import SubtractionWithFiguresData from './SubtractionWithFiguresData.js';
+import Subtraction from '../../lib/math/Subtraction.js';
+import SubtractionSentence from './SubtractionSentence.js';
+import SubtractionFigure from './SubtractionFigure.js';
+import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems.js';
 
 function itemBuilder(
   showAnswer: boolean,

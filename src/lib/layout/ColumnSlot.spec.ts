@@ -1,5 +1,5 @@
-import ColumnItemWithHeight from './ColumnItemWithHeight';
-import ColumnSlot from './ColumnSlot';
+import ColumnItemWithHeight from './ColumnItemWithHeight.js';
+import ColumnSlot from './ColumnSlot.js';
 
 describe('ColumnSlot', () => {
   let slot: ColumnSlot<string>;

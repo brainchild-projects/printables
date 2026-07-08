@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeNumbersToWordsForm from './CustomizeNumbersToWordsForm';
-import NumbersToWordsData from './NumbersToWordsData';
-import PreviewNumbersToWords from './PreviewNumbersToWords';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeNumbersToWordsForm from './CustomizeNumbersToWordsForm.js';
+import NumbersToWordsData from './NumbersToWordsData.js';
+import PreviewNumbersToWords from './PreviewNumbersToWords.js';
 
 const defaultData: NumbersToWordsData = {
   problemType: 'blanks',

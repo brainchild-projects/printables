@@ -1,13 +1,13 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems';
-import Subtraction from '../../lib/math/Subtraction';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import VerticalSubtractionData from './VerticalSubtractionData';
-import VerticalOperationItem from '../../components/math/VerticalOperationItem';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import generateSubtractionProblems from '../../lib/math/generateSubtractionProblems.js';
+import Subtraction from '../../lib/math/Subtraction.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import VerticalSubtractionData from './VerticalSubtractionData.js';
+import VerticalOperationItem from '../../components/math/VerticalOperationItem.js';
 
 function itemBuilder(
   showAnswer: boolean,

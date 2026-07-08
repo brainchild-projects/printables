@@ -1,5 +1,5 @@
-import { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic';
-import Range from '../../lib/Range';
+import { SubtractionBlankPosition } from '../../components/math/SubtractionSentenceBasic.js';
+import Range from '../../lib/Range.js';
 
 export type BlankPosition = SubtractionBlankPosition | 'random';
 export const blankPositions = new Map<BlankPosition, string>([

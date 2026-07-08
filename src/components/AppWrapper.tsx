@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createTheme, MuiThemeProvider } from '@material-ui/core';
 import classNames from 'classnames';
-import BaseStyle from './BaseStyle';
-import PrintablesAppBar from './PrintablesAppBar';
-import ScrollToTop from './ScrollToTop';
+import BaseStyle from './BaseStyle.js';
+import PrintablesAppBar from './PrintablesAppBar.js';
+import ScrollToTop from './ScrollToTop.js';
 import {
   allLinks, basePath, mainLinks, mathLinks, miscLinks,
-} from '../lib/linkMap';
-import styleIt from './styleIt';
+} from '../lib/linkMap.js';
+import styleIt from './styleIt.js';
 
 const styles = styleIt(() => ({
   main: {

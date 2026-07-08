@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-import AdditionSentenceBasic, { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic';
-import ProblemListItem from '../../components/ProblemListItem';
-import Addition from '../../lib/math/Addition';
-import pairsByRanges from '../../lib/pairsByRanges';
-import AftbData from './AftbData';
-import NumberPair from '../../lib/NumberPair';
-import pairsBySumRange from '../../lib/pairsBySumRange';
+import AdditionSentenceBasic, { AdditionBlankPosition } from '../../components/math/AdditionSentenceBasic.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import Addition from '../../lib/math/Addition.js';
+import pairsByRanges from '../../lib/pairsByRanges.js';
+import AftbData from './AftbData.js';
+import NumberPair from '../../lib/NumberPair.js';
+import pairsBySumRange from '../../lib/pairsBySumRange.js';
 
 type Range = { from: number, to: number };
 

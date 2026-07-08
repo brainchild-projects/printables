@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgWrap from '../../components/svgShapes/SvgWrap';
+import SvgWrap from '../../components/svgShapes/SvgWrap.js';
 
 interface CrossableCircleProps {
   crossed?: boolean,

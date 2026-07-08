@@ -1,11 +1,11 @@
 import React from 'react';
-import CustomizeForm from '../../components/forms/CustomizeForm';
-import CompareNumbersData from './CompareNumbersData';
-import NumberField from '../../components/forms/NumberField';
-import { Magnitude, magnitudes } from '../../lib/math/magnitude';
-import SelectField from '../../components/forms/SelectField';
-import arrayToOptions from '../../components/forms/arrayToOptions';
-import Divider from '../../components/uiElements/Divider';
+import CustomizeForm from '../../components/forms/CustomizeForm.js';
+import CompareNumbersData from './CompareNumbersData.js';
+import NumberField from '../../components/forms/NumberField.js';
+import { Magnitude, magnitudes } from '../../lib/math/magnitude.js';
+import SelectField from '../../components/forms/SelectField.js';
+import arrayToOptions from '../../components/forms/arrayToOptions.js';
+import Divider from '../../components/uiElements/Divider.js';
 
 interface CustomizeCompareNumbersFormProps {
   onChange: (data: CompareNumbersData) => void;

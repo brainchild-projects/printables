@@ -1,5 +1,5 @@
-import { ProblemGeneration } from '../../lib/math/generateMultiplicationProblems';
-import Range from '../../lib/Range';
+import { ProblemGeneration } from '../../lib/math/generateMultiplicationProblems.js';
+import Range from '../../lib/Range.js';
 
 export const problemGenerationOptions = new Map<ProblemGeneration, string>([
   ['factors', 'Factors'],

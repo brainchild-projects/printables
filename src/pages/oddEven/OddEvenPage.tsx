@@ -1,9 +1,9 @@
 import React from 'react';
-import PrintableUI from '../../components/PrintableUI';
-import usePageState from '../usePageState';
-import CustomizeOddEvenForm from './CustomizeOddEvenForm';
-import OddEvenData from './OddEvenData';
-import PreviewOddEven from './PreviewOddEven';
+import PrintableUI from '../../components/PrintableUI.js';
+import usePageState from '../usePageState.js';
+import CustomizeOddEvenForm from './CustomizeOddEvenForm.js';
+import OddEvenData from './OddEvenData.js';
+import PreviewOddEven from './PreviewOddEven.js';
 
 const defaultData: OddEvenData = {
   count: 10,

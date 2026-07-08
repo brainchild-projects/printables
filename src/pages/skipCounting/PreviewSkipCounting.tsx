@@ -1,16 +1,16 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import ProblemListItem from '../../components/ProblemListItem';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import SkipCountingData from './SkipCountingData';
-import SkipCountingProblem from './SkipCountingProblem';
-import { randomGenerator } from '../../lib/RandomNumberGenerator';
-import Blank from '../../components/Blank';
-import tryByKey from '../../lib/tryByKey';
-import styleIt from '../../components/styleIt';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import SkipCountingData from './SkipCountingData.js';
+import SkipCountingProblem from './SkipCountingProblem.js';
+import { randomGenerator } from '../../lib/RandomNumberGenerator.js';
+import Blank from '../../components/Blank.js';
+import tryByKey from '../../lib/tryByKey.js';
+import styleIt from '../../components/styleIt.js';
 
 function generateProblems({ skipCountBy, count }: SkipCountingData): SkipCountingProblem[] {
   const problems: SkipCountingProblem[] = [];

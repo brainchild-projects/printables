@@ -1,4 +1,4 @@
-import Range from './Range';
+import Range from './Range.js';
 
 type Pair = [a: number, b: number];
 

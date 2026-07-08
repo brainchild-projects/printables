@@ -1,6 +1,6 @@
 import React from 'react';
-import Addition from '../../lib/math/Addition';
-import VerticalOperationItem from '../../components/math/VerticalOperationItem';
+import Addition from '../../lib/math/Addition.js';
+import VerticalOperationItem from '../../components/math/VerticalOperationItem.js';
 
 
 interface VerticalAdditionItemProps {

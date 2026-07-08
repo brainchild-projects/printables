@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
-import styleIt from '../../components/styleIt';
-import Subtraction from '../../lib/math/Subtraction';
-import CrossableCircle from './CrossableCircle';
+import styleIt from '../../components/styleIt.js';
+import Subtraction from '../../lib/math/Subtraction.js';
+import CrossableCircle from './CrossableCircle.js';
 
 const styles = styleIt(() => ({
   wrap: {

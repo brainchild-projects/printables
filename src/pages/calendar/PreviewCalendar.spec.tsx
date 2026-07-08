@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 
-import PreviewCalendar from './PreviewCalendar';
-import CalendarData from './CalendarData';
+import PreviewCalendar from './PreviewCalendar.js';
+import CalendarData from './CalendarData.js';
 
 interface TestData {
   month: string,

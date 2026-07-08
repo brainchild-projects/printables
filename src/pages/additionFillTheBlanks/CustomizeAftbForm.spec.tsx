@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm';
-import AftbData from './AftbData';
-import stubPrint from '../../testing/stubPrint';
-import manualSelect from '../../testing/manualSelect';
+import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm.js';
+import AftbData from './AftbData.js';
+import stubPrint from '../../testing/stubPrint.js';
+import manualSelect from '../../testing/manualSelect.js';
 
 type FormWrapperProps = CustomizeAftbFormProps;
 

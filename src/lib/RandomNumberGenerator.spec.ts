@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import RandomNumberGenerator, { MathRandom } from './RandomNumberGenerator';
+import RandomNumberGenerator, { MathRandom } from './RandomNumberGenerator.js';
 
 describe('integer()', () => {
   let randomFn: MathRandom;

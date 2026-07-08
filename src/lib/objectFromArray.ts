@@ -1,4 +1,4 @@
-import RecordGenerator from './RecordGenerator';
+import RecordGenerator from './RecordGenerator.js';
 
 export default function objectFromArray<K, T>(array: K[], generator: RecordGenerator<K, T>): Record<string, T> {
   const obj = {} as Record<string, T>;

@@ -1,7 +1,7 @@
-import { US_LETTER } from '../lib/paperSizes';
-import PaperSize from '../lib/PaperSize';
-import SettingsData, { SettingsDataJSON } from './settings/SettingsData';
-import usePageState from './usePageState';
+import { US_LETTER } from '../lib/paperSizes.js';
+import PaperSize from '../lib/PaperSize.js';
+import SettingsData, { SettingsDataJSON } from './settings/SettingsData.js';
+import usePageState from './usePageState.js';
 
 const defaultData: SettingsData = {
   defaultPaperSize: US_LETTER,

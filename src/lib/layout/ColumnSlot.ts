@@ -1,4 +1,4 @@
-import ColumnItemWithHeight from './ColumnItemWithHeight';
+import ColumnItemWithHeight from './ColumnItemWithHeight.js';
 
 class ColumnSlot<T> {
   private internalHeight: number;

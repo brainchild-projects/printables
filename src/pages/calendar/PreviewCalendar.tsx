@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import classNames from 'classnames';
-import PaperPage from '../../components/PaperPage';
+import PaperPage from '../../components/PaperPage.js';
 
-import CalendarData from './CalendarData';
-import getWeekDates, { DateNumber } from './getWeekDates';
-import styleIt from '../../components/styleIt';
-import Box from '../../components/uiElements/Box';
+import CalendarData from './CalendarData.js';
+import getWeekDates, { DateNumber } from './getWeekDates.js';
+import styleIt from '../../components/styleIt.js';
+import Box from '../../components/uiElements/Box.js';
 
 const dateFormat = new Intl.DateTimeFormat(
   'en-US',

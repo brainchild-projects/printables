@@ -1,6 +1,6 @@
 import React from 'react';
-import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent';
-import SelectField from './SelectField';
+import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent.js';
+import SelectField from './SelectField.js';
 
 const fontSizes = [
   8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96,

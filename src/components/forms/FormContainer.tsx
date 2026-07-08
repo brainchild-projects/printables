@@ -1,7 +1,7 @@
 import Collapse from '@material-ui/core/Collapse';
 import Alert from '@material-ui/lab/Alert';
 import React, { FormEvent, ReactNode } from 'react';
-import styleIt from '../styleIt';
+import styleIt from '../styleIt.js';
 
 const styles = styleIt(() => ({
   wrapper: {

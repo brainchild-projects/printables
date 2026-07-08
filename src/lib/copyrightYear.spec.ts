@@ -1,4 +1,4 @@
-import copyrightYear from './copyrightYear';
+import copyrightYear from './copyrightYear.js';
 
 interface TestData {
   description: string;

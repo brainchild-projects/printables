@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import ModalDialog from '../../components/ModalDialog';
-import TextField from '../../components/forms/TextField';
-import NumberField from '../../components/forms/NumberField';
-import PaperSize, { PaperSizeJSON } from '../../lib/PaperSize';
-import Grid from '../../components/uiElements/Grid';
+import ModalDialog from '../../components/ModalDialog.js';
+import TextField from '../../components/forms/TextField.js';
+import NumberField from '../../components/forms/NumberField.js';
+import PaperSize, { PaperSizeJSON } from '../../lib/PaperSize.js';
+import Grid from '../../components/uiElements/Grid.js';
 
 interface PaperSizeDialogProps {
   paperSize: PaperSize | null;

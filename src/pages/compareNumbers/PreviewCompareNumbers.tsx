@@ -1,14 +1,14 @@
 import React from 'react';
-import MultiPaperPage from '../../components/MultiPaperPage';
-import PageTitle from '../../elements/PageTitle';
-import ProblemList from '../../components/ProblemList';
-import ProblemListItem from '../../components/ProblemListItem';
-import WorksheetFooter from '../../components/printElements/WorksheetFooter';
-import WorksheetHeader from '../../components/printElements/WorksheetHeader';
-import CompareNumbersData from './CompareNumbersData';
-import generateProblems from './generateProblems';
-import CompareNumbersProblem from './CompareNumbersProblem';
-import Blank from '../../components/Blank';
+import MultiPaperPage from '../../components/MultiPaperPage.js';
+import PageTitle from '../../elements/PageTitle.js';
+import ProblemList from '../../components/ProblemList.js';
+import ProblemListItem from '../../components/ProblemListItem.js';
+import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';
+import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
+import CompareNumbersData from './CompareNumbersData.js';
+import generateProblems from './generateProblems.js';
+import CompareNumbersProblem from './CompareNumbersProblem.js';
+import Blank from '../../components/Blank.js';
 
 function itemBuilder(
   showAnswer: boolean,

@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgOutlinedShapes from './SvgOutlinedShapes';
+import SvgOutlinedShapes from './SvgOutlinedShapes.js';
 
 interface CircleProps {
   width: number;
