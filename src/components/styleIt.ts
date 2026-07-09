@@ -1,4 +1,4 @@
-import hash from 'crypto-js/md5';
+import { MD5 as hash } from 'crypto-js';
 
 type ClassNames = string;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

@@ -24,6 +24,9 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
+  legacy: {
+    inconsistentCjsInterop: true,
+  },
   test: {
     environment: 'happy-dom',
     globals: true,
