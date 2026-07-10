@@ -1,4 +1,4 @@
-import MuiTextField from '@material-ui/core/TextField';
+import { TextField as MuiTextField } from '@mui/material';
 import React, { ChangeEvent } from 'react';
 import generateId from '../../lib/generateId.js';
 import titleize from '../../lib/titlelize.js';

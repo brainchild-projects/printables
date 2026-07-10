@@ -1,4 +1,4 @@
-import Select from '@material-ui/core/Select';
+import { Select } from '@mui/material';
 import React from 'react';
 import generateId from '../../lib/generateId.js';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent.js';

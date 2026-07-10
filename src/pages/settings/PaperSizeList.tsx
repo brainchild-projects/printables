@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import PaperSize from '../../lib/PaperSize.js';
 import Paper from '../../components/uiElements/Paper.js';
 import List from '../../components/uiElements/List.js';
@@ -28,10 +28,10 @@ function PaperSizeList({ paperSizes, onEdit, onDelete }: PaperSizeListProps): JS
           secondary={`${width}mm × ${height}mm`}
         />
         <ListItemSecondaryAction>
-          <IconButton onClick={() => onEdit(size)}>
+          <IconButton onClick={() => onEdit(size)} size="large">
             <EditIcon />
           </IconButton>
-          <IconButton onClick={() => onDelete(size)}>
+          <IconButton onClick={() => onDelete(size)} size="large">
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>

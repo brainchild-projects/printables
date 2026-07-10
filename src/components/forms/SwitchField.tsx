@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import { FormControlLabel, Switch } from '@mui/material';
 import generateId from '../../lib/generateId.js';
 import titleize from '../../lib/titlelize.js';
 

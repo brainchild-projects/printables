@@ -1,7 +1,7 @@
-import { DefaultTheme as DefaultMuiTheme } from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles/createTheme';
+import { DefaultTheme as DefaultMuiTheme } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core' {
+declare module '@mui/material' {
   interface DefaultTheme extends DefaultMuiTheme, Theme {
   }
 }

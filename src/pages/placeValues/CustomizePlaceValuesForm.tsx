@@ -7,7 +7,7 @@ import stringMapToOptions from '../../components/forms/stringMapToOptions.js';
 import { Magnitude, magnitudes } from '../../lib/math/magnitude.js';
 import PlaceValuesData, {
   PlaceValueProblemType, problemTypes,
-} from './PlaceValuesData';
+} from './PlaceValuesData.js';
 import Divider from '../../components/uiElements/Divider.js';
 
 interface CustomizePlaceValuesFormProps {

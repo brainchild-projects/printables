@@ -2,8 +2,8 @@ import React, {
   ReactNode, FormEvent, useState,
 } from 'react';
 import html2pdf from 'html2pdf.js';
-import { IconButton } from '@material-ui/core';
-import HelpIcon from '@material-ui/icons/Help';
+import { IconButton } from '@mui/material';
+import HelpIcon from '@mui/icons-material/Help';
 import { PaperOptions, usePaperOptions } from '../PaperOptionsProvider.js';
 import { useInstanceOptions } from '../InstanceSettingsProvider.js';
 import SelectField from './SelectField.js';
@@ -143,13 +143,11 @@ function CustomizeForm({
       <IconButton
         aria-label="Printing Tips"
         onClick={() => setShowPrintingHelp(true)}
-      >
+        size="large">
         <HelpIcon />
       </IconButton>
       <PrintHelpDialog open={showPrintingHelp} onClose={onPrintingHelpClose} />
-
       <p> -- or --</p>
-
       <SubmitButton
         disabled={error !== null}
         value="pdf"

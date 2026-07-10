@@ -1,5 +1,5 @@
-import Collapse from '@material-ui/core/Collapse';
-import Alert from '@material-ui/lab/Alert';
+import Collapse from '@mui/material/Collapse';
+import Alert from '@mui/material/Alert';
 import React, { FormEvent, ReactNode } from 'react';
 import styleIt from '../styleIt.js';
 

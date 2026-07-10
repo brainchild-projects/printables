@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import {
   Drawer, IconButton,
   Collapse,
-} from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBackOutlined';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import SettingsIcon from '@material-ui/icons/Settings';
+} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBackOutlined';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
 import { LinkMap } from '../lib/linkMap.js';
 import { SectionLinks } from '../lib/LinkAndLoaderInterface.js';
@@ -101,10 +101,7 @@ function Sidebar({ open, onClose, linkMap }: SidebarProps): JSX.Element {
     // variant="persistent"
     >
       <Box>
-        <IconButton
-          onClick={onClose}
-          aria-label="Close Menu"
-        >
+        <IconButton onClick={onClose} aria-label="Close Menu" size="large">
           <ArrowBackIcon />
         </IconButton>
       </Box>

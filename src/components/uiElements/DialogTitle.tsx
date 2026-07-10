@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { ComponentPropsWithRef, ReactNode } from 'react';
-import { IconButton } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import styleIt from '../styleIt.js';
 import AnyTag from './AnyTag.js';
 import Typography from './Typography.js';
@@ -48,7 +48,11 @@ function DialogTitle<Tag extends AnyTag>({
         {children}
       </Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose as VoidFunction}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose as VoidFunction}
+          size="large">
           <CloseIcon />
         </IconButton>
       ) : null}

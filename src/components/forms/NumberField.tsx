@@ -1,4 +1,4 @@
-import TextField from '@material-ui/core/TextField';
+import { TextField } from '@mui/material';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import generateId from '../../lib/generateId.js';
 import parseEventValueAsFloat from '../../lib/parseEventValueAsFloat.js';

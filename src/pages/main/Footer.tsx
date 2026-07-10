@@ -1,4 +1,4 @@
-import { Link } from '@material-ui/core';
+import { Link } from '@mui/material';
 import classNames from 'classnames';
 import React from 'react';
 import styleIt from '../../components/styleIt.js';

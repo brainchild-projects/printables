@@ -2,7 +2,7 @@ import React from 'react';
 import MultiPaperPage, { Builder } from '../../components/MultiPaperPage.js';
 import AdditionSentence, {
   blankTypes, blankTypesAddends, generateAdditionSentences,
-} from './AdditionSentence';
+} from './AdditionSentence.js';
 import AftbData, { BlankPositionStrategy } from './AftbData.js';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
 import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';

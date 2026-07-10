@@ -2,7 +2,7 @@ import React from 'react';
 import MultiPaperPage, { Builder } from '../../components/MultiPaperPage.js';
 import AdditionSubtractionItem, {
   blankTypes, blankTypesAddends, generateItems,
-} from './AdditionSubtractionItem';
+} from './AdditionSubtractionItem.js';
 import AdditionSubtractionData from './AdditionSubtractionData.js';
 import WorksheetHeader from '../../components/printElements/WorksheetHeader.js';
 import WorksheetFooter from '../../components/printElements/WorksheetFooter.js';

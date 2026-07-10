@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { Theme as MUITheme, ThemeOptions as MUIThemeOptions } from '@material-ui/core/styles/createTheme';
+import { Theme as MUITheme, DeprecatedThemeOptions as MUIThemeOptions } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles/createTheme' {
+declare module '@mui/material/styles/createTheme' {
   interface Theme extends MUITheme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -14,7 +14,7 @@ declare module '@material-ui/core/styles/createTheme' {
     // spacing: (space: number) => number;
   }
   // allow configuration using `createTheme`
-  interface ThemeOptions extends MUIThemeOptions {
+  interface DeprecatedThemeOptions extends MUIThemeOptions {
     accent?: {
       main?: string;
     };
@@ -24,5 +24,5 @@ declare module '@material-ui/core/styles/createTheme' {
     };
     // spacing?: (space: number) => number;
   }
-  export function createTheme(options?: ThemeOptions): Theme;
+  export function createTheme(options?: DeprecatedThemeOptions): Theme;
 }

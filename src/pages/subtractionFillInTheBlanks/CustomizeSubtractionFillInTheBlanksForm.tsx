@@ -2,7 +2,7 @@ import React from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm.js';
 import SubtractionFillInTheBlanksData, {
   BlankPosition, blankPositions, ProblemGeneration, problemGenerationOptions,
-} from './SubtractionFillInTheBlanksData';
+} from './SubtractionFillInTheBlanksData.js';
 import NumberField from '../../components/forms/NumberField.js';
 import SelectField from '../../components/forms/SelectField.js';
 import stringMapToOptions from '../../components/forms/stringMapToOptions.js';

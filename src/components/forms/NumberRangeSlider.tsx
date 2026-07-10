@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import { Slider } from '@material-ui/core';
+import { Slider } from '@mui/material';
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
 import HtmlFieldChangeEvent from '../../lib/HtmlFieldChangeEvent.js';

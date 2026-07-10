@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { FormControl, InputLabel } from '@material-ui/core';
+import { FormControl, InputLabel } from '@mui/material';
 import styleIt from '../styleIt.js';
 
 const styles = styleIt(() => ({
