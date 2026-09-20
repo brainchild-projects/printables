@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 interface CreateProps {
   minuend?: number;
   subtrahend?: number;

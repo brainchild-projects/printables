@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomizeCalendarForm from './CustomizeCalendarForm.js';
 import CalendarData from './CalendarData.js';
 import PreviewCalendar from './PreviewCalendar.js';
@@ -7,7 +7,17 @@ import usePageState from '../usePageState.js';
 
 const dataKey = 'calendar';
 function CalendarPage(): JSX.Element {
-  const now = new Date();
+  const [now, setNow] = useState(() => {
+    return new Date();
+  });
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setNow(new Date());
+      clearTimeout(timeoutId);
+    });
+  }, []);
+
   const nowLast = {
     year: now.getFullYear(),
     month: now.getMonth(),
@@ -36,7 +46,7 @@ function CalendarPage(): JSX.Element {
         lastLoadedDay: nowLast,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line @eslint-react/exhaustive-deps
   }, [nowLast.date, nowLast.year, date, month, year]);
 
   return (

@@ -82,6 +82,7 @@ function MultipleChoiceProblem({
         {
           uniqueElements(choices).map((choice) => (
             <ChoiceItem
+              key={choice}
               showAnswer={showAnswer}
               answer={answer}
               choice={choice}

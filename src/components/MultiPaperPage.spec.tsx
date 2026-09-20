@@ -1,5 +1,5 @@
-/* eslint-disable testing-library/no-node-access */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+ 
+ 
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';

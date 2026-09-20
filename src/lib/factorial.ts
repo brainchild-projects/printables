@@ -5,7 +5,6 @@ export default function factorial(num: number) {
     throw Error(`Negative number ${num}`);
   }
   if (!facCache[num]) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     facCache[num] = num * factorial(num - 1);
   }
   return facCache[num];

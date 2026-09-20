@@ -6,7 +6,6 @@ interface TestData {
   expected: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 function _t(input: number, expected: string): TestData {
   return { input, expected };
 }

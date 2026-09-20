@@ -1,6 +1,6 @@
 import React from 'react';
 import Subtraction from '../../lib/math/Subtraction.js';
-import blankOrNumberGenerator from './blankOrNumberGenerator.js';
+import BlankOrNumber from './BlankOrNumber.js';
 
 export type SubtractionBlankPosition = 'difference' | 'minuend' | 'subtrahend';
 export const subtractionBlankPositions: SubtractionBlankPosition[] = [
@@ -16,23 +16,28 @@ interface SubtractionBasicProps {
 function SubtractionSentenceBasic({
   subtraction, blank = undefined, showAnswer = false,
 }: SubtractionBasicProps): JSX.Element {
-  const BlankOrNumber = blankOrNumberGenerator(showAnswer, blank);
   const { minuend, subtrahend, difference } = subtraction;
   return (
     <>
       <BlankOrNumber
         value={minuend}
         expected="minuend"
+        blank={blank}
+        showAnswer={showAnswer}
       />
       {' - '}
       <BlankOrNumber
         value={subtrahend}
         expected="subtrahend"
+        blank={blank}
+        showAnswer={showAnswer}
       />
       {' = '}
       <BlankOrNumber
         value={difference}
         expected="difference"
+        blank={blank}
+        showAnswer={showAnswer}
       />
     </>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import CustomizeForm from '../../components/forms/CustomizeForm.js';
 import AdditionSubtractionData, { ProblemGeneration, problemGenerations } from './AdditionSubtractionData.js';

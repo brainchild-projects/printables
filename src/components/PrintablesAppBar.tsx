@@ -5,7 +5,6 @@ import {
   Toolbar,
   createTheme,
   ThemeProvider,
-  Theme,
   StyledEngineProvider,
   adaptV4Theme,
 } from '@mui/material';
@@ -17,12 +16,6 @@ import { LinkMap } from '../lib/linkMap.js';
 import Sidebar from './Sidebar.js';
 import styleIt from './styleIt.js';
 import Typography from './uiElements/Typography.js';
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme { }
-}
 
 // eslint-disable-next-line no-console
 console.log('MUI Icons Check:', typeof MenuIcon === 'object' && 'default' in MenuIcon);

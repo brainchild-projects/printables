@@ -1,4 +1,4 @@
-/* eslint-disable promise/no-nesting */
+
 it('can create a calendar', () => {
   cy.clock(Date.parse('July 8, 2021'));
   cy.visitCalendar();
@@ -40,14 +40,14 @@ it('can create a calendar', () => {
       });
   });
 
-  void cy.window().then((win) => {
+  cy.window().then((win: Cypress.AUTWindow) => {
     const printStub = cy.stub(win, 'print');
 
     cy.findByRole('button', { name: /print\s+calendar/i }).click();
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    void cy.findByRole('button', { name: /got\s+it/i }).click().then(() => {
+    return cy.findByRole('button', { name: /got\s+it/i }).click().then(() => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      expect(printStub).to.be.called;
+      return expect(printStub).to.be.called;
     });
   });
 

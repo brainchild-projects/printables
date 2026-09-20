@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import App from './components/App.js';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 import reportWebVitals from './reportWebVitals.js';
 import './printing.css';
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

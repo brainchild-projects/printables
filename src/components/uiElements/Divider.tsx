@@ -58,7 +58,6 @@ function Divider<Tag extends AnyTag>({
           'divider-variant-middle': variant === 'middle',
         },
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

@@ -1,5 +1,3 @@
-// import userEvent from '@testing-library/user-event';
-
 function optionLabelValue(option: HTMLOptionElement): string {
   return option.innerHTML.toString().trim();
 }
@@ -16,7 +14,10 @@ async function manualSelect(selectField: HTMLSelectElement, value: string) {
   const matchingOption = [...selectField.querySelectorAll('option')]
     .find((option) => optionLabelValue(option) === value);
   if (matchingOption !== undefined) {
-    // eslint-disable-next-line no-param-reassign
+    /* eslint-disable-next-line no-param-reassign --
+     * Intentionally changing the value of the select field to simulate a user selecting an option.
+     * HTMLSelectElement does not have an API for doing this.
+     */
     selectField.value = matchingOption.value;
     const event = new Event('change', {
       bubbles: true,

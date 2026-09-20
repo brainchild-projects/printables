@@ -25,7 +25,6 @@ function Paper<Tag extends AnyTag = 'div'>(
   return (
     <Component
       className={classNames(classes.paper, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

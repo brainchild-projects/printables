@@ -49,7 +49,6 @@ function ListItem<Tag extends AnyTag>(
   return (
     <Component
       className={classNames(classes.listItem, className as string, button as boolean)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

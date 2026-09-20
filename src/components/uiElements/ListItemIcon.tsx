@@ -29,7 +29,6 @@ function ListItemIcon<Tag extends AnyTag>({
   return (
     <Component
       className={classNames(classes.listItemIcon, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

@@ -29,6 +29,7 @@ cypress/screenshots/
 cypress/videos/
 
 # Devenv and direnv
+.devenv/
 .devenv*
 devenv.local.nix
 .direnv

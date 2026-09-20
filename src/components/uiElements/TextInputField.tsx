@@ -22,7 +22,6 @@ function TextField({
     <input
       className={classNames(classes.textInputField, className as string)}
       type={type}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

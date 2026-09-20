@@ -1,7 +1,5 @@
-/* eslint-disable testing-library/no-render-in-setup */
 import React, { useState } from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import CustomizeAftbForm, { CustomizeAftbFormProps } from './CustomizeAftbForm.js';
 import AftbData from './AftbData.js';
@@ -39,6 +37,8 @@ describe('CustomizeAftbForm', () => {
     customAddendsB: { from: 0, to: 9 },
     fontSize: 20,
     columns: 2,
+    sumRangeFrom: 0,
+    sumRangeTo: 20,
   };
 
   beforeEach(() => {
@@ -84,9 +84,9 @@ describe('CustomizeAftbForm', () => {
       ? screen.getByLabelText(labelRegexp)
       : labelRegexp() as HTMLInputElement;
     if (found instanceof HTMLInputElement) {
-      ReactTestUtils.Simulate.change(
+      fireEvent.change(
         found,
-        { target: { value: value.toString() } as unknown as EventTarget },
+        { target: { value: value.toString() } },
       );
     } else {
       throw Error(`Unable to find ${field}`);

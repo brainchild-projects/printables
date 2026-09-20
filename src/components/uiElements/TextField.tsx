@@ -26,7 +26,6 @@ function ListItemIcon<Tag extends TextFieldTag>({
   return (
     <Component
       className={classNames(classes.textField, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

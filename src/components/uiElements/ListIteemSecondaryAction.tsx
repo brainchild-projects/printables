@@ -26,7 +26,6 @@ function ListItemSecondaryAction<Tag extends AnyTag>(
   return (
     <Component
       className={classNames(classes.listItemSecondaryAction, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

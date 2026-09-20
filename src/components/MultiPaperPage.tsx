@@ -12,7 +12,6 @@ type PropsCallbackOptions = {
   memberIndex: number,
 };
 
-// export type Builder<T> = (item: T, index: number, array: T[] | undefined) => JSX.Element;
 export type Builder<T> = (item: T, index: number, array: T[] | undefined) => NodeWithClassName;
 
 export type Props = Record<string, unknown>;
@@ -71,7 +70,7 @@ function wrappedContent<T>({
   let propsCallback = wrapperPropsCallback;
   if (isWrapperWithPropsCallback(wrapper)) {
     propsCallback = (props, options) =>
-      // eslint-disable-next-line implicit-arrow-linebreak
+       
       wrapperPropsCallback(
         wrapper.propsCallback(props, options),
         options,
@@ -82,7 +81,7 @@ function wrappedContent<T>({
     <div className="mpp-wrapper">
       {
         createElement(
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+           
           wrapper!,
           {
             ...propsCallback(
@@ -182,9 +181,9 @@ function MultiPaperPage<T>({
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+     
     const wrapperEl = wrapperRef.current!;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+     
     const contentElement: HTMLDivElement = wrapperEl.querySelector('.printable-paper-content')!;
     const headerHeight = offsetHeight(wrapperEl.querySelector('.mpp-header'));
     const footerHeight = offsetHeight(wrapperEl.querySelector('.worksheet-footer'));
@@ -219,7 +218,7 @@ function MultiPaperPage<T>({
           const rendered = (
             <PaperPage
               pageId={`${index + 1}`}
-              // eslint-disable-next-line react/no-array-index-key
+              // eslint-disable-next-line @eslint-react/no-array-index-key
               key={`page-${index}`}
               ready={isReady}
               unlimitedHeight={!isReady}

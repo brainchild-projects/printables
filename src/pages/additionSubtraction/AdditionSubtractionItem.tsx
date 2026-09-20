@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import classNames from 'classnames';
 import ProblemListItem from '../../components/ProblemListItem.js';

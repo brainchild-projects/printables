@@ -62,6 +62,7 @@ describe('replaceWithDelimeter', () => {
         result = replaceWithDelimeter(subject, param);
       });
 
+      /* eslint-disable-next-line vitest/valid-title -- The title IS a string which this test complains */
       it(expectedComment === undefined ? 'returns correct result' : expectedComment, () => {
         expect(result).toEqual(expected);
       });

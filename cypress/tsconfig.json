@@ -5,8 +5,10 @@
       "es6",
       "dom"
     ],
+    "sourceMap": true,
     "types": [
       "cypress",
+      "node",
       "@testing-library/cypress"
     ],
     "strict": true
@@ -14,6 +16,6 @@
   "include": [
     "../node_modules/cypress",
     "**/*.ts",
-    "support/commands.js"
+    "support/commands.ts"
   ]
 }

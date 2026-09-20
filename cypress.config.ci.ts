@@ -1,6 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import { defineConfig } from 'cypress';
-import config from './cypress.config';
+import config from './cypress.config.js';
 
 export default defineConfig({
   ...config,

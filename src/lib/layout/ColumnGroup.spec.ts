@@ -14,11 +14,8 @@ describe('ColumnGroup', () => {
 
   it('creates slots with height', () => {
     const firstColumn = group.columns[0];
-    if (firstColumn) {
-      expect(firstColumn.height).toEqual(3);
-    } else {
-      fail('Did not find first column');
-    }
+    expect(firstColumn).not.toBeUndefined();
+    expect(firstColumn.height).toEqual(3);
   });
 
   it('starts with empty items', () => {

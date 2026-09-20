@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, describe, beforeEach } from 'vitest';
 import RandomNumberGenerator, { MathRandom } from './RandomNumberGenerator.js';
 
 describe('integer()', () => {

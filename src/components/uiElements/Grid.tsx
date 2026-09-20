@@ -167,7 +167,6 @@ function Grid<Tag extends AnyTag>({
         },
         className as string | undefined,
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

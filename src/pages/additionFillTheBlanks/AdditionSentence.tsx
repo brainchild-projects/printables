@@ -46,14 +46,20 @@ export interface AdditionSentenceProps {
   className?: string;
 }
 
+function labelWithAnswer(showAnswer: boolean) {
+  return `Addition Problem${showAnswer ? ' Answer' : ''}`;
+}
+
 function AdditionSentence({
-  addition, blank = 'sum', showAnswer = false, fontSize = 20, className = '',
+  addition,
+  blank = 'sum',
+  showAnswer = false,
+  fontSize = 20, className = '',
 }: AdditionSentenceProps): JSX.Element {
-  const label = `Addition Problem${showAnswer ? ' Answer' : ''}`;
   return (
     <ProblemListItem
       className={classNames('addition-sentence-item', className)}
-      label={label}
+      label={labelWithAnswer(showAnswer)}
       fontSize={fontSize}
     >
       <AdditionSentenceBasic

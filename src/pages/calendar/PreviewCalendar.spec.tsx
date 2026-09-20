@@ -95,7 +95,6 @@ describe('PreviewCalendar', () => {
     },
   ];
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const testData of testDatas) {
     describe(`With dates for ${testData.month}`, () => {
       beforeEach(() => {

@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { render } from '@testing-library/react';
 import styleIt, {
@@ -8,7 +7,7 @@ import styleIt, {
   StyleDefinitionCallback,
   StyleRecords,
   BasicStyleProp,
-} from './styleIt';
+} from './styleIt.js';
 
 describe('styleIt', () => {
   let unmount: () => void;

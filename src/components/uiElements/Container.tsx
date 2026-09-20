@@ -55,7 +55,6 @@ function Container<Tag extends AnyTag>(
           maxWidthLg: maxWidth === 'lg' || maxWidth === undefined,
         },
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

@@ -28,7 +28,6 @@ function NumberField({
 
   useEffect(() => {
     setShowValue(showValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
   return (
     <FieldSet spaced={spaced}>

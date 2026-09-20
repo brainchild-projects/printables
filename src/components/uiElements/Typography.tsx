@@ -196,7 +196,6 @@ function Typography<Tag extends AnyTag>({
           [`typography-color-${color as Color}`]: color as Color | undefined,
         },
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

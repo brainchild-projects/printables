@@ -36,7 +36,6 @@ function LitItemText<Tag extends AnyTag>({
   return (
     <Component
       className={classNames(classes.listItemText, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     >
       <Typography variant="body1" component='div' color="inherit">{primary ?? children}</Typography>

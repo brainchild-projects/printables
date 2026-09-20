@@ -15,6 +15,11 @@ interface SubtractionSentenceProps {
   className?: string;
 }
 
+function labelForType(showAnswer: boolean): string {
+  return `Subtraction With Figures ${showAnswer ? 'Answer' : 'Problem'}`;
+}
+
+
 function SubtractionSentence({
   subtraction,
   blank = 'difference',
@@ -26,7 +31,7 @@ function SubtractionSentence({
   return (
     <ProblemListItem
       className={classNames('subtraction-with-figures-problem-item', className)}
-      label={`Subtraction With Figures ${showAnswer ? 'Answer' : 'Problem'}`}
+      label={labelForType(showAnswer)}
       fontSize={fontSize}
     >
       {prefix}

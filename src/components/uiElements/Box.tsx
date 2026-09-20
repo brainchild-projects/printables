@@ -8,7 +8,6 @@ type BoxProps<Tag extends AnyTag> = {
 function Box<Tag extends AnyTag = 'div'>(
   { component: Component = 'div' as Tag, ...other }: BoxProps<Tag>,
 ): JSX.Element {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Component {...other} />;
 }
 

@@ -20,7 +20,6 @@ const styles = styleIt(() => ({
 
 }));
 
-// eslint-disable-next-line complexity
 function toOrdinal(n: number): string {
   const nString = n.toString();
   const { length } = nString;

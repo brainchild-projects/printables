@@ -38,7 +38,6 @@ function DialogContent<Tag extends AnyTag>({
         { [classes.dialogContentDividers]: dividers as boolean },
         className as string,
       )}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     />
   );

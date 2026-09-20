@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ModalDialog from '../../components/ModalDialog.js';
 import TextField from '../../components/forms/TextField.js';
 import NumberField from '../../components/forms/NumberField.js';
@@ -20,11 +20,9 @@ const defaultSize = {
 function PaperSizeDialog({
   paperSize, open, onSave, onClose,
 }: PaperSizeDialogProps): JSX.Element {
-  const [size, setSize] = useState<PaperSizeJSON>(defaultSize);
-
-  useEffect(() => {
-    setSize(paperSize ? paperSize.toJSON() : defaultSize);
-  }, [paperSize, open]);
+  const [size, setSize] = useState<PaperSizeJSON>(
+    paperSize ? paperSize : defaultSize,
+  );
 
   return (
     <ModalDialog

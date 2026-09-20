@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { createTheme, ThemeProvider, Theme, StyledEngineProvider, adaptV4Theme } from '@mui/material';
+import { createTheme, ThemeProvider, StyledEngineProvider, adaptV4Theme } from '@mui/material';
 import classNames from 'classnames';
 import BaseStyle from './BaseStyle.js';
 import PrintablesAppBar from './PrintablesAppBar.js';
@@ -9,12 +9,6 @@ import {
   allLinks, basePath, mainLinks, mathLinks, miscLinks,
 } from '../lib/linkMap.js';
 import styleIt from './styleIt.js';
-
-
-declare module '@mui/styles/defaultTheme' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme { }
-}
 
 const styles = styleIt(() => ({
   main: {

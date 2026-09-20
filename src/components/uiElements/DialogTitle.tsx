@@ -41,7 +41,6 @@ function DialogTitle<Tag extends AnyTag>({
   return (
     <Component
       className={classNames(classes.dialogTitle, className as string)}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     >
       <Typography variant="h6" component="div">

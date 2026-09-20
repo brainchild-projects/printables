@@ -1,5 +1,5 @@
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-await-in-loop */
+ 
+ 
 import { existsSync } from 'fs';
 import { mkdir } from 'fs/promises';
 import inquirer from 'inquirer';

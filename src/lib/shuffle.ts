@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-
 const { floor, random } = Math;
 
 export default function shuffle<T>(inputArray: T[]) {

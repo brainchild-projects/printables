@@ -65,6 +65,8 @@ export default function VerticalOperationItem({
                       lastRow ? classes.lastRow : null,
                     )
                   }
+                  // eslint-disable-next-line @eslint-react/no-array-index-key -- order is fixed
+                  key={`item-${index}`}
                 >
                   {
                     lastRow && (

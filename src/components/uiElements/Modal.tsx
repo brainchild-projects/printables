@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import styleIt from '../styleIt.js';
@@ -61,12 +61,11 @@ function findFirstInput(): HTMLInputElement | null {
   return document.querySelector<HTMLInputElement>('[role="dialog"] input');
 }
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 function useTransitions(onClose: VoidFunction, autoFocus: boolean, open: boolean) {
   const [focused, setFocused] = useState<boolean>(false);
   const [closing, setClosing] = useState<boolean>(false);
   const [myOpen, setMyOpen] = useState<boolean>(open);
-  const overlayRef = React.useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
 
   const closeListener: EventListenerOrEventListenerObject = (e: Event) => {
     const el = e.target as HTMLDivElement;
@@ -88,12 +87,14 @@ function useTransitions(onClose: VoidFunction, autoFocus: boolean, open: boolean
     }
   } : undefined;
 
-  const closeFocus = useCallback(() => {
+  const closeFocusFunc = async () => {
     setClosing(true);
     if (autoFocus) {
       setFocused(false);
     }
-  }, [autoFocus]);
+  };
+
+  const closeFocus = useCallback(closeFocusFunc, [autoFocus]);
 
   useEffect(() => {
     if (myOpen && !open) {
@@ -116,6 +117,10 @@ function ModalDialog({
   children, open, onClose, autoFocus = false, noPaper = false, ...other
 }: ModalDialogProps): JSX.Element {
   const transProps = useTransitions(onClose, autoFocus, open);
+  const appElement = useMemo(
+    () => document.getElementById('root') ?? document.querySelector('body') as HTMLElement,
+    [],
+  );
   const { closeFocus, onFocus, closing, overlayRef, afterClose, myOpen } = transProps;
   const classes = styles();
 
@@ -125,7 +130,7 @@ function ModalDialog({
       onRequestClose={closeFocus}
       onAfterOpen={autoFocus ? onFocus : undefined}
       portalClassName={classNames(classes.root, 'no-print')}
-      appElement={(document.getElementById('root') ?? document.querySelector('body')) as HTMLElement}
+      appElement={appElement}
       className={classes.content}
       overlayClassName={classNames(
         classes.overlay,
@@ -137,7 +142,6 @@ function ModalDialog({
         }
       }}
       onAfterClose={afterClose}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     >
       {

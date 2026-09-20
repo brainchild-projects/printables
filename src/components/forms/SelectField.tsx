@@ -19,7 +19,6 @@ function SelectField<T extends string>(props: SelectFieldProps<T>): JSX.Element 
   const {
     id, name, label, onChange, value, children,
   } = props;
-  // eslint-disable-next-line react/destructuring-assignment
   const testId = props['data-testid'];
   const theId = id ?? generateId('select', name);
   const theLabel = label ?? titleize(name);

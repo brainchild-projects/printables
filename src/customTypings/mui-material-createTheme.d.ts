@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { Theme as MUITheme, DeprecatedThemeOptions as MUIThemeOptions } from '@mui/material/styles';
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import classNames from 'classnames';
 import PaperPage from '../../components/PaperPage.js';
@@ -116,6 +115,7 @@ function PreviewCalendar(props: PreviewCalendarProps): JSX.Element {
             <tbody aria-label="Dates" className={classNames(classes.body, 'calendar-body')}>
               {
                 weeks.map((week, index) => (
+                  // eslint-disable-next-line @eslint-react/no-array-index-key -- The index themselves are the value, really
                   <tr key={`week-${index}`}>
                     {dateCells(week, index)}
                   </tr>

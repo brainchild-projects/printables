@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styleIt from '../../components/styleIt.js';
 import Typography from '../../components/uiElements/Typography.js';
 
@@ -15,7 +15,22 @@ const styles = styleIt(() => ({
 
 function Footer(): JSX.Element {
   const classes = styles();
-  const year = (new Date()).getFullYear();
+  const [year, setYear] = useState(() => (new Date()).getFullYear());
+  const yearUpdater = () => {
+    const now = new Date();
+    const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const nextDayInMs = nextDay.getTime() - now.getTime();
+
+    setTimeout(() => {
+      const newYear = (new Date()).getFullYear();
+      if (newYear !== year) {
+        setYear(newYear);
+      }
+      yearUpdater();
+    }, nextDayInMs);
+  }
+
+  useEffect(yearUpdater);
 
   return (
     <footer className={classNames(classes.footer, 'no-print')}>

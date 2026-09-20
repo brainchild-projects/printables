@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import classNames from 'classnames';
 import React from 'react';
 import FontLoad from '../../components/FontLoad.js';
@@ -74,6 +73,9 @@ const problemStyles = styleIt(() => ({
 
 const shapeWidth = 40;
 
+/* eslint-disable @eslint-react/no-missing-key --
+ * This is a false positive. These are not rendered elements themselves.
+ */
 const shapeEquivalents = new Map([
   ['□', <Square width={shapeWidth} />],
   ['▭', <Rectangle width={shapeWidth} />],
@@ -87,6 +89,7 @@ const shapeEquivalents = new Map([
   ['☆', <Star width={shapeWidth} />],
   ['♡', <Heart width={shapeWidth} />],
 ]);
+/* eslint-enable @eslint-react/no-missing-key */
 
 interface PatternProblemDisplayProps extends PatternProblem {
   showAnswer: boolean;
@@ -105,7 +108,7 @@ function PatternProblemDisplay({
           elements.map((shapeStr, index): JSX.Element => {
             const shape = shapeEquivalents.get(shapeStr) ?? '';
             return (
-              <span className={classes.patternElement} key={`pattern-${index}`}>
+              <span className={classes.patternElement} key={`pattern-${shapeStr}`}>
                 {
                   index === (blankIndex)
                     ? (
@@ -161,11 +164,10 @@ function generatePatternProblems({ count, blankPosition }: PatternsData): Patter
 function itemBuilder(showAnswer: boolean) {
   return function builder(
     { elements, blankIndex: blankPosition }: PatternProblem,
-    index: number,
   ) {
     return (
       <PatternProblemDisplay
-        key={`problem-${index}`}
+        key={`problem-${elements.join('')}`}
         elements={elements}
         blankIndex={blankPosition}
         showAnswer={showAnswer}

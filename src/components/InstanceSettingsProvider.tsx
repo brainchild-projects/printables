@@ -54,7 +54,7 @@ function InstanceOptionsProvider({
     if (savedData) {
       setInstanceOptions(savedData as unknown as InstanceOptions);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line @eslint-react/exhaustive-deps
   }, [setInstanceOptions]);
 
   const instanceOptionsValue = useMemo(() => {

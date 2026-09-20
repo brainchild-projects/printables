@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import { Slider } from '@mui/material';
 import classNames from 'classnames';
 import React, { useEffect, useRef } from 'react';
@@ -72,13 +71,14 @@ const setInputInActive: EventListener = (event) => {
   }
 };
 
-function addListeners(input: HTMLInputElement, events: string[], listener: EventListener) {
+type InputListenerToggle = (input: HTMLInputElement, events: string[], listener: EventListener) => void;
+const addListeners: InputListenerToggle = function (input: HTMLInputElement, events: string[], listener: EventListener) {
   events.forEach((event) => {
     input.addEventListener(event, listener);
   });
 }
 
-function removeListeners(input: HTMLInputElement, events: string[], listener: EventListener) {
+const removeListeners: InputListenerToggle = function (input: HTMLInputElement, events: string[], listener: EventListener) {
   events.forEach((event) => {
     input.removeEventListener(event, listener);
   });
@@ -92,39 +92,41 @@ interface NumberRangeSliderProps extends Range {
   'data-testid'?: string;
 }
 
-type ChangeHanlder = (value: number | number[], event: HtmlFieldChangeEvent) => void;
+type ChangeHandler = (value: number | number[], event: HtmlFieldChangeEvent) => void;
 type InputChangeCallback = (value: number) => Range;
 type InputChangeHandler = (value: number) => void;
 type InputChangeHandlerBuilder = (callback: InputChangeCallback) => InputChangeHandler;
 
+// eslint-disable-next-line sonarjs/cognitive-complexity -- Complexity of 7 (instead of 5) is acceptable here. Might refactor later.
 function getMarksAndMax(magnitude: number | undefined) {
   const marks = [
     { value: 0, label: '0' },
     { value: 10, label: '10' },
   ];
   let max = 10;
-  if (magnitude > 1) {
-    marks.push({ value: 20, label: '100' });
-    max = 100;
-  }
-  if (magnitude > 2) {
-    marks.push({ value: 30, label: '1000' });
-    max = 1000;
-  }
-  if (magnitude > 3) {
-    marks.push({ value: 40, label: '10000' });
-    max = 10000;
+  if (magnitude !== undefined) {
+    if (magnitude > 1) {
+      marks.push({ value: 20, label: '100' });
+      max = 100;
+    }
+    if (magnitude > 2) {
+      marks.push({ value: 30, label: '1000' });
+      max = 1000;
+    }
+    if (magnitude > 3) {
+      marks.push({ value: 40, label: '10000' });
+      max = 10000;
+    }
   }
   return { marks, max };
 }
 
 function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
   const classes = useStyles();
-  const {
-    from, to, label, onChange, id, magnitude,
-  } = options;
+  const { from, to, label, onChange, id, magnitude } = options;
   const labelId = `${id}-label`;
-  const changeHandler: ChangeHanlder = (value) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const changeHandler: ChangeHandler = (value) => {
     const [rangeFrom, rangeTo] = value as number[];
     const calcFrom = valueScale(rangeFrom);
     const calcTo = valueScale(rangeTo);
@@ -148,28 +150,21 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
     from, to: value,
   }));
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const root = ref.current;
+  const addOrRemoveListenersActive = (fn: InputListenerToggle, root: HTMLDivElement | null) => {
     if (root !== null) {
       const inputs = root.querySelectorAll('.hidden-spinners');
       inputs.forEach((element) => {
         const input = element as HTMLInputElement;
-        addListeners(input, activeEvents, setInputActive);
-        addListeners(input, inactiveEvents, setInputInActive);
+        fn(input, activeEvents, setInputActive);
+        fn(input, inactiveEvents, setInputInActive);
       });
     }
+  }
 
-    return () => {
-      if (root !== null) {
-        const inputs = root.querySelectorAll('.hidden-spinners');
-        inputs.forEach((element) => {
-          const input = element as HTMLInputElement;
-          removeListeners(input, activeEvents, setInputActive);
-          removeListeners(input, inactiveEvents, setInputInActive);
-        });
-      }
-    };
+  useEffect(() => {
+    const root = ref.current;
+    addOrRemoveListenersActive(addListeners, root);
+    return () => addOrRemoveListenersActive(removeListeners, root);
   });
 
   const { marks, max } = getMarksAndMax(magnitude);
@@ -221,7 +216,7 @@ function NumberRangeSlider(options: NumberRangeSliderProps): JSX.Element {
         data-testid={options['data-testid']}
         marks={marks}
         scale={valueScale}
-        onChange={(event, value) => changeHandler(value, event as HtmlFieldChangeEvent)}
+        onChange={(event, value) => changeHandler(value, event as unknown as HtmlFieldChangeEvent)}
         valueLabelDisplay="off"
       />
     </div>

@@ -134,7 +134,6 @@ function numberToWordsUnmapped(number: number): string {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return (`${numberStr}${hundredsBasic(sections.pop()!)}`).trim();
 }
 

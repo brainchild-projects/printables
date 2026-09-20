@@ -104,7 +104,6 @@ async function checkValidServiceWorker(swUrl: string, config?: Config) {
       || (contentType && !contentType.includes('javascript'))
     ) {
       // No service worker found. Probably a different app. Reload the page.
-      // eslint-disable-next-line promise/no-nesting
       const registration = await navigator.serviceWorker.ready;
       await registration.unregister();
       window.location.reload();
